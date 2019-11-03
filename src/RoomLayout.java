@@ -13,7 +13,7 @@ public class RoomLayout {
     public RoomLayout(int n, int m) {
         this.seats = new String[n][m];
         for (String[] row : this.seats) {
-            Arrays.fill(row, "None")
+            Arrays.fill(row, "None");
         }
         this.representations = new HashMap<String, Character>();
         representations.put("None", ' ');
@@ -29,6 +29,14 @@ public class RoomLayout {
 
     public void assignType(int pos, String type) {
         this.seats[pos/this.seats[0].length][pos%this.seats[0].length] = type;
+    }
+
+    public String[][] getSeats() {
+        return seats;
+    }
+
+    public HashMap<String, Character> getRepresentations() {
+        return representations;
     }
 
     public void assignTypes(HashMap<Integer, String> locations) {
