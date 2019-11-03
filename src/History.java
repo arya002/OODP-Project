@@ -53,17 +53,18 @@ public class History {
     }
 
     public Review getReview(int i) {
-        return this.reviews.get(i);
+        return this.reviews.get(this.reviews.size() - i - 1);
     }
 
     public Ticket getTicket(int i) {
-        return this.tickets.get(i);
+        return this.tickets.get(this.tickets.size() - i - 1);
     }
     //</editor-fold>
 
     //<editor-fold desc="Printing">
     public void printTickets(int begin, int end) {
-        for (int i=begin; i<end; i++) {
+        int offset = this.tickets.size() -1;
+        for (int i=offset - begin; i>offset - end; i--) {
             this.tickets.get(i).print();
         }
     }
@@ -77,13 +78,15 @@ public class History {
     }
 
     public void printTickets(Iterable<Integer> positions) {
+        int offset = this.tickets.size() -1;
         for (Integer i : positions) {
-            this.tickets.get(i).print();
+            this.tickets.get(offset - i).print();
         }
     }
 
     public void printReviews(int begin, int end) {
-        for (int i=begin; i<end; i++) {
+        int offset = this.reviews.size() -1;
+        for (int i=offset - begin; i> offset - end; i--) {
             this.reviews.get(i).print();
         }
     }
@@ -97,8 +100,9 @@ public class History {
     }
 
     public void printReviews(Iterable<Integer> positions) {
+        int offset = this.reviews.size() -1;
         for (Integer i : positions) {
-            this.reviews.get(i).print();
+            this.reviews.get(offset - i).print();
         }
     }
     //</editor-fold>
