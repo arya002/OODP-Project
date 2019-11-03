@@ -21,6 +21,7 @@ public class Movie {
         this.director = director;
         this.cast = cast;
         this.reviews = reviews;
+        this.calcAvg_rating();
     }
 
     public Movie(String name, String status, String synopsis, String director, String[] cast) {
@@ -29,6 +30,7 @@ public class Movie {
 
     public void addReview(Review review) {
         this.reviews.add(review);
+        this.calcAvg_rating();
     }
 
     public void print() {
@@ -39,7 +41,7 @@ public class Movie {
         System.out.println("Average rating: " + avg_rating);
         System.out.println("\nSynopsis:\n" + synopsis);
         System.out.println();
-        this.printReviews();;
+        this.printReviews(this.reviews.size());;
     }
 
     public void printLess() {
@@ -51,11 +53,21 @@ public class Movie {
         System.out.println("\nSynopsis:\n" + synopsis);
     }
 
-    public void printReviews() {
+    public void printReviews(int n) {
         System.out.println("Reviews:");
-        for (Review rev : reviews) {
-            rev.print();
+        for (int i=0; i<n; i++) {
+            this.reviews.get(i).print();
         }
+    }
+
+    private void calcAvg_rating() {
+        if (this.reviews.size() == 0) {return;}
+
+        double total = 0;
+        for (Review rev : this.reviews) {
+            total += rev.getRating();
+        }
+        this.avg_rating = total/this.reviews.size();
     }
 
     //<editor-fold desc="Setters/modifiers">

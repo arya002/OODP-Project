@@ -4,4 +4,8 @@ public class Review {
 
     public void print() {
     }
+
+    public double getRating() {
+        return rating;
+    }
 }
