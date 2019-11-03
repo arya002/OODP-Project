@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.ArrayList;
 
-public class database {
+public class Database {
 
 	public static ArrayList<String> readfile(String filename) {
 		ArrayList<String> db = new ArrayList<String>(); // create new arraylist
