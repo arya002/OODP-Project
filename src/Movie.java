@@ -36,9 +36,23 @@ public class Movie {
         System.out.println("Name: " + name);
         System.out.println("Directed by: " + director);
         System.out.println("Starring: " + String.join(", ", cast));
-        System.out.println("Average rating:" + avg_rating);
-        System.out.println("Synopsis:\n" + synopsis);
-        System.out.println("Revies:");
+        System.out.println("Average rating: " + avg_rating);
+        System.out.println("\nSynopsis:\n" + synopsis);
+        System.out.println();
+        this.printReviews();;
+    }
+
+    public void printLess() {
+        System.out.println(status);
+        System.out.println("Name: " + name);
+        System.out.println("Directed by: " + director);
+        System.out.println("Starring: " + String.join(", ", cast));
+        System.out.println("Average rating: " + avg_rating);
+        System.out.println("\nSynopsis:\n" + synopsis);
+    }
+
+    public void printReviews() {
+        System.out.println("Reviews:");
         for (Review rev : reviews) {
             rev.print();
         }
