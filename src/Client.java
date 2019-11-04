@@ -3,12 +3,14 @@ public class Client extends User {
 	
 	String phoneNum;
 	String email;
+	
 
 
 	public Client(String username, String password) {
 		super(username, password);
 		this.phoneNum = "";
 		this.email = "";
+		this.type = "Client";
 	}
 	
 	public Client(String username, String password	,String phoneNum,String email) {

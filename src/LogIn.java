@@ -5,7 +5,7 @@ public class LogIn {
 
 	}
 	
-	public boolean checkLogin(String username, String password){
+	public static boolean checkLogin(String username, String password){
 		boolean retVal = false;
 		
 		if (username == "user1") {
@@ -13,6 +13,12 @@ public class LogIn {
 		}
 		
 		return retVal;
+	}
+	
+	public static void Register() {
+		
+		
+		
 	}
 
 }

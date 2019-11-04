@@ -4,6 +4,7 @@ public abstract class User {
 	protected String username; 
 	protected String password;
 	protected boolean loggedIn;
+	protected String type;
 
 	public User(String username, String password) {
 		this.username = username;
@@ -11,15 +12,15 @@ public abstract class User {
 		loggedIn = false;
 	}
 
-	public abstract String getUsername();
+	public String getUsername() {return username;}
 
-	public abstract void setUsername(String username);
+	public void setUsername(String username) {this.username = username;}
 
-	public abstract String getPassword();
+	public String getPassword() {return password;};
 	
-	public abstract void setPassword(String password);
+	public void setPassword(String password) {}
 	
-	public abstract boolean isLoggedIn();
+	public boolean isLoggedIn() {return loggedIn;}
 	
 	
 }
