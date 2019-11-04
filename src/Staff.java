@@ -6,6 +6,8 @@ public class Staff extends User {
 		this.type = "Staff";
 	}
 
+	//dont need right now, may later need to override
+	
 	@Override
 	public String getUsername() {
 		return username;

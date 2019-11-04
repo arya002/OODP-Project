@@ -19,16 +19,6 @@ public class Client extends User {
 		this.email = email;		
 	}
 
-	@Override
-	public String getUsername() {
-		return username;
-	}
-
-	@Override
-	public void setUsername(String username) {
-		 this.username = username;
-	}
-
 	public String getPhoneNum() {
 		return phoneNum;
 	}
@@ -45,21 +35,4 @@ public class Client extends User {
 		this.email = email;
 	}
 
-	@Override
-	public String getPassword() {
-		return password;
-	}
-
-	@Override
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	@Override
-	public boolean isLoggedIn() {
-		return loggedIn;
-	}
-
-	
-	
 }
