@@ -24,11 +24,20 @@ public class RoomLayout {
     }
 
     public void assignType(int n, int m, String type) {
+//        TODO check if admin.
         this.seats[n][m] = type;
     }
 
     public void assignType(int pos, String type) {
+//        TODO check if admin.
         this.seats[pos/this.seats[0].length][pos%this.seats[0].length] = type;
+    }
+
+    public void assignTypes(HashMap<Integer, String> locations) {
+//        TODO check if admin.
+        for (Map.Entry<Integer, String> entry : locations.entrySet()) {
+            this.assignType(entry.getKey(), entry.getValue());
+        }
     }
 
     public String[][] getSeats() {
@@ -37,12 +46,6 @@ public class RoomLayout {
 
     public HashMap<String, Character> getRepresentations() {
         return representations;
-    }
-
-    public void assignTypes(HashMap<Integer, String> locations) {
-        for (Map.Entry<Integer, String> entry : locations.entrySet()) {
-            this.assignType(entry.getKey(), entry.getValue());
-        }
     }
 
     public void print() {
@@ -60,5 +63,6 @@ public class RoomLayout {
 
     public void save() {
 //        TODO save matrix to file.
+//        TODO check if admin.
     }
 }

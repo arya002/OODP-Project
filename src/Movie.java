@@ -41,7 +41,7 @@ public class Movie {
         System.out.println("Average rating: " + avg_rating);
         System.out.println("\nSynopsis:\n" + synopsis);
         System.out.println();
-        this.printReviews(this.reviews.size());;
+        this.printReviews();
     }
 
     public void printLess() {
@@ -51,6 +51,13 @@ public class Movie {
         System.out.println("Starring: " + String.join(", ", cast));
         System.out.println("Average rating: " + avg_rating);
         System.out.println("\nSynopsis:\n" + synopsis);
+    }
+
+    public void printReviews() {
+        System.out.println("Reviews:");
+        for (Review rev : this.reviews) {
+            rev.print();
+        }
     }
 
     public void printReviews(int n) {
