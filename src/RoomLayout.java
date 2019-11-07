@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class RoomLayout {
     private String[][] seats;
-    private HashMap<String, Character> representations
+    private HashMap<String, Character> representations;
 
     public RoomLayout(String file) {
 //        TODO read matrix from file.
