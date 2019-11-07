@@ -1,18 +1,31 @@
+import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.util.Calendar;
+import java.util.HashMap;
 
 public class Ticket {
 
     private String name;
     private String email;
     private String phoneNumber;
-    private long ticketId;
+    private String date;
+    private String ticketId;
+    private Seat seat;
+    private double price;
 
-    public Ticket(String name, String email, String phoneNumber)
+    public Ticket(String name, String email, String phoneNumber, Seat seat)
     {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.ticketId = Instant.now().getEpochSecond();
+        this.seat = seat;
+
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMddhhmm");
+//        TODO add cinema code to TID.
+        this.ticketId = format1.format(calendar.getTime());
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        this.date = formatter.format(calendar.getTime());
     }
 
     public String getName()
@@ -45,12 +58,39 @@ public class Ticket {
         this.phoneNumber = phoneNumber;
     }
 
-    public long getTicketId()
+    public String  getTicketId()
     {
         return ticketId;
     }
 
-    public void print() {
+    public void assignSeat(Seat seat) {
+        this.seat = seat;
+    }
 
+    public void print() {
+        HashMap<String, String> fields =  new HashMap<>();
+        fields.put("name", this.name);
+        fields.put("email", this.email);
+        fields.put("phone", this.phoneNumber);
+        fields.put("TID", this.ticketId);
+//        TODO  fields.put("cineplex", );
+//        TODO  fields.put("room", );
+        fields.put("seat", Integer.toString(this.seat.getSeatID()));
+        fields.put("type", this.seat.getType());
+        fields.put("date", this.date);
+        fields.put("price", Double.toString(this.price));
+
+//        ++++++++++++++++++++++++
+//        +  name:     name      +
+//        +  email:    email     +
+//        +  phone:    number    +
+//        +  TID:      Id        +
+//        +  cineplex: cineplex  +
+//        +  room:     cinema    +
+//        +  seat:     Id        +
+//        +  type:     type      +
+//        +  date:     date      +
+//        +  price:    price     +
+//        ++++++++++++++++++++++++
     }
 }

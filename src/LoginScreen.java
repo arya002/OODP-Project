@@ -1,8 +1,6 @@
-package movie_booking_system;
-
 import java.util.*;
 
-public class login_screen{
+public class LoginScreen {
 
 	Scanner sc = new Scanner(System.in);
 
@@ -10,7 +8,7 @@ public class login_screen{
 	private String userName;
 	private int tries;
 
-	public login_screen(){
+	public LoginScreen(){
 		this.password = "guest";
 		this.userName = "guest";
 		this.tries = 3;
