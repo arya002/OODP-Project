@@ -9,6 +9,7 @@ public class Movie {
     private double avg_rating;
     private ArrayList<Review> reviews;
 
+    //<editor-fold desc="Constructors">
     public Movie(String file){
 //        TODO load from file
 //        this(args);
@@ -27,18 +28,20 @@ public class Movie {
     public Movie(String name, String status, String synopsis, String director, String[] cast) {
         this(name, status, synopsis, director, cast, null);
     }
+    //</editor-fold>
 
     public void addReview(Review review) {
         this.reviews.add(review);
         this.calcAvg_rating();
     }
 
+    //<editor-fold desc="Printers">
     public void print() {
         System.out.println(status);
         System.out.println("Name: " + name);
         System.out.println("Directed by: " + director);
         System.out.println("Starring: " + String.join(", ", cast));
-        System.out.println("Average rating: " + avg_rating);
+        System.out.printf("Average rating: %.2f/10\n", avg_rating);
         System.out.println("\nSynopsis:\n" + synopsis);
         System.out.println();
         this.printReviews();
@@ -49,7 +52,7 @@ public class Movie {
         System.out.println("Name: " + name);
         System.out.println("Directed by: " + director);
         System.out.println("Starring: " + String.join(", ", cast));
-        System.out.println("Average rating: " + avg_rating);
+        System.out.printf("Average rating: %.2f/10\n", avg_rating);
         System.out.println("\nSynopsis:\n" + synopsis);
     }
 
@@ -57,6 +60,7 @@ public class Movie {
         System.out.println("Reviews:");
         for (Review rev : this.reviews) {
             rev.print();
+            System.out.println();
         }
     }
 
@@ -64,8 +68,10 @@ public class Movie {
         System.out.println("Reviews:");
         for (int i=0; i<n; i++) {
             this.reviews.get(i).print();
+            System.out.println();
         }
     }
+    //</editor-fold>
 
     private void calcAvg_rating() {
         if (this.reviews.size() == 0) {return;}

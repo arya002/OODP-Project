@@ -4,7 +4,13 @@ import java.util.Map;
 
 public class RoomLayout {
     private String[][] seats;
-    private HashMap<String, Character> representations;
+    static private HashMap<String, Character> representations = new HashMap<String, Character>();
+    static {
+        representations.put("None", ' ');
+        representations.put("Normal", 'N');
+        representations.put("Premium", 'P');
+        representations.put("Love", 'L');
+    }
 
     public RoomLayout(String file) {
 //        TODO read matrix from file.
@@ -15,11 +21,7 @@ public class RoomLayout {
         for (String[] row : this.seats) {
             Arrays.fill(row, "None");
         }
-        this.representations = new HashMap<String, Character>();
-        representations.put("None", ' ');
-        representations.put("Normal", 'N');
-        representations.put("Premium", 'P');
-        representations.put("Love", 'L');
+
 
     }
 

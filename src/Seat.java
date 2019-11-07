@@ -1,31 +1,30 @@
 public class Seat {
 
-    private int SeatID;
-    private int CustID;
+    private int seatID;
+    private int custID = 0;
     private String type;
     private boolean allocated;
 
-    public Seat(int seatID, int custID, String type)
+    public Seat(int seatID, String type)
     {   
-        this.SeatID = seatID;
-        this.CustID = custID;
+        this.seatID = seatID;
         this.type = type;
         this.allocated = false;
     }
     public int getSeatID() {
-        return SeatID;
+        return seatID;
     }
 
     public void setSeatID(int seatID) {
-        SeatID = seatID;
+        this.seatID = seatID;
     }
 
     public int getCustID() {
-        return CustID;
+        return custID;
     }
 
     public void setCustID(int custID) {
-        CustID = custID;
+        this.custID = custID;
     }
 
     public String getType() {
@@ -40,7 +39,12 @@ public class Seat {
         return allocated;
     }
 
-    public void setAllocated(boolean allocated) {
-        this.allocated = allocated;
+    public void assignSeat(int custID) {
+        this.allocated = true;
+        this.custID = custID;
+    }
+
+    public void unassignSeat() {
+        this.allocated = false;
     }
 }
