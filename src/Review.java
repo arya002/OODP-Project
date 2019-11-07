@@ -7,6 +7,11 @@ public class Review {
     private String date;
     private Client reviewer;
 
+    public Review(String file) {
+//        TODO load from file.
+//        this(attrs);
+    }
+
     public Review(String review, double rating, Client reviewer) {
         this.review = review;
         if (rating >= 0) {
@@ -29,6 +34,7 @@ public class Review {
         System.out.println("Review:\n" + review);
     }
 
+    //<editor-fold desc="Getters">
     public double getRating() {
         return rating;
     }
@@ -36,11 +42,28 @@ public class Review {
     public String getReview(){
         return review;
     }
-    
+
+    public Client getReviewer() {
+        return reviewer;
+    }
+
+    public String getDate() {
+        return date;
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="mutators">
     public void changeReview(String review) {
         this.review = review;
     }
     public void changeRating(double rating) {
         this.rating = rating;
     }
+    public void changeReviewer(Client reviewer) {
+        this.reviewer = reviewer;
+    }
+    public void changeDate(String date) {
+        this.date = date;
+    }
+    //</editor-fold>
 }

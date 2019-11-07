@@ -16,8 +16,8 @@ public class History {
     }
 
     public History() {
-        this.reviews = new ArrayList<Review>();
-        this.tickets = new ArrayList<Ticket>();
+        this.reviews = new ArrayList<>();
+        this.tickets = new ArrayList<>();
     }
     //</editor-fold>
 
@@ -61,6 +61,24 @@ public class History {
     }
     //</editor-fold>
 
+    //<editor-fold desc="Removers">
+    public void removeReview(String date) {
+        for (Review rev : this.reviews) {
+            if (rev.getDate().equals(date)) {
+                this.reviews.remove(rev);
+            }
+        }
+    }
+
+    public void removeTicket(String tid) {
+        for (Ticket tick : this.tickets) {
+            if (tick.getTicketId().equals(tid)) {
+                this.tickets.remove(tick);
+            }
+        }
+    }
+    //</editor-fold>
+
     //<editor-fold desc="Printing">
     public void printTickets(int begin, int end) {
         int offset = this.tickets.size() -1;
@@ -81,6 +99,7 @@ public class History {
         int offset = this.tickets.size() -1;
         for (Integer i : positions) {
             this.tickets.get(offset - i).print();
+            System.out.println();
         }
     }
 
@@ -103,6 +122,7 @@ public class History {
         int offset = this.reviews.size() -1;
         for (Integer i : positions) {
             this.reviews.get(offset - i).print();
+            System.out.println();
         }
     }
     //</editor-fold>
