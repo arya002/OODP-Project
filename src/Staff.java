@@ -10,7 +10,7 @@ public class Staff extends User {
 	
 	@Override
 	public String getUsername() {
-		return username;
+		return "Admin" + username;
 	}
 
 	@Override
@@ -19,8 +19,8 @@ public class Staff extends User {
 	}
 
 	@Override
-	public String getPassword() {
-		return password;
+	public boolean checkPassword(String test) {
+		return password.equals(test);
 	}
 
 	@Override

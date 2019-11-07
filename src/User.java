@@ -16,11 +16,15 @@ public abstract class User {
 
 	public void setUsername(String username) {this.username = username;}
 
-	public String getPassword() {return password;};
+	public boolean checkPassword(String test) {return password.equals(test);}
 	
 	public void setPassword(String password) {}
 	
 	public boolean isLoggedIn() {return loggedIn;}
+
+	public void LogIn() {loggedIn = true;}
+
+	public void LogOut() {loggedIn = false;}
 	
 	
 }
