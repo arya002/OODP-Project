@@ -1,19 +1,19 @@
 import java.util.ArrayList;
 
-public class seatingPlan {
+public class SeatingPlan {
     private Seat[][] seats;
 
     //<editor-fold desc="Constructors">
-    public seatingPlan(Seat[][] seats) {
+    public SeatingPlan(Seat[][] seats) {
         this.seats = seats;
     }
 
-    public seatingPlan(String file) {
+    public SeatingPlan(String file) {
 //        TODO load from file.
 //        this(iterable);
     }
 
-    public seatingPlan(String[][] layout) {
+    public SeatingPlan(String[][] layout) {
         for (int i=0; i < layout.length; i++) {
             for (int j=0; j < layout[0].length; j++) {
                 this.seats[i][j] = new Seat(i*layout[0].length + j, layout[i][j]);
@@ -54,11 +54,37 @@ public class seatingPlan {
         temp.toArray(res);
         return res;
     }
+
+    public Seat getSeat(int n, int m) {
+        return this.seats[n][m];
+    }
+
+    public Seat getSeat(int index) {
+        return this.seats[index/this.seats[0].length][index%this.seats[0].length];
+    }
     //</editor-fold>
 
     public void assignSeat(int index, int custID) {
         this.seats[index/this.seats[0].length][index%this.seats[0].length].assignSeat(custID);
     }
 
-//\e[41m
+    public void unAssignSeat(int index) {
+        this.seats[index/this.seats[0].length][index%this.seats[0].length].unassignSeat();
+    }
+
+    public void print(){
+        String line = "-".repeat(this.seats[0].length);
+        System.out.println(" " + line);
+        for (Seat[] row : this.seats) {
+            System.out.print("|");
+            for (Seat seat : row) {
+                if (seat.isAllocated())
+                    System.out.print("X");
+                else
+                    System.out.print(RoomLayout.representations.get(seat.getType()));
+            }
+            System.out.println("|");
+        }
+        System.out.println(" " + line);
+    }
 }

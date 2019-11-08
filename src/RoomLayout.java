@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class RoomLayout {
     private String[][] seats;
-    static private HashMap<String, Character> representations = new HashMap<String, Character>();
+    static public HashMap<String, Character> representations = new HashMap<String, Character>();
     static {
         representations.put("None", ' ');
         representations.put("Normal", 'N');
@@ -46,9 +46,9 @@ public class RoomLayout {
         return seats;
     }
 
-    public HashMap<String, Character> getRepresentations() {
-        return representations;
-    }
+//    public HashMap<String, Character> getRepresentations() {
+//        return representations;
+//    }
 
     public void print() {
         String line = "-".repeat(this.seats[0].length);
