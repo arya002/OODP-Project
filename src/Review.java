@@ -15,10 +15,10 @@ public class Review {
     public Review(String review, double rating, Client reviewer) {
         this.review = review;
         if (rating >= 0) {
-                if ( rating <= 10)
+                if ( rating <= 5)
                     this.rating = rating;
                 else
-                    this.rating = 10;
+                    this.rating = 5;
         } else {this.rating = 0;}
 
         this.reviewer = reviewer;
@@ -30,7 +30,7 @@ public class Review {
     public void print() { // print review
         System.out.println("Review by: " + this.reviewer.getUsername());
         System.out.println("Date: " + this.date);
-        System.out.printf("❀".repeat((int) rating) + ", %.2f/10\n\n", rating);
+        System.out.printf("❀".repeat((int) rating) + ", %.2f/5\n\n", rating);
         System.out.println("Review:\n" + review);
     }
 

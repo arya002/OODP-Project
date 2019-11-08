@@ -20,6 +20,10 @@ public class SeatingPlan {
             }
         }
     }
+
+    public SeatingPlan(RoomLayout layout) {
+        this(layout.getSeats());
+    }
     //</editor-fold>
 
     //<editor-fold desc="Getters">

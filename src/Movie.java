@@ -41,7 +41,7 @@ public class Movie {
         System.out.println("Name: " + name);
         System.out.println("Directed by: " + director);
         System.out.println("Starring: " + String.join(", ", cast));
-        System.out.printf("Average rating: %.2f/10\n", avg_rating);
+        System.out.printf("Average rating: %.2f/5\n", avg_rating);
         System.out.println("\nSynopsis:\n" + synopsis);
         System.out.println();
         this.printReviews();
@@ -52,7 +52,7 @@ public class Movie {
         System.out.println("Name: " + name);
         System.out.println("Directed by: " + director);
         System.out.println("Starring: " + String.join(", ", cast));
-        System.out.printf("Average rating: %.2f/10\n", avg_rating);
+        System.out.printf("Average rating: %.2f/5\n", avg_rating);
         System.out.println("\nSynopsis:\n" + synopsis);
     }
 
