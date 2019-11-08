@@ -8,6 +8,7 @@ public class Movie {
     private String[] cast;
     private double avg_rating;
     private ArrayList<Review> reviews;
+    private ArrayList<Cineplex> locations;
 
     //<editor-fold desc="Constructors">
     public Movie(String file){
@@ -15,18 +16,19 @@ public class Movie {
 //        this(args);
     }
 
-    public Movie(String name, String status, String synopsis, String director, String[] cast, ArrayList<Review> reviews) {
+    public Movie(String name, String status, String synopsis, String director, String[] cast, ArrayList<Review> reviews, ArrayList<Cineplex> locations) {
         this.name = name;
         this.status = status;
         this.synopsis = synopsis;
         this.director = director;
         this.cast = cast;
         this.reviews = reviews;
+        this.locations = locations;
         this.calcAvg_rating();
     }
 
-    public Movie(String name, String status, String synopsis, String director, String[] cast) {
-        this(name, status, synopsis, director, cast, null);
+    public Movie(String name, String status, String synopsis, String director, String[] cast, ArrayList<Cineplex> locations) {
+        this(name, status, synopsis, director, cast, null, locations);
     }
     //</editor-fold>
 
@@ -35,13 +37,21 @@ public class Movie {
         this.calcAvg_rating();
     }
 
+    public void addCineplex(Cineplex cineplex) {
+        this.locations.add(cineplex);
+    }
+
+    public void removeCineplex(Cineplex cineplex) {
+        this.locations.remove(cineplex);
+    }
+
     //<editor-fold desc="Printers">
     public void print() {
         System.out.println(status);
         System.out.println("Name: " + name);
         System.out.println("Directed by: " + director);
         System.out.println("Starring: " + String.join(", ", cast));
-        System.out.printf("Average rating: %.2f/5\n", avg_rating);
+        System.out.printf("Average rating: %.1f/5\n", avg_rating);
         System.out.println("\nSynopsis:\n" + synopsis);
         System.out.println();
         this.printReviews();
@@ -52,7 +62,7 @@ public class Movie {
         System.out.println("Name: " + name);
         System.out.println("Directed by: " + director);
         System.out.println("Starring: " + String.join(", ", cast));
-        System.out.printf("Average rating: %.2f/5\n", avg_rating);
+        System.out.printf("Average rating: %.1f/5\n", avg_rating);
         System.out.println("\nSynopsis:\n" + synopsis);
     }
 
@@ -137,6 +147,10 @@ public class Movie {
 
     public String getSynopsis() {
         return synopsis;
+    }
+
+    public ArrayList<Cineplex> getLocations() {
+        return locations;
     }
     //</editor-fold>
 }

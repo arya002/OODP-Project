@@ -47,4 +47,11 @@ public class Seat {
     public void unassignSeat() {
         this.allocated = false;
     }
+
+    public void print() {
+        System.out.println("seatID: " + Integer.toString(seatID));
+        System.out.println("custID: " + Integer.toString(custID));
+        System.out.println("type: " + type);
+        System.out.println("allocated: " + Boolean.toString(allocated));
+    }
 }

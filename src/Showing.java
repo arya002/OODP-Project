@@ -3,11 +3,11 @@ import java.util.*;
 public class Showing {
     private String cineplex;
     private int cinema;
-    private String movie;
+    private Movie movie;
     private Date date;
     private SeatingPlan plan;
 
-    public Showing(String cineplex, int room, String movie, RoomLayout layout, Date date) {
+    public Showing(String cineplex, int room, Movie movie, RoomLayout layout, Date date) {
         this.cineplex = cineplex;
         this.cinema = room;
         this.movie = movie;
@@ -23,7 +23,7 @@ public class Showing {
         return cinema;
     }
 
-    public String getMovie() {
+    public Movie getMovie() {
         return movie;
     }
     // date stores time as well
