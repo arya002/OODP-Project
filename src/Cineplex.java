@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Cineplex {
+public class Cineplex implements Serializable {
     private String name;
     private ArrayList<RoomLayout> cinemas;
     private ArrayList<Showing> showings;
@@ -18,6 +19,16 @@ public class Cineplex {
         this.cinemas = cinemas;
         this.showings = showings;
         this.movies = movies;
+    }
+
+    public Cineplex(String name, ArrayList<RoomLayout> cinemas, ArrayList<Showing> showings) {
+        this.name = name;
+        this.cinemas = cinemas;
+        this.showings = showings;
+        this.movies = new ArrayList<>();
+        for (Showing showing : showings) {
+            this.movies.add(showing.getMovie());
+        }
     }
 
     public void changeName(String name) {

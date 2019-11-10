@@ -1,14 +1,11 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class History {
+public class History implements Serializable {
     private ArrayList<Review> reviews;
     private ArrayList<Ticket> tickets;
 
     //<editor-fold desc="Constructors">
-    public History(String file) {
-//        TODO read from file
-//        this(attributes);
-    }
 
     public History(ArrayList<Review> reviews, ArrayList<Ticket> tickets) {
         this.reviews = reviews;

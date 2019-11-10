@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.*;
 
-public class Showing {
+public class Showing implements Serializable {
     private String cineplex;
     private int cinema;
     private Movie movie;

@@ -1,9 +1,10 @@
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Calendar;
 import java.util.HashMap;
 
-public class Ticket {
+public class Ticket implements Serializable {
 
     private String name;
     private String email;
@@ -13,7 +14,7 @@ public class Ticket {
     private Seat seat;
     private double price;
 
-    public Ticket(String name, String email, String phoneNumber, Seat seat)
+    public Ticket(String name, String email, String phoneNumber, Seat seat, String cineplex)
     {
         this.name = name;
         this.email = email;
@@ -22,8 +23,8 @@ public class Ticket {
 
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMddhhmm");
-//        TODO add cinema code to TID.
-        this.ticketId = format1.format(calendar.getTime());
+        this.ticketId = cineplex + format1.format(calendar.getTime());
+
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         this.date = formatter.format(calendar.getTime());
     }

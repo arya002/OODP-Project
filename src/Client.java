@@ -3,8 +3,6 @@ public class Client extends User {
 	
 	String phoneNum;
 	String email;
-	
-
 
 	public Client(String username, String password) {
 		super(username, password);

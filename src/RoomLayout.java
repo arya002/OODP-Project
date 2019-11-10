@@ -1,8 +1,9 @@
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RoomLayout {
+public class RoomLayout implements Serializable {
     private String[][] seats;
     static public HashMap<String, Character> representations = new HashMap<String, Character>();
     static {
@@ -10,10 +11,6 @@ public class RoomLayout {
         representations.put("Normal", 'N');
         representations.put("Premium", 'P');
         representations.put("Love", 'L');
-    }
-
-    public RoomLayout(String file) {
-//        TODO read matrix from file.
     }
 
     public RoomLayout(int n, int m) {
@@ -61,10 +58,5 @@ public class RoomLayout {
             System.out.println("|");
         }
         System.out.println(" " + line);
-    }
-
-    public void save() {
-//        TODO save matrix to file.
-//        TODO check if admin.
     }
 }

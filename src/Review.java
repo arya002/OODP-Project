@@ -1,16 +1,12 @@
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class Review {
+public class Review implements Serializable {
     private String review;
     private double rating;
     private String date;
     private Client reviewer;
-
-    public Review(String file) {
-//        TODO load from file.
-//        this(attrs);
-    }
 
     public Review(String review, double rating, Client reviewer) {
         this.review = review;

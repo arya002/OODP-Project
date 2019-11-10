@@ -1,16 +1,12 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SeatingPlan {
+public class SeatingPlan implements Serializable {
     private Seat[][] seats;
 
     //<editor-fold desc="Constructors">
     public SeatingPlan(Seat[][] seats) {
         this.seats = seats;
-    }
-
-    public SeatingPlan(String file) {
-//        TODO load from file.
-//        this(iterable);
     }
 
     public SeatingPlan(String[][] layout) {

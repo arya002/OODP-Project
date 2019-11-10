@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Movie {
+public class Movie implements Serializable {
     private String name;
     private String status;
     private String synopsis;
@@ -11,11 +12,6 @@ public class Movie {
     private ArrayList<Cineplex> locations;
 
     //<editor-fold desc="Constructors">
-    public Movie(String file){
-//        TODO load from file
-//        this(args);
-    }
-
     public Movie(String name, String status, String synopsis, String director, String[] cast, ArrayList<Review> reviews, ArrayList<Cineplex> locations) {
         this.name = name;
         this.status = status;
