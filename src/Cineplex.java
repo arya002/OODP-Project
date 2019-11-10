@@ -7,6 +7,7 @@ public class Cineplex implements Serializable {
     private ArrayList<Showing> showings;
     private ArrayList<Movie> movies;
 
+    //<editor-fold desc="Constructors">
     public Cineplex(String name) {
         this.name = name;
         this.cinemas = new ArrayList<>();
@@ -30,11 +31,13 @@ public class Cineplex implements Serializable {
             this.movies.add(showing.getMovie());
         }
     }
+    //</editor-fold>
 
     public void changeName(String name) {
         this.name = name;
     }
 
+    //<editor-fold desc="Adders">
     public void addCinema(RoomLayout layout) {
         for (RoomLayout elem : this.cinemas){
             if (elem.equals(layout))
@@ -65,7 +68,9 @@ public class Cineplex implements Serializable {
         }
         addMovie(showing.getMovie());
     }
+    //</editor-fold>
 
+    //<editor-fold desc="Removers">
     public void removeCinema(RoomLayout layout) {
         this.cinemas.remove(layout);
     }
@@ -82,6 +87,7 @@ public class Cineplex implements Serializable {
             }
         }
     }
+    //</editor-fold>
 
     public String getName() {
         return name;

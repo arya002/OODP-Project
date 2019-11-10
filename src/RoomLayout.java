@@ -5,7 +5,9 @@ import java.util.Map;
 
 public class RoomLayout implements Serializable {
     private String[][] seats;
-    static public HashMap<String, Character> representations = new HashMap<String, Character>();
+    private String type;
+    private String name;
+    static private HashMap<String, Character> representations = new HashMap<>();
     static {
         representations.put("None", ' ');
         representations.put("Normal", 'N');
@@ -13,39 +15,55 @@ public class RoomLayout implements Serializable {
         representations.put("Love", 'L');
     }
 
-    public RoomLayout(int n, int m) {
+    public RoomLayout(int n, int m, String name, String type) {
         this.seats = new String[n][m];
         for (String[] row : this.seats) {
             Arrays.fill(row, "None");
         }
-
-
+        this.name = name;
+        this.type = type;
     }
 
-    public void assignType(int n, int m, String type) {
+    public void assignSeatType(int n, int m, String type) {
 //        TODO check if admin.
         this.seats[n][m] = type;
     }
 
-    public void assignType(int pos, String type) {
+    public void assignSeatType(int pos, String type) {
 //        TODO check if admin.
         this.seats[pos/this.seats[0].length][pos%this.seats[0].length] = type;
     }
 
-    public void assignTypes(HashMap<Integer, String> locations) {
+    public void assignSeatTypes(HashMap<Integer, String> locations) {
 //        TODO check if admin.
         for (Map.Entry<Integer, String> entry : locations.entrySet()) {
-            this.assignType(entry.getKey(), entry.getValue());
+            this.assignSeatType(entry.getKey(), entry.getValue());
         }
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String[][] getSeats() {
         return seats;
     }
 
-//    public HashMap<String, Character> getRepresentations() {
-//        return representations;
-//    }
+    static public HashMap<String, Character> getRepresentations() {
+        return representations;
+    }
 
     public void print() {
         String line = "-".repeat(this.seats[0].length);

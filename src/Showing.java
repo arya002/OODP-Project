@@ -3,24 +3,36 @@ import java.util.*;
 
 public class Showing implements Serializable {
     private String cineplex;
-    private int cinema;
     private Movie movie;
+    private String type;
+    private String room_type;
     private Date date;
     private SeatingPlan plan;
+    private String cinema;
 
-    public Showing(String cineplex, int room, Movie movie, RoomLayout layout, Date date) {
+    public Showing(String cineplex, Movie movie, RoomLayout layout, Date date, String type) {
         this.cineplex = cineplex;
-        this.cinema = room;
         this.movie = movie;
         this.plan = new SeatingPlan(layout);
         this.date = date;
+        this.cinema = layout.getName();
+        this.type = type;
+        this.room_type = layout.getType();
+    }
+
+    public String getRoom_type() {
+        return room_type;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public String getCineplex() {
         return cineplex;
     }
 
-    public int getCinema() {
+    public String getCinema() {
         return cinema;
     }
 

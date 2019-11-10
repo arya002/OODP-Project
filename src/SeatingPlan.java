@@ -81,7 +81,7 @@ public class SeatingPlan implements Serializable {
                 if (seat.isAllocated())
                     System.out.print("X");
                 else
-                    System.out.print(RoomLayout.representations.get(seat.getType()));
+                    System.out.print(RoomLayout.getRepresentations().get(seat.getType()));
             }
             System.out.println("|");
         }
