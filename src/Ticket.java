@@ -66,7 +66,7 @@ public class Ticket implements Serializable {
         switch (this.showing.getRoom_type()) {
             case "Platinum Movie Suites":
                 this.price += 4;
-                break;S
+                break;
             case "Normal":
                 this.price += 1;
                 break;
