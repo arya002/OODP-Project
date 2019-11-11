@@ -2,11 +2,13 @@ import java.io.Serializable;
 
 public abstract class User implements Serializable {
 
+	protected String firstName;
 	protected String username;
 	protected String password;
 	protected String type;
 
-	public User(String username, String password) {
+	public User(String username, String password,String firstName) {
+		this.firstName = firstName;
 		this.username = username;
 		this.password = password;
 	}
