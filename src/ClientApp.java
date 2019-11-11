@@ -4,7 +4,7 @@ public class ClientApp {
     public ClientApp (Client current) {
         this.current = current;
     }
-
+    
     public void searchMovie() {
 
     }
