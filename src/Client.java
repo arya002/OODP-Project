@@ -6,16 +6,16 @@ public class Client extends User {
 	int age;
 	static private boolean loggedIn = false;
 
-	public Client(String username, String password) {
-		super(username, password);
+	public Client(String username, String password,String firstName) {
+		super(username, password,firstName);
 		this.phoneNum = "";
 		this.email = "";
 		this.type = "Client";
 		this.loggedIn = true;
 	}
 	
-	public Client(String username, String password	,String phoneNum, String email, String name) {
-		super(username, password);
+	public Client(String username, String password	,String phoneNum, String firstName ,String email, String name) {
+		super(username, password,firstName);
 		this.phoneNum = phoneNum;
 		this.email = email;
 		this.name = name;

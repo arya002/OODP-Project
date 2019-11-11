@@ -14,12 +14,11 @@ public class StaffApp {
         boolean loggedin = false;
 
         do {
-            System.out.println("Welcome " + currentStaff.);
+            System.out.println("Welcome " + currentStaff.getFirstName());
             Scanner sc = new Scanner(System.in);
             sc_in = sc.nextInt();
             switch (sc_in) {
                 case 1:
-                    loggedin = Login();
                     break;
                 case 2:
 //					TODO make guest
