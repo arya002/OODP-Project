@@ -27,11 +27,5 @@ public class Staff extends User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	@Override
-	public boolean isLoggedIn() {
-		return loggedIn;
-	}
-
 	
 }

@@ -91,27 +91,22 @@ public class Movie implements Serializable {
 
     //<editor-fold desc="Setters/modifiers">
     public void changeStatus(String status) {
-//          TODO check access level
         this.status = status;
     }
 
     public void changeName(String name) {
-//        TODO check access level
         this.name = name;
     }
 
     public void changeCast(String[] cast) {
-//        TODO check access level
         this.cast = cast;
     }
 
     public void changeSynopsis(String synopsis) {
-//        TODO check access level
         this.synopsis = synopsis;
     }
 
     public void changeDirector(String director) {
-//        TODO check access level
         this.director = director;
     }
     //</editor-fold>

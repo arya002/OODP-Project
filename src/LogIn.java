@@ -33,7 +33,7 @@ public class LogIn {
 		
 		//load from the database files and return as a
 		
-		return new Client("name","pass","email","phonenum");
+		return new Client("name","pass","email", "phonenum", "name");
 	}
 
 }

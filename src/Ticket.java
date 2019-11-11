@@ -123,7 +123,6 @@ public class Ticket implements Serializable {
     }
 
     public void setPrice(double price) {
-//        TODO admin
         this.price = price;
     }
 

@@ -25,17 +25,14 @@ public class RoomLayout implements Serializable {
     }
 
     public void assignSeatType(int n, int m, String type) {
-//        TODO check if admin.
         this.seats[n][m] = type;
     }
 
     public void assignSeatType(int pos, String type) {
-//        TODO check if admin.
         this.seats[pos/this.seats[0].length][pos%this.seats[0].length] = type;
     }
 
     public void assignSeatTypes(HashMap<Integer, String> locations) {
-//        TODO check if admin.
         for (Map.Entry<Integer, String> entry : locations.entrySet()) {
             this.assignSeatType(entry.getKey(), entry.getValue());
         }

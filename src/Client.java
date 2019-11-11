@@ -4,12 +4,14 @@ public class Client extends User {
 	private String phoneNum;
 	private String email;
 	int age;
+	static private boolean loggedIn = false;
 
 	public Client(String username, String password) {
 		super(username, password);
 		this.phoneNum = "";
 		this.email = "";
 		this.type = "Client";
+		this.loggedIn = true;
 	}
 	
 	public Client(String username, String password	,String phoneNum, String email, String name) {
@@ -17,6 +19,7 @@ public class Client extends User {
 		this.phoneNum = phoneNum;
 		this.email = email;
 		this.name = name;
+		this.loggedIn = true;
 	}
 
 	//<editor-fold desc="Getters">
@@ -34,6 +37,10 @@ public class Client extends User {
 
 	public String getName() {
 		return name;
+	}
+
+	public Boolean getLoggedIn() {
+		return this.loggedIn;
 	}
 	//</editor-fold>
 
