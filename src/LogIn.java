@@ -32,8 +32,9 @@ public class LogIn {
 	public static User loadUser(String SourcePathKey) {
 		
 		//load from the database files and return as a
-		
-		return new Client("name","pass","email", "phonenum", "name");
+
+		return null;
+
 	}
 
 }

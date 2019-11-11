@@ -9,8 +9,8 @@ public class Ticket implements Serializable {
     private Showing showing;
     private String ticketId;
     private Seat seat;
+    private static double basePrice =0;
     private double price;
-
     public Ticket(Client client, Seat seat, Showing showing)
     {
         this.client = client;
@@ -25,7 +25,7 @@ public class Ticket implements Serializable {
     }
 
     private void calculatePrice() {
-        this.price = 0;
+        this.price = basePrice;
         int age = this.client.getAge();
         if (age < 12) {
             this.price += 1;
@@ -66,7 +66,7 @@ public class Ticket implements Serializable {
         switch (this.showing.getRoom_type()) {
             case "Platinum Movie Suites":
                 this.price += 4;
-                break;S
+                break;
             case "Normal":
                 this.price += 1;
                 break;
