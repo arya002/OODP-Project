@@ -8,7 +8,7 @@ public class Review implements Serializable {
     private String date;
     private Client reviewer;
 
-    public Review(String review, double rating, Client reviewer) {
+    public Review(String review, double rating, Client reviewer) throws IllegalArgumentException {
         this.setReview(review);
         this.setRating(rating);
 
