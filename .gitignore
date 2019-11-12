@@ -1,2 +1,9 @@
 /bin/
 settings.json
+.idea/$CACHE_FILE$
+.idea/$PRODUCT_WORKSPACE_FILE$
+.idea/.name
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+CZ2002_Assignment__OODP-Project.iml

@@ -5,6 +5,7 @@ public abstract class User implements Serializable {
 	protected String firstName;
 	protected String username;
 	protected String password;
+
 	protected String type;
 
 	public User(String username, String password, String firstName) {
@@ -20,6 +21,8 @@ public abstract class User implements Serializable {
 	public boolean checkPassword(String test) {return password.equals(test);}
 	
 	public void setPassword(String password) {}
-	
-	
+
+	public String getFirstName() {
+		return firstName;
+	}
 }
