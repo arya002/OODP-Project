@@ -90,23 +90,23 @@ public class Movie implements Serializable {
     }
 
     //<editor-fold desc="Setters/modifiers">
-    public void changeStatus(String status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public void changeName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public void changeCast(String[] cast) {
+    public void setCast(String[] cast) {
         this.cast = cast;
     }
 
-    public void changeSynopsis(String synopsis) {
+    public void setSynopsis(String synopsis) {
         this.synopsis = synopsis;
     }
 
-    public void changeDirector(String director) {
+    public void setDirector(String director) {
         this.director = director;
     }
     //</editor-fold>

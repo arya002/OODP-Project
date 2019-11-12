@@ -7,7 +7,7 @@ public abstract class User implements Serializable {
 	protected String password;
 	protected String type;
 
-	public User(String username, String password,String firstName) {
+	public User(String username, String password, String firstName) {
 		this.firstName = firstName;
 		this.username = username;
 		this.password = password;

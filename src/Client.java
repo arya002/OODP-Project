@@ -7,7 +7,7 @@ public class Client extends User {
 	static private boolean loggedIn = false;
 
 	public Client(String username, String password) {
-		super(username, password);
+		super(username, password, username);
 		this.phoneNum = "";
 		this.email = "";
 		this.type = "Client";
@@ -15,7 +15,7 @@ public class Client extends User {
 	}
 	
 	public Client(String username, String password	,String phoneNum, String email, String name) {
-		super(username, password);
+		super(username, password, username);
 		this.phoneNum = phoneNum;
 		this.email = email;
 		this.name = name;

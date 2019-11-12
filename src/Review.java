@@ -49,16 +49,16 @@ public class Review implements Serializable {
     //</editor-fold>
 
     //<editor-fold desc="mutators">
-    public void changeReview(String review) {
+    public void setReview(String review) {
         this.review = review;
     }
-    public void changeRating(double rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
-    public void changeReviewer(Client reviewer) {
+    public void setReviewer(Client reviewer) {
         this.reviewer = reviewer;
     }
-    public void changeDate(String date) {
+    public void setDate(String date) {
         this.date = date;
     }
     //</editor-fold>
