@@ -16,11 +16,13 @@ public class Data implements Serializable {
     }
 
     static public Data getInstance() {
+        System.out.println("Gathering data please hold...");
         if (instance == null) {
             instance = (Data) loadObject(path);
             if (instance == null)
                 instance = new Data();
         }
+        System.out.println("Finished thank you for waiting...\n\n");
         return instance;
     }
 
