@@ -15,21 +15,25 @@ public class RoomLayout implements Serializable {
         representations.put("Love", 'L');
     }
 
-    public RoomLayout(int n, int m, String name, String type) {
+    public RoomLayout(int n, int m, String name, String type) throws IllegalArgumentException {
         this.seats = new String[n][m];
         for (String[] row : this.seats) {
             Arrays.fill(row, "None");
         }
-        this.name = name;
-        this.type = type;
+
+        this.setName(name);
+        this.setType(type);
     }
 
+    //<editor-fold desc="Assign">
     public void assignSeatType(int n, int m, String type) {
+        if (type.isEmpty())
+            type = "None";
         this.seats[n][m] = type;
     }
 
     public void assignSeatType(int pos, String type) {
-        this.seats[pos/this.seats[0].length][pos%this.seats[0].length] = type;
+        this.assignSeatType(pos/this.seats[0].length, pos%this.seats[0].length, type);
     }
 
     public void assignSeatTypes(HashMap<Integer, String> locations) {
@@ -37,15 +41,21 @@ public class RoomLayout implements Serializable {
             this.assignSeatType(entry.getKey(), entry.getValue());
         }
     }
+    //</editor-fold>
 
     public void setType(String type) {
+        if (type.isEmpty())
+            throw new IllegalArgumentException("Type cannot be empty");
         this.type = type;
     }
 
     public void setName(String name) {
+        if (name.isEmpty())
+            throw new IllegalArgumentException("Name cannot be empty");
         this.name = name;
     }
 
+    //<editor-fold desc="Getters">
     public String getType() {
         return type;
     }
@@ -61,6 +71,7 @@ public class RoomLayout implements Serializable {
     static public HashMap<String, Character> getRepresentations() {
         return representations;
     }
+    //</editor-fold>
 
     public void print() {
         String line = "-".repeat(this.seats[0].length);
