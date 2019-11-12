@@ -1,16 +1,23 @@
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+
 import java.util.HashMap;
 
 public class Ticket implements Serializable {
-
     private Client client;
     private Showing showing;
     private String ticketId;
     private Seat seat;
     private static double basePrice =0;
     private double price;
+    private static ArrayList<Integer> holidays;
+    {
+        holidays.add(359);
+    }
+
+
     public Ticket(Client client, Seat seat, Showing showing)
     {
         this.client = client;
@@ -33,6 +40,34 @@ public class Ticket implements Serializable {
             this.price += 4;
         } else {
             this.price += 1;
+        }
+
+        switch (this.showing.getDayOfWeek()) {
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+                for (Integer day : this.holidays) {
+                    if (showing.getDay() == day) {
+                        this.price += 2;
+                        break;
+                    } else {
+                        this.price += 0;
+                        break;
+                    }
+                }
+            case 5:
+            case 6:
+            case 7:
+                for (Integer day : this.holidays) {
+                    if (showing.getDay() == day) {
+                        this.price += 3;
+                        break;
+                    } else {
+                        this.price += 2;
+                        break;
+                    }
+                }
         }
 
         switch (this.showing.getType()) {
@@ -96,8 +131,9 @@ public class Ticket implements Serializable {
         return ticketId;
     }
 
-    public int getDate() {
-        return this.showing.getDate();
+    public String getDate() {
+        SimpleDateFormat ft = new SimpleDateFormat("hh:mm dd/MM/yyyy");
+        return ft.format(this.showing.getDate());
     }
 
     public Client getClient() {
@@ -135,9 +171,10 @@ public class Ticket implements Serializable {
         fields.put("room", this.showing.getCinema());
         fields.put("seat", Integer.toString(this.seat.getSeatID()));
         fields.put("type", this.seat.getType());
-        fields.put("date", Integer.toString(this.getDate()));
+        fields.put("date", this.getDate());
         fields.put("price", Double.toString(this.price));
 
+//        TODO
 //        ++++++++++++++++++++++++
 //        +  TID:      Id        +
 //        +  cineplex: cineplex  +

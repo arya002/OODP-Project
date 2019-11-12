@@ -6,11 +6,11 @@ public class Showing implements Serializable {
     private Movie movie;
     private String type;
     private String room_type;
-    private Date date;
+    private Calendar date;
     private SeatingPlan plan;
     private String cinema;
 
-    public Showing(String cineplex, Movie movie, RoomLayout layout, Date date, String type) {
+    public Showing(String cineplex, Movie movie, RoomLayout layout, Calendar date, String type) {
         this.setCineplex(cineplex);
         this.setCinema(cinema);
         this.setMovie(movie);
@@ -40,7 +40,7 @@ public class Showing implements Serializable {
         this.plan = plan;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Calendar date) {
         if (date == null)
             throw new IllegalArgumentException("Date cannot be null");
         this.date = date;
@@ -84,28 +84,20 @@ public class Showing implements Serializable {
     public Movie getMovie() {
         return movie;
     }
-    // date stores time as well
-    public Date getDateObject() {
-        return date;
-    }
-    // redundant functions, can get all this from getDate()
-    public int getDate() {
-        return date.getDate();
+
+    public Date getDate() {
+        return date.getTime();
     }
 
-    public int getMonth() {
-        return date.getMonth();
+    public String getDateString() {
+        return this.date.toString();
     }
 
-    public int getYear() {
-        return date.getYear();
+    public int getDayOfWeek() {
+        return this.date.DAY_OF_WEEK;
     }
 
-    public int getHrs() {
-        return date.getHours();
-    }
-
-    public int getMinutes() {
-        return date.getMinutes();
+    public int getDay() {
+        return this.date.DAY_OF_YEAR;
     }
 }
