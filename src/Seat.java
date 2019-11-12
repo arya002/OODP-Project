@@ -8,10 +8,9 @@ public class Seat implements Serializable {
     private String type;
     private boolean allocated;
 
-    public Seat(int seatID, String type)
-    {   
-        this.seatID = seatID;
-        this.type = type;
+    public Seat(int seatID, String type) throws IllegalArgumentException {
+        this.setSeatID(seatID);
+        this.setType(type);
         this.allocated = false;
     }
 
@@ -33,7 +32,7 @@ public class Seat implements Serializable {
     }
     //</editor-fold>
 
-    //<editor-fold desc="Mutators">
+    //<editor-fold desc="Setters">
     public void setSeatID(int seatID) {
         this.seatID = seatID;
     }
@@ -43,12 +42,14 @@ public class Seat implements Serializable {
     }
 
     public void setType(String type) {
+        if (type.isEmpty())
+            throw new IllegalArgumentException("Type cannot be empty");
         this.type = type;
     }
 
     public void assignSeat(int custID) {
         this.allocated = true;
-        this.custID = custID;
+        this.setCustID(custID);
     }
 
     public void unassignSeat() {

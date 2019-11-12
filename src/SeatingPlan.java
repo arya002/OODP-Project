@@ -1,11 +1,14 @@
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SeatingPlan implements Serializable {
     private Seat[][] seats;
 
     //<editor-fold desc="Constructors">
-    public SeatingPlan(Seat[][] seats) {
+    public SeatingPlan(Seat[][] seats) throws IllegalArgumentException{
+        if (seats == null || seats.length == 0 || seats[0].length == 0)
+            throw new IllegalArgumentException();
         this.seats = seats;
     }
 
