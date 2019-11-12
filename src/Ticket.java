@@ -118,7 +118,7 @@ public class Ticket implements Serializable {
         this.seat = seat;
     }
 
-    public void changeClient(Client client) {
+    public void setClient(Client client) {
         this.client = client;
     }
 

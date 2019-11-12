@@ -6,19 +6,20 @@ public class Client extends User {
 	int age;
 	static private boolean loggedIn = false;
 
-	public Client(String username, String password,String firstName) {
-		super(username, password,firstName);
+	public Client(String username, String password) {
+		super(username, password, username);
 		this.phoneNum = "";
 		this.email = "";
 		this.type = "Client";
 		this.loggedIn = true;
 	}
 	
-	public Client(String username, String password	,String phoneNum, String firstName ,String email, String name) {
-		super(username, password,firstName);
-		this.phoneNum = phoneNum;
-		this.email = email;
-		this.name = name;
+	public Client(String username, String password	,String phoneNum, String email, String name, int age) throws IllegalArgumentException {
+		super(username, password, name);
+		this.setPhoneNum(phoneNum);
+		this.setEmail(email);
+		this.setAge(age);
+		this.setName(name);
 		this.loggedIn = true;
 	}
 
@@ -44,20 +45,32 @@ public class Client extends User {
 	}
 	//</editor-fold>
 
-	//<editor-fold desc="Mutators">
+	//<editor-fold desc="Setters">
 	public void setPhoneNum(String phoneNum) {
-		this.phoneNum = phoneNum;
+		if (phoneNum.isEmpty())
+			throw new IllegalArgumentException("Phonenumber cannot be empty");
+
+        this.phoneNum = phoneNum;
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		if (email.isEmpty())
+			throw new IllegalArgumentException("Email cannot be empty");
+
+        this.email = email;
 	}
 
 	public void setAge(int age) {
-		this.age = age;
+		if (age < 0)
+			throw new IllegalArgumentException("Age cannot be negative");
+
+        this.age = age;
 	}
 
 	public void setName(String name) {
+		if (name.isEmpty())
+			throw new IllegalArgumentException("Name cannot be empty");
+
 		this.name = name;
 	}
 	//</editor-fold>

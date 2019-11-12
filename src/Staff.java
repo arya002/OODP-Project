@@ -1,8 +1,8 @@
 
 public class Staff extends User {
 
-	public Staff(String username, String password,String firstName) {
-		super(username, password,firstName);
+	public Staff(String username, String password) {
+		super(username, password, username);
 		this.type = "Staff";
 	}
 

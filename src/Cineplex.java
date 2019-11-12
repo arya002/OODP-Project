@@ -15,17 +15,17 @@ public class Cineplex implements Serializable {
         this.movies = new ArrayList<>();
     }
 
-    public Cineplex(String name, ArrayList<RoomLayout> cinemas, ArrayList<Showing> showings, ArrayList<Movie> movies) {
-        this.name = name;
-        this.cinemas = cinemas;
-        this.showings = showings;
-        this.movies = movies;
+    public Cineplex(String name, ArrayList<RoomLayout> cinemas, ArrayList<Showing> showings, ArrayList<Movie> movies) throws IllegalArgumentException {
+        this.setName(name);
+        this.setCinemas(cinemas);
+        this.setShowings(showings);
+        this.setMovies(movies);
     }
 
-    public Cineplex(String name, ArrayList<RoomLayout> cinemas, ArrayList<Showing> showings) {
-        this.name = name;
-        this.cinemas = cinemas;
-        this.showings = showings;
+    public Cineplex(String name, ArrayList<RoomLayout> cinemas, ArrayList<Showing> showings) throws IllegalArgumentException{
+        this.setName(name);
+        this.setCinemas(cinemas);
+        this.setShowings(showings);
         this.movies = new ArrayList<>();
         for (Showing showing : showings) {
             this.movies.add(showing.getMovie());
@@ -33,12 +33,37 @@ public class Cineplex implements Serializable {
     }
     //</editor-fold>
 
-    public void changeName(String name) {
+    //<editor-fold desc="Setters">
+    public void setName(String name) {
+        if (name.isEmpty())
+            throw new IllegalArgumentException("Name cannot be empty");
+
         this.name = name;
     }
 
+    private void setCinemas(ArrayList<RoomLayout> cinemas) {
+        if (cinemas == null)
+            throw new IllegalArgumentException("Cinemas connot be null");
+        this.cinemas = cinemas;
+    }
+
+    private void setShowings(ArrayList<Showing> showings) {
+        if (showings == null)
+            throw new IllegalArgumentException("Showings connot be null");
+        this.showings = showings;
+    }
+
+    private void setMovies(ArrayList<Movie> movies) {
+        if (movies == null)
+            throw new IllegalArgumentException("Movies connot be null");
+        this.movies = movies;
+    }
+    //</editor-fold>
+
     //<editor-fold desc="Adders">
     public void addCinema(RoomLayout layout) {
+        if (layout == null) return;
+
         for (RoomLayout elem : this.cinemas){
             if (elem.equals(layout))
                 return;
@@ -47,6 +72,8 @@ public class Cineplex implements Serializable {
     }
 
     public void addMovie(Movie movie) {
+        if (movie == null) return;
+
         for (Movie elem : this.movies){
             if (elem.equals(movie))
                 return;
@@ -55,6 +82,8 @@ public class Cineplex implements Serializable {
     }
 
     public void addShowing(Showing showing) {
+        if (showing == null) return;
+
         for (Showing elem : this.showings){
             if (elem.equals(showing))
                 return;
@@ -89,6 +118,7 @@ public class Cineplex implements Serializable {
     }
     //</editor-fold>
 
+    //<editor-fold desc="Getters">
     public String getName() {
         return name;
     }
@@ -113,5 +143,6 @@ public class Cineplex implements Serializable {
     public ArrayList<Showing> getShowings() {
         return showings;
     }
+    //</editor-fold>
 
 }

@@ -8,14 +8,10 @@ public class Review implements Serializable {
     private String date;
     private Client reviewer;
 
-    public Review(String review, double rating, Client reviewer) {
-        this.review = review;
-        if (rating >= 0) {
-                if ( rating <= 5)
-                    this.rating = rating;
-                else
-                    this.rating = 5;
-        } else {this.rating = 0;}
+    public Review(String review, double rating, Client reviewer) throws IllegalArgumentException {
+        this.setReview(review);
+        this.setRating(rating);
+
 
         this.reviewer = reviewer;
         Calendar calendar = Calendar.getInstance();
@@ -49,17 +45,23 @@ public class Review implements Serializable {
     //</editor-fold>
 
     //<editor-fold desc="mutators">
-    public void changeReview(String review) {
+    public void setReview(String review) {
+        if (review.isEmpty())
+            throw new IllegalArgumentException("Review cannot be empty");
         this.review = review;
     }
-    public void changeRating(double rating) {
-        this.rating = rating;
+    public void setRating(double rating) {
+        if (rating >= 0) {
+            if ( rating <= 5)
+                this.rating = rating;
+            else
+                this.rating = 5;
+        } else {this.rating = 0;}
     }
-    public void changeReviewer(Client reviewer) {
+    public void setReviewer(Client reviewer) {
+        if (this.reviewer == null)
+            throw new IllegalArgumentException("Reviewer cannot be null");
         this.reviewer = reviewer;
-    }
-    public void changeDate(String date) {
-        this.date = date;
     }
     //</editor-fold>
 }

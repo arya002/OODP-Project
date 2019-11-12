@@ -12,33 +12,52 @@ public class Movie implements Serializable {
     private ArrayList<Cineplex> locations;
 
     //<editor-fold desc="Constructors">
-    public Movie(String name, String status, String synopsis, String director, String[] cast, ArrayList<Review> reviews, ArrayList<Cineplex> locations) {
-        this.name = name;
-        this.status = status;
-        this.synopsis = synopsis;
-        this.director = director;
-        this.cast = cast;
+    public Movie(String name, String status, String synopsis, String director, String[] cast, ArrayList<Review> reviews, ArrayList<Cineplex> locations) throws IllegalArgumentException {
+        if (reviews == null || locations == null)
+                throw new IllegalArgumentException();
+
+        this.setName(name);
+        this.setStatus(status);
+        this.setSynopsis(synopsis);
+        this.setDirector(director);
+        this.setCast(cast);
+
+
         this.reviews = reviews;
         this.locations = locations;
         this.calcAvg_rating();
     }
 
     public Movie(String name, String status, String synopsis, String director, String[] cast, ArrayList<Cineplex> locations) {
-        this(name, status, synopsis, director, cast, null, locations);
+        this(name, status, synopsis, director, cast, new ArrayList<>(), locations);
     }
     //</editor-fold>
 
     public void addReview(Review review) {
+        if (review == null) return;
+
         this.reviews.add(review);
         this.calcAvg_rating();
     }
 
     public void addCineplex(Cineplex cineplex) {
+        if (cineplex == null) return;
         this.locations.add(cineplex);
     }
 
     public void removeCineplex(Cineplex cineplex) {
+        if (cineplex == null) return;
         this.locations.remove(cineplex);
+    }
+
+    private void calcAvg_rating() {
+        if (this.reviews.size() == 0) {return;}
+
+        double total = 0;
+        for (Review rev : this.reviews) {
+            total += rev.getRating();
+        }
+        this.avg_rating = total/this.reviews.size();
     }
 
     //<editor-fold desc="Printers">
@@ -79,34 +98,34 @@ public class Movie implements Serializable {
     }
     //</editor-fold>
 
-    private void calcAvg_rating() {
-        if (this.reviews.size() == 0) {return;}
-
-        double total = 0;
-        for (Review rev : this.reviews) {
-            total += rev.getRating();
-        }
-        this.avg_rating = total/this.reviews.size();
-    }
-
-    //<editor-fold desc="Setters/modifiers">
-    public void changeStatus(String status) {
+    //<editor-fold desc="Setters">
+    public void setStatus(String status) {
+        if (status.isEmpty())
+            throw new IllegalArgumentException("Status cannot be empty");
         this.status = status;
     }
 
-    public void changeName(String name) {
+    public void setName(String name) {
+        if (name.isEmpty())
+            throw new IllegalArgumentException("Name cannot be empty");
         this.name = name;
     }
 
-    public void changeCast(String[] cast) {
+    public void setCast(String[] cast) {
+        if (cast == null)
+            throw new IllegalArgumentException("Cast cannot be empty");
         this.cast = cast;
     }
 
-    public void changeSynopsis(String synopsis) {
+    public void setSynopsis(String synopsis) {
+        if (synopsis.isEmpty())
+            throw new IllegalArgumentException("Synopsis cannot be empty");
         this.synopsis = synopsis;
     }
 
-    public void changeDirector(String director) {
+    public void setDirector(String director) {
+        if (director.isEmpty())
+            throw new IllegalArgumentException("Director cannot be empty");
         this.director = director;
     }
     //</editor-fold>

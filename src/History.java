@@ -6,8 +6,10 @@ public class History implements Serializable {
     private ArrayList<Ticket> tickets;
 
     //<editor-fold desc="Constructors">
-
     public History(ArrayList<Review> reviews, ArrayList<Ticket> tickets) {
+        if (reviews == null || tickets == null)
+            throw new IllegalArgumentException();
+
         this.reviews = reviews;
         this.tickets = tickets;
     }
@@ -20,16 +22,20 @@ public class History implements Serializable {
 
     //<editor-fold desc="Adders">
     public void addReview(Review review) {
+        if (review == null) return;
         this.reviews.add(review);
     }
 
     public void addReviews(Iterable<Review> reviews) {
+        if (reviews == null) return;
+
         for (Review rev : reviews) {
             this.addReview(rev);
         }
     }
 
     public void addTicket(Ticket ticket) {
+        if (ticket == null) return;
         this.tickets.add(ticket);
     }
 
