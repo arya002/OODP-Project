@@ -49,27 +49,28 @@ public class Client extends User {
 	public void setPhoneNum(String phoneNum) {
 		if (phoneNum.isEmpty())
 			throw new IllegalArgumentException("Phonenumber cannot be empty");
-		else
-			this.phoneNum = phoneNum;
+
+        this.phoneNum = phoneNum;
 	}
 
 	public void setEmail(String email) {
 		if (email.isEmpty())
 			throw new IllegalArgumentException("Email cannot be empty");
-		else
-			this.email = email;
+
+        this.email = email;
 	}
 
 	public void setAge(int age) {
 		if (age < 0)
 			throw new IllegalArgumentException("Age cannot be negative");
-		else
-			this.age = age;
+
+        this.age = age;
 	}
 
 	public void setName(String name) {
 		if (name.isEmpty())
 			throw new IllegalArgumentException("Name cannot be empty");
+
 		this.name = name;
 	}
 	//</editor-fold>

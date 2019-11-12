@@ -37,8 +37,8 @@ public class Cineplex implements Serializable {
     public void setName(String name) {
         if (name.isEmpty())
             throw new IllegalArgumentException("Name cannot be empty");
-        else
-            this.name = name;
+
+        this.name = name;
     }
 
     private void setCinemas(ArrayList<RoomLayout> cinemas) {
