@@ -36,11 +36,6 @@ public class Movie implements Serializable {
     }
     //</editor-fold>
 
-    public static void addReview(Review review) {
-        if (review == null) return;
-
-        movieReviews.add(review);
-    }
 
     public void addCineplex(Cineplex cineplex) {
         if (cineplex == null) return;
@@ -51,8 +46,6 @@ public class Movie implements Serializable {
         if (cineplex == null) return;
         this.locations.remove(cineplex);
     }
-
-
 
     //<editor-fold desc="Printers">
     public void print() {
@@ -75,21 +68,6 @@ public class Movie implements Serializable {
         System.out.println("\nSynopsis:\n" + synopsis);
     }
 
-//    public void printReviews() {
-//        System.out.println("Reviews:");
-//        for (Review rev : this.reviews) {
-//            rev.print();
-//            System.out.println();
-//        }
-//    }
-//
-//    public void printReviews(int n) {
-//        System.out.println("Reviews:");
-//        for (int i=0; i<n; i++) {
-//            this.reviews.get(i).print();
-//            System.out.println();
-//        }
-//    }
     //</editor-fold>
 
     //<editor-fold desc="Setters">
@@ -124,10 +102,6 @@ public class Movie implements Serializable {
     }
     //</editor-fold>
 
-    //<editor-fold desc="Getters">
-//    public ArrayList<Review> getReviews() {
-//        return reviews;
-//    }
 
     public double getAvg_rating() {
         return avg_rating;

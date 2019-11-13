@@ -7,7 +7,7 @@ public class main {
 	static Scanner sc = new Scanner(System.in);
 	static MovieReview movieReview = MovieReview.getInstance();
 	static ArrayList<Cineplex> cineplexes = new ArrayList<>();
-
+	static ArrayList<Movie> movieListings = new ArrayList<>();
 
 	public static void main(String[] args) {
 

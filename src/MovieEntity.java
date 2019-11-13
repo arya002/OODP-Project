@@ -2,6 +2,17 @@ import java.util.*;
 
 public class MovieEntity {
 
+    ArrayList<Movie> currentMovies = new ArrayList();
+
+    //    public Movie(String name, Status status, String synopsis, String director, String[] cast, ArrayList<Review> reviews, ArrayList<Cineplex> locations) throws IllegalArgumentException {
+    public void addMovieListing(String name, Movie.Status status, String synopsis, String director, String[] cast, ArrayList<Review> reviews,ArrayList<Cineplex> locations){
+
+        currentMovies.add(new Movie(name,status,synopsis,director,cast,reviews,locations));
+
+    }
+
+
+
     public static void printAllMoviesByRating() {
 
         int i = 0;

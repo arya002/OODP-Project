@@ -111,6 +111,58 @@ public class StaffApp {
 
     private void handleMovieListings() {
 
+        int sc_in;
+        do {
+            System.out.println("Welcome " + currentStaff.getFirstName());
+            System.out.println
+                    ("1. View Movie Listings " +
+                            "\n2. Edit Movie Lisings" +
+                            "\n3. Exit\n");
+
+            sc_in = main.sc.nextInt();
+            switch (sc_in) {
+                case 1:
+                    do {
+                        System.out.println
+                                ("1. View Movie Listings " +
+                                        "\n2. Edit Movie Lisings" +
+                                        "\n3. Exit\n");
+
+                        sc_in = main.sc.nextInt();
+                        switch (sc_in) {
+                            case 1:
+
+                                break;
+                            case 2:
+                                System.out.println("When would you like to add a holiday");
+                                addHoliday();
+                                break;
+                            case 3:
+
+                                break;
+
+                            default:
+                                System.out.println("Invalid input, please choose from the following:");
+                                break;
+                        }
+
+                    } while (sc_in != 3);
+
+
+                case 2:
+                    System.out.println("When would you like to add a holiday");
+                    addHoliday();
+                    break;
+                case 3:
+
+                    break;
+
+                default:
+                    System.out.println("Invalid input, please choose from the following:");
+                    break;
+            }
+
+        } while (sc_in != 3);
 
     }
 
