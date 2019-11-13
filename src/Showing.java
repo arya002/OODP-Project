@@ -100,4 +100,12 @@ public class Showing implements Serializable {
     public int getDay() {
         return this.date.DAY_OF_YEAR;
     }
+
+    public String getMoviesByBestSelling(){
+        return null;
+    }
+
+    public String getMoviesByRatings(){
+        return null;
+    }
 }

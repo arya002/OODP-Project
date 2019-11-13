@@ -8,19 +8,24 @@ public class Review implements Serializable {
     private String date;
     private Client reviewer;
 
-    public Review(String review, double rating, Client reviewer) throws IllegalArgumentException {
+
+
+    private String movieName;
+
+    public Review(String review, String movieName,double rating, Client reviewer) throws IllegalArgumentException {
         this.setReview(review);
         this.setRating(rating);
-
-
+        this.movieName =movieName;
         this.reviewer = reviewer;
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat formatter = new SimpleDateFormat("hh:mm a, dd-MM-yyyy");
         this.date = formatter.format(calendar.getTime());
+
     }
 
     public void print() { // print review
         System.out.println("Review by: " + this.reviewer.getUsername());
+        System.out.println("Movie: " + this.movieName);
         System.out.println("Date: " + this.date);
         System.out.printf("❀".repeat((int) rating) + ", %.1f/5\n\n", rating);
         System.out.println("Review:\n" + review);
@@ -64,4 +69,14 @@ public class Review implements Serializable {
         this.reviewer = reviewer;
     }
     //</editor-fold>
+
+    public String getMovieName() {
+        return movieName;
+    }
+
+    public void setMovieName(String movieName) {
+        this.movieName = movieName;
+    }
+
+
 }

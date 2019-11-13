@@ -13,6 +13,15 @@ public class Client extends User {
 		this.type = "Client";
 		this.loggedIn = true;
 	}
+
+	//for ease of testing
+	public Client(String username) {
+		super(username, "pass", username);
+//		this.phoneNum = "";
+//		this.email = "";
+//		this.type = "Client";
+//		this.loggedIn = true;
+	}
 	
 	public Client(String username, String password	,String phoneNum, String email, String name, int age) throws IllegalArgumentException {
 		super(username, password, name);

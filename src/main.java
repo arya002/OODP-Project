@@ -1,9 +1,13 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class main {
 
 	User currentUser;
 	static Scanner sc = new Scanner(System.in);
+	static MovieReview movieReview = MovieReview.getInstance();
+	static ArrayList<Cineplex> cineplexes = new ArrayList<>();
+
 
 	public static void main(String[] args) {
 
@@ -31,6 +35,17 @@ public class main {
 					loggedin = true;
 					break;
 				case 4:
+					break;
+
+                case 5:
+					movieReview.addReview(new Review("pretty good i like","shrek",2,new Client("helol")));
+					movieReview.addReview(new Review(" good i like","shrek",4,new Client("helol")));
+					movieReview.addReview(new Review("pretty good i like","shrek",5,new Client("helol")));
+					movieReview.addReview(new Review("pretty good i like","phineas",1,new Client("helol")));
+					movieReview.addReview(new Review("pretty good i like","ferb",2,new Client("helol")));
+
+
+					MovieEntity.printAllMoviesByRating();
 					break;
 				default:
 					System.out.println("Invalid input, please choose from the following:");

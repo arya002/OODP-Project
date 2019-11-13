@@ -3,16 +3,19 @@ import java.util.ArrayList;
 
 public class Movie implements Serializable {
     private String name;
-    private String status;
+    private Status status;
     private String synopsis;
     private String director;
     private String[] cast;
     private double avg_rating;
-    private ArrayList<Review> reviews;
+    private static ArrayList<Review> movieReviews;
     private ArrayList<Cineplex> locations;
 
+    public enum Status{
+        notShowing,comingSoon,Showing
+    }
     //<editor-fold desc="Constructors">
-    public Movie(String name, String status, String synopsis, String director, String[] cast, ArrayList<Review> reviews, ArrayList<Cineplex> locations) throws IllegalArgumentException {
+    public Movie(String name, Status status, String synopsis, String director, String[] cast, ArrayList<Review> reviews, ArrayList<Cineplex> locations) throws IllegalArgumentException {
         if (reviews == null || locations == null)
                 throw new IllegalArgumentException();
 
@@ -23,21 +26,20 @@ public class Movie implements Serializable {
         this.setCast(cast);
 
 
-        this.reviews = reviews;
+        movieReviews = reviews;
         this.locations = locations;
-        this.calcAvg_rating();
+//        this.calcAvg_rating();
     }
 
-    public Movie(String name, String status, String synopsis, String director, String[] cast, ArrayList<Cineplex> locations) {
+    public Movie(String name, Status status, String synopsis, String director, String[] cast, ArrayList<Cineplex> locations) {
         this(name, status, synopsis, director, cast, new ArrayList<>(), locations);
     }
     //</editor-fold>
 
-    public void addReview(Review review) {
+    public static void addReview(Review review) {
         if (review == null) return;
 
-        this.reviews.add(review);
-        this.calcAvg_rating();
+        movieReviews.add(review);
     }
 
     public void addCineplex(Cineplex cineplex) {
@@ -50,15 +52,7 @@ public class Movie implements Serializable {
         this.locations.remove(cineplex);
     }
 
-    private void calcAvg_rating() {
-        if (this.reviews.size() == 0) {return;}
 
-        double total = 0;
-        for (Review rev : this.reviews) {
-            total += rev.getRating();
-        }
-        this.avg_rating = total/this.reviews.size();
-    }
 
     //<editor-fold desc="Printers">
     public void print() {
@@ -69,7 +63,7 @@ public class Movie implements Serializable {
         System.out.printf("Average rating: %.1f/5\n", avg_rating);
         System.out.println("\nSynopsis:\n" + synopsis);
         System.out.println();
-        this.printReviews();
+//        this.printReviews();
     }
 
     public void printLess() {
@@ -81,26 +75,26 @@ public class Movie implements Serializable {
         System.out.println("\nSynopsis:\n" + synopsis);
     }
 
-    public void printReviews() {
-        System.out.println("Reviews:");
-        for (Review rev : this.reviews) {
-            rev.print();
-            System.out.println();
-        }
-    }
-
-    public void printReviews(int n) {
-        System.out.println("Reviews:");
-        for (int i=0; i<n; i++) {
-            this.reviews.get(i).print();
-            System.out.println();
-        }
-    }
+//    public void printReviews() {
+//        System.out.println("Reviews:");
+//        for (Review rev : this.reviews) {
+//            rev.print();
+//            System.out.println();
+//        }
+//    }
+//
+//    public void printReviews(int n) {
+//        System.out.println("Reviews:");
+//        for (int i=0; i<n; i++) {
+//            this.reviews.get(i).print();
+//            System.out.println();
+//        }
+//    }
     //</editor-fold>
 
     //<editor-fold desc="Setters">
-    public void setStatus(String status) {
-        if (status.isEmpty())
+    public void setStatus(Status status) {
+        if (status == null)
             throw new IllegalArgumentException("Status cannot be empty");
         this.status = status;
     }
@@ -131,9 +125,9 @@ public class Movie implements Serializable {
     //</editor-fold>
 
     //<editor-fold desc="Getters">
-    public ArrayList<Review> getReviews() {
-        return reviews;
-    }
+//    public ArrayList<Review> getReviews() {
+//        return reviews;
+//    }
 
     public double getAvg_rating() {
         return avg_rating;
@@ -147,7 +141,7 @@ public class Movie implements Serializable {
         return name;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
