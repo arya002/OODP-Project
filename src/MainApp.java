@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import sun.awt.AWTAccessor.MenuAccessor;
+
 public class MainApp {
 
 	User currentUser;
@@ -13,32 +15,25 @@ public class MainApp {
 
 		System.out.println("Welcome to MOBLIMA, the best way book your movie tickets.");
 		System.out.println("What would you like to do?");
-		loginScreen();
+		menu();
 	}
 
-	private static void loginScreen() {
+	private static void menu() {
 		int sc_in;
 		boolean loggedin = false;
 
 		do {
-			System.out.println("1. Login \n2. Register \n3. Continue as guest\n4. Log in as staff\n5. Exit");
+			System.out.println("1. Login/Register \n2. Continue as guest \n3. Exit");
 			sc_in = sc.nextInt();
 			switch (sc_in) {
 				case 1:
-					loggedin = Login();
-					//TODO Login the user and go to ClientApp
+					//TODO go to LogInScreen
+					//TODO go to ClientApp
 					break;
 				case 2:
-					//TODO register new user
-					loggedin = true;
+					//TODO go to ClientApp with no user
 					break;
 				case 3:
-					//TODO go to ClientApp with no user
-					loggedin = true;
-					break;
-				case 4:
-					//TODO log in staff member and go to StaffApp
-				case 5:
 					break;
 
                 case 6:
@@ -56,7 +51,7 @@ public class MainApp {
 					break;
 			}
 
-		} while (sc_in != 5 && !loggedin);
+		} while (sc_in != 3 && !loggedin);
 	}
 
 	private static boolean Login() {
