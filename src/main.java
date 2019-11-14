@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class MainApp {
+public class main {
 
 	User currentUser;
 	static Scanner sc = new Scanner(System.in);
-	static ReviewControl movieReview = ReviewControl.getInstance();
+	static MovieReview movieReview = MovieReview.getInstance();
 	static ArrayList<Cineplex> cineplexes = new ArrayList<>();
 	static ArrayList<Movie> movieListings = new ArrayList<>();
 
@@ -21,42 +21,35 @@ public class MainApp {
 		boolean loggedin = false;
 
 		do {
-			System.out.println("1. Login \n2. Register \n3. Continue as guest\n4. Log in as staff\n5. Exit");
+			System.out.println("1. Login \n2. View movies \n3. Client Register\n0. Exit");
 			sc_in = sc.nextInt();
 			switch (sc_in) {
+				case 0:
+					break;
 				case 1:
 					loggedin = Login();
-					//TODO Login the user and go to ClientApp
 					break;
 				case 2:
-					//TODO register new user
-					loggedin = true;
+//					TODO view movies
 					break;
 				case 3:
-					//TODO go to ClientApp with no user
-					loggedin = true;
+//					TODO register new user
 					break;
-				case 4:
-					//TODO log in staff member and go to StaffApp
-				case 5:
-					break;
-
-                case 6:
+                case 4:
 					movieReview.addReview(new Review("pretty good i like","shrek",2,new Client("helol")));
 					movieReview.addReview(new Review(" good i like","shrek",4,new Client("helol")));
 					movieReview.addReview(new Review("pretty good i like","shrek",5,new Client("helol")));
 					movieReview.addReview(new Review("pretty good i like","phineas",1,new Client("helol")));
 					movieReview.addReview(new Review("pretty good i like","ferb",2,new Client("helol")));
 
-
-					MovieControl.printAllMoviesByRating();
+					MovieEntity.printAllMoviesByRating();
 					break;
 				default:
 					System.out.println("Invalid input, please choose from the following:");
 					break;
 			}
 
-		} while (sc_in != 5 && !loggedin);
+		} while (sc_in != 0 && !loggedin);
 	}
 
 	private static boolean Login() {
