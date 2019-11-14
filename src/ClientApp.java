@@ -1,3 +1,6 @@
+import java.util.Scanner;
+
+
 public class ClientApp {
     private Client current;
 
@@ -8,6 +11,7 @@ public class ClientApp {
 
     private void run() {
         int sc_in;
+        Scanner sc = new Scanner(System.in);
 
         do {
             System.out.println("Welcome " + current.getName());
@@ -21,11 +25,15 @@ public class ClientApp {
             sc_in = main.sc.nextInt();
             switch (sc_in) {
                 case 1:
-                    
+
                 case 2:
-                    
+
                 case 3:
-                    
+                    String mov;
+                    System.out.println("Enter movie name: ");
+                    mov = sc.next();
+                    searchMovie(mov);
+
                 case 4:
                     break;
                 default:
@@ -35,9 +43,9 @@ public class ClientApp {
 
         } while (sc_in != 4);
     }
-    
-    public void searchMovie() {
-        
+
+    public void searchMovie(String movie){
+
 
     }
 
