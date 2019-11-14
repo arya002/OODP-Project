@@ -10,16 +10,29 @@ import java.util.*;
 
 public class MovieControl {
 
-    ArrayList<Movie> currentMovies = new ArrayList();
+    private static ArrayList<Movie> currentMovies = new ArrayList();
 
-    //    public Movie(String name, Status status, String synopsis, String director, String[] cast, ArrayList<Review> reviews, ArrayList<Cineplex> locations) throws IllegalArgumentException {
-    public void addMovieListing(String name, Movie.Status status, String synopsis, String director, String[] cast, ArrayList<Review> reviews,ArrayList<Cineplex> locations){
+//    public void addMovieListing(String name, Movie.Status status, String synopsis, String director, String[] cast, ArrayList<Review> reviews,ArrayList<Cineplex> locations){
+//        currentMovies.add(new Movie(name,status,synopsis,director,cast,reviews,locations));
+//    }
 
-        currentMovies.add(new Movie(name,status,synopsis,director,cast,reviews,locations));
+    public MovieControl(){
+
+        Data data = Data.getInstance();
+        currentMovies = (ArrayList<Movie>) data.getObjectFromPath("Data/movies.txt",Movie.class);
 
     }
 
+    public ArrayList<Movie> getCurrentMovies() {
+        return currentMovies;
+    }
 
+    public void saveAllMovies(ArrayList<Movie> newMovieState){
+
+        Data data = Data.getInstance();
+        data.saveObjectToPath("Data/movies.txt",newMovieState);
+
+    }
 
     public static void printAllMoviesByRating() {
 
@@ -62,7 +75,7 @@ public class MovieControl {
 
         int i = 0;
         System.out.println("All movies we have at every Cinema are \n");
-        Set<String> uniqueMovies = new HashSet<String>(ReviewControl.getAllReviewsNames());
+        Set<String> uniqueMovies = new HashSet<>(ReviewControl.getAllReviewsNames());
         System.out.println("Unique gas count: " + uniqueMovies);
 
     }
@@ -70,20 +83,22 @@ public class MovieControl {
     public static void printAllMoviesByName(String locationName) {
 
         int i = 0;
-        System.out.println("All movies we have at every Cinema are \n");
+        System.out.println("Movies at your cinema \n");
         ArrayList<Showing> ar_ = ShowingControl.getAllShowings();
         ArrayList<String> allAtLocation= new ArrayList<>();
-        for (Showing ar:ar_){
+        if (ar_ != null) {
+            for (Showing ar:ar_){
 
-            if(ar.getCineplex().equals(locationName)){
+                if(ar.getCineplex().equals(locationName)){
 
-                allAtLocation.add(ar.getMovie().getName());
+                    allAtLocation.add(ar.getMovie().getName());
+
+                }
 
             }
-
         }
         Collections.sort(allAtLocation);
-        Set<String> uniqueMovies = new HashSet<String>(allAtLocation);
+        Set<String> uniqueMovies = new HashSet<>(allAtLocation);
         System.out.println(uniqueMovies);
 
     }

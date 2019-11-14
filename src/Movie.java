@@ -7,7 +7,6 @@ public class Movie implements Serializable {
     private String synopsis;
     private String director;
     private String[] cast;
-    private double avg_rating;
     private static ArrayList<Review> movieReviews;
     private ArrayList<Cineplex> locations;
 
@@ -48,24 +47,14 @@ public class Movie implements Serializable {
     }
 
     //<editor-fold desc="Printers">
+
     public void print() {
         System.out.println(status);
         System.out.println("Name: " + name);
         System.out.println("Directed by: " + director);
         System.out.println("Starring: " + String.join(", ", cast));
-        System.out.printf("Average rating: %.1f/5\n", avg_rating);
         System.out.println("\nSynopsis:\n" + synopsis);
         System.out.println();
-//        this.printReviews();
-    }
-
-    public void printLess() {
-        System.out.println(status);
-        System.out.println("Name: " + name);
-        System.out.println("Directed by: " + director);
-        System.out.println("Starring: " + String.join(", ", cast));
-        System.out.printf("Average rating: %.1f/5\n", avg_rating);
-        System.out.println("\nSynopsis:\n" + synopsis);
     }
 
     //</editor-fold>

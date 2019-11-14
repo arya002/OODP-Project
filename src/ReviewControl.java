@@ -40,6 +40,7 @@ public class ReviewControl {
             arrayList.add(allReviews.get(i).getMovieName());
 
         }
+
         return arrayList;
 
     }

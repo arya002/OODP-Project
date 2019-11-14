@@ -8,7 +8,6 @@ public class ShowingControl {
 
     public static ArrayList<Showing> getAllShowings(){
 
-
         return null;
     }
 
