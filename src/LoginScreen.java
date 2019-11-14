@@ -2,7 +2,7 @@ import java.util.*;
 
 public class LoginScreen {
 
-	Scanner sc = new Scanner(System.in);
+	private Scanner sc = new Scanner(System.in);
 
 	private String password = "";
 	private String userName;
@@ -13,6 +13,9 @@ public class LoginScreen {
 		this.userName = "guest";
 		this.tries = 3;
 	}
+
+
+
 
 	public void enterUserName(){
 

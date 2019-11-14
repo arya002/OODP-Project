@@ -86,6 +86,7 @@ public class Data implements Serializable {
     }
 
 
+
     public class SaveLoad<K> {
 
         private K key;
@@ -115,6 +116,7 @@ public class Data implements Serializable {
                 e.printStackTrace();
                 return null;
             }
+
         }
 
         public void saveObject(ArrayList<K> o, String file) {

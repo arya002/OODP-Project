@@ -7,18 +7,13 @@ public class Showing implements Serializable {
     private String type;
     private String room_type;
     private Calendar date;
-    private SeatingPlan plan;
     private String cinema;
 
-    public Showing(String cineplex, Movie movie, RoomLayout layout, Calendar date, String type) {
-        this.setCineplex(cineplex);
+    public Showing(Cineplex cineplex, Movie movie, Calendar date, String type) {
         this.setCinema(cinema);
         this.setMovie(movie);
         this.setDate(date);
         this.setType(type);
-        this.setRoom_type(layout.getType());
-
-        this.plan = new SeatingPlan(layout);
     }
 
     //<editor-fold desc="Setters">

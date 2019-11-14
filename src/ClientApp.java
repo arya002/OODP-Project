@@ -30,13 +30,12 @@ public class ClientApp {
                     sc_in = sc.nextInt();
                     switch (sc_in) {
                         case 1:
-                            //TODO list every movie
+                            MovieControl.printAllMoviesByName();
                             break;
                         case 2:
-                            //TODO Display top 5 movies by ticket sales
                             break;
                         case 3:
-                            //TODO Display top 5 movies by review score
+                            MovieControl.printAllMoviesByRating();
                     }
 
                     //TODO allow user to choose one of the movies

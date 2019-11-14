@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class MainApp {
+public class MainApp implements SavingNames{
 
 	User currentUser;
 	static Scanner sc = new Scanner(System.in);
@@ -9,10 +9,14 @@ public class MainApp {
 	static ArrayList<Cineplex> cineplexes = new ArrayList<>();
 	static ArrayList<Movie> movieListings = new ArrayList<>();
 
+
 	public static void main(String[] args) {
 
 		System.out.println("Welcome to MOBLIMA, the best way book your movie tickets.");
 		System.out.println("What would you like to do?");
+
+		String path = SHOWING_SAVE_PATH;
+
 		loginScreen();
 	}
 
@@ -21,16 +25,21 @@ public class MainApp {
 		boolean loggedin = false;
 
 		do {
-			System.out.println("1. Login \n2. Register \n3. Continue as guest\n4. Log in as staff\n5. Exit");
+			System.out.println("1. Login/Register \n3. Continue as guest5. Exit");
 			sc_in = sc.nextInt();
 			switch (sc_in) {
 				case 1:
-					loggedin = Login();
+
+					MovieControl mc = new MovieControl();
+					ArrayList<Movie> currentMovies = mc.getCurrentMovies();
+					currentMovies.add(new Movie("fa","ads","fd",))
+					mc.saveAllMovies(currentMovies);
+
+
 					//TODO Login the user and go to ClientApp
 					break;
 				case 2:
 					//TODO register new user
-					loggedin = true;
 					break;
 				case 3:
 					//TODO go to ClientApp with no user
