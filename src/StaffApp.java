@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
 
 /**
  * Handles all the Staff capabilities
@@ -22,8 +24,8 @@ public class StaffApp {
         do {
             System.out.println("Welcome " + currentStaff.getFirstName());
             System.out.println
-                    ("1. Create/Update/Remove Movie Listing " +
-                            "\n2. Create/Update/Remove cinema Show times and the movies to be shown " +
+                    ("1. Create/Update/Remove Movie" +
+                            "\n2. Create/Update/Remove cinema Show times" +
                             "\n3. Configure System Settings" +
                             "\n4. Exit\n");
 
@@ -51,13 +53,15 @@ public class StaffApp {
         do {
             System.out.println("Welcome " + currentStaff.getFirstName());
             System.out.println
-                    ("1. Movie Prices " +
-                            "\n2. Holidays" +
-                            "\n3. Exit\n");
+                    ("1. Edit movie Prices " +
+                            "\n2. Edit holidays" +
+                            "\n3. Add new staff member" +
+                            "\n4. Exit\n");
 
             sc_in = MainApp.sc.nextInt();
             switch (sc_in) {
                 case 1:
+                    //TODO Allow staff to edit ticket prices
                     System.out.println("Please enter the new price of an adult ticket.");
                     double price = MainApp.sc.nextDouble();
                     changePriceOfTicket(price);
@@ -67,12 +71,12 @@ public class StaffApp {
                     addHoliday();
                     break;
                 case 3:
-
+                    //TODO Register new staff member
                     break;
                 case 4:
                     //    public Movie( name, Status status,  synopsis,  director,  cast, ArrayList<Review> , ArrayList<Cineplex> ) {
 
-                    ArrayList<Review> reviews = new ArrayList<>();
+                    //ArrayList<Review> reviews = new ArrayList<>();
 
                     //    public Review(String review, String movieName,double rating, Client reviewer) throws IllegalArgumentException
 
@@ -102,8 +106,10 @@ public class StaffApp {
     }
 
     private void handleShowTimes() {
-
-
+        //TODO ask staff if they want to add new, update or delete showing
+        //TODO add new showing
+        //TODO update showing
+        //TODO delete showing
     }
 
 
