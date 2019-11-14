@@ -7,12 +7,15 @@ public class Movie implements Serializable {
     private String synopsis;
     private String director;
     private String[] cast;
-    private static ArrayList<Review> movieReviews;
-    private ArrayList<Cineplex> locations;
+    private String locations;
+    private String Reviews;
+    private double avgRating;
+
 
     public enum Status{
-        notShowing,comingSoon,Showing
+        notShowing,preview,Showing
     }
+
     //<editor-fold desc="Constructors">
     public Movie(String name, Status status, String synopsis, String director, String[] cast, ArrayList<Review> reviews, ArrayList<Cineplex> locations) throws IllegalArgumentException {
         if (reviews == null || locations == null)
@@ -23,28 +26,31 @@ public class Movie implements Serializable {
         this.setSynopsis(synopsis);
         this.setDirector(director);
         this.setCast(cast);
-
-
-        movieReviews = reviews;
-        this.locations = locations;
-//        this.calcAvg_rating();
+        //this.locations = locations;
+        //this.calcAvg_rating();
     }
+
 
     public Movie(String name, Status status, String synopsis, String director, String[] cast, ArrayList<Cineplex> locations) {
         this(name, status, synopsis, director, cast, new ArrayList<>(), locations);
     }
     //</editor-fold>
 
+    public void addReviews(){
 
-    public void addCineplex(Cineplex cineplex) {
-        if (cineplex == null) return;
-        this.locations.add(cineplex);
+
     }
 
-    public void removeCineplex(Cineplex cineplex) {
-        if (cineplex == null) return;
-        this.locations.remove(cineplex);
-    }
+
+//    public void addCineplex(Cineplex cineplex) {
+//        if (cineplex == null) return;
+//        this.locations.add(cineplex);
+//    }
+//
+//    public void removeCineplex(Cineplex cineplex) {
+//        if (cineplex == null) return;
+//        this.locations.remove(cineplex);
+//    }
 
     //<editor-fold desc="Printers">
 
@@ -107,12 +113,16 @@ public class Movie implements Serializable {
         return cast;
     }
 
+    public double getAvgRating(){return avgRating;}
+
+    public void setAvgRating(Double avgRating){this.avgRating = avgRating;}
+
     public String getSynopsis() {
         return synopsis;
     }
 
-    public ArrayList<Cineplex> getLocations() {
-        return locations;
-    }
+//    public ArrayList<Cineplex> getLocations() {
+//        return locations;
+//    }
     //</editor-fold>
 }

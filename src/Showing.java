@@ -29,11 +29,6 @@ public class Showing implements Serializable {
         this.movie = movie;
     }
 
-    public void setPlan(SeatingPlan plan) {
-        if (plan == null)
-            throw new IllegalArgumentException("Seatingplan cannot be null");
-        this.plan = plan;
-    }
 
     public void setDate(Calendar date) {
         if (date == null)
@@ -96,11 +91,4 @@ public class Showing implements Serializable {
         return this.date.DAY_OF_YEAR;
     }
 
-    public String getMoviesByBestSelling(){
-        return null;
-    }
-
-    public String getMoviesByRatings(){
-        return null;
-    }
 }

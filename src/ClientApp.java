@@ -28,14 +28,16 @@ public class ClientApp {
                 case 1:
                     System.out.println("Would you like to see \n1. Every movie\n2. Top 5 movies by ticket sales\n3. Top 5 movies by review score");
                     sc_in = sc.nextInt();
+                    MovieControl mc = MovieControl.getInstance();
                     switch (sc_in) {
                         case 1:
-                            MovieControl.printAllMoviesByName();
+                            mc.printAllMoviesByName();
                             break;
                         case 2:
+                            mc.printMoviesByTicketSales();
                             break;
                         case 3:
-                            MovieControl.printAllMoviesByRating();
+                            mc.setAllMoviesByRating();
                     }
 
                     //TODO allow user to choose one of the movies
