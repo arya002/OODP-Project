@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
 
 /**
  * Handles all the Staff capabilities
@@ -30,7 +28,7 @@ public class StaffApp {
                             "\n4. Exit\n");
 
 
-            sc_in = main.sc.nextInt();
+            sc_in = MainApp.sc.nextInt();
             switch (sc_in) {
                 case 1:
                     handleMovieListings();
@@ -57,11 +55,11 @@ public class StaffApp {
                             "\n2. Holidays" +
                             "\n3. Exit\n");
 
-            sc_in = main.sc.nextInt();
+            sc_in = MainApp.sc.nextInt();
             switch (sc_in) {
                 case 1:
                     System.out.println("Please enter the new price of an adult ticket.");
-                    double price = main.sc.nextDouble();
+                    double price = MainApp.sc.nextDouble();
                     changePriceOfTicket(price);
                     break;
                 case 2:
@@ -119,7 +117,7 @@ public class StaffApp {
                             "\n2. Edit Movie Lisings" +
                             "\n3. Exit\n");
 
-            sc_in = main.sc.nextInt();
+            sc_in = MainApp.sc.nextInt();
             switch (sc_in) {
                 case 1:
                     do {
@@ -128,7 +126,7 @@ public class StaffApp {
                                         "\n2. Edit Movie Lisings" +
                                         "\n3. Exit\n");
 
-                        sc_in = main.sc.nextInt();
+                        sc_in = MainApp.sc.nextInt();
                         switch (sc_in) {
                             case 1:
 

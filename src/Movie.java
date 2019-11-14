@@ -102,11 +102,6 @@ public class Movie implements Serializable {
     }
     //</editor-fold>
 
-
-    public double getAvg_rating() {
-        return avg_rating;
-    }
-
     public String getDirector() {
         return director;
     }

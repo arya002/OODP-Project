@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class main {
+public class MainApp {
 
 	User currentUser;
 	static Scanner sc = new Scanner(System.in);
-	static MovieReview movieReview = MovieReview.getInstance();
+	static ReviewControl movieReview = ReviewControl.getInstance();
 	static ArrayList<Cineplex> cineplexes = new ArrayList<>();
 	static ArrayList<Movie> movieListings = new ArrayList<>();
 
@@ -45,7 +45,7 @@ public class main {
 					movieReview.addReview(new Review("pretty good i like","ferb",2,new Client("helol")));
 
 
-					MovieEntity.printAllMoviesByRating();
+					MovieControl.printAllMoviesByRating();
 					break;
 				default:
 					System.out.println("Invalid input, please choose from the following:");

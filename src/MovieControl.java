@@ -1,6 +1,14 @@
 import java.util.*;
 
-public class MovieEntity {
+/**
+ *
+ * Movie Manager for movies which handles all interfacing with the Movie class.
+ * has all the static methods to seperate from the purely
+ *
+ */
+
+
+public class MovieControl {
 
     ArrayList<Movie> currentMovies = new ArrayList();
 
@@ -17,7 +25,7 @@ public class MovieEntity {
 
         int i = 0;
         System.out.println("The top rated movies are \n");
-        ArrayList<Review> sortedList = MovieReview.getAllReviews();
+        ArrayList<Review> sortedList = ReviewControl.getAllReviews();
         sortedList.sort(new CustomComparitor());
         String oldReviewMovie = sortedList.get(0).getMovieName();
         Review oldReview;
@@ -30,10 +38,9 @@ public class MovieEntity {
 
             oldReviewMovie = sortedList.get(i).getMovieName();
 
-            while (i+j < sortedList.size() && j+index < sortedList.size() &&sortedList.get(i+j).getMovieName() == oldReviewMovie) {
+            while (i+j < sortedList.size() && j+index < sortedList.size() &&sortedList.get(i+j).getMovieName().equals(oldReviewMovie)) {
                 System.out.println("old -" + oldReviewMovie);
                 System.out.println("new - i + j- " + sortedList.get(i+j).getMovieName() +"\n");
-
                 total += sortedList.get(index+j).getRating();
                 oldReview = sortedList.get(index+j);
                 oldReviewMovie = oldReview.getMovieName();
@@ -55,7 +62,7 @@ public class MovieEntity {
 
         int i = 0;
         System.out.println("All movies we have at every Cinema are \n");
-        Set<String> uniqueMovies = new HashSet<String>(MovieReview.getAllReviewsNames());
+        Set<String> uniqueMovies = new HashSet<String>(ReviewControl.getAllReviewsNames());
         System.out.println("Unique gas count: " + uniqueMovies);
 
     }
@@ -64,7 +71,7 @@ public class MovieEntity {
 
         int i = 0;
         System.out.println("All movies we have at every Cinema are \n");
-        ArrayList<Showing> ar_ = ShowingEntity.getAllShowings();
+        ArrayList<Showing> ar_ = ShowingControl.getAllShowings();
         ArrayList<String> allAtLocation= new ArrayList<>();
         for (Showing ar:ar_){
 

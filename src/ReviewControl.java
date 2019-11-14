@@ -1,19 +1,24 @@
-import java.lang.reflect.Array;
 import java.util.*;
 
-public class MovieReview {
+/**
+ *
+ *
+ *
+ */
+
+public class ReviewControl {
 
     public static ArrayList<Review> allReviews = new ArrayList<>();
 
-    private MovieReview() {
+    private ReviewControl() {
+
     }
 
+    private static ReviewControl sSoleInstance;
 
-    private static MovieReview sSoleInstance;
-
-    public static MovieReview getInstance() {
+    public static ReviewControl getInstance() {
         if (sSoleInstance == null) { //if there is no instance available... create new one
-            sSoleInstance = new MovieReview();
+            sSoleInstance = new ReviewControl();
         }
 
         return sSoleInstance;

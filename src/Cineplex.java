@@ -2,10 +2,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Cineplex implements Serializable {
+
     private String name;
     private ArrayList<RoomLayout> cinemas;
+    //
     private ArrayList<Showing> showings;
     private ArrayList<Movie> movies;
+    //
 
     //<editor-fold desc="Constructors">
     public Cineplex(String name) {
