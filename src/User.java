@@ -15,14 +15,15 @@ public abstract class User implements Serializable {
 	}
 
 	public String getUsername() {return username;}
-
-	public void setUsername(String username) {this.username = username;}
-
-	public boolean checkPassword(String test) {return password.equals(test);}
 	
-	public void setPassword(String password) {}
-
 	public String getFirstName() {
 		return firstName;
 	}
+
+	public void setUsername(String username) {this.username = username;}
+	
+	public void setPassword(String password) {}
+
+	public boolean checkPassword(String test) {return password.equals(test);}
+	
 }
