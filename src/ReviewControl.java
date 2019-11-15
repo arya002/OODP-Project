@@ -1,7 +1,7 @@
 import java.util.*;
 
 /**
- *
+ * Deals with arrays of reviews
  *
  *
  */
@@ -9,12 +9,11 @@ import java.util.*;
 public class ReviewControl {
 
     public static ArrayList<Review> allReviews = new ArrayList<>();
+    private static ReviewControl sSoleInstance;
 
     private ReviewControl() {
 
     }
-
-    private static ReviewControl sSoleInstance;
 
     public static ReviewControl getInstance() {
         if (sSoleInstance == null) { //if there is no instance available... create new one
