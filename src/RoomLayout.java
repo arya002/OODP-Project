@@ -8,6 +8,7 @@ public class RoomLayout implements Serializable {
     private String type;
     private String name;
     static private HashMap<String, Character> representations = new HashMap<>();
+
     static {
         representations.put("None", ' ');
         representations.put("Normal", 'N');

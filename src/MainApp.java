@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import sun.awt.AWTAccessor.MenuAccessor;
-
 public class MainApp {
 
 	User currentUser;
