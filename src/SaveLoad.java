@@ -18,7 +18,6 @@ public class SaveLoad<K> {
             ObjectInputStream in = new ObjectInputStream(f);
             ArrayList<K> retArray;
             retArray = (ArrayList<K>) in.readObject();
-            System.out.println(retArray.size() + " size of array");
             in.close();
             f.close();
             return retArray;

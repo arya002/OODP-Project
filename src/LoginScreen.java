@@ -6,14 +6,12 @@ public class LoginScreen {
 
 	private String password = "";
 	private String userName;
-	private String type;
 	private int tries;
-	private boolean loggedIn;
+	public boolean loggedIn;
 
 	public LoginScreen(){
 		this.password = "guest";
 		this.userName = "guest";
-		this.type = "";
 		this.tries = 3;
 		this.loggedIn = false;
 		run();
@@ -23,7 +21,7 @@ public class LoginScreen {
         int sc_in;
 
         do {
-            System.out.println("1. Login \n2. Continue as Guest \n3. Client Register\n4. Exit");
+            System.out.println("1. Login \n2. Register new user \n3. Back");
             sc_in = sc.nextInt();
             switch (sc_in) {
                 case 1:
@@ -31,20 +29,17 @@ public class LoginScreen {
                     enterPassword();
                     break;
                 case 2:
-//					TODO make guest
+//		    registerUser();
+		    this.loggedIn = true;
                     break;
                 case 3:
-                    registerUser();
-                    loggedIn = true;
-                    break;
-                case 4:
                     break;
                 default:
                     System.out.println("Invalid input, please choose from the following:");
                     break;
             }
 
-        } while (sc_in != 4 && sc_in != 2 && !loggedIn);
+        } while (sc_in != 3 || !loggedIn);
 
     }
 
@@ -53,7 +48,7 @@ public class LoginScreen {
 		System.out.print("Enter username : ");
 		this.userName = sc.next();
 		//check if invalid username and throw error
-        //also get type of user
+        	//also get type of user
 	}
 
 	public void enterPassword(){
@@ -63,10 +58,10 @@ public class LoginScreen {
 			this.password = sc.next();
 			    //check value of password from file
 			if(password.equals()) {
-                loggedIn = true;
-                System.out.println("Successfully logged in!");
-                return;
-            }
+				this.loggedIn = true;
+				System.out.println("Successfully logged in!");
+				return;
+            		}
 			tries -= 1;
 		}
 		else{
@@ -85,10 +80,10 @@ public class LoginScreen {
 	}
 
 	public void registerUser() {
-	    System.out.println("Enter a username:");
-	    userName = sc.next();
+		System.out.println("Enter a username:");
+		userName = sc.next();
 	        //check if username already exists and throw error
-        password = sc.next();
+        	password = sc.next();
 
     }
 

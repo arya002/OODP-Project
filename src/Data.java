@@ -80,7 +80,6 @@ public class Data implements Serializable {
         System.out.println(o);
         SaveLoad pair= new SaveLoad<>(o);
         ArrayList objectsFromPath = pair.loadObject(path);
-        System.out.println(objectsFromPath.size() + " size of array");
         return objectsFromPath;
 
     }

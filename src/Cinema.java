@@ -5,6 +5,11 @@ public class Cinema implements Serializable {
 
     public int n = 20;
     public int m =  15;
+    private ArrayList<Showing> showings;
+    private RoomLayout roomLayout;
+    private int[][] timeSlotsArray;
+    private String type;
+
 
     enum DaysOfWeek {
         Mon, Tue, Wed, Thu, Fri, Sat, Sun;
@@ -16,12 +21,6 @@ public class Cinema implements Serializable {
         static int size = 5;
 
     }
-
-
-    private ArrayList<Showing> showings;
-    private RoomLayout roomLayout;
-    private int[][] timeSlotsArray;
-    private String type;
 
     public RoomLayout getRoomLayout() {
         return roomLayout;
@@ -47,8 +46,8 @@ public class Cinema implements Serializable {
 
     private void buildTimeSlots() {
 
-        for(int i =0; i < TimeSlots.size;i++){
-            for (int j =0; j<DaysOfWeek.size ;j++){
+        for(int i =0; i < DaysOfWeek.size;i++){
+            for (int j =0; j<TimeSlots.size;j++){
                 timeSlotsArray[i][j]=1;
             }
         }
@@ -73,4 +72,7 @@ public class Cinema implements Serializable {
         return type;
     }
 
+    public ArrayList<Showing> getShowings() {
+        return showings;
+    }
 }

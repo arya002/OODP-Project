@@ -61,7 +61,7 @@ public class MovieControl {
         return movies;
     }
 
-    public static ArrayList<String> getAllMovies() {
+    public static ArrayList<String> getAllMoviesNames() {
 
         System.out.println("All movies are\n");
 
@@ -77,7 +77,12 @@ public class MovieControl {
         //System.out.println("All Movies: " + uniqueMovies);
     }
 
+    public static ArrayList<Movie> getAllMovies() {
 
+        allMovies = (ArrayList<Movie>) Data.getInstance().getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class);
+        return allMovies;
+        //System.out.println("All Movies: " + uniqueMovies);
+    }
 
 
     private static class CustomComparitor implements Comparator<Review> {

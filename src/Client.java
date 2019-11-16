@@ -11,7 +11,6 @@ public class Client extends User {
 		this.phoneNum = "";
 		this.email = "";
 		this.type = "Client";
-		this.loggedIn = true;
 	}
 
 	//for ease of testing

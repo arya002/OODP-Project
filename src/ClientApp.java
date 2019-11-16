@@ -48,7 +48,7 @@ public class ClientApp {
                     String mov;
                     System.out.println("Enter movie name: ");
                     mov = sc.next();
-                    searchMovie(mov);
+                    // searchMovie(mov); TODO
 
                     System.out.println("Would you like to see \n1. Reviews \n2. Listings\n for this movie?");
                     sc_in = sc.nextInt();
@@ -118,13 +118,6 @@ public class ClientApp {
         {
             System.out.println(movie);
         }
-    }
-
-
-    public void searchMovie(String movie){
-
-
-
     }
 
 }
