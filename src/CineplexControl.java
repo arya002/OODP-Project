@@ -7,12 +7,12 @@ import java.util.ArrayList;
 
     public CineplexControl(){
 
-        Data.getInstance().getObjectFromPath(SaveLoadNames.CINEPLEX_PATH,Cineplex.class);
+        Data.getInstance().getObjectFromPath(SaveLoadPath.CINEPLEX_PATH,Cineplex.class);
 
     }
 
 
-    public static String getCineplex(String name) {
+    public static String getCineplexName(String name) {
 
         for (int i =0; i< cineplexs.size();i++) {
             if(cineplexs.get(i).getName().equals(name));
@@ -21,13 +21,22 @@ import java.util.ArrayList;
         return null;
     }
 
+     public static Cineplex getCineplex(String name) {
 
-    public static ArrayList<Cineplex> getCineplexs() {
+         for (int i =0; i< cineplexs.size();i++) {
+             if(cineplexs.get(i).getName().equals(name));
+             return cineplexs.get(i);
+         }
+         return null;
+     }
+
+
+     public static ArrayList<Cineplex> getCineplexs() {
         return cineplexs;
     }
 
     public static void save(ArrayList<Cineplex> cp){
-        Data.getInstance().saveObjectToPath(SaveLoadNames.CINEPLEX_PATH,cp);
+        Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,cp);
     }
 
     public static void addCineplex(Cineplex cineplex){

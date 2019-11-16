@@ -5,10 +5,19 @@ public class Showing implements Serializable {
     private Cinema cinema;
     private Movie movie;
     private String type;
-    private Calendar date;
+    private String date;
     private Cineplex cineplex;
 
-    public Showing(Cinema cinema,Cineplex cineplex, Movie movie, RoomLayout layout, Calendar date, String type) {
+    /**
+     *
+     * @param cinema
+     * @param cineplex
+     * @param movie
+     * @param date = YYYYMMDDXY (X = DOTW, Y = TimeSlot)
+     * @param type
+     */
+    //
+    public Showing(Cinema cinema,Cineplex cineplex, Movie movie, String date, String type) {
         this.setCinema(cinema);
         this.setMovie(movie);
         this.setDate(date);
@@ -31,10 +40,13 @@ public class Showing implements Serializable {
     }
 
 
-    public void setDate(Calendar date) {
-        if (date == null)
-            throw new IllegalArgumentException("Date cannot be null");
+    public void setDate(String date) {
+
         this.date = date;
+        //YYYYMMMDDXY
+        // X = DOTW
+        // Y = TIMESLOT
+
     }
 
     public void setCinema(Cinema cinema) {
@@ -57,25 +69,28 @@ public class Showing implements Serializable {
         return cinema;
     }
 
-
     public Movie getMovie() {
         return movie;
     }
 
-    public Date getDate() {
-        return date.getTime();
-    }
-
-    public String getDateString() {
-        return this.date.toString();
+    public String getDate() {
+        return date;
     }
 
     public int getDayOfWeek() {
-        return this.date.DAY_OF_WEEK;
+        return Integer.parseInt(date.substring(8));
     }
 
     public int getDay() {
-        return this.date.DAY_OF_YEAR;
+        return Integer.parseInt(date.substring(5,7));
+    }
+
+    public int getTimeSlot() {
+        return Integer.parseInt(date.substring(9));
+    }
+
+    public int getYYYYMMDD() {
+        return Integer.parseInt(date.substring(0,7));
     }
 
 }

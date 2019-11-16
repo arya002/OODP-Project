@@ -1,19 +1,27 @@
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Set;
 
 public class ShowingControl  {
 
-    private static ArrayList<Showing> allShowings;
+    private static ArrayList<Showing> allShowings = new ArrayList<>();
 
-    public ShowingControl(){
+    public static void addShowing(Showing showing){
 
-        allShowings = (ArrayList<Showing>) Data.getInstance().getObjectFromPath(SaveLoadNames.SHOWING_PATH,Showing.class);
+        allShowings.add(showing);
 
     }
 
 
-    public static void printAllShowingsAtCineplex(String cineplex) {
+    public ShowingControl(){
+
+        allShowings = (ArrayList<Showing>) Data.getInstance().getObjectFromPath(SaveLoadPath.SHOWING_PATH,Showing.class);
+
+    }
+
+    public static ArrayList<Showing> getAllShowings() {
+        return allShowings;
+    }
+
+    public static ArrayList<Showing> getAllShowingsAtCineplex(String cineplex) {
 
         int i = 0;
         System.out.println("All movies we have at your location\n");
@@ -25,12 +33,16 @@ public class ShowingControl  {
 
             if (cpa.getName().equals(cineplex)){
 
+                for (Cinema cinema :cpa.getCinemas()) {
 
+                    return cinema.getShowings();
+
+                }
 
             }
 
         }
-
+        return null;
     }
 
     public static ArrayList<Showing> getAllShowingOfMovie(Movie movie){

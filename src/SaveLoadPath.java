@@ -1,4 +1,4 @@
-public interface SaveLoadNames {
+public interface SaveLoadPath {
 
     public static String CINEMA_PATH = "Data/cinema.txt";
     public static String CINEPLEX_PATH = "Data/cineplex.txt";
