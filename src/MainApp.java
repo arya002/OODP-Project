@@ -25,11 +25,15 @@ public class MainApp {
 			sc_in = sc.nextInt();
 			switch (sc_in) {
 				case 1:
-					//TODO go to LogInScreen
-					//TODO go to ClientApp
+					LoginScreen lg = new LoginScreen();
+					loggedin = lg.loggedIn;
+					currentUser.setUsername(lg.getUserName());
+					currentUser.setPassword(lg.getPassword());
 					break;
 				case 2:
-					//TODO go to ClientApp with no user
+					loggedin = false;
+					currentUser.setUsername(lg.getUserName("guest"));
+					currentUser.setPassword(lg.getPassword("guest"));
 					break;
 				case 3:
 					//TODO go to CLientApp with null as user
@@ -69,25 +73,3 @@ public class MainApp {
 
 		} while (sc_in != 3 && !loggedin);
 	}
-
-	private static boolean Login() {
-//		Maybe move this inside LogIn and pass allong the scanner or something?
-		System.out.println("Please enter username or type 'back' to return");
-		String user = sc.next();
-		if (!user.equalsIgnoreCase("back") && !user.isEmpty()) {
-			System.out.println("Please enter password or type 'back' to return");
-			String pass = sc.next();
-			if (!pass.equalsIgnoreCase("back") && !pass.isEmpty()) {
-				String response = LogIn.checkLogin(user, pass);
-				if(!response.isEmpty()) {
-					LogIn.loadUser(response);
-					return true;
-				} else {
-					System.out.println("User not found");
-				}
-			}
-		}
-		return false;
-	}
-
-}
