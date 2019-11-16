@@ -48,6 +48,7 @@ public class StaffApp {
 
     private void handleSystemSettings() {
         int sc_in;
+        Scanner sc = new Scanner(System.in);
         do {
             System.out.println("Welcome " + currentStaff.getFirstName());
             System.out.println
@@ -56,7 +57,7 @@ public class StaffApp {
                             "\n3. Add new staff member" +
                             "\n4. Exit\n");
 
-            sc_in = MainApp.sc.nextInt();
+            sc_in = sc.nextInt();
             switch (sc_in) {
                 case 1:
                     //TODO Allow staff to edit ticket prices
@@ -69,7 +70,15 @@ public class StaffApp {
                     addHoliday();
                     break;
                 case 3:
-                    //TODO Register new staff member
+                    //Add new staff
+                    String user, pass, first;
+                    System.out.println("Please Enter the staff Username");
+                    user = sc.next();
+                    System.out.println("Please Enter the staff Password");
+                    pass = sc.next();    
+                    System.out.println("Please Enter the staff FirstName");
+                    first = sc.next();
+                    Staff(user, pass, first);
                     break;
                 case 4:
                     //    public Movie( name, Status status,  synopsis,  director,  cast, ArrayList<Review> , ArrayList<Cineplex> ) {
@@ -87,6 +96,7 @@ public class StaffApp {
             }
 
         } while (sc_in != 3);
+        sc.close();
 
     }
 
