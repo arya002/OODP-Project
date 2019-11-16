@@ -52,7 +52,15 @@ public class ClientApp {
                     sc_in = sc.nextInt();
                     switch (sc_in) {
                         case 1:
-                            //TODO Show reviews for the movie
+                             ArrayList<Review> listReviews = new ArrayList();
+                            int overallRating;
+                            listReviews = getMovieReviews(mov);
+                            for(int i=0; i<listReviews.size();i++) {
+                                listReviews.get(i).print(); // print all Reviews for a movie    
+                                overallRating = overallRating + listReviews.get(i).getRating();
+                            }
+                            overallRating = overallRating/listReviews.size(); //average ratings
+                            System.out.printf("❀".repeat((int) overallRating) + ", %.1f/5\n\n", rating);
                         case 2:
                             //TODO Show listings for the movie
                             //TODO allow user to choose listing
