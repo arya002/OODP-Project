@@ -34,10 +34,11 @@ public class ClientApp {
                             printMovies(MovieControl.getAllMovies());
                             break;
                         case 2:
-                            printMovies(MovieControl.getAllMoviesByRating());
+                            //TODO Display top 5 movies by tickets sold
                             break;
                         case 3:
-                            //TODO Display top 5 movies by review score
+                            printMovies(MovieControl.getAllMoviesByRating());
+                            break;
                     }
 
                     //TODO follow through to the next case (case 2) from here
