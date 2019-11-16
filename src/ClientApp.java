@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -27,16 +28,16 @@ public class ClientApp {
             switch (sc_in) {
                 case 1:
                     System.out.println("Would you like to see \n1. Every movie\n2. Top 5 movies by ticket sales\n3. Top 5 movies by review score");
-                    sc_in = sc.nextInt();
+                    sc_in = sc.nextInt(); 
                     switch (sc_in) {
                         case 1:
-                            //TODO list every movie
+                            printMovies(MovieControl.getAllMovies());
                             break;
                         case 2:
                             //TODO Display top 5 movies by ticket sales
                             break;
                         case 3:
-                            //TODO Display top 5 movies by review score
+                            printMovies(MovieControl.getAllMoviesByRating());
                     }
 
                     //TODO allow user to choose one of the movies
@@ -44,10 +45,10 @@ public class ClientApp {
 
                 case 2:
                     //TODO take user input for a movie title and return that movie information (cast etc)
-                    String mov;
-                    System.out.println("Enter movie name: ");
-                    mov = sc.next();
-                    searchMovie(mov);
+                    //String mov;
+                    //System.out.println("Enter movie name: ");
+                    //mov = sc.next();
+                    //searchMovie(mov);
 
                     System.out.println("Would you like to see \n1. Reviews \n2. Listings\n for this movie?");
                     sc_in = sc.nextInt();
@@ -77,6 +78,14 @@ public class ClientApp {
             }
 
         } while (sc_in != 4);
+    }
+
+    private void printMovies(ArrayList<String> movies)
+    {
+        for (String movie : movies)
+        {
+            System.out.println(movie);
+        }
     }
 
     public void bookMovie()
