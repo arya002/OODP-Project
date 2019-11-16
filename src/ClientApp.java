@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -30,10 +31,10 @@ public class ClientApp {
                     sc_in = sc.nextInt();
                     switch (sc_in) {
                         case 1:
-                            //TODO list every movie
+                            printMovies(MovieControl.getAllMovies());
                             break;
                         case 2:
-                            //TODO Display top 5 movies by ticket sales
+                            printMovies(MovieControl.getAllMoviesByRating());
                             break;
                         case 3:
                             //TODO Display top 5 movies by review score
@@ -98,6 +99,14 @@ public class ClientApp {
         }
         //TODO let user choose a seat and display the price
         //TODO process the booking
+    }
+
+    private void printMovies(ArrayList<String> movies)
+    {
+        for (String movie : movies)
+        {
+            System.out.println(movie);
+        }
     }
 
 
