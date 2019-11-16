@@ -1,7 +1,10 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Cinema {
+public class Cinema implements Serializable {
 
+    public int n = 20;
+    public int m =  15;
 
     enum DaysOfWeek {
         Mon, Tue, Wed, Thu, Fri, Sat, Sun;
@@ -20,6 +23,9 @@ public class Cinema {
     private int[][] timeSlotsArray;
     private String type;
 
+    public RoomLayout getRoomLayout() {
+        return roomLayout;
+    }
 
     public Cinema (String type){
 
@@ -34,7 +40,7 @@ public class Cinema {
 
         if (type == "normal"){
 
-            roomLayout = new RoomLayout(20,15,"stub",type);
+            roomLayout = new RoomLayout(n,m,"stub",type);
         }
 
     }

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class CineplexControl {
+ public class CineplexControl {
 
     private static ArrayList<Cineplex> cineplexs = new ArrayList<>();
 
@@ -12,7 +12,7 @@ public class CineplexControl {
     }
 
 
-    public String getCineplex(String name) {
+    public static String getCineplex(String name) {
 
         for (int i =0; i< cineplexs.size();i++) {
             if(cineplexs.get(i).getName().equals(name));
@@ -22,21 +22,21 @@ public class CineplexControl {
     }
 
 
-    public ArrayList<Cineplex> getCineplexs() {
+    public static ArrayList<Cineplex> getCineplexs() {
         return cineplexs;
     }
 
-    public void save(ArrayList<Cineplex> cp){
+    public static void save(ArrayList<Cineplex> cp){
         Data.getInstance().saveObjectToPath(SaveLoadNames.CINEPLEX_PATH,cp);
     }
 
-    public void addCineplex(Cineplex cineplex){
+    public static void addCineplex(Cineplex cineplex){
 
         cineplexs.add(cineplex);
 
     }
 
-    private boolean allocateTimeSlot(Cinema whichCinema,int whichDay,int whichTimeSlot){
+    private static boolean allocateTimeSlot(Cinema whichCinema,int whichDay,int whichTimeSlot){
 
 
         int[][] tempTS;
@@ -50,7 +50,7 @@ public class CineplexControl {
 
     }
 
-    public Cinema addShowingToCinema(Cinema whichCinema,Showing showing,int timeSlot){
+    public static Cinema addShowingToCinema(Cinema whichCinema,Showing showing,int timeSlot){
 
         int whichDay = showing.getDayOfWeek();
         int whichTimeSlot = timeSlot;
@@ -90,7 +90,7 @@ public class CineplexControl {
 
     }
 
-    public ArrayList<Cinema> getCinemaFromCineplex(String whichCineplex){
+    public static ArrayList<Cinema> getCinemaFromCineplex(String whichCineplex){
 
         for (Cineplex cineplex: cineplexs){
 
@@ -103,7 +103,7 @@ public class CineplexControl {
         return null;
     }
 
-    public ArrayList<Cinema> getCinemaFromCineplex(Cineplex whichCineplex){
+    public static ArrayList<Cinema> getCinemaFromCineplex(Cineplex whichCineplex){
 
         for (Cineplex cineplex: cineplexs){
 

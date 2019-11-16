@@ -6,12 +6,22 @@ public class Showing implements Serializable {
     private Movie movie;
     private String type;
     private Calendar date;
+    private Cineplex cineplex;
 
-    public Showing(Cinema cinema, Movie movie, RoomLayout layout, Calendar date, String type) {
+    public Showing(Cinema cinema,Cineplex cineplex, Movie movie, RoomLayout layout, Calendar date, String type) {
         this.setCinema(cinema);
         this.setMovie(movie);
         this.setDate(date);
         this.setType(type);
+        this.setCineplex(cineplex);
+    }
+
+    private void setCineplex(Cineplex cineplex) {
+        this.cineplex = cineplex;
+    }
+
+    public Cineplex getCineplex() {
+        return cineplex;
     }
 
     public void setMovie(Movie movie) {

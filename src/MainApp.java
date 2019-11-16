@@ -5,7 +5,7 @@ public class MainApp {
 
 	User currentUser;
 	static Scanner sc = new Scanner(System.in);
-	static ReviewControl movieReview = ReviewControl.getInstance();
+	//static ReviewControl movieReview = ReviewControl.getInstance();
 	static ArrayList<Cineplex> cineplexes = new ArrayList<>();
 	static ArrayList<Movie> movieListings = new ArrayList<>();
 
@@ -46,25 +46,28 @@ public class MainApp {
 					break;
 
 				case 7:
-					CineplexControl cp = new CineplexControl();
-					MovieControl mc = new MovieControl();
-					ReviewControl rv = ReviewControl.getInstance();
-//					Movie movie = new Movie("shrek", Movie.Status.Showing,"synopsis",
-//							"Al Green", castArray)
-					rv.addReview(new Review(" good i like","shrek",4,new Client("helol")));
-					rv.addReview(new Review("pretty good","ferb",2,new Client("helol")));
-					rv.addReview(new Review(" like ","phineas",1,new Client("helol")));
-					rv.addReview(new Review("pretty good i like","shrek",2,new Client("helol")));
-					cp.addCineplex(new Cineplex("Jurong"));
-					cp.addCineplex(new Cineplex("Orchard"));
-					cp.addCineplex(new Cineplex("Central"));
+
 					String[] castArray = new String[2];
 					castArray[0] = "tom cruise";
 					castArray[1] = "also tom cruise";
+
+					Movie movie = new Movie("shrek", Movie.Status.Showing,"synopsis",
+				"Al Green", castArray);
+					ArrayList<Movie> movies = new ArrayList<>();
+					movies.add(movie);
+
+					Data.getInstance().saveObjectToPath(SaveLoadNames.MOVIE_PATH,movies);
+//					ReviewControl.addReview(new Review(" good i like","shrek",4,new Client("helol")));
+//					ReviewControl.addReview(new Review("pretty good","ferb",2,new Client("helol")));
+//					ReviewControl.addReview(new Review(" like ","phineas",1,new Client("helol")));
+//					ReviewControl.addReview(new Review("pretty good i like","shrek",2,new Client("helol")));
+//					CineplexControl.addCineplex(new Cineplex("Jurong"));
+//					CineplexControl.addCineplex(new Cineplex("Orchard"));
+//					CineplexControl.addCineplex(new Cineplex("Central"));
+
 					//hello
 
-					mc.addMovieListing(new Movie("shrek", Movie.Status.Showing,"synopsis",
-							"Al Green", castArray));
+//					mc.addMovieListing(new Movie("shrek", Movie.Status.Showing,"synopsis","Al Green", castArray));
 
 					//Showing showing = new Showing(cp.getCineplex("Jurong"),);
 

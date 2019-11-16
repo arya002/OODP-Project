@@ -4,37 +4,48 @@ import java.util.Set;
 
 public class ShowingControl  {
 
-    private static ShowingControl sSoleInstance;
+    private static ArrayList<Showing> allShowings;
 
-    private ShowingControl(){}
+    public ShowingControl(){
 
-    public static ArrayList<Showing> getAllShowings(){
+        allShowings = (ArrayList<Showing>) Data.getInstance().getObjectFromPath(SaveLoadNames.SHOWING_PATH,Showing.class);
 
-
-        return null;
     }
 
-    public static ShowingControl getInstance(){
-        if (sSoleInstance == null){
-            sSoleInstance = new ShowingControl();
-        }
-        return sSoleInstance;
-    }
 
     public static void printAllShowingsAtCineplex(String cineplex) {
 
         int i = 0;
         System.out.println("All movies we have at your location\n");
         ArrayList<Cineplex> ar = new ArrayList<>();
-        ArrayList<String> allAtLocation= new ArrayList<>();
+        ArrayList<Showing> allAtLocation= new ArrayList<>();
         CineplexControl cp = new CineplexControl();
 
         for (Cineplex cpa:cp.getCineplexs()){
 
-            if cpa.getName() ==
+            if (cpa.getName().equals(cineplex)){
+
+
+
+            }
 
         }
 
+    }
+
+    public static ArrayList<Showing> getAllShowingOfMovie(Movie movie){
+
+        ArrayList<Showing> allShowingsOfMovie = new ArrayList<>();
+
+        for(Showing showing:allShowings) {
+            if (movie.getName().equals(showing.getMovie().getName()) && showing.getMovie().getStatus() == Movie.Status.Showing) {
+
+                allShowingsOfMovie.add(showing);
+
+            }
+        }
+
+        return allShowingsOfMovie;
     }
 
 }

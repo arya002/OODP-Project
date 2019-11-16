@@ -57,7 +57,7 @@ public class ClientApp {
                         case 2:
                             //TODO Show listings for the movie
                             //TODO allow user to choose listing
-                            bookMovie();
+                            //bookMovie();
                     }
                    
                 case 3:
@@ -65,7 +65,7 @@ public class ClientApp {
                     //TODO allow user to choose their cineplex
                     //TODO show movie listings for their chosen cineplex
                     //TODO allow user to choose listing
-                    bookMovie();
+                    //bookMovie();
                 case 4:
                     //TODO display user's booking history
                     break;
@@ -79,16 +79,33 @@ public class ClientApp {
         } while (sc_in != 4);
     }
 
-    public void bookMovie()
+    public void bookMovie(Showing showingToBook)
     {
-        //TODO show user the room layout for their listing
+
+        showingToBook.getCinema().getRoomLayout().print();
+
+        String[][] seats = showingToBook.getCinema().getRoomLayout().getSeats();
+        String choice = MainApp.sc.next();
+        for(int i = 0;i<showingToBook.getCinema().n;i++){
+            for (int j =0; j < showingToBook.getCinema().m;j++){
+
+                if (choice == seats[i][j]){
+
+
+
+                }
+
+            }
+        }
         //TODO let user choose a seat and display the price
         //TODO process the booking
     }
 
 
     public void searchMovie(String movie){
-        //TODO find movie
+
+
+
     }
 
 }

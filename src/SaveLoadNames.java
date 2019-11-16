@@ -5,5 +5,7 @@ public interface SaveLoadNames {
     public static String REVIEW_PATH = "Data/review.txt";
     public static String USER_PATH = "Data/user.txt";
     public static String MOVIE_PATH = "Data/movie.txt";
+    public static String SHOWING_PATH = "Data/showings.txt";
+
 
 }

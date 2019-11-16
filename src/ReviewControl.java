@@ -9,18 +9,9 @@ import java.util.*;
 public class ReviewControl {
 
     public static ArrayList<Review> allReviews = new ArrayList<>();
-    private static ReviewControl sSoleInstance;
 
-    private ReviewControl() {
+    public ReviewControl() {
 
-    }
-
-    public static ReviewControl getInstance() {
-        if (sSoleInstance == null) { //if there is no instance available... create new one
-            sSoleInstance = new ReviewControl();
-        }
-
-        return sSoleInstance;
     }
 
     public static ArrayList<Review> getAllReviews() {
