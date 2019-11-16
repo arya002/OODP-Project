@@ -35,11 +35,11 @@ public class MainApp {
 					break;
 
                 case 6:
-					movieReview.addReview(new Review("pretty good i like","shrek",2,new Client("helol")));
-					movieReview.addReview(new Review(" good i like","shrek",4,new Client("helol")));
-					movieReview.addReview(new Review(" i like","shrek",5,new Client("helol")));
-					movieReview.addReview(new Review(" like ","phineas",1,new Client("helol")));
-					movieReview.addReview(new Review("pretty good","ferb",2,new Client("helol")));
+//					movieReview.addReview();
+//					movieReview.addReview();
+//					movieReview.addReview(new Review(" i like","shrek",5,new Client("helol")));
+//					movieReview.addReview();
+//					movieReview.addReview();
 
 
 					MovieControl.printAllMoviesByRating();
@@ -47,6 +47,26 @@ public class MainApp {
 
 				case 7:
 					CineplexControl cp = new CineplexControl();
+					MovieControl mc = new MovieControl();
+					ReviewControl rv = ReviewControl.getInstance();
+//					Movie movie = new Movie("shrek", Movie.Status.Showing,"synopsis",
+//							"Al Green", castArray)
+					rv.addReview(new Review(" good i like","shrek",4,new Client("helol")));
+					rv.addReview(new Review("pretty good","ferb",2,new Client("helol")));
+					rv.addReview(new Review(" like ","phineas",1,new Client("helol")));
+					rv.addReview(new Review("pretty good i like","shrek",2,new Client("helol")));
+					cp.addCineplex(new Cineplex("Jurong"));
+					cp.addCineplex(new Cineplex("Orchard"));
+					cp.addCineplex(new Cineplex("Central"));
+					String[] castArray = new String[2];
+					castArray[0] = "tom cruise";
+					castArray[1] = "also tom cruise";
+
+
+					mc.addMovieListing(new Movie("shrek", Movie.Status.Showing,"synopsis",
+							"Al Green", castArray));
+
+					//Showing showing = new Showing(cp.getCineplex("Jurong"),);
 
 					break;
 				default:

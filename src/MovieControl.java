@@ -10,12 +10,12 @@ import java.util.*;
 
 public class MovieControl {
 
-    ArrayList<Movie> currentMovies = new ArrayList();
+    static ArrayList<Movie> allMovies = new ArrayList();
 
     //    public Movie(String name, Status status, String synopsis, String director, String[] cast, ArrayList<Review> reviews, ArrayList<Cineplex> locations) throws IllegalArgumentException {
-    public void addMovieListing(String name, Movie.Status status, String synopsis, String director, String[] cast, ArrayList<Review> reviews,ArrayList<Cineplex> locations){
+    public void addMovieListing(Movie movie){
 
-        currentMovies.add(new Movie(name,status,synopsis,director,cast,reviews,locations));
+        allMovies.add(movie);
 
     }
 
@@ -62,7 +62,16 @@ public class MovieControl {
 
         int i = 0;
         System.out.println("All movies we have at every Cinema are \n");
-        Set<String> uniqueMovies = new HashSet<String>(ReviewControl.getAllReviewsNames());
+
+        ArrayList<String> names = new ArrayList<>();
+
+        for (Movie movie:allMovies){
+
+            names.add(movie.getName());
+
+        }
+
+        Set<String> uniqueMovies = new HashSet<String>(names);
         System.out.println("Unique gas count: " + uniqueMovies);
 
     }

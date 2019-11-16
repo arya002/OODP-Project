@@ -7,11 +7,22 @@ public class CineplexControl {
 
     public CineplexControl(){
 
-
+        Data.getInstance().getObjectFromPath(SaveLoadNames.CINEPLEX_PATH,Cineplex.class);
 
     }
 
-    public static ArrayList<Cineplex> getCineplexs() {
+
+    public String getCineplex(String name) {
+
+        for (int i =0; i< cineplexs.size();i++) {
+            if(cineplexs.get(i).getName().equals(name));
+                return cineplexs.get(i).getName();
+        }
+        return null;
+    }
+
+
+    public ArrayList<Cineplex> getCineplexs() {
         return cineplexs;
     }
 

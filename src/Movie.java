@@ -15,25 +15,22 @@ public class Movie implements Serializable {
         notShowing,comingSoon,Showing
     }
     //<editor-fold desc="Constructors">
-    public Movie(String name, Status status, String synopsis, String director, String[] cast, ArrayList<Review> reviews, ArrayList<Cineplex> locations) throws IllegalArgumentException {
-        if (reviews == null || locations == null)
-                throw new IllegalArgumentException();
-
+    public Movie(String name, Status status, String synopsis, String director, String[] cast) {
         this.setName(name);
         this.setStatus(status);
         this.setSynopsis(synopsis);
         this.setDirector(director);
         this.setCast(cast);
+        movieReviews = new ArrayList<>();
+        locations = new ArrayList<>();
 
-
-        movieReviews = reviews;
-        this.locations = locations;
+        //this.locations = locations;
 //        this.calcAvg_rating();
     }
 
-    public Movie(String name, Status status, String synopsis, String director, String[] cast, ArrayList<Cineplex> locations) {
-        this(name, status, synopsis, director, cast, new ArrayList<>(), locations);
-    }
+//    public Movie(String name, Status status, String synopsis, String director, String[] cast, ArrayList<Cineplex> locations) {
+//        this(name, status, synopsis, director, cast, new ArrayList<>(), locations);
+//    }
     //</editor-fold>
 
 
