@@ -61,7 +61,7 @@ public class MainApp {
 					String[] castArray = new String[2];
 					castArray[0] = "tom cruise";
 					castArray[1] = "also tom cruise";
-
+					//hello
 
 					mc.addMovieListing(new Movie("shrek", Movie.Status.Showing,"synopsis",
 							"Al Green", castArray));
