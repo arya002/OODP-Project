@@ -8,20 +8,21 @@ import java.util.HashMap;
 public class Ticket implements Serializable {
     private Client client;
     private Showing showing;
-    private String ticketId;
     private Seat seat;
     private double price;
+
     private static ArrayList<Integer> holidays;
     {
         holidays.add(359);
     }
 
 
-    public Ticket(Client client, Seat seat, Showing showing)
+    public Ticket(Client client, Seat seat, Showing showing, double price)
     {
         this.client = client;
         this.seat = seat;
         this.showing = showing;
+        this.price = price;
 
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMddhhmm");
