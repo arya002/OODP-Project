@@ -21,7 +21,7 @@ public class LoginScreen {
         int sc_in;
 
         do {
-            System.out.println("1. Login \n2. Register new user \n3. Exit");
+            System.out.println("1. Login \n2. Register new user \n3. Back");
             sc_in = sc.nextInt();
             switch (sc_in) {
                 case 1:
