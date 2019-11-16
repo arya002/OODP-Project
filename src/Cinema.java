@@ -14,8 +14,7 @@ public class Cinema {
 
     }
 
-    private TimeSlots timeSlots;
-    private DaysOfWeek dotw;
+
     private ArrayList<Showing> showings;
     private RoomLayout roomLayout;
     private int[][] timeSlotsArray;
@@ -27,6 +26,16 @@ public class Cinema {
         this.type = type;
         timeSlotsArray = new int[DaysOfWeek.size][TimeSlots.size];
         buildTimeSlots();
+        buildRoomLayout();
+
+    }
+
+    private void buildRoomLayout() {
+
+        if (type == "normal"){
+
+            roomLayout = new RoomLayout(20,15,"stub",type);
+        }
 
     }
 
@@ -43,8 +52,9 @@ public class Cinema {
         return timeSlotsArray;
     }
 
-    public void addShowing(){
+    public void addShowing(Showing showing){
 
+        showings.add(showing);
 
 
     }

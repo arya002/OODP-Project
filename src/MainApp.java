@@ -37,12 +37,17 @@ public class MainApp {
                 case 6:
 					movieReview.addReview(new Review("pretty good i like","shrek",2,new Client("helol")));
 					movieReview.addReview(new Review(" good i like","shrek",4,new Client("helol")));
-					movieReview.addReview(new Review("pretty good i like","shrek",5,new Client("helol")));
-					movieReview.addReview(new Review("pretty good i like","phineas",1,new Client("helol")));
-					movieReview.addReview(new Review("pretty good i like","ferb",2,new Client("helol")));
+					movieReview.addReview(new Review(" i like","shrek",5,new Client("helol")));
+					movieReview.addReview(new Review(" like ","phineas",1,new Client("helol")));
+					movieReview.addReview(new Review("pretty good","ferb",2,new Client("helol")));
 
 
 					MovieControl.printAllMoviesByRating();
+					break;
+
+				case 7:
+					CineplexControl cp = new CineplexControl();
+
 					break;
 				default:
 					System.out.println("Invalid input, please choose from the following:");

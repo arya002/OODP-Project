@@ -16,7 +16,7 @@ public class Showing implements Serializable {
         //this.setCineplex(cineplex);
         this.setCinema(cinema);
         this.setMovie(movie);
-        //this.setDate(date);
+        this.setDate(date);
         this.setType(type);
 //        this.setRoom_type(layout.getType());
 //        this.plan = new SeatingPlan(layout);
@@ -41,11 +41,11 @@ public class Showing implements Serializable {
 //        this.plan = plan;
 //    }
 
-//    public void setDate(Calendar date) {
-//        if (date == null)
-//            throw new IllegalArgumentException("Date cannot be null");
-//        this.date = date;
-//    }
+    public void setDate(Calendar date) {
+        if (date == null)
+            throw new IllegalArgumentException("Date cannot be null");
+        this.date = date;
+    }
 
     public void setCinema(String cinema) {
         if (cinema.isEmpty())

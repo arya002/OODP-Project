@@ -13,6 +13,15 @@ public class Cineplex implements Serializable {
         this.name = name;
         this.cinemas = new ArrayList<>();
         this.movies = new ArrayList<>();
+        Cinema cinema1 = new Cinema("normal");
+        Cinema cinema2 = new Cinema("normal");
+        Cinema cinema3 = new Cinema("gold");
+
+        cinemas.add(cinema1);
+        cinemas.add(cinema2);
+        cinemas.add(cinema3);
+
+
     }
 
     public Cineplex(String name, ArrayList<Cinema> cinemas, ArrayList<Movie> movies) throws IllegalArgumentException {
