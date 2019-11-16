@@ -39,7 +39,6 @@ public class ClientApp {
                             //TODO Display top 5 movies by review score
                     }
 
-                    //TODO allow user to choose one of the movies
                     //TODO follow through to the next case (case 2) from here
 
                 case 2:
