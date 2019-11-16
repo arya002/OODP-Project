@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -30,13 +31,14 @@ public class ClientApp {
                     sc_in = sc.nextInt();
                     switch (sc_in) {
                         case 1:
-                            //TODO list every movie
+                            printMovies(MovieControl.getAllMovies());
                             break;
                         case 2:
-                            //TODO Display top 5 movies by ticket sales
+                            //TODO Display top 5 movies by tickets sold
                             break;
                         case 3:
-                            //TODO Display top 5 movies by review score
+                            printMovies(MovieControl.getAllMoviesByRating());
+                            break;
                     }
 
                     //TODO follow through to the next case (case 2) from here
@@ -46,13 +48,21 @@ public class ClientApp {
                     String mov;
                     System.out.println("Enter movie name: ");
                     mov = sc.next();
-                    searchMovie(mov);
+                    // searchMovie(mov); TODO
 
                     System.out.println("Would you like to see \n1. Reviews \n2. Listings\n for this movie?");
                     sc_in = sc.nextInt();
                     switch (sc_in) {
                         case 1:
-                            //TODO Show reviews for the movie
+                             ArrayList<Review> listReviews = new ArrayList();
+                            int overallRating;
+                            listReviews = getMovieReviews(mov);
+                            for(int i=0; i<listReviews.size();i++) {
+                                listReviews.get(i).print(); // print all Reviews for a movie    
+                                overallRating = overallRating + listReviews.get(i).getRating();
+                            }
+                            overallRating = overallRating/listReviews.size(); //average ratings
+                            System.out.printf("❀".repeat((int) overallRating) + ", %.1f/5\n\n", rating);
                         case 2:
                             //TODO Show listings for the movie
                             //TODO allow user to choose listing
@@ -100,11 +110,12 @@ public class ClientApp {
         //TODO process the booking
     }
 
-
-    public void searchMovie(String movie){
-
-
-
+    private void printMovies(ArrayList<String> movies)
+    {
+        for (String movie : movies)
+        {
+            System.out.println(movie);
+        }
     }
 
 }
