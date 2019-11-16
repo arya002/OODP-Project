@@ -55,14 +55,14 @@ public class ClientApp {
                     switch (sc_in) {
                         case 1:
                              ArrayList<Review> listReviews = new ArrayList();
-                            int overallRating;
-                            listReviews = getMovieReviews(mov);
+                            double overallRating=0;
+                            listReviews = ReviewControl.getMovieReviews(mov);
                             for(int i=0; i<listReviews.size();i++) {
                                 listReviews.get(i).print(); // print all Reviews for a movie    
                                 overallRating = overallRating + listReviews.get(i).getRating();
                             }
                             overallRating = overallRating/listReviews.size(); //average ratings
-                            System.out.printf("❀".repeat((int) overallRating) + ", %.1f/5\n\n", rating);
+                            System.out.printf("❀".repeat((int) overallRating) + ", %.1f/5\n\n", overallRating);
                         case 2:
                             //TODO Show listings for the movie
                             //TODO allow user to choose listing
@@ -110,11 +110,11 @@ public class ClientApp {
         //TODO process the booking
     }
 
-    private void printMovies(ArrayList<String> movies)
+    private void printMovies(ArrayList<Movie> movies)
     {
-        for (String movie : movies)
+        for (Movie movie : movies)
         {
-            System.out.println(movie);
+            System.out.println(movie.getName());
         }
     }
 

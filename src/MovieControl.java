@@ -10,7 +10,8 @@ import java.util.*;
 
 public class MovieControl {
 
-    static ArrayList<Movie> allMovies = new ArrayList();
+    static ArrayList<Movie> allMovies = (ArrayList<Movie>) Data.getInstance().getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class);
+
 
     //    public Movie(String name, Status status, String synopsis, String director, String[] cast, ArrayList<Review> reviews, ArrayList<Cineplex> locations) throws IllegalArgumentException {
     public void addMovieListing(Movie movie){
@@ -21,10 +22,10 @@ public class MovieControl {
 
 
 
-    public static ArrayList<String> getAllMoviesByRating() {
+    public static ArrayList<Movie> getAllMoviesByRating() {
 
         int i = 0;
-        ArrayList<String> movies = new ArrayList<String>();
+        ArrayList<Movie> movies = new ArrayList<>();
         System.out.println("The top rated movies are \n");
         ArrayList<Review> sortedList = ReviewControl.getAllReviews();
         sortedList.sort(new CustomComparitor());
@@ -51,7 +52,10 @@ public class MovieControl {
 
             }
 
-            movies.add(sortedList.get(i).getMovieName());
+            for(Movie movie:getAllMovies()){
+                if (movie.getName().equalsIgnoreCase(sortedList.get(i).getMovieName()))
+                    movies.add(movie);
+            }
             //System.out.println("total " + sortedList.get(i).getMovieName() + " " + total + "\n");
 
             if (exitCond)

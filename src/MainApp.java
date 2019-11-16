@@ -37,7 +37,7 @@ public class MainApp {
 
 				case 7:
 
-					instantiateTestData();
+
 
 					break;
 				default:
@@ -87,24 +87,5 @@ public class MainApp {
 
 	}
 
-	private static boolean Login() {
-//		Maybe move this inside LogIn and pass allong the scanner or something?
-		System.out.println("Please enter username or type 'back' to return");
-		String user = sc.next();
-		if (!user.equalsIgnoreCase("back") && !user.isEmpty()) {
-			System.out.println("Please enter password or type 'back' to return");
-			String pass = sc.next();
-			if (!pass.equalsIgnoreCase("back") && !pass.isEmpty()) {
-				String response = LogIn.checkLogin(user, pass);
-				if(!response.isEmpty()) {
-					LogIn.loadUser(response);
-					return true;
-				} else {
-					System.out.println("User not found");
-				}
-			}
-		}
-		return false;
-	}
 
 }
