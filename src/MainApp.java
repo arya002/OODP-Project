@@ -25,16 +25,20 @@ public class MainApp {
 			sc_in = sc.nextInt();
 			switch (sc_in) {
 				case 1:
-					//TODO go to LogInScreen
-					//TODO go to ClientApp
+					LoginScreen lg = new LoginScreen();
+					loggedin = lg.loggedIn;
+					currentUser.setUsername(lg.getUserName());
+					currentUser.setPassword(lg.getPassword());
 					break;
 				case 2:
-					//TODO go to ClientApp with no user
+					loggedin = false;
+					currentUser.setUsername(lg.getUserName("guest"));
+					currentUser.setPassword(lg.getPassword("guest"));
 					break;
 				case 3:
-					//TODO go to CLientApp with null as user
+					System.exit(1)
 					break;
-
+//Should not be here
 				case 7:
 
 					instantiateTestData();
