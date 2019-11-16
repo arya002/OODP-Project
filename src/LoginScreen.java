@@ -29,8 +29,8 @@ public class LoginScreen {
                     enterPassword();
                     break;
                 case 2:
-//					registerUser();
-					this.loggedIn = true;
+//		    registerUser();
+		    this.loggedIn = true;
                     break;
                 case 3:
                     break;
@@ -48,7 +48,7 @@ public class LoginScreen {
 		System.out.print("Enter username : ");
 		this.userName = sc.next();
 		//check if invalid username and throw error
-        //also get type of user
+        	//also get type of user
 	}
 
 	public void enterPassword(){
@@ -59,9 +59,9 @@ public class LoginScreen {
 			    //check value of password from file
 			if(password.equals()) {
 				this.loggedIn = true;
-                System.out.println("Successfully logged in!");
-                return;
-            }
+				System.out.println("Successfully logged in!");
+				return;
+            		}
 			tries -= 1;
 		}
 		else{
@@ -80,10 +80,10 @@ public class LoginScreen {
 	}
 
 	public void registerUser() {
-	    System.out.println("Enter a username:");
-	    userName = sc.next();
+		System.out.println("Enter a username:");
+		userName = sc.next();
 	        //check if username already exists and throw error
-        password = sc.next();
+        	password = sc.next();
 
     }
 
