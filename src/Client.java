@@ -1,34 +1,24 @@
+import java.io.Serializable;
 
-public class Client extends User {
+public class Client extends User implements Serializable {
 	private String name;
 	private String phoneNum;
 	private String email;
-	int age;
-	static private boolean loggedIn = false;
+	private int age;
 
 	public Client(String username, String password) {
 		super(username, password, username);
 		this.phoneNum = "";
 		this.email = "";
-		this.type = "Client";
+		super.setType("client");
 	}
 
-	//for ease of testing
-	public Client(String username) {
-		super(username, "pass", username);
-//		this.phoneNum = "";
-//		this.email = "";
-//		this.type = "Client";
-//		this.loggedIn = true;
-	}
 	
-	public Client(String username, String password	,String phoneNum, String email, String name, int age) throws IllegalArgumentException {
+	public Client(String username, String password, String phoneNum, String email, String name, int age) throws IllegalArgumentException {
 		super(username, password, name);
 		this.setPhoneNum(phoneNum);
 		this.setEmail(email);
 		this.setAge(age);
-		this.setName(name);
-		this.loggedIn = true;
 	}
 
 	//<editor-fold desc="Getters">
@@ -48,12 +38,6 @@ public class Client extends User {
 		return name;
 	}
 
-	public Boolean getLoggedIn() {
-		return this.loggedIn;
-	}
-	//</editor-fold>
-
-	//<editor-fold desc="Setters">
 	public void setPhoneNum(String phoneNum) {
 		if (phoneNum.isEmpty())
 			throw new IllegalArgumentException("Phonenumber cannot be empty");
@@ -81,5 +65,5 @@ public class Client extends User {
 
 		this.name = name;
 	}
-	//</editor-fold>
+
 }

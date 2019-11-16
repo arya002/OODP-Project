@@ -2,35 +2,25 @@ import java.util.*;
 
 public class LoginScreen {
 
-	Scanner sc = new Scanner(System.in);
+    Scanner sc = new Scanner(System.in);
 
-	private String password = "";
-	private String userName;
-	private int tries;
-	public boolean loggedIn;
 
-	public LoginScreen(){
-		this.password = "guest";
-		this.userName = "guest";
-		this.tries = 3;
-		this.loggedIn = false;
-		run();
-	}
+    public LoginScreen() {
+    }
 
-	public void run() {
+    public User run() {
         int sc_in;
-
+		User currentUser= null;
+        System.out.println("RUN");
         do {
             System.out.println("1. Login \n2. Register new user \n3. Back");
             sc_in = sc.nextInt();
             switch (sc_in) {
                 case 1:
-                    enterUserName();
-                    enterPassword();
+                    currentUser = enterUserPass();
                     break;
                 case 2:
-//		    registerUser();
-		    this.loggedIn = true;
+                	registerUser();
                     break;
                 case 3:
                     break;
@@ -39,52 +29,49 @@ public class LoginScreen {
                     break;
             }
 
-        } while (sc_in != 3 || !loggedIn);
+        } while (sc_in != 3);
+
+        return currentUser;
 
     }
 
-	public void enterUserName(){
+    public User enterUserPass() {
 
-		System.out.print("Enter username : ");
-		this.userName = sc.next();
-		//check if invalid username and throw error
-        	//also get type of user
-	}
+        System.out.print("Enter username : ");
+        String user = sc.next();
+		System.out.print("Enter password : ");
+		String pass = sc.next();
 
-	public void enterPassword(){
+		ArrayList<User> allUsers = (ArrayList<User>) Data.getInstance().getObjectFromPath(SaveLoadPath.USER_PATH,User.class);
 
-		if(tries > 0) {
-			System.out.print("Enter password ( " + tries + " left ) : ");
-			this.password = sc.next();
-			    //check value of password from file
-			if(password.equals()) {
-				this.loggedIn = true;
-				System.out.println("Successfully logged in!");
-				return;
-            		}
-			tries -= 1;
-		}
-		else{
-			System.out.println("Tries exceeded");
-		}
-	}
+		for(User userEntry:allUsers)
+			if(userEntry.getUsername().equals(user))
+				if(userEntry.getPassword().equals(pass))
+                    return userEntry;
 
-	public String getUserName() {
 
-		return this.userName;
-	}
-
-	public String getPassword() {
-
-		return this.password;
-	}
-
-	public void registerUser() {
-		System.out.println("Enter a username:");
-		userName = sc.next();
-	        //check if username already exists and throw error
-        	password = sc.next();
-
+		return null;
     }
+
+
+
+    public void registerUser() {
+        System.out.println("Enter a username:");
+        String userName = sc.next();
+        //check if username already exists and throw error
+		System.out.println("Enter a password:");
+		String password = sc.next();
+
+		System.out.println("Enter a phone number:");
+		String phone = sc.next();
+
+		System.out.println("Enter a email:");
+		String email = sc.next();
+
+		System.out.println("Enter a age:");
+		int age = sc.nextInt();
+
+
+	}
 
 }

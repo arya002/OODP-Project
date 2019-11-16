@@ -34,6 +34,7 @@ public class Movie implements Serializable {
     //</editor-fold>
 
 
+
     public void addCineplex(Cineplex cineplex) {
         if (cineplex == null) return;
         this.locations.add(cineplex);
@@ -43,6 +44,7 @@ public class Movie implements Serializable {
         if (cineplex == null) return;
         this.locations.remove(cineplex);
     }
+
 
     //<editor-fold desc="Printers">
     public void print() {

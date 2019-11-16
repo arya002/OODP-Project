@@ -13,7 +13,6 @@ public class SaveLoad<K> {
 
     public ArrayList<K> loadObject(String file) {
         try {
-            System.out.println(System.getProperty("user.dir"));
             FileInputStream f = new FileInputStream(file);
             ObjectInputStream in = new ObjectInputStream(f);
             ArrayList<K> retArray;

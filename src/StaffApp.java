@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
 
 /**
  * Handles all the Staff capabilities
@@ -81,8 +79,6 @@ public class StaffApp {
                     //    public Review(String review, String movieName,double rating, Client reviewer) throws IllegalArgumentException
 
 
-
-
                     //Movie movie = new Movie("shrek", Movie.Status.Showing,"synopsis","beck",new String[] {"tom cruise","donkey"}, )
                     break;
                 default:
@@ -101,7 +97,7 @@ public class StaffApp {
 
     private void changePriceOfTicket(double price) {
 
-        boolean returnVal=false;
+        boolean returnVal = false;
 
     }
 
@@ -116,30 +112,120 @@ public class StaffApp {
     private void handleMovieListings() {
 
         int sc_in;
+        int i = 0;
         do {
             System.out.println("Welcome " + currentStaff.getFirstName());
             System.out.println
                     ("1. View Movie Listings " +
-                            "\n2. Edit Movie Lisings" +
+                            "\n2. Edit Movie Listings" +
                             "\n3. Exit\n");
 
             sc_in = MainApp.sc.nextInt();
             switch (sc_in) {
                 case 1:
-                    do {
-                        System.out.println
-                                ("1. View Movie Listings " +
-                                        "\n2. Edit Movie Lisings" +
-                                        "\n3. Exit\n");
+                    i = 0;
+                    for (Movie movie : MovieControl.getAllMovies()) {
+                        System.out.println(i + " - " + movie.getName() + " is currently " + movie.getStatus() + " \n" + movie.getSynopsis() + "\n\n");
+                    }
+                case 2:
 
+                    System.out.println("Which movie would you like to edit");
+
+                    i = 0;
+                    for (Movie movie : MovieControl.getAllMovies()) {
+
+                        System.out.println(i + ". " + movie.getName() + " is currently " + movie.getStatus());
+
+                    }
+
+                    sc_in = MainApp.sc.nextInt();
+                    int indexToEdit = sc_in;
+                    ArrayList<Movie> editedMovieList = MovieControl.getAllMovies();
+
+                    do {
+                        System.out.println("1. Status " +
+                                "\n2. Location" +
+                                "\n3. Exit");
                         sc_in = MainApp.sc.nextInt();
+                        System.out.println("Edit - ");
                         switch (sc_in) {
                             case 1:
+                                do {
+                                    System.out.println("1. Showing " +
+                                            "\n2. Preview" +
+                                            "\n3. Not Showing" +
+                                            "\n4. Exit.");
+                                    sc_in = MainApp.sc.nextInt();
+                                    switch (sc_in) {
+                                        case 1:
+                                            editedMovieList.get(indexToEdit).setStatus(Movie.Status.Showing);
+                                            break;
+                                        case 2:
+                                            editedMovieList.get(indexToEdit).setStatus(Movie.Status.comingSoon);
+                                            break;
+                                        case 3:
+                                            editedMovieList.get(indexToEdit).setStatus(Movie.Status.notShowing);
+                                            break;
+                                        case 4:
 
-                                break;
+                                            break;
+
+                                        default:
+                                            System.out.println("Please enter a valid integer");
+                                            break;
+                                    }
+
+                                } while (sc_in != 4);
+
                             case 2:
-                                System.out.println("When would you like to add a holiday");
-                                addHoliday();
+
+                                do {
+                                    System.out.println("1. Add location" +
+                                            "\n2. Remove location" +
+                                            "\n3. Exit.");
+                                    sc_in = MainApp.sc.nextInt();
+                                    switch (sc_in) {
+                                        case 1:
+                                            System.out.println("1. Locations to add\n");
+                                            ArrayList<Cineplex> cineplexes = CineplexControl.getCineplexes();
+                                            for (int index = 0; index < cineplexes.size(); index++) {
+
+                                                System.out.println(index + ". " + cineplexes.get(index));
+
+                                            }
+                                            break;
+
+                                        case 2:
+                                            if (editedMovieList.get(indexToEdit).getLocations().size() > 0) {
+                                                for (int index = 0; index < editedMovieList.size(); index++) {
+                                                    System.out.println("1. current Locations");
+                                                    System.out.println(index + ". " + editedMovieList.get(indexToEdit).getLocations().get(index).getName());
+                                                }
+
+                                                int whichElementToRemove = MainApp.sc.nextInt();
+
+                                                if (whichElementToRemove > 0 && whichElementToRemove < editedMovieList.get(indexToEdit).getLocations().size()) {
+                                                    editedMovieList.get(indexToEdit).getLocations().remove(whichElementToRemove);
+                                                    Data.getInstance().saveObjectToPath(SaveLoadPath.MOVIE_PATH, editedMovieList);
+                                                }
+                                            } else {
+                                                System.out.println("Has no Locations");
+                                            }
+                                            break;
+
+                                        case 3:
+
+                                            break;
+
+                                        default:
+                                            System.out.println("Please enter a valid integer");
+                                            break;
+                                    }
+                                    while (sc_in != 3) ;
+                                    break;
+
+                                } while (sc_in != 3);
+
                                 break;
                             case 3:
 
@@ -152,23 +238,9 @@ public class StaffApp {
 
                     } while (sc_in != 3);
 
-
-                case 2:
-                    System.out.println("When would you like to add a holiday");
-                    addHoliday();
-                    break;
-                case 3:
-
-                    break;
-
-                default:
-                    System.out.println("Invalid input, please choose from the following:");
-                    break;
             }
 
-        } while (sc_in != 3);
 
+        }while (sc_in!=3);
     }
-
-
 }

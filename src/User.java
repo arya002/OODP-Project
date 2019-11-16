@@ -2,25 +2,28 @@ import java.io.Serializable;
 
 public abstract class User implements Serializable {
 
-	protected String firstName;
-	protected String username;
-	protected String password;
-
-	protected String type;
+	private String firstName;
+	private String username;
+	private String password;
+	private String type;
 
 	public User(String username, String password, String firstName) {
 		this.firstName = firstName;
 		this.username = username;
 		this.password = password;
 	}
-	public boolean checkPassword(String test) {return password.equals(test);}
-	//<getters>
+
 	public String getUsername() {return username;}
-	
+
 	public String getFirstName() {return firstName;}
-	//<setters>
-	public void setUsername(String username) {this.username = username;}
-	
-	public void setPassword(String password) {}
-	
+
+	public String getPassword(){return password;}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 }

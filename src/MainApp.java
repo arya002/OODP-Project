@@ -3,11 +3,7 @@ import java.util.Scanner;
 
 public class MainApp {
 
-	User currentUser;
 	static Scanner sc = new Scanner(System.in);
-	//static ReviewControl movieReview = ReviewControl.getInstance();
-	static ArrayList<Cineplex> cineplexes = new ArrayList<>();
-	static ArrayList<Movie> movieListings = new ArrayList<>();
 
 	public static void main(String[] args) {
 
@@ -17,39 +13,59 @@ public class MainApp {
 	}
 
 	private static void menu() {
+
 		int sc_in;
-		boolean loggedin = false;
 
 		do {
 			System.out.println("1. Login/Register \n2. Continue as guest \n3. Exit");
 			sc_in = sc.nextInt();
 			switch (sc_in) {
 				case 1:
-					LoginScreen lg = new LoginScreen();
-					loggedin = lg.loggedIn;
-					currentUser.setUsername(lg.getUserName());
-					currentUser.setPassword(lg.getPassword());
+					User lis = new LoginScreen().run();
+
+					if(lis.getType().equals("client")){
+
+						new ClientApp((Client) lis);
+
+					}else if(lis.getType().equals("staff")){
+
+						new StaffApp((Staff) lis);
+
+					}else {
+                        System.out.println("error in determining class");
+					}
+
 					break;
+
 				case 2:
-					loggedin = false;
-					currentUser.setUsername(lg.getUserName("guest"));
-					currentUser.setPassword(lg.getPassword("guest"));
+
+					new ClientApp(null);
 					break;
+
 				case 3:
-					System.exit(1)
+
+					System.exit(1);
 					break;
-//Should not be here
-				case 7:
+
+				case 10:
 
 					instantiateTestData();
-
 					break;
+
+				case 22:
+					ArrayList<Staff> staff = new ArrayList<>();
+					staff.add(new Staff("admin","admin","admin"));
+					Data.getInstance().saveObjectToPath(SaveLoadPath.USER_PATH,staff);
+					break;
+
 				default:
+
 					System.out.println("Invalid input, please choose from the following:");
 					break;
+
 			}
 
-		} while (sc_in != 3 && !loggedin);
+		} while (sc_in != 3);
 	}
 
 	private static void instantiateTestData() {
@@ -66,10 +82,10 @@ public class MainApp {
 
 
 
-        ReviewControl.addReview(new Review(" good i like","shrek",4,new Client("helol")));
-        ReviewControl.addReview(new Review("pretty good","ferb",2,new Client("helol")));
-        ReviewControl.addReview(new Review(" like ","phineas",1,new Client("helol")));
-        ReviewControl.addReview(new Review("pretty good i like","shrek",2,new Client("helol")));
+//        ReviewControl.addReview(new Review(" good i like","shrek",4,new Client("helol")));
+//        ReviewControl.addReview(new Review("pretty good","ferb",2,new Client("helol")));
+//        ReviewControl.addReview(new Review(" like ","phineas",1,new Client("helol")));
+//        ReviewControl.addReview(new Review("pretty good i like","shrek",2,new Client("helol")));
 
 
         ShowingControl.addShowing(new Showing((CineplexControl.getCineplex("Jurong")).getCinemas().get(0),
@@ -82,13 +98,10 @@ public class MainApp {
         System.out.println(ShowingControl.getAllShowings().get(0).getCineplex().getName());
 
 
-		Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,CineplexControl.getCineplexs());
+		Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,CineplexControl.getCineplexes());
 
-		//hello
-        //new Movie("shrek", Movie.Status.Showing,"synopsis","Al Green", castArray);
-
-		//Showing showing = new Showing(cp.getCineplex("Jurong"),);
 
 	}
+
 
 }

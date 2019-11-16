@@ -31,7 +31,7 @@ import java.util.ArrayList;
      }
 
 
-     public static ArrayList<Cineplex> getCineplexs() {
+     public static ArrayList<Cineplex> getCineplexes() {
         return cineplexs;
     }
 

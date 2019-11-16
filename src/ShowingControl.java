@@ -29,7 +29,7 @@ public class ShowingControl  {
         ArrayList<Showing> allAtLocation= new ArrayList<>();
         CineplexControl cp = new CineplexControl();
 
-        for (Cineplex cpa:cp.getCineplexs()){
+        for (Cineplex cpa:cp.getCineplexes()){
 
             if (cpa.getName().equals(cineplex)){
 

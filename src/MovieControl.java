@@ -98,4 +98,36 @@ public class MovieControl {
         }
     }
 
+
+    public static void addLocation(Movie movie,String cineplexName){
+
+        for (Movie allMovies: allMovies){
+
+            if (allMovies.equals(movie)){
+
+                    CineplexControl.getCineplex(cineplexName).getMovies().add(movie);
+                    MovieControl.getAllMovies().add(movie);
+
+            }
+
+        }
+
+    }
+
+    public static void RemoveLocation(Movie movie,String cineplexName){
+
+        for (Movie allMovies: allMovies){
+
+            if (allMovies.equals(movie)){
+
+                CineplexControl.getCineplex(cineplexName).getMovies().remove(movie);
+                MovieControl.getAllMovies().remove(movie);
+
+
+            }
+
+        }
+
+    }
+
 }
