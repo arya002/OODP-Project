@@ -32,17 +32,7 @@ public class MainApp {
 					//TODO go to ClientApp with no user
 					break;
 				case 3:
-					break;
-
-                case 6:
-//					movieReview.addReview();
-//					movieReview.addReview();
-//					movieReview.addReview(new Review(" i like","shrek",5,new Client("helol")));
-//					movieReview.addReview();
-//					movieReview.addReview();
-
-
-					MovieControl.printAllMoviesByRating();
+					//TODO go to CLientApp with null as user
 					break;
 
 				case 7:

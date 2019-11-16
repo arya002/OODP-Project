@@ -40,7 +40,6 @@ public class ClientApp {
                             printMovies(MovieControl.getAllMoviesByRating());
                     }
 
-                    //TODO allow user to choose one of the movies
                     //TODO follow through to the next case (case 2) from here
 
                 case 2:
