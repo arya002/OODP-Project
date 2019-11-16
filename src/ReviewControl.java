@@ -33,6 +33,16 @@ public class ReviewControl {
         return arrayList;
 
     }
+    
+    public static ArrayList<Review> getMovieReviews(String movieName){ //get all reviews for a movie
+        ArrayList<Review> listReviews = new ArrayList();
+        for (int i=0; i<allReviews.size();i++)  {
+            if(allReviews.get(i).getMovieName().equals(movieName))  {
+            listReviews.add(allReviews.get(i));
+            }
+        }
+        return listReviews;
+    }
 
     public static ArrayList<String> getAllReviewsNames(ArrayList<Review> customReviews) {
 

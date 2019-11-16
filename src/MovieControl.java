@@ -21,9 +21,10 @@ public class MovieControl {
 
 
 
-    public static void printAllMoviesByRating() {
+    public static ArrayList<String> getAllMoviesByRating() {
 
         int i = 0;
+        ArrayList<String> movies = new ArrayList<String>();
         System.out.println("The top rated movies are \n");
         ArrayList<Review> sortedList = ReviewControl.getAllReviews();
         sortedList.sort(new CustomComparitor());
@@ -50,17 +51,18 @@ public class MovieControl {
 
             }
 
-            System.out.println("total " + sortedList.get(i).getMovieName() + " " + total + "\n");
+            movies.add(sortedList.get(i).getMovieName());
+            //System.out.println("total " + sortedList.get(i).getMovieName() + " " + total + "\n");
 
             if (exitCond)
                 break;
         }
 
+        return movies;
     }
 
-    public static void printAllMovies() {
+    public static ArrayList<String> getAllMovies() {
 
-        int i = 0;
         System.out.println("All movies are\n");
 
         ArrayList<String> names = new ArrayList<>();
@@ -71,9 +73,8 @@ public class MovieControl {
 
         }
 
-        Set<String> uniqueMovies = new HashSet<String>(names);
-        System.out.println("All Movies: " + uniqueMovies);
-
+        return names;
+        //System.out.println("All Movies: " + uniqueMovies);
     }
 
 
