@@ -96,7 +96,7 @@ public class Ticket implements Serializable {
                 break;
         }
 
-        switch (this.showing.getRoom_type()) {
+        switch (this.showing.get()) {
             case "Platinum Movie Suites":
                 this.price += 4;
                 break;
@@ -165,7 +165,7 @@ public class Ticket implements Serializable {
     public void print() {
         HashMap<String, String> fields =  new HashMap<>();
         fields.put("TID", this.ticketId);
-        fields.put("cineplex", showing.getCineplex());
+        fields.put("cineplex", showing.getCinema());
         fields.put("room", this.showing.getCinema());
         fields.put("seat", Integer.toString(this.seat.getSeatID()));
         fields.put("type", this.seat.getType());

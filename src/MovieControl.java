@@ -58,10 +58,10 @@ public class MovieControl {
 
     }
 
-    public static void printAllMoviesByName() {
+    public static void printAllMovies() {
 
         int i = 0;
-        System.out.println("All movies we have at every Cinema are \n");
+        System.out.println("All movies are\n");
 
         ArrayList<String> names = new ArrayList<>();
 
@@ -72,30 +72,11 @@ public class MovieControl {
         }
 
         Set<String> uniqueMovies = new HashSet<String>(names);
-        System.out.println("Unique gas count: " + uniqueMovies);
+        System.out.println("All Movies: " + uniqueMovies);
 
     }
 
-    public static void printAllMoviesByName(String locationName) {
 
-        int i = 0;
-        System.out.println("All movies we have at every Cinema are \n");
-        ArrayList<Showing> ar_ = ShowingControl.getAllShowings();
-        ArrayList<String> allAtLocation= new ArrayList<>();
-        for (Showing ar:ar_){
-
-            if(ar.getCineplex().equals(locationName)){
-
-                allAtLocation.add(ar.getMovie().getName());
-
-            }
-
-        }
-        Collections.sort(allAtLocation);
-        Set<String> uniqueMovies = new HashSet<String>(allAtLocation);
-        System.out.println(uniqueMovies);
-
-    }
 
 
     private static class CustomComparitor implements Comparator<Review> {
