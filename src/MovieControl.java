@@ -43,6 +43,32 @@ public class MovieControl {
 
     }
 
+    public static ArrayList<Movie> getMoviesByTicketSales(String movieName){
+
+        ArrayList<String> ticketSalesName= getAllMoviesNames();
+        Map<String, Integer> ticketSales = new HashMap<String, Integer>();
+        for (int i = 0; i < ticketSalesName.size(); i++)
+        {
+            ticketSales.put(ticketSalesName.get(i), 0);
+        }
+ 
+        HashSet<Booking> bookings = new HashSet<>(BookingControl.getBookings());
+        for (Booking booking:bookings)
+        {
+            for (Ticket ticket:booking.getTickets())
+            {
+                for (Map.Entry<String, Integer> entry : ticketSales.entrySet())
+                {
+                    
+                }
+            }
+        }
+ 
+      //
+
+        return null;
+    }
+
     public static ArrayList<Movie> getAllMoviesByRating() {
 
         int i = 0;

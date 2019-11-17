@@ -74,14 +74,10 @@ public class MainApp {
 					bookingControl.addTicket("adult",2,1);
 					bookingControl.addTicket("adult",8,1);
 
-					BookingControl.getMoviesByTicketSales("Better Days");
+					//BookingControl.getMoviesByTicketSales("Better Days");
 
 					break;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 28db1bd2946c42d1e9f3eb033e75e916027bb722
 				default:
 					System.out.println("Invalid input, please choose from the following:");
 					break;
