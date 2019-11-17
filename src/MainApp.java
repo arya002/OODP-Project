@@ -78,10 +78,6 @@ public class MainApp {
 
 					break;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 28db1bd2946c42d1e9f3eb033e75e916027bb722
 				default:
 					System.out.println("Invalid input, please choose from the following:");
 					break;
