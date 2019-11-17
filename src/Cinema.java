@@ -9,15 +9,16 @@ public class Cinema implements Serializable {
     private RoomLayout roomLayout;
     private int[][] timeSlotsArray;
     private String type;
+    private String CinemaID;
 
 
     enum DaysOfWeek {
-        Mon, Tue, Wed, Thu, Fri, Sat, Sun;
+        Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday;
         static int size = 7;
     }
 
     enum TimeSlots {
-        tenAm,twelvePm,twoPm,sixPm,tenPm;
+        TenAm,OnePm,FourPm,SixPm,TenPm;
         static int size = 5;
 
     }
@@ -76,5 +77,9 @@ public class Cinema implements Serializable {
 
     public ArrayList<Showing> getShowings() {
         return showings;
+    }
+
+    public String getCinemaID() {
+        return CinemaID;
     }
 }

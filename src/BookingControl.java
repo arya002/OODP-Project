@@ -38,9 +38,14 @@ public class BookingControl {
        System.out.println("Your booking ID is " + booking.getBookingID());
        System.out.println("Your total amount owed is S$" + booking.getTotalPrice());
 
-       Data data = Data.getInstance();
-       ArrayList<Booking> bookings = (ArrayList<Booking>) data.getObjectFromPath(SaveLoadPath.BOOKING_PATH, Booking.class);
+       ArrayList<Booking> bookings = (ArrayList<Booking>) Data.getInstance().getObjectFromPath(SaveLoadPath.BOOKING_PATH, Booking.class);
        bookings.add(booking);
        Data.getInstance().saveObjectToPath(SaveLoadPath.BOOKING_PATH, bookings);
+   }
+
+   public static ArrayList<Booking> getBookings(){
+       ArrayList<Booking> bookings = (ArrayList<Booking>) Data.getInstance().getObjectFromPath(SaveLoadPath.BOOKING_PATH, Booking.class);
+
+       return bookings;
    }
 }

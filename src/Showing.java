@@ -46,6 +46,27 @@ public class Showing implements Serializable {
         this.movie = movie;
     }
 
+    public String printShowing(){
+        return (movie.getName() + " is playing at " + cineplex.getName() + " on "
+                + getDayOfWeekString(getDayOfWeek()) + " at " + getTimeSlotString(getTimeSlot()));
+    }
+
+    private String getTimeSlotString(int timeSlot) {
+        switch (timeSlot) {
+            case 1:
+                return "10 am";
+            case 2:
+                return "1 pm";
+            case 3:
+                return "3 pm";
+            case 4:
+                return "6 pm";
+            case 5:
+                return "9 pm";
+            default:
+                return "";
+        }
+    }
 
     public void setDate(String date) {
 
@@ -86,6 +107,28 @@ public class Showing implements Serializable {
 
     public int getDayOfWeek() {
         return Integer.parseInt(date.substring(8));
+    }
+
+    public String getDayOfWeekString(int dotw) {
+        switch (dotw) {
+            case 1:
+                return "Monday";
+            case 2:
+                return "Tuesday";
+            case 3:
+                return "Wednesday";
+            case 4:
+                return "Thursday";
+            case 5:
+                return "Friday";
+            case 6:
+                return "Saturday";
+            case 7 :
+                return "Sunday";
+            default:
+                return "";
+        }
+
     }
 
     public int getDay() {

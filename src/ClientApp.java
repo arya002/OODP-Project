@@ -34,7 +34,7 @@ public class ClientApp {
                             printMovies(MovieControl.getAllMovies());
                             break;
                         case 2:
-                            //TODO Display top 5 movies by tickets sold
+
                             break;
                         case 3:
                             printMovies(MovieControl.getAllMoviesByRating());
@@ -48,37 +48,98 @@ public class ClientApp {
                     String mov;
                     System.out.println("Enter movie name: ");
                     mov = sc.next();
-                    // searchMovie(mov); TODO
+                    Movie searchedMovie = null;
+                    for (Movie movie : MovieControl.getAllMovies()) {
+
+                        if (movie.getName().contains(mov)) {
+
+                            System.out.println("Movie Found");
+                            searchedMovie = movie;
+
+                        }
+
+                    }
 
                     System.out.println("Would you like to see \n1. Reviews \n2. Listings\n for this movie?");
                     sc_in = sc.nextInt();
                     switch (sc_in) {
                         case 1:
-                             ArrayList<Review> listReviews = new ArrayList();
-                            double overallRating=0;
+                            ArrayList<Review> listReviews = new ArrayList();
+                            double overallRating = 0;
                             listReviews = ReviewControl.getMovieReviews(mov);
-                            for(int i=0; i<listReviews.size();i++) {
+                            for (int i = 0; i < listReviews.size(); i++) {
                                 listReviews.get(i).print(); // print all Reviews for a movie    
                                 overallRating = overallRating + listReviews.get(i).getRating();
                             }
-                            overallRating = overallRating/listReviews.size(); //average ratings
+                            overallRating = overallRating / listReviews.size(); //average ratings
                             System.out.printf("❀".repeat((int) overallRating) + ", %.1f/5\n\n", overallRating);
                         case 2:
-                            //TODO Show listings for the movie
-                            //TODO allow user to choose listing
-                            //TODO check user is looged in
-                            BookingApp(current, showing);
+                            int count = 0;
+                            for (Showing showing : ShowingControl.getAllShowingOfMovie(searchedMovie)) {
+
+                                System.out.println(count + ". " + showing.printShowing());
+
+                            }
+                            count = sc.nextInt();
+                            if (count > 0 && count < ShowingControl.getAllShowingOfMovie(searchedMovie).size()) {
+                                new BookingApp(current, ShowingControl.getAllShowingOfMovie(searchedMovie).get(count));
+                            } else {
+                                System.out.println("error in selecting movies");
+                            }
+
                     }
-                   
+
                 case 3:
-                    //TODO display every cineplex 
-                    //TODO allow user to choose their cineplex
-                    //TODO show movie listings for their chosen cineplex
-                    //TODO allow user to choose listing
-                    //TODO check user is looged in
+                    for (Cineplex cineplex : CineplexControl.getCineplexes())
+                        System.out.println(cineplex.getName());
+
+                    sc_in = sc.nextInt();
+                    int temp=0;
+                    int count=0;
+                    Showing selectedShowing =null;
+                    if(sc_in > 0 && sc_in <=3) {
+                        for (Cinema cinema : CineplexControl.getCineplexes().get(sc_in).getCinemas()) {
+                            for (Showing showing : cinema.getShowings()) {
+                                System.out.println(temp + ". " +showing.printShowing());
+                                temp++;
+                            }
+                        }
+                    }
+
+                    for (Cinema cinema : CineplexControl.getCineplexes().get(sc_in).getCinemas()) {
+                        for (Showing showing : cinema.getShowings()) {
+                            count++;
+                            if(count == temp)
+                                selectedShowing = showing;
+
+
+                        }
+                    }
+
+                    sc_in = sc.nextInt();
+                    if (sc_in > 0 && sc_in < temp&& selectedShowing !=null) {
+                        if(current!=null) {
+                            new BookingApp(current, selectedShowing);
+                        }else{
+                            LoginScreen lin=null;
+                            while(lin == null) {
+                                current = (Client) new LoginScreen().run();
+                            }
+                            new BookingApp(current, selectedShowing);
+                        }
+                    } else {
+                        System.out.println("error in selecting movies");
+                    }
+
                     //BookingApp(current, showing);
                 case 4:
-                    //TODO display user's booking history
+                    if(current!=null) {
+                        for(Booking bookings:BookingControl.getBookings()){
+                            if(bookings.getClient().equals(current)){
+                                System.out.println(bookings.bookingPrint());
+                            }
+                        }
+                    }
                     break;
                 case 5:
                     break;

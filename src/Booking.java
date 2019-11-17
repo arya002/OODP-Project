@@ -35,4 +35,17 @@ public class Booking {
     {
         return bookingID;
     }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public String bookingPrint(){
+        String retString="";
+        retString+= "Booking ID" + bookingID + "\n";
+        retString+= "Customer " + client.getName() + "\n";
+        retString+= "Movie " + showing.getMovie().getName() + "\n";
+        retString+= "For " + tickets.size() + " Tickets " + "\n";
+        return retString;
+    }
 }
