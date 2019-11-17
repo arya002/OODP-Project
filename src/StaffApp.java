@@ -121,7 +121,33 @@ public class StaffApp {
     }
 
     private void handleShowTimes() {
-        //TODO ask staff if they want to add new, update or delete showing
+        int sc_in;
+        Scanner sc = new Scanner(System.in);
+        do {
+            System.out.println("Welcome " + currentStaff.getFirstName());
+            System.out.println
+                    ("1. Add new movie showing " +
+                                    "\n2. Update movie showing" +
+                                    "\n3. Delete movie showing" +
+                                    "\n4. Back");
+            switch(sc_in){
+
+                case 1:
+
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+                    break;
+                default:
+                    System.out.println("Invalid input. Enter again!")
+            }
+        while(sc_in!=4)
+
         //TODO add new showing
         //TODO update showing
         //TODO delete showing
