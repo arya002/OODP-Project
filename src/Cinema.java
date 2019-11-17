@@ -24,9 +24,31 @@ public class Cinema implements Serializable {
                 return "Tuesday";
             }
         }, Wednesday{
-
-
-        }, Thursday, Friday, Saturday, Sunday;
+            @Override
+            public String toString() {
+                return "Wedndesday";
+            }
+        }, Thursday{
+            @Override
+            public String toString() {
+                return "Thursday";
+            }
+        }, Friday{
+            @Override
+            public String toString() {
+                return "Friday";
+            }
+        }, Saturday{
+            @Override
+            public String toString() {
+                return "Saturday";
+            }
+        }, Sunday{
+            @Override
+            public String toString() {
+                return "Sunday";
+            }
+        };
         static int size = 7;
     }
 
@@ -36,9 +58,11 @@ public class Cinema implements Serializable {
 
     }
 
-    public Cinema (String type){
+    public Cinema (String type,String cinemaID){
 
+        showings = new ArrayList<>();
         this.type = type;
+        this.CinemaID = cinemaID;
         timeSlotsArray = new int[DaysOfWeek.size][TimeSlots.size];
         buildTimeSlots();
         buildRoomLayout();
@@ -50,6 +74,7 @@ public class Cinema implements Serializable {
         if (type.equals("N")){
 
             roomLayout = new RoomLayout(n,m);
+
         }
 
         // TODO roomLayout.assignSeatTypes();
@@ -76,7 +101,6 @@ public class Cinema implements Serializable {
     public void addShowing(Showing showing){
 
         showings.add(showing);
-
 
     }
 

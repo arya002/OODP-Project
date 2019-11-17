@@ -14,7 +14,7 @@ public class Client extends User implements Serializable {
 	}
 
 	
-	public Client(String username, String password, String phoneNum, String email, String name, int age) throws IllegalArgumentException {
+	public Client(String username, String password, String phoneNum, String email, String name, int age){
 		super(username, password, name);
 		this.setPhoneNum(phoneNum);
 		this.setEmail(email);
