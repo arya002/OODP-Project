@@ -76,10 +76,10 @@ public class StaffApp {
                     System.out.println("Please Enter the staff Username");
                     user = sc.next();
                     System.out.println("Please Enter the staff Password");
-                    pass = sc.next();
+                    pass = sc.next();    
                     System.out.println("Please Enter the staff FirstName");
                     first = sc.next();
-                    addNewStaff(user, pass, first);
+                    addNewStaff(user,pass,first);
                     break;
                 case 4:
                     //    public Movie( name, Status status,  synopsis,  director,  cast, ArrayList<Review> , ArrayList<Cineplex> ) {
@@ -103,9 +103,9 @@ public class StaffApp {
 
     private void addNewStaff(String user, String pass, String first) {
 
-        ArrayList<User> allusers = (ArrayList<User>) Data.getInstance().getObjectFromPath(SaveLoadPath.USER_PATH, User.class);
-        allusers.add(new Staff(user, pass, first));
-        Data.getInstance().saveObjectToPath(SaveLoadPath.USER_PATH, allusers);
+        ArrayList<User> allusers= (ArrayList<User>) Data.getInstance().getObjectFromPath(SaveLoadPath.USER_PATH, User.class);
+        allusers.add(new Staff(user,pass,first));
+        Data.getInstance().saveObjectToPath(SaveLoadPath.USER_PATH,allusers);
 
     }
 
@@ -121,33 +121,19 @@ public class StaffApp {
     }
 
     private void handleShowTimes() {
-        int sc_in =0;
+        int sc_in;
         Scanner sc = new Scanner(System.in);
         do {
             System.out.println("Welcome " + currentStaff.getFirstName());
             System.out.println
                     ("1. Add new movie showing " +
-                            "\n2. Update movie showing" +
-                            "\n3. Delete movie showing" +
-                            "\n4. Back");
-
-            switch (sc_in) {
+                                    "\n2. Update movie showing" +
+                                    "\n3. Delete movie showing" +
+                                    "\n4. Back");
+            switch(sc_in){
 
                 case 1:
-                    int whichMovie = 0;
-                    int whichCineplex =0;
-                    int whichDay =0;
-                    int whichTimeSlot =0;
-                    int whichCinema =0;
-                    for(Movie movie:MovieControl.getAllMovies()){
-                        System.out.println(whichMovie + ". " +movie.getName());
-                    }
-                    whichMovie = sc.nextInt();
-
-//                    for (Cineplex cinplex);
-
-
-
+                    addShowing();
                     break;
                 case 2:
 
@@ -156,17 +142,53 @@ public class StaffApp {
 
                     break;
                 case 4:
-
                     break;
                 default:
-                    System.out.println("Invalid input. Enter again!");
-            } while (sc_in != 4);
+                    System.out.println("Invalid input. Enter again!")
+            }
+        while(sc_in!=4)
 
-            //TODO add new showing
-            //TODO update showing
-            //TODO delete showing
-        }while (sc_in != 4);
+        //TODO add new showing
+        //TODO update showing
+        //TODO delete showing
     }
+
+    private void printMovies(ArrayList<Movie> movies)
+    {
+        for (Movie movie : movies)
+        {
+            System.out.println(movie.getName());
+
+        }
+    }
+
+    private void printCineplexs(ArrayList<Cineplex> cineplexs)
+        {
+            for (Cineplex cineplex : cineplexs)
+            {
+                System.out.println(cineplex.getName());
+
+            }
+        }
+
+    private void addShowing() {
+            System.out.println("Choose a cineplex: ");
+            printCineplexs(CineplexControl.getCineplexes());
+            String cineplex = sc.next();
+
+            System.out.println("Choose a movie: ");
+            printMovies(MovieControl.getAllMovies());
+            String movie = sc.next();
+
+            System.out.println("Enter type: ");
+            String type = sc.next();
+
+            System.out.println("Enter date: ");
+            String date = sc.next();
+
+            ShowingControl.addShowing(new Showing(new Cinema, CineplexControl.getCineplex(cineplex),
+                        MovieControl.getMovie(movie), date, type));
+        }
 
     private void handleMovieListings() {
 
@@ -295,7 +317,6 @@ public class StaffApp {
             }
 
 
-        } while (sc_in != 3);
+        }while (sc_in!=3);
     }
-
 }

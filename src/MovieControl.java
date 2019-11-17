@@ -77,6 +77,15 @@ public class MovieControl {
         return movies;
     }
 
+    public static Movie getMovie(String name) {
+
+        for (int i =0; i< allMovies.size();i++) {
+            if(allMovies.get(i).getName().equals(name));
+            return allMovies.get(i);
+        }
+        return null;
+    }
+
     public static ArrayList<String> getAllMoviesNames() {
 
         System.out.println("All movies are\n");
