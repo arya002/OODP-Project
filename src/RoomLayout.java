@@ -37,11 +37,19 @@ public class RoomLayout implements Serializable {
     }
 
     public void assignSeatTypes(String[][] locations) {
-        for (int row = 0; row < locations.length; row ++) {
-            for (int column = 0; column < locations[1].length; column++)
+        if (seats.length == locations.length && seats[1].length == locations.length)
+        {
+            for (int row = 0; row < locations.length; row ++)
             {
-                this.seats[row][column] = locations[row][column]; 
+                for (int column = 0; column < locations[1].length; column++)
+                {
+                    this.seats[row][column] = locations[row][column]; 
+                }
             }
+        }
+        else
+        {
+            System.out.println("Enter an array of the same size");
         }
     }
     /*
