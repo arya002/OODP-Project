@@ -8,7 +8,7 @@ public class Cinema implements Serializable {
     private ArrayList<Showing> showings;
     private RoomLayout roomLayout;
     private int[][] timeSlotsArray;
-    private String type;
+    private boolean isPremium;
     private String CinemaID;
 
 
@@ -58,10 +58,10 @@ public class Cinema implements Serializable {
 
     }
 
-    public Cinema (String type,String cinemaID){
+    public Cinema (Boolean type,String cinemaID){
 
         showings = new ArrayList<>();
-        this.type = type;
+        this.isPremium = type;
         this.CinemaID = cinemaID;
         timeSlotsArray = new int[DaysOfWeek.size][TimeSlots.size];
         buildTimeSlots();
@@ -112,8 +112,8 @@ public class Cinema implements Serializable {
         this.timeSlotsArray = timeSlotsArray;
     }
 
-    public String getType() {
-        return type;
+    public boolean isPremium() {
+        return isPremium;
     }
 
     public ArrayList<Showing> getShowings() {

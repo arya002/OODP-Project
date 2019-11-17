@@ -7,7 +7,7 @@ public class Movie implements Serializable {
     private String synopsis;
     private String director;
     private String[] cast;
-    private String type;
+    private boolean isBlockbuster;
     private double avg_rating;
     //private ArrayList<Review> movieReviews;
     public enum Status{
@@ -21,12 +21,12 @@ public class Movie implements Serializable {
         this.setDirector(director);
         this.setCast(cast);
         //movieReviews = new ArrayList<>();
-        this.type = "normal";
+        this.isBlockbuster = false;
 
     }
 
-    public String getType() {
-        return type;
+    public boolean isBlockbuster() {
+        return isBlockbuster;
     }
 
     //<editor-fold desc="Printers">
