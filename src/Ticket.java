@@ -135,6 +135,10 @@ public class Ticket implements Serializable {
         return seat;
     }
 
+    public String getShowingMovieName(){
+        return showing.getMovie().getName();
+    }
+
     public double getPrice() {
         return price;
     }

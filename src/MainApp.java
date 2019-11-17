@@ -7,6 +7,10 @@ public class MainApp {
 
 	public static void main(String[] args) {
 
+		ShowingControl.Initialize();
+		CineplexControl.Initialize();
+		MovieControl.Initialize();
+
 		System.out.println("Welcome to MOBLIMA, the best way book your movie tickets.");
 		System.out.println("What would you like to do?");
 		menu();
@@ -21,7 +25,8 @@ public class MainApp {
 			sc_in = sc.nextInt();
 			switch (sc_in) {
 				case 1:
-					User lis = new LoginScreen().run();
+					User lis = null;
+					lis = new LoginScreen().run();
 
 
 					if(lis.getType().equals("client")){
@@ -61,6 +66,9 @@ public class MainApp {
 					}
 					break;
 
+				case 25:
+
+
 				default:
 					System.out.println("Invalid input, please choose from the following:");
 					break;
@@ -73,12 +81,14 @@ public class MainApp {
 	private static void instantiateTestData() throws InterruptedException {
 
 		ArrayList<User> user = new ArrayList<>();
+<<<<<<< HEAD
 		Client client = new Client("hello","korea","012021314","a@gmail.com","Beck Gillespe");
+=======
+		Client client = new Client("hello","korea","012021314","a@gmail.com","Beck","Gillespie",17);
+>>>>>>> 0f4b0763f46af422e2a2a70f7890be3391ead580
 		user.add(client);
 		Data.getInstance().saveObjectToPath(SaveLoadPath.USER_PATH,user);
-		ShowingControl.Initialize();
-		CineplexControl.Initialize();
-		MovieControl.Initialize();
+
 		CineplexControl.addCineplex(new Cineplex("Jurong"));
         CineplexControl.addCineplex(new Cineplex("Orchard"));
         CineplexControl.addCineplex(new Cineplex("Central"));
@@ -96,10 +106,13 @@ public class MainApp {
 				"Derek Tsang",
 				castArray));
 
+
 		castArray[0] ="Chloe Benne";
 		castArray[1] ="TenzNorgay Trainor";
 		MovieControl.addMovieListing(new Movie("Abominable (PG)", Movie.Status.Showing,"Abominable” takes audiences on an epic 2,000-mile adventure from the streets of a Chinese city to the breathtaking Himalayan snowscapes. When teenage Yi (Chloe Bennet) encounters a young Yeti on the roof of her apartment building, she and her friends, Jin (Tenzing Norgay Trainor) and Peng (Albert Tsai), name him “Everest” and embark on an epic quest to reunite the magical creature with his family at the highest point on Earth.\n",
 				"Jill Culton",castArray));
+
+
 
 		castArray[0] ="Woody Harrelson";
 		castArray[1] ="Jesse Eisenberg";
@@ -109,6 +122,8 @@ public class MainApp {
 				"Ruben Fleischer",
 				castArray));
 
+
+
 		castArray[0] ="Joaquin Phoenix";
 		castArray[1] ="Robert De Niro";
 		MovieControl.addMovieListing(new Movie("Joker",
@@ -116,6 +131,8 @@ public class MainApp {
 				"A failed stand-up comedian is driven insane and becomes a psychopathic murderer.",
 				"Todd Phillips",
 				castArray));
+
+
 
 		castArray[0] = "Matt Damon";
 		castArray[1] = "Christian Bale";

@@ -12,6 +12,7 @@ public class BookingControl {
     private Showing showing;
     private ArrayList<Ticket> tickets;
 
+
    public BookingControl(Client client, Showing showing)
    {
         System.out.println(client.getEmail());
@@ -57,5 +58,16 @@ public class BookingControl {
        ArrayList<Booking> bookings = (ArrayList<Booking>) Data.getInstance().getObjectFromPath(SaveLoadPath.BOOKING_PATH, Booking.class);
 
        return bookings;
+   }
+
+   public ArrayList<Movie> getMoviesByTicketSales(){
+
+       for(Ticket ticket:tickets){
+
+           ticket.
+
+       }
+
+       return null;
    }
 }
