@@ -29,6 +29,9 @@ public class SaveLoad<K> {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
             return null;
+        }catch (NullPointerException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

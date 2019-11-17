@@ -7,10 +7,9 @@ public class Movie implements Serializable {
     private String synopsis;
     private String director;
     private String[] cast;
+    private String type;
     private double avg_rating;
-    private static ArrayList<Review> movieReviews;
-    private ArrayList<Cineplex> locations;
-
+    //private ArrayList<Review> movieReviews;
     public enum Status{
         notShowing,comingSoon,Showing
     }
@@ -21,30 +20,14 @@ public class Movie implements Serializable {
         this.setSynopsis(synopsis);
         this.setDirector(director);
         this.setCast(cast);
-        movieReviews = new ArrayList<>();
-        locations = new ArrayList<>();
+        //movieReviews = new ArrayList<>();
+        this.type = "normal";
 
-        //this.locations = locations;
-//        this.calcAvg_rating();
     }
 
-//    public Movie(String name, Status status, String synopsis, String director, String[] cast, ArrayList<Cineplex> locations) {
-//        this(name, status, synopsis, director, cast, new ArrayList<>(), locations);
-//    }
-    //</editor-fold>
-
-
-
-    public void addCineplex(Cineplex cineplex) {
-        if (cineplex == null) return;
-        this.locations.add(cineplex);
+    public String getType() {
+        return type;
     }
-
-    public void removeCineplex(Cineplex cineplex) {
-        if (cineplex == null) return;
-        this.locations.remove(cineplex);
-    }
-
 
     //<editor-fold desc="Printers">
     public void print() {
@@ -121,8 +104,5 @@ public class Movie implements Serializable {
         return synopsis;
     }
 
-    public ArrayList<Cineplex> getLocations() {
-        return locations;
-    }
     //</editor-fold>
 }

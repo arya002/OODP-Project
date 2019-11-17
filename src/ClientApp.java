@@ -40,11 +40,7 @@ public class ClientApp {
                             printMovies(MovieControl.getAllMoviesByRating());
                             break;
                     }
-
-                    //TODO follow through to the next case (case 2) from here
-
                 case 2:
-                    //TODO take user input for a movie title and return that movie information (cast etc)
                     String mov;
                     System.out.println("Enter movie name: ");
                     mov = sc.next();
@@ -179,6 +175,7 @@ public class ClientApp {
         for (Movie movie : movies)
         {
             System.out.println(movie.getName());
+
         }
     }
 

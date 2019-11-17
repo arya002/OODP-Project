@@ -13,7 +13,20 @@ public class Cinema implements Serializable {
 
 
     enum DaysOfWeek {
-        Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday;
+        Monday{
+            @Override
+            public String toString() {
+                return "Monday";
+            }
+        }, Tuesday{
+            @Override
+            public String toString() {
+                return "Tuesday";
+            }
+        }, Wednesday{
+
+
+        }, Thursday, Friday, Saturday, Sunday;
         static int size = 7;
     }
 
@@ -21,10 +34,6 @@ public class Cinema implements Serializable {
         TenAm,OnePm,FourPm,SixPm,TenPm;
         static int size = 5;
 
-    }
-
-    public RoomLayout getRoomLayout() {
-        return roomLayout;
     }
 
     public Cinema (String type){
@@ -38,7 +47,7 @@ public class Cinema implements Serializable {
 
     private void buildRoomLayout() {
 
-        if (type == "normal"){
+        if (type.equals("normal")){
 
             roomLayout = new RoomLayout(n,m);
         }
@@ -82,4 +91,9 @@ public class Cinema implements Serializable {
     public String getCinemaID() {
         return CinemaID;
     }
+
+    public RoomLayout getRoomLayout() {
+        return roomLayout;
+    }
+
 }

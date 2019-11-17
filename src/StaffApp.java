@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Handles all the Staff capabilities
@@ -78,7 +79,7 @@ public class StaffApp {
                     pass = sc.next();    
                     System.out.println("Please Enter the staff FirstName");
                     first = sc.next();
-                    Staff(user, pass, first);
+                    addNewStaff(user,pass,first);
                     break;
                 case 4:
                     //    public Movie( name, Status status,  synopsis,  director,  cast, ArrayList<Review> , ArrayList<Cineplex> ) {
@@ -97,6 +98,14 @@ public class StaffApp {
 
         } while (sc_in != 3);
         sc.close();
+
+    }
+
+    private void addNewStaff(String user, String pass, String first) {
+
+        ArrayList<User> allusers= (ArrayList<User>) Data.getInstance().getObjectFromPath(SaveLoadPath.USER_PATH, User.class);
+        allusers.add(new Staff(user,pass,first));
+        Data.getInstance().saveObjectToPath(SaveLoadPath.USER_PATH,allusers);
 
     }
 
@@ -199,28 +208,23 @@ public class StaffApp {
                                             System.out.println("1. Locations to add\n");
                                             ArrayList<Cineplex> cineplexes = CineplexControl.getCineplexes();
                                             for (int index = 0; index < cineplexes.size(); index++) {
-
                                                 System.out.println(index + ". " + cineplexes.get(index));
-
                                             }
                                             break;
 
                                         case 2:
-                                            if (editedMovieList.get(indexToEdit).getLocations().size() > 0) {
-                                                for (int index = 0; index < editedMovieList.size(); index++) {
-                                                    System.out.println("1. current Locations");
-                                                    System.out.println(index + ". " + editedMovieList.get(indexToEdit).getLocations().get(index).getName());
+                                            //TODO add option to delete
+                                            for (Cineplex cineplex :CineplexControl.getCineplexes()){
+                                                for (Cinema cinema:cineplex.getCinemas()){
+                                                    System.out.println("cineplex " + cineplex + " has showings of ");
+                                                    for(Showing showing:cinema.getShowings()){
+                                                        System.out.println(showing.getMovie() + " ");
+
+                                                    }
                                                 }
 
-                                                int whichElementToRemove = MainApp.sc.nextInt();
-
-                                                if (whichElementToRemove > 0 && whichElementToRemove < editedMovieList.get(indexToEdit).getLocations().size()) {
-                                                    editedMovieList.get(indexToEdit).getLocations().remove(whichElementToRemove);
-                                                    Data.getInstance().saveObjectToPath(SaveLoadPath.MOVIE_PATH, editedMovieList);
-                                                }
-                                            } else {
-                                                System.out.println("Has no Locations");
                                             }
+//
                                             break;
 
                                         case 3:

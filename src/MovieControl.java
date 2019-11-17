@@ -10,13 +10,25 @@ import java.util.*;
 
 public class MovieControl {
 
-    static ArrayList<Movie> allMovies = (ArrayList<Movie>) Data.getInstance().getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class);
+    private static ArrayList<Movie> allMovies = new ArrayList<>();
+
+    public static void Initialize(){
+
+        if ((ArrayList<Movie>) Data.getInstance().getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class) != null){
+            allMovies= (ArrayList<Movie>) Data.getInstance().getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class);
+        }
+
+    }
+
+    public MovieControl(){
 
 
-    //    public Movie(String name, Status status, String synopsis, String director, String[] cast, ArrayList<Review> reviews, ArrayList<Cineplex> locations) throws IllegalArgumentException {
-    public void addMovieListing(Movie movie){
+    }
+
+    public static void addMovieListing(Movie movie){
 
         allMovies.add(movie);
+        Data.getInstance().saveObjectToPath(SaveLoadPath.MOVIE_PATH,allMovies);
 
     }
 
@@ -83,7 +95,6 @@ public class MovieControl {
 
     public static ArrayList<Movie> getAllMovies() {
 
-        allMovies = (ArrayList<Movie>) Data.getInstance().getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class);
         return allMovies;
         //System.out.println("All Movies: " + uniqueMovies);
     }
@@ -99,14 +110,17 @@ public class MovieControl {
     }
 
 
-    public static void addLocation(Movie movie,String cineplexName){
+    public static void addLocation(Showing movie,String cineplexName,int whichCinema){
 
-        for (Movie allMovies: allMovies){
+        for (Movie mov: allMovies){
 
-            if (allMovies.equals(movie)){
+            if (mov.equals(movie)){
 
-                    CineplexControl.getCineplex(cineplexName).getMovies().add(movie);
-                    MovieControl.getAllMovies().add(movie);
+                    CineplexControl.getCineplex(cineplexName).getMovies().add(movie.getMovie());
+                    CineplexControl.addShowingToCinema(movie.getCinema(),movie,movie.getTimeSlot());
+                    MovieControl.getAllMovies().add(movie.getMovie());
+                    Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,CineplexControl.getCineplexes());
+                    Data.getInstance().saveObjectToPath(SaveLoadPath.MOVIE_PATH,allMovies);
 
             }
 
@@ -116,13 +130,15 @@ public class MovieControl {
 
     public static void RemoveLocation(Movie movie,String cineplexName){
 
-        for (Movie allMovies: allMovies){
+        for (Movie mov: allMovies){
 
-            if (allMovies.equals(movie)){
-
-                CineplexControl.getCineplex(cineplexName).getMovies().remove(movie);
-                MovieControl.getAllMovies().remove(movie);
-
+            if (mov.equals(movie)){
+                if(CineplexControl.getCineplex(cineplexName).getMovies().size()!=0) {
+                    CineplexControl.getCineplex(cineplexName).getMovies().remove(movie);
+                    MovieControl.getAllMovies().remove(movie);
+                }
+                Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,CineplexControl.getCineplexes());
+                Data.getInstance().saveObjectToPath(SaveLoadPath.MOVIE_PATH,allMovies);
 
             }
 

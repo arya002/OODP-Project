@@ -2,12 +2,15 @@ import java.util.ArrayList;
 
  public class CineplexControl {
 
-    private static ArrayList<Cineplex> cineplexs = new ArrayList<>();
+    private static ArrayList<Cineplex> cineplexs;
 
+    public static void Initialize(){
+       if ((ArrayList<Cineplex>) Data.getInstance().getObjectFromPath(SaveLoadPath.CINEPLEX_PATH,Cineplex.class) != null);
+         cineplexs= new ArrayList<>();
+
+    }
 
     public CineplexControl(){
-
-        Data.getInstance().getObjectFromPath(SaveLoadPath.CINEPLEX_PATH,Cineplex.class);
 
     }
 
@@ -35,13 +38,11 @@ import java.util.ArrayList;
         return cineplexs;
     }
 
-    public static void save(ArrayList<Cineplex> cp){
-        Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,cp);
-    }
 
     public static void addCineplex(Cineplex cineplex){
 
         cineplexs.add(cineplex);
+        Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,cineplexs);
 
     }
 
