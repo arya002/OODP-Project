@@ -144,7 +144,7 @@ public class ShowingControl  {
 
         ArrayList<Showing> allShowingsOfMovie = new ArrayList<>();
 
-        for(Showing showing:allShowings) {
+        for(Showing showing:getAllShowings()) {
             if (movie.getName().equals(showing.getMovie().getName()) && showing.getMovie().getStatus() == Movie.Status.Showing) {
 
                 allShowingsOfMovie.add(showing);

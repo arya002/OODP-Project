@@ -49,6 +49,11 @@ public class Booking implements Serializable{
         return client;
     }
 
+    public ArrayList<Ticket> getTickets()
+    {
+        return tickets;
+    }
+
     public String bookingPrint(){
         /**
  * Print the booking details in to format:

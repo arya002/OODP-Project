@@ -103,20 +103,4 @@ public class BookingControl {
        return bookings;
    }
 
-   public static ArrayList<Movie> getMoviesByTicketSales(String movieName){
-
-       HashSet<String> ticketSalesName= new HashSet<>(MovieControl.getAllMoviesNames());
-       int ticketSales[] = new int[ticketSalesName.size()];
-
-       for(Ticket ticket:tickets){
-
-           for(int i=0;i < ticketSalesName.size();i++){
-               if(ticket.getShowingMovieName().equals(ticketSalesName.toArray()[i])){
-                   ticketSales[i]++;
-               }
-           }
-       }
-
-       return null;
-   }
 }

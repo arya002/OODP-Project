@@ -1,13 +1,16 @@
 import java.util.*;
 
+/**
+ * Prints the login screen. Logic for login contained here as well
+ */
+
 public class LoginScreen {
 
     Scanner sc = new Scanner(System.in);
 
-
-    public LoginScreen() {
-    }
-
+/**
+ * Offer user a choice to login, register or go back
+ */
     public User run() {
         int sc_in;
 		User currentUser= null;
@@ -33,7 +36,9 @@ public class LoginScreen {
         return currentUser;
 
     }
-
+/**
+ * Checks username and password to login
+ */
     public User enterUserPass() {
 
         System.out.println();
@@ -41,8 +46,7 @@ public class LoginScreen {
         String user = sc.next();
 		System.out.print("Enter password : ");
 		String pass = sc.next();
-
-		ArrayList<User> allUsers = (ArrayList<User>) Data.getInstance().getObjectFromPath(SaveLoadPath.USER_PATH,User.class);
+	ArrayList<User> allUsers = (ArrayList<User>) Data.getInstance().getObjectFromPath(SaveLoadPath.USER_PATH,User.class);
 
         for(User userEntry:allUsers)
         {
@@ -57,11 +61,25 @@ public class LoginScreen {
     }
 
 
-
+/**
+ * Registers a new user. Will check if username has been taken
+ */
     public void registerUser() {
-        System.out.println("Enter a username:");
-        String userName = sc.next();
-        //check if username already exists and throw error
+	    ArrayList<User> allUsers = (ArrayList<User>) Data.getInstance().getObjectFromPath(SaveLoadPath.USER_PATH,User.class);
+	    boolean taken = true;
+	    
+	    while(taken){
+		taken = false;
+        	System.out.println("Enter a username:");
+        	String userName = sc.next();
+		for(User userEntry:allUsers)
+        		{
+			if(userEntry.getUsername().equals(userName)){
+				System.out.println("Username taken. Please try again");
+				taken = true;
+				break;}
+		}
+	      }
 		System.out.println("Enter a password:");
 		String password = sc.next();
 

@@ -78,7 +78,7 @@ public class MainApp {
 					bookingControl.addTicket("adult",2,1);
 					bookingControl.addTicket("adult",8,1);
 
-					BookingControl.getMoviesByTicketSales("Better Days");
+					//BookingControl.getMoviesByTicketSales("Better Days");
 
 					break;
 

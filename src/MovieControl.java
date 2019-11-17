@@ -1,5 +1,8 @@
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  *
@@ -8,10 +11,9 @@ import java.util.*;
  *
  */
 
-
 public class MovieControl {
 
-    private static ArrayList<Movie> allMovies =null;
+    private static ArrayList<Movie> allMovies = null;
 
     public static void Reinitialize(){
 
@@ -20,10 +22,10 @@ public class MovieControl {
         }
     }
 
-    public MovieControl(){
+    public MovieControl() {
     }
 
-    public static void addMovieListing(ArrayList<Movie> movie){
+    public static void addMovieListing(ArrayList<Movie> movie) {
 
         ArrayList<Movie> movies= getAllMovies();
         movies.addAll(movie);
@@ -31,13 +33,35 @@ public class MovieControl {
 
     }
 
-    public static void addMovieListing(Movie movie){
+    public static void addMovieListing(Movie movie) {
 
-        ArrayList movies = getAllMovies();
-        movies.add(movie);
-        Data.getInstance().saveObjectToPath(SaveLoadPath.MOVIE_PATH,movies);
+        if (!allMovies.contains(movie)) {
+            allMovies.add(movie);
+            Data.getInstance().saveObjectToPath(SaveLoadPath.MOVIE_PATH, allMovies);
+        }
 
+    }
 
+    public static ArrayList<Movie> getMoviesByTicketSales() {
+
+        ArrayList<String> ticketSalesName = getAllMoviesNames();
+        Map<String, Integer> ticketSales = new HashMap<String, Integer>();
+        for (int i = 0; i < ticketSalesName.size(); i++) {
+            ticketSales.put(ticketSalesName.get(i), 0);
+        }
+
+        HashSet<Booking> bookings = new HashSet<>(BookingControl.getBookings());
+        for (Booking booking : bookings) {
+            for (Ticket ticket : booking.getTickets()) {
+                for (Map.Entry<String, Integer> entry : ticketSales.entrySet()) {
+                    if (ticket.getShowingMovieName().equals(entry.getKey()))
+                        entry.setValue(entry.getValue() + 1);
+                }
+            }
+        }
+
+        ticketSales.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).forEach(System.out::println);
+        return null;
     }
 
     public static ArrayList<Movie> getAllMoviesByRating() {
