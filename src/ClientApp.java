@@ -16,10 +16,10 @@ public class ClientApp {
 
         do {
             if (current != null)
-                System.out.println("Welcome " + current.getName());
+                System.out.println("Welcome " + current.getFirstName());
             else
                 System.out.println("Welcome guest!");
-                
+
             System.out.println
                     ("1. Display movies " +
                             "\n2. Search for a movie" +
@@ -77,8 +77,8 @@ public class ClientApp {
                             int count = 0;
                             for (Showing showing : ShowingControl.getAllShowingOfMovie(searchedMovie)) {
 
-                                System.out.println(count + ". " + showing.printShowing());
-
+                                System.out.println(count + ". " + showing.printShowing() + " on " + showing.getDate());
+                                count++;
                             }
                             count = sc.nextInt();
                             if (count > 0 && count < ShowingControl.getAllShowingOfMovie(searchedMovie).size()) {

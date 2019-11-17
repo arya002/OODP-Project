@@ -1,24 +1,15 @@
 import java.io.Serializable;
 
 public class Client extends User implements Serializable {
-	private String name;
 	private String phoneNum;
 	private String email;
-	private int age;
-
-	public Client(String username, String password) {
-		super(username, password, username);
-		this.phoneNum = "";
-		this.email = "";
-		super.setType("client");
-	}
 
 	
-	public Client(String username, String password, String phoneNum, String email, String name, int age){
+	public Client(String username, String password, String phoneNum, String email, String name){
 		super(username, password, name);
 		this.setPhoneNum(phoneNum);
 		this.setEmail(email);
-		this.setAge(age);
+		this.setType("client");
 	}
 
 	//<editor-fold desc="Getters">
@@ -28,14 +19,6 @@ public class Client extends User implements Serializable {
 
 	public String getEmail() {
 		return email;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public String getName() {
-		return name;
 	}
 
 	public void setPhoneNum(String phoneNum) {
@@ -51,19 +34,4 @@ public class Client extends User implements Serializable {
 
         this.email = email;
 	}
-
-	public void setAge(int age) {
-		if (age < 0)
-			throw new IllegalArgumentException("Age cannot be negative");
-
-        this.age = age;
-	}
-
-	public void setName(String name) {
-		if (name.isEmpty())
-			throw new IllegalArgumentException("Name cannot be empty");
-
-		this.name = name;
-	}
-
 }

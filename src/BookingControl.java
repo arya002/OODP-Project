@@ -14,6 +14,7 @@ public class BookingControl {
 
    public BookingControl(Client client, Showing showing)
    {
+        System.out.println(client.getEmail());
         tickets = new ArrayList<>();
         this.client = client;
         this.showing = showing;
@@ -21,8 +22,16 @@ public class BookingControl {
 
    public void addTicket(String age, int row, int column)
    {
-       Seat seat = showing.getSeatingPlan().getSeat(row, column);
-       int price = calculatePrice(age);
+        Seat seat = showing.getSeatingPlan().getSeat(row, column);
+        int price = calculatePrice(age);
+        if (client == null)
+            System.out.println("client is null");
+        if (seat == null)
+            System.out.println("seat is null");
+        if (showing == null)
+            System.out.println("showing is null");
+        
+        System.out.println(price);
         tickets.add(new Ticket(client, seat, showing, price));
         seat.assignSeat(client.getUsername());
    }

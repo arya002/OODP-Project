@@ -25,7 +25,7 @@ public class Ticket implements Serializable {
         this.showing = showing;
         this.price = price;
 
-        this.calculatePrice();
+        //this.calculatePrice();
     }
 
     private void calculatePrice() {

@@ -7,18 +7,19 @@ public class Showing implements Serializable {
     private String type;
     private String date;
     private Cineplex cineplex;
-    private SeatingPlan seatingPlan;
+    private final SeatingPlan seatingPlan;
 
     /**
      *
      * @param cinema
      * @param cineplex
      * @param movie
-     * @param date = YYYYMMDDXY (X = DOTW, Y = TimeSlot)
+     * @param date     = YYYYMMDDXY (X = DOTW, Y = TimeSlot)
      * @param type
      */
     //
-    public Showing(Cinema cinema,Cineplex cineplex, Movie movie, String date, String type) {
+    public Showing(final Cinema cinema, final Cineplex cineplex, final Movie movie, final String date,
+            final String type) {
         this.setCinema(cinema);
         this.setMovie(movie);
         this.setDate(date);
@@ -27,12 +28,11 @@ public class Showing implements Serializable {
         this.seatingPlan = new SeatingPlan(cinema.getRoomLayout());
     }
 
-    public SeatingPlan getSeatingPlan()
-    {
+    public SeatingPlan getSeatingPlan() {
         return seatingPlan;
     }
 
-    private void setCineplex(Cineplex cineplex) {
+    private void setCineplex(final Cineplex cineplex) {
         this.cineplex = cineplex;
     }
 
@@ -40,50 +40,57 @@ public class Showing implements Serializable {
         return cineplex;
     }
 
-    public void setMovie(Movie movie) {
+    public void setMovie(final Movie movie) {
         if (movie == null)
             throw new IllegalArgumentException("Movie cannot be null");
         this.movie = movie;
     }
 
-    public String printShowing(){
-        return (movie.getName() + " is playing at " + cineplex.getName() + " on "
-                + getDayOfWeekString(getDayOfWeek()) + " at " + getTimeSlotString(getTimeSlot()));
+    public String printShowing() {
+        return (movie.getName() + " is playing at " + cineplex.getName() + " on " + getDayOfWeekString(getDayOfWeek())
+                + " at " + getTimeSlotString(getTimeSlot()));
     }
 
-    private String getTimeSlotString(int timeSlot) {
+    private String getTimeSlotString(final int timeSlot) {
         switch (timeSlot) {
-            case 1:
-                return "10 am";
-            case 2:
-                return "1 pm";
-            case 3:
-                return "3 pm";
-            case 4:
-                return "6 pm";
-            case 5:
-                return "9 pm";
-            default:
-                return "";
+        case 1:
+            return "10 am";
+        case 2:
+            return "1 pm";
+        case 3:
+            return "3 pm";
+        case 4:
+            return "6 pm";
+        case 5:
+            return "9 pm";
+        default:
+            return "";
         }
     }
 
-    public void setDate(String date) {
+    public void setDate(final String date) {
 
         this.date = date;
-        //YYYYMMMDDXY
+        // YYYYMMMDDXY
         // X = DOTW
         // Y = TIMESLOT
 
     }
 
-    public void setCinema(Cinema cinema) {
+    public boolean isAllocated(int i, int j)
+    {
+        if (seatingPlan.getSeat(i, j).isAllocated())
+            return true;
+        return false;
+    }
+
+    public void setCinema(final Cinema cinema) {
         if (cinema == null)
             throw new IllegalArgumentException("Cinema cannot be null");
         this.cinema = cinema;
     }
 
-    public void setType(String type) {
+    public void setType(final String type) {
         if (type.isEmpty())
             throw new IllegalArgumentException("Type cannot be empty");
         this.type = type;
@@ -109,7 +116,7 @@ public class Showing implements Serializable {
         return Integer.parseInt(date.substring(8));
     }
 
-    public String getDayOfWeekString(int dotw) {
+    public String getDayOfWeekString(final int dotw) {
         switch (dotw) {
             case 1:
                 return "Monday";
@@ -128,11 +135,10 @@ public class Showing implements Serializable {
             default:
                 return "";
         }
-
     }
 
     public int getDay() {
-        return Integer.parseInt(date.substring(5,7));
+        return Integer.parseInt(date.substring(5, 7));
     }
 
     public int getTimeSlot() {
@@ -140,14 +146,6 @@ public class Showing implements Serializable {
     }
 
     public int getYYYYMMDD() {
-        return Integer.parseInt(date.substring(0,7));
+        return Integer.parseInt(date.substring(0, 7));
     }
-
-    public boolean isAllocated(int i, int j)
-    {
-        if (seatingPlan.getSeat(i, j).isAllocated())
-            return true;
-        return false;
-    }
-
 }

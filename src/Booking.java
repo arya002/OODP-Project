@@ -1,8 +1,9 @@
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class Booking {
+public class Booking implements Serializable{
 
     private ArrayList<Ticket> tickets;
     private Client client;
