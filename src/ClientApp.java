@@ -67,7 +67,7 @@ public class ClientApp {
                             //TODO Show listings for the movie
                             //TODO allow user to choose listing
                             //TODO check user is looged in
-                            //newBooking(client, showing);
+                            BookingApp(current, showing);
                     }
                    
                 case 3:
@@ -76,7 +76,7 @@ public class ClientApp {
                     //TODO show movie listings for their chosen cineplex
                     //TODO allow user to choose listing
                     //TODO check user is looged in
-                    //newBooking(client, showing);
+                    //BookingApp(current, showing);
                 case 4:
                     //TODO display user's booking history
                     break;
@@ -89,7 +89,7 @@ public class ClientApp {
 
         } while (sc_in != 4);
     }
-
+/*
     public void bookMovie(Showing showingToBook)
     {
 
@@ -111,6 +111,7 @@ public class ClientApp {
         //TODO let user choose a seat and display the price
         //TODO process the booking
     }
+    */
 
     private void printMovies(ArrayList<Movie> movies)
     {

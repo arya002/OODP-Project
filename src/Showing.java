@@ -7,6 +7,7 @@ public class Showing implements Serializable {
     private String type;
     private String date;
     private Cineplex cineplex;
+    private SeatingPlan seatingPlan;
 
     /**
      *
@@ -23,6 +24,12 @@ public class Showing implements Serializable {
         this.setDate(date);
         this.setType(type);
         this.setCineplex(cineplex);
+        this.seatingPlan = new SeatingPlan(cinema.getRoomLayout());
+    }
+
+    public SeatingPlan getSeatingPlan()
+    {
+        return seatingPlan;
     }
 
     private void setCineplex(Cineplex cineplex) {
@@ -91,6 +98,13 @@ public class Showing implements Serializable {
 
     public int getYYYYMMDD() {
         return Integer.parseInt(date.substring(0,7));
+    }
+
+    public boolean isAllocated(int i, int j)
+    {
+        if (seatingPlan.getSeat(i, j).isAllocated())
+            return true;
+        return false;
     }
 
 }

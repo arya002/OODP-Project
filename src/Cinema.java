@@ -39,8 +39,10 @@ public class Cinema implements Serializable {
 
         if (type == "normal"){
 
-            roomLayout = new RoomLayout(n,m,"stub",type);
+            roomLayout = new RoomLayout(n,m);
         }
+
+        // TODO roomLayout.assignSeatTypes();
 
     }
 

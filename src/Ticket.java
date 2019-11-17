@@ -9,6 +9,7 @@ public class Ticket implements Serializable {
     private Client client;
     private Showing showing;
     private Seat seat;
+    private enum type { child, adult }; 
     private double price;
 
     private static ArrayList<Integer> holidays;
@@ -23,10 +24,6 @@ public class Ticket implements Serializable {
         this.seat = seat;
         this.showing = showing;
         this.price = price;
-
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMddhhmm");
-        this.ticketId = showing.getCinema() + format1.format(calendar.getTime());
 
         this.calculatePrice();
     }
@@ -125,11 +122,6 @@ public class Ticket implements Serializable {
         return this.client.getPhoneNum();
     }
 
-    public String  getTicketId()
-    {
-        return ticketId;
-    }
-
     public String getDate() {
         SimpleDateFormat ft = new SimpleDateFormat("hh:mm dd/MM/yyyy");
         return ft.format(this.showing.getDate());
@@ -165,7 +157,6 @@ public class Ticket implements Serializable {
 
     public void print() {
         HashMap<String, String> fields =  new HashMap<>();
-        fields.put("TID", this.ticketId);
         fields.put("cineplex", showing.getCineplex().getName());
         fields.put("room", this.showing.getCinema().getType());
         fields.put("seat", Integer.toString(this.seat.getSeatID()));

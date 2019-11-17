@@ -6,6 +6,7 @@ public class SeatingPlan implements Serializable {
     private Seat[][] seats;
 
     //<editor-fold desc="Constructors">
+    /*
     public SeatingPlan(Seat[][] seats) throws IllegalArgumentException{
         if (seats == null || seats.length == 0 || seats[0].length == 0)
             throw new IllegalArgumentException();
@@ -19,17 +20,30 @@ public class SeatingPlan implements Serializable {
             }
         }
     }
+    */
 
     public SeatingPlan(RoomLayout layout) {
-        this(layout.getSeats());
-    }
-    //</editor-fold>
+        String seatTypes[][] = layout.getSeats();
+        seats = new Seat[seatTypes.length][seatTypes[1].length];
 
-    //<editor-fold desc="Getters">
+        for (int i = 0; i < seatTypes.length; i++)
+        {
+            for (int j = 0; j < seatTypes[1].length; j++)
+            {
+                seats[i][j] = new Seat(i + j, seatTypes[i][j]);
+            }
+        }
+    }
+
     public Seat[][] getSeats() {
         return seats;
     }
 
+    public Seat getSeat(int n, int m) {
+        return this.seats[n][m];
+    }
+
+    /*
     public Integer[] getOccupied() {
         ArrayList<Integer> temp = new ArrayList<>();
         for (int i=0; i<this.seats.length; i++) {
@@ -57,11 +71,10 @@ public class SeatingPlan implements Serializable {
         temp.toArray(res);
         return res;
     }
+    */
 
-    public Seat getSeat(int n, int m) {
-        return this.seats[n][m];
-    }
 
+    /*
     public Seat getSeat(int index) {
         return this.seats[index/this.seats[0].length][index%this.seats[0].length];
     }
@@ -90,4 +103,5 @@ public class SeatingPlan implements Serializable {
         }
         System.out.println(" " + line);
     }
+    */
 }

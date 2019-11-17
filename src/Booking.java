@@ -6,7 +6,7 @@ public class Booking {
 
     private ArrayList<Ticket> tickets;
     private Client client;
-    private int totalPrice = 0;
+    private double totalPrice = 0;
     private Showing showing;
     private String bookingID;
 
@@ -23,6 +23,16 @@ public class Booking {
 
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMddhhmm");
-        this.bookingID = client.getName() + format1.format(calendar.getTime());
+        this.bookingID = showing.getCineplex().getName() + format1.format(calendar.getTime());
+    }
+
+    public double getTotalPrice()
+    {
+        return totalPrice;
+    }
+
+    public String getBookingID()
+    {
+        return bookingID;
     }
 }

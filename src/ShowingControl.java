@@ -10,12 +10,36 @@ public class ShowingControl  {
 
     }
 
+    public static boolean isAllocated(Showing showing, int i, int j)
+    {
+        if (showing.isAllocated(i, j) || showing.getSeatingPlan().getSeat(i, j).getType().equals(" "))
+            return true;
+        return false;
+    }
 
     public ShowingControl(){
 
         allShowings = (ArrayList<Showing>) Data.getInstance().getObjectFromPath(SaveLoadPath.SHOWING_PATH,Showing.class);
 
     }
+
+    public static void printSeats(Showing showing)
+    {
+        Seat[][] seatingPlan = showing.getSeatingPlan().getSeats();
+        
+        for (int i = 0; i < seatingPlan.length; i ++)
+        {
+            for (int j = 0; j < seatingPlan[1].length; j++)
+            {
+                if (seatingPlan[i][j].isAllocated())
+                    System.out.print("U");
+                else
+                    System.out.print(seatingPlan[i][j].getType());
+            }
+            System.out.println();
+        }
+    }
+
 
     public static ArrayList<Showing> getAllShowings() {
         return allShowings;
