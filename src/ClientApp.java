@@ -58,7 +58,7 @@ public class ClientApp {
                     sc.nextLine();
                     mov = sc.next();
                     Movie searchedMovie = null;
-                    while (mov != "exit") {
+                    while (!mov.equals("exit")) {
                         for (Movie movie : MovieControl.getAllMovies()) {
                             System.out.println("Looking for " + mov);
                             System.out.println(movie.getName());
@@ -95,6 +95,7 @@ public class ClientApp {
                                         count = sc.nextInt();
                                         if (count > 0 && count < ShowingControl.getAllShowingOfMovie(searchedMovie).size()) {
                                             new BookingApp(current, ShowingControl.getAllShowingOfMovie(searchedMovie).get(count));
+                                            mov = "exit";
                                         } else {
                                             System.out.println("error in selecting movies");
                                         }
@@ -108,9 +109,9 @@ public class ClientApp {
                         }
                         if (searchedMovie == null)
                             System.out.println("Movie with this name has not been found");
-                        break;
                     }
-
+                    sc_in = 0;
+                    break;
                 case 3:
                     int temp=1;
                     int count=0;
@@ -155,16 +156,18 @@ public class ClientApp {
                     } else {
                         System.out.println("error in selecting movies");
                     }
+                    break;
 
                     //BookingApp(current, showing);
                 case 4:
                     if(current!=null) {
-                        for(Booking bookings:BookingControl.getBookings()){
-                            if(bookings.getClient().equals(current)){
-                                System.out.println(bookings.bookingPrint());
+                        for(Booking booking:BookingControl.getBookings()){
+                            if(booking.getClient().getUsername().equals(current.getUsername())){
+                                System.out.println(booking.bookingPrint());
                             }
                         }
                     }
+                    sc_in = 0;
                     break;
                 case 5:
                     break;
@@ -173,7 +176,7 @@ public class ClientApp {
                     break;
             }
 
-        } while (sc_in != 4);
+        } while (sc_in != 5);
     }
 /*
     public void bookMovie(Showing showingToBook)
