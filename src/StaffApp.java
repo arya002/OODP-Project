@@ -133,7 +133,7 @@ public class StaffApp {
             switch(sc_in){
 
                 case 1:
-
+                    addShowing();
                     break;
                 case 2:
 
@@ -146,13 +146,49 @@ public class StaffApp {
                 default:
                     System.out.println("Invalid input. Enter again!")
             }
-        while(sc_in!=4);
+        while(sc_in!=4)
 
         //TODO add new showing
         //TODO update showing
         //TODO delete showing
     }
 
+    private void printMovies(ArrayList<Movie> movies)
+    {
+        for (Movie movie : movies)
+        {
+            System.out.println(movie.getName());
+
+        }
+    }
+
+    private void printCineplexs(ArrayList<Cineplex> cineplexs)
+        {
+            for (Cineplex cineplex : cineplexs)
+            {
+                System.out.println(cineplex.getName());
+
+            }
+        }
+
+    private void addShowing() {
+            System.out.println("Choose a cineplex: ");
+            printCineplexs(CineplexControl.getCineplexes());
+            String cineplex = sc.next();
+
+            System.out.println("Choose a movie: ");
+            printMovies(MovieControl.getAllMovies());
+            String movie = sc.next();
+
+            System.out.println("Enter type: ");
+            String type = sc.next();
+
+            System.out.println("Enter date: ");
+            String date = sc.next();
+
+            ShowingControl.addShowing(new Showing(new Cinema, CineplexControl.getCineplex(cineplex),
+                        MovieControl.getMovie(movie), date, type));
+        }
 
     private void handleMovieListings() {
 
