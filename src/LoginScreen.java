@@ -15,7 +15,7 @@ public class LoginScreen {
         int sc_in;
 		User currentUser= null;
         do {
-            System.out.println("1. Login \n2. Register new user \n3. Back");
+            System.out.println("1. Login \n2. Register new user");
             sc_in = sc.nextInt();
             switch (sc_in) {
                 case 1:
@@ -24,14 +24,12 @@ public class LoginScreen {
                 case 2:
                 	registerUser();
                     break;
-                case 3:
-                    break;
                 default:
                     System.out.println("Please choose from the following:");
                     break;
             }
 
-        } while (sc_in != 3 && currentUser == null);
+        } while (currentUser == null);
 
         return currentUser;
 
