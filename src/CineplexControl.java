@@ -15,6 +15,17 @@ public class CineplexControl {
 
     }
 
+    public static ArrayList<String> getCineplexesByNames() {
+
+        ArrayList<String> arrayList = new ArrayList<>();
+
+        for (int i =0; i < cineplexs.size();i++){
+
+            arrayList.add(cineplexs.get(i).getName());
+
+        }
+        return arrayList;
+    }
 
     public static String getCineplexName(String name) {
 

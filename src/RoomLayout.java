@@ -15,6 +15,10 @@ public class RoomLayout implements Serializable {
         representations.put("Premium", 'P');
         //representations.put("Love", 'L');
     } */
+    public RoomLayout (String[][] roomLayout)
+    {
+        this.seats = roomLayout;
+    }
 
     public RoomLayout(int n, int m) throws IllegalArgumentException {
         this.seats = new String[n][m];
