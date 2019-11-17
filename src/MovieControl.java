@@ -13,6 +13,7 @@ public class MovieControl {
     private static ArrayList<Movie> allMovies;
 
     public static void Initialize(){
+    public static void Initialize(){
 
         if ((allMovies = (ArrayList<Movie>) Data.getInstance().getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class)) == null){
             allMovies = new ArrayList<>();
@@ -75,6 +76,15 @@ public class MovieControl {
         }
 
         return movies;
+    }
+
+    public static Movie getMovie(String name) {
+
+        for (int i =0; i< allMovies.size();i++) {
+            if(allMovies.get(i).getName().equals(name));
+            return allMovies.get(i);
+        }
+        return null;
     }
 
     public static ArrayList<String> getAllMoviesNames() {
