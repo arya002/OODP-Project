@@ -15,7 +15,11 @@ public class ClientApp {
         Scanner sc = new Scanner(System.in);
 
         do {
-            System.out.println("Welcome " + current.getName());
+            if (current != null)
+                System.out.println("Welcome " + current.getName());
+            else
+                System.out.println("Welcome guest!");
+                
             System.out.println
                     ("1. Display movies " +
                             "\n2. Search for a movie" +
@@ -68,7 +72,7 @@ public class ClientApp {
                                 overallRating = overallRating + listReviews.get(i).getRating();
                             }
                             overallRating = overallRating / listReviews.size(); //average ratings
-                            System.out.printf("❀".repeat((int) overallRating) + ", %.1f/5\n\n", overallRating);
+                            //System.out.printf("❀".repeat((int) overallRating) + ", %.1f/5\n\n", overallRating);
                         case 2:
                             int count = 0;
                             for (Showing showing : ShowingControl.getAllShowingOfMovie(searchedMovie)) {
