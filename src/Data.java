@@ -20,7 +20,7 @@ public class Data implements Serializable {
         return instance;
     }
 
-    public void saveObjectToPath(String path,ArrayList<?> arrayToSave) {
+    public static void saveObjectToPath(String path,ArrayList<?> arrayToSave) {
         if (arrayToSave.size() !=0) {
             System.out.println("saving" + arrayToSave.get(0).getClass() + " type of class");
             SaveLoad saveLoad = new SaveLoad(arrayToSave.get(0).getClass());
@@ -30,7 +30,7 @@ public class Data implements Serializable {
         }
     }
 
-    public ArrayList<?> getObjectFromPath(String path,Class o){
+    public static ArrayList<?> getObjectFromPath(String path,Class o){
         SaveLoad pair= new SaveLoad<>(o);
         ArrayList objectsFromPath = pair.loadObject(path);
         return objectsFromPath;

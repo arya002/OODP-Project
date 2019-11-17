@@ -8,12 +8,9 @@ public class ShowingControl  {
 
     }
 
-    public static void Initialize(){
-        if (((ArrayList<Showing>) Data.getInstance().getObjectFromPath(SaveLoadPath.SHOWING_PATH,Showing.class)) == null){
+    public static void Reinitialize(){
+        if ((allShowings = (ArrayList<Showing>) Data.getInstance().getObjectFromPath(SaveLoadPath.SHOWING_PATH,Showing.class)) == null){
             allShowings = new ArrayList<>();
-        }else{
-            allShowings = (ArrayList<Showing>) Data.getInstance().getObjectFromPath(SaveLoadPath.SHOWING_PATH,Showing.class).clone();
-
         }
     }
 
@@ -23,7 +20,7 @@ public class ShowingControl  {
 
         allShowings.add(showing);
         //CineplexControl.addShowingToCinema(showing);
-        //Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH,allShowings);
+        //Data.getInstance().(SaveLoadPath.SHOWING_PATH,allShowings);
 
     }
 

@@ -5,18 +5,18 @@ public class MainApp {
 
 	static Scanner sc = new Scanner(System.in);
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 
-		ShowingControl.Initialize();
+		ShowingControl.Reinitialize();
 		CineplexControl.Initialize();
-		MovieControl.Initialize();
+		MovieControl.Reinitialize();
 
 		System.out.println("Welcome to MOBLIMA, the best way book your movie tickets.");
 		System.out.println("What would you like to do?");
 		menu();
 	}
 
-	private static void menu() {
+	private static void menu() throws InterruptedException {
 
 		int sc_in;
 
@@ -59,11 +59,9 @@ public class MainApp {
 					break;
 
 				case 22:
-					try {
-						instantiateTestData();
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
+
+					instantiateTestData();
+
 					break;
 
 				case 25:
@@ -93,13 +91,13 @@ public class MainApp {
 		Client client = new Client("hello","korea","012021314","a@gmail.com","Beck Gillespe");
 		user.add(client);
 
-		CineplexControl.addCineplex(new Cineplex("Jurong"));
-        CineplexControl.addCineplex(new Cineplex("Orchard"));
-        CineplexControl.addCineplex(new Cineplex("Central"));
+		ArrayList<Cineplex> cpes = new ArrayList<>();
+		cpes.add(new Cineplex("Jurong"));
+		cpes.add(new Cineplex("Orchard"));
+		cpes.add(new Cineplex("Central"));
 
 
 		String[] castArray = new String[2];
-		ArrayList<Cineplex> cpes = CineplexControl.getCineplexes();
 		ArrayList<Movie> movieListings = new ArrayList<>();
 		castArray[0] = "Zhou Dongyu";
 		castArray[1] = "Jackson Yee";
@@ -170,13 +168,14 @@ public class MainApp {
 			dotw=dotw%6;
 			dotw++;
 		}
-		ShowingControl.addShowing(newShowings);
-		MovieControl.addMovieListing(movieListings);
-		Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH,cpes);
-		Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,CineplexControl.getCineplexes());
-		Data.getInstance().saveObjectToPath(SaveLoadPath.USER_PATH,user);
-		Data.getInstance().saveObjectToPath(SaveLoadPath.MOVIE_PATH,MovieControl.getAllMovies());
-        System.out.println("There are " + ShowingControl.getAllShowings().size() + " Showings");
+		Data.saveObjectToPath(SaveLoadPath.SHOWING_PATH,newShowings);
+		Data.saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,cpes);
+		Data.saveObjectToPath(SaveLoadPath.USER_PATH,user);
+		Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH,movieListings);
+		ShowingControl.Reinitialize();
+		MovieControl.Reinitialize();
+
+		System.out.println("There are " + ShowingControl.getAllShowings().size() + " Showings");
         System.out.println("There are " + MovieControl.getAllMovies().size() + " Movies");
 
     }

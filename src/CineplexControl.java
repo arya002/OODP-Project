@@ -4,13 +4,10 @@ public class CineplexControl {
 
     private static ArrayList<Cineplex> cineplexs=null;
 
-    public static void Initialize() {
-        if (((ArrayList<Cineplex>) Data.getInstance().getObjectFromPath(SaveLoadPath.CINEPLEX_PATH, Cineplex.class)) == null){
+    public static void Reinitialize() {
+        if ((cineplexs = (ArrayList<Cineplex>) Data.getInstance().getObjectFromPath(SaveLoadPath.CINEPLEX_PATH, Cineplex.class)) == null){
             cineplexs = new ArrayList<>();
-        } else {
-            cineplexs = (ArrayList<Cineplex>) Data.getInstance().getObjectFromPath(SaveLoadPath.CINEPLEX_PATH, Cineplex.class).clone();
         }
-
     }
 
     public CineplexControl() {

@@ -12,14 +12,11 @@ public class MovieControl {
 
     private static ArrayList<Movie> allMovies =null;
 
-    public static void Initialize(){
+    public static void Reinitialize(){
 
-        if (((ArrayList<Movie>) Data.getInstance().getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class)) == null){
+        if ((allMovies = (ArrayList<Movie>) Data.getInstance().getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class)) == null){
             allMovies = new ArrayList<>();
-        } else {
-            allMovies = (ArrayList<Movie>) Data.getInstance().getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class).clone();
         }
-
     }
 
     public MovieControl(){
@@ -113,7 +110,7 @@ public class MovieControl {
 
     public static ArrayList<Movie> getAllMovies() {
 
-        return allMovies;
+        return (ArrayList<Movie>) Data.getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class).clone();
         //System.out.println("All Movies: " + uniqueMovies);
     }
 
@@ -128,20 +125,20 @@ public class MovieControl {
     }
 
 
-    public static void addLocation(Showing showing,String cineplexName,int whichCinema){
-
-        for (Movie mov: allMovies){
-
-            if (mov.equals(showing.getMovie())){
-
-                CineplexControl.addShowingToCinema(showing);
-                Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,CineplexControl.getCineplexes());
-
-            }
-
-        }
-
-    }
+//    public static void addLocation(Showing showing,String cineplexName,int whichCinema){
+//
+//        for (Movie mov: allMovies){
+//
+//            if (mov.equals(showing.getMovie())){
+//
+//                CineplexControl.addShowingToCinema(showing);
+//                Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,CineplexControl.getCineplexes());
+//
+//            }
+//
+//        }
+//
+//    }
 //
 //    public static void RemoveLocation(Movie movie,String cineplexName){
 //
