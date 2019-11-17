@@ -107,7 +107,7 @@ public class StaffApp {
 
         ArrayList<User> allusers = (ArrayList<User>) Data.getInstance().getObjectFromPath(SaveLoadPath.USER_PATH, User.class);
         allusers.add(new Staff(user, pass, first));
-        //Data.getInstance().saveObjectToPath(SaveLoadPath.USER_PATH, allusers);
+        Data.getInstance().saveObjectToPath(SaveLoadPath.USER_PATH, allusers);
 
     }
 
@@ -230,8 +230,11 @@ public class StaffApp {
         printMovies(MovieControl.getAllMovies());
         String movie = sc.next();
 
-        System.out.println("Enter type: ");
+        System.out.println("is it 3d? :");
         String type = sc.next();
+        boolean threedee=  false;
+        if (type.equalsIgnoreCase("yes"))
+
 
         System.out.println("Enter date: ");
         String date = sc.next();

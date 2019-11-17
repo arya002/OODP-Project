@@ -97,6 +97,9 @@ public class MainApp {
 		Client client = new Client("hello","korea","012021314","a@gmail.com","Beck Gillespe");
 		user.add(client);
 
+		User staffmember = new Staff("admin","admin","raymond");
+		user.add(staffmember);
+
 		ArrayList<Cineplex> cpes = new ArrayList<>();
 		cpes.add(new Cineplex("Jurong"));
 		cpes.add(new Cineplex("Orchard"));

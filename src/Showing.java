@@ -15,7 +15,7 @@ public class Showing implements Serializable {
      * @param cineplex
      * @param movie
      * @param date     = YYYYMMDDXY (X = DOTW, Y = TimeSlot)
-     * @param is3D
+     * @param type
      */
     //
     public Showing(final Cinema cinema, final Cineplex cineplex, final Movie movie, final String date,
@@ -23,7 +23,7 @@ public class Showing implements Serializable {
         this.setCinema(cinema);
         this.setMovie(movie);
         this.setDate(date);
-        this.setType(is3D);
+        this.setType(type);
         this.setCineplex(cineplex);
         this.seatingPlan = new SeatingPlan(cinema.getRoomLayout());
     }
@@ -83,9 +83,9 @@ public class Showing implements Serializable {
         this.cinema = cinema;
     }
 
-    public void setType(final boolean is3D) {
-
-        this.is3D = is3D;
+    public void setType(final String is3D) {
+        if (is3D.equalsIgnoreCase("yes"));
+            this.is3D = true;
     }
 
     public boolean is3D() {
