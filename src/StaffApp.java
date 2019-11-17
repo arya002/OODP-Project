@@ -142,7 +142,7 @@ public class StaffApp {
                     updateShowing();
                     break;
                 case 3:
-
+                    deleteShowing();
                     break;
                 case 4:
 
@@ -151,10 +151,24 @@ public class StaffApp {
                     System.out.println("Invalid input. Enter again!");
             } while (sc_in != 4) ;
 
-            //TODO add new showing
-            //TODO update showing
+
             //TODO delete showing
         } while (sc_in != 4);
+    }
+
+    private void deleteShowing() {
+
+        System.out.println("Select a showing number to delete: ");
+        ArrayList<Showing> allShowings = ShowingControl.getAllShowings();
+
+        for(int i=0; i<allShowings.size(); ++i){
+            System.out.println( (i+1) + ". " + allShowings.get(i).movie.getName() + " is playing at " +
+                    allShowings.get(i).cineplex.getName() + " on " + allShowings.get(i).getDayOfWeek() +
+                    " at " + allShowings.get(i).getTimeSlotString(getTimeSlot()) );
+        }
+        int sc_in = MainApp.sc.nexInt();
+        allShowings.remove(sc_in-1);
+        Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH,allShowings);
     }
 
     private void updateShowing() {
