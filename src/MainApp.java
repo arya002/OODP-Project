@@ -68,6 +68,15 @@ public class MainApp {
 
 				case 25:
 
+					BookingControl bookingControl = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),ShowingControl.getAllShowings().get(0));
+
+					bookingControl.addTicket("adult",10,11);
+					bookingControl.addTicket("adult",12,11);
+					bookingControl.addTicket("adult",8,11);
+
+					BookingControl.getMoviesByTicketSales("Better Days");
+
+
 
 				default:
 					System.out.println("Invalid input, please choose from the following:");

@@ -117,8 +117,8 @@ public class Showing implements Serializable {
         return Integer.parseInt(date.substring(9));
     }
 
-    public int getYYYYMMDD() {
-        return Integer.parseInt(date.substring(0,8));
+    public String getYYYYMMDD() {
+        return date.substring(0,8);
     }
 
     public boolean isAllocated(int i, int j)
