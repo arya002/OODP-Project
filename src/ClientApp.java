@@ -57,8 +57,10 @@ public class ClientApp {
                     sc.nextLine();
                     mov = sc.next();
                     Movie searchedMovie = null;
-                    while (!mov.equals("exit")) {
+                    int counter = 0;
+                    while (!mov.equals("exit") && counter <MovieControl.getAllMovies().size()) {
                         for (Movie movie : MovieControl.getAllMovies()) {
+
                             System.out.println("Looking for " + mov);
                             System.out.println(movie.getName());
                             if (movie.getName().contains(mov)) {
@@ -68,7 +70,7 @@ public class ClientApp {
                                 //TODO print movie details (cast, synopsis etc)
                                 System.out.println();
 
-                                System.out.println("What would you like to see? \n1. Reviews \n2. Listings\n");
+                                System.out.println("What would you like to see? \n1. Reviews \n2. Listings\n3. Leave review \n4. Exit");
                                 sc_in = sc.nextInt();
                                 switch (sc_in) {
                                     case 1:
@@ -100,13 +102,36 @@ public class ClientApp {
                                         }
                                         System.out.println();
                                         break;
+                                    case 3:
+                                        int rating =0;
+                                        String blurb = "";
+                                        while(current == null){
+                                            User lis = new LoginScreen().run();
+                                            current = (Client) lis;
+                                            System.out.println(current.getFirstName());
+                                        }
+                                        System.out.println("What would you like to rate this film (1-5)");
+
+                                        rating = sc.nextInt();
+                                        System.out.println("Please write a short blurb about why you have chosen your score");
+
+                                        blurb= sc.next();
+
+                                        ReviewControl.addReview(new Review(blurb,searchedMovie.getName(),new Double(rating),current));
+                                        sc_in = 0;
+                                        break;
+                                    case 4:
+                                        break;
+                                    default:
+                                        System.out.println("error select a correct statement");
                                 }
-                                if (searchedMovie != null) {
+                                if (searchedMovie != null && sc_in!=4) {
                                     break;
                                 }
                             }
                         }
-                        if (searchedMovie == null)
+                        counter++;
+                        if (searchedMovie == null || counter >= MovieControl.getAllMovies().size())
                             System.out.println("Movie with this name has not been found");
                     }
                     sc_in = 0;
@@ -150,8 +175,7 @@ public class ClientApp {
                         if (current != null) {
                             new BookingApp(current, selectedShowing);
                         } else {
-                            LoginScreen lin = null;
-                            while (lin == null) {
+                            while (current == null) {
                                 current = (Client) new LoginScreen().run();
                             }
                             new BookingApp(current, selectedShowing);
@@ -161,11 +185,11 @@ public class ClientApp {
                     }
                     break;
 
-                    //BookingApp(current, showing);
+                //BookingApp(current, showing);
                 case 4:
-                    if(current!=null) {
-                        for(Booking booking:BookingControl.getBookings()){
-                            if(booking.getClient().getUsername().equals(current.getUsername())){
+                    if (current != null) {
+                        for (Booking booking : BookingControl.getBookings()) {
+                            if (booking.getClient().getUsername().equals(current.getUsername())) {
                                 System.out.println(booking.bookingPrint());
                             }
                         }
@@ -208,14 +232,14 @@ public class ClientApp {
     private void printMovies(ArrayList<Movie> movies) {
         for (Movie movie : movies) {
 
-        System.out.println("------------------------------------------");
-        System.out.println("Name: " + movie.getName());
-        System.out.println("\nSynopsis:\n" + movie.getSynopsis());
-        System.out.println(movie.getStatus());
-        System.out.println("Directed by: " + movie.getDirector());
-        System.out.println("Starring: " + String.join(", ", movie.getCast()));
-        //System.out.printf("Average rating: %.1f/5\n", avg_rating);
-        System.out.println("------------------------------------------");
+            System.out.println("------------------------------------------");
+            System.out.println("Name: " + movie.getName());
+            System.out.println("\nSynopsis:\n" + movie.getSynopsis());
+            System.out.println(movie.getStatus());
+            System.out.println("Directed by: " + movie.getDirector());
+            System.out.println("Starring: " + String.join(", ", movie.getCast()));
+            //System.out.printf("Average rating: %.1f/5\n", avg_rating);
+            System.out.println("------------------------------------------");
         }
     }
 
