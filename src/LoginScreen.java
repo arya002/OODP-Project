@@ -1,13 +1,16 @@
 import java.util.*;
 
+/**
+ * Prints the login screen. Logic for login contained here as well
+ */
+
 public class LoginScreen {
 
     Scanner sc = new Scanner(System.in);
 
-
-    public LoginScreen() {
-    }
-
+/**
+ * Offer user a choice to login, register or go back
+ */
     public User run() {
         int sc_in;
 		User currentUser= null;
@@ -33,7 +36,9 @@ public class LoginScreen {
         return currentUser;
 
     }
-
+/**
+ * Checks username and password to login
+ */
     public User enterUserPass() {
 
         System.out.println();
@@ -57,11 +62,13 @@ public class LoginScreen {
     }
 
 
-
+/**
+ * Registers a new user
+ */
     public void registerUser() {
         System.out.println("Enter a username:");
         String userName = sc.next();
-        //check if username already exists and throw error
+        //TODO check if username already exists and throw error
 		System.out.println("Enter a password:");
 		String password = sc.next();
 

@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import java.util.HashMap;
-
+/**
+ * Individual ticket as an object
+ */
 public class Ticket implements Serializable {
     private Client client;
     private Showing showing;
@@ -12,7 +14,14 @@ public class Ticket implements Serializable {
     private  String type;
     private double price;
 
-
+/**
+Create a new ticket
+ * @param client takes in a client object
+ @param seat takes a seat object, to identify which particular seat is to be booked
+ @showing takes a showing object to indicate which timeslot, cinema and movie has been selected
+ @price is the price of the ticket
+ @age is the age of the client
+ */
     public Ticket(Client client, Seat seat, Showing showing, double price, String age)
     {
         this.client = client;
@@ -21,80 +30,8 @@ public class Ticket implements Serializable {
         this.price = price;
         this.type = age;
 
-        //this.calculatePrice();
     }
-/*
-    private void calculatePrice() {
 
-
-        switch (this.showing.getDayOfWeek()) {
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-                for (String day : BookingControl.holidays) {
-                    if (this.showing.getYYYYMMDD() == day) {
-                        this.price += 2;
-                        break;
-                    } else {
-                        this.price += 0;
-                        break;
-                    }
-                }
-            case 5:
-            case 6:
-            case 7:
-                for (Integer day : this.holidays) {
-                    if (showing.getDay() == day) {
-                        this.price += 3;
-                        break;
-                    } else {
-                        this.price += 2;
-                        break;
-                    }
-                }
-        }
-
-        switch (this.showing.getType()) {
-            case "3D":
-                this.price += 1;
-                break;
-            case "Blockbuster":
-                this.price += 2;
-                break;
-            case "Normal":
-                this.price += 0;
-                break;
-            default:
-                break;
-        }
-
-        switch (this.seat.getType()) {
-            case "Premium":
-                this.price += 3;
-                break;
-            case "Love":
-                this.price += 2;
-                break;
-            case "Normal":
-                this.price += 1;
-                break;
-            default:
-                break;
-        }
-
-        switch (this.showing.getCinema().getType()) {
-            case "Platinum Movie Suites":
-                this.price += 4;
-                break;
-            case "Normal":
-                this.price += 1;
-                break;
-            default:
-                break;
-        }
-    }
-*/
     //<editor-fold desc="Getters">
     public String getName()
     {

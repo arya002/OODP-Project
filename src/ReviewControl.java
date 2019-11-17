@@ -1,7 +1,7 @@
 import java.util.*;
 
 /**
- * Deals with arrays of reviews
+ * Deals with arrays of reviews and various methods to process them
  *
  *
  */
@@ -10,21 +10,27 @@ public class ReviewControl {
 
     public static ArrayList<Review> allReviews = new ArrayList<>();
 
-    public ReviewControl() {
-
-    }
-
+    
+/**
+ * Get all the reviews from the file
+ */
     public static ArrayList<Review> getAllReviews() {
 
         return (ArrayList<Review>) Data.getInstance().getObjectFromPath(SaveLoadPath.SHOWING_PATH,Showing.class);
 
     }
+    /**
+ * Ran at the start of program to load reviews from file.
+ */
     public static void Reinitialize(){
         if ((allReviews = (ArrayList<Review>) Data.getInstance().getObjectFromPath(SaveLoadPath.SHOWING_PATH,Showing.class)) == null){
             allReviews = new ArrayList<>();
         }
     }
 
+    /**
+ * @returns an array of movies that have reviews
+ */
     public static ArrayList<String> getAllReviewsNames() {
 
         ArrayList<String> arrayList = new ArrayList<>();
@@ -39,6 +45,9 @@ public class ReviewControl {
 
     }
     
+    /**
+ * Get all reviews for a movie
+ */
     public static ArrayList<Review> getMovieReviews(String movieName){ //get all reviews for a movie
         ArrayList<Review> listReviews = new ArrayList();
         for (int i=0; i<allReviews.size();i++)  {
@@ -63,7 +72,10 @@ public class ReviewControl {
 
     }
 
-
+/**
+ * Add a review (already created) to the list of all other reviews
+ @param takes a review object
+ */
     public static void addReview(Review review) {
 
         allReviews.add(review);
