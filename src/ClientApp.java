@@ -16,7 +16,7 @@ public class ClientApp {
 
         do {
             if (current != null)
-                System.out.println("Welcome " + current.getName());
+                System.out.println("Welcome " + current.getFirstName());
             else
                 System.out.println("Welcome guest!");
                 

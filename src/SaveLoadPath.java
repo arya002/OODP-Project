@@ -7,5 +7,6 @@ public interface SaveLoadPath {
     public static String MOVIE_PATH = "Data/movie.txt";
     public static String SHOWING_PATH = "Data/showings.txt";
     public static String BOOKING_PATH = "Data/bookings.txt";
+    public static String HOLIDAY_PATH = "Data/holidays.txt";
 
 }

@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class BookingControl {
 
@@ -11,6 +13,9 @@ public class BookingControl {
     private Client client;
     private Showing showing;
     private ArrayList<Ticket> tickets;
+    public static ArrayList<String> holidays;
+
+
 
 
    public BookingControl(Client client, Showing showing)
@@ -19,6 +24,12 @@ public class BookingControl {
         this.client = client;
         this.showing = showing;
    } 
+
+   public static void Initialize(){
+       if ((holidays = (ArrayList<String>) Data.getInstance().getObjectFromPath(SaveLoadPath.HOLIDAY_PATH, String.class)) != null)
+            holidays = new ArrayList<>();
+
+   }
 
    public void addTicket(String age, int row, int column)
    {
@@ -51,11 +62,20 @@ public class BookingControl {
        return bookings;
    }
 
-   public ArrayList<Movie> getMoviesByTicketSales(){
+   public ArrayList<Movie> getMoviesByTicketSales(String movieName){
+
+       HashSet<String> ticketSalesName= new HashSet<>(MovieControl.getAllMoviesNames());
+       Integer[] ticketSales = (Integer[]) ticketSalesName.toArray();
 
        for(Ticket ticket:tickets){
 
-           ticket.
+           for(int i=0;i < ticketSalesName.size();i++){
+
+               if(ticket.getShowingMovieName().equals(ticketSalesName.toArray()[i])){
+                   ticketSales[i]++;
+               }
+
+           }
 
        }
 

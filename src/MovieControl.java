@@ -32,8 +32,6 @@ public class MovieControl {
 
     }
 
-
-
     public static ArrayList<Movie> getAllMoviesByRating() {
 
         int i = 0;
