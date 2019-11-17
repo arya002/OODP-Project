@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ShowingControl  {
@@ -21,22 +22,16 @@ public class ShowingControl  {
         ArrayList al = getAllShowings();
         al.add(showing);
         Data.saveObjectToPath(SaveLoadPath.SHOWING_PATH,al);
+
         CineplexControl.addShowingToCinema(showing);
 
     }
 
     public static void addShowing(ArrayList<Showing> showing){
 
-//        CineplexControl.addShowingToCinema(showings);
-//        ArrayList al = getAllShowings();
-//        al.addAll(showing);
-//        Data.saveObjectToPath(SaveLoadPath.SHOWING_PATH,al);
-        Data.saveObjectToPath(SaveLoadPath.SHOWING_PATH,showing);
-        for(Showing showings:showing) {
-            CineplexControl.addShowingToCinema(showings);
-        }
 
-        //Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH,allShowings);
+        Data.saveObjectToPath(SaveLoadPath.SHOWING_PATH,showing);
+        CineplexControl.addShowingToCinema(showing);
 
     }
 

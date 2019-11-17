@@ -167,7 +167,6 @@ public class MainApp {
 			for (cineplex =0;cineplex < 2;cineplex++){
 				for (cinema = 0; cinema < 3;cinema++){
 					for (tmslot =0; tmslot <5;tmslot++){
-
 						newShowings.add(new Showing(
 								cpes.get(cineplex).getCinemas().get(cinema),
 								cpes.get(cineplex),
@@ -181,13 +180,14 @@ public class MainApp {
 			dotw=dotw%6;
 			dotw++;
 		}
-		ShowingControl.addShowing(newShowings);
 		Data.saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,cpes);
+		ShowingControl.addShowing(newShowings);
 		Data.saveObjectToPath(SaveLoadPath.USER_PATH,user);
 		Data.saveObjectToPath(SaveLoadPath.PRICE_PATH, prices);
 		Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH,movieListings);
 		ShowingControl.Reinitialize();
 		MovieControl.Reinitialize();
+
 
 		System.out.println("There are " + ShowingControl.getAllShowings().size() + " Showings");
         System.out.println("There are " + MovieControl.getAllMovies().size() + " Movies");

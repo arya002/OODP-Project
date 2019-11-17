@@ -15,7 +15,7 @@ public class LoginScreen {
         int sc_in;
 		User currentUser= null;
         do {
-            System.out.println("1. Login \n2. Register new user \n3. Back");
+            System.out.println("1. Login \n2. Register new user");
             sc_in = sc.nextInt();
             switch (sc_in) {
                 case 1:
@@ -24,14 +24,12 @@ public class LoginScreen {
                 case 2:
                 	registerUser();
                     break;
-                case 3:
-                    break;
                 default:
                     System.out.println("Please choose from the following:");
                     break;
             }
 
-        } while (sc_in != 3 && currentUser == null);
+        } while (currentUser == null);
 
         return currentUser;
 
@@ -46,8 +44,7 @@ public class LoginScreen {
         String user = sc.next();
 		System.out.print("Enter password : ");
 		String pass = sc.next();
-
-		ArrayList<User> allUsers = (ArrayList<User>) Data.getInstance().getObjectFromPath(SaveLoadPath.USER_PATH,User.class);
+	ArrayList<User> allUsers = (ArrayList<User>) Data.getInstance().getObjectFromPath(SaveLoadPath.USER_PATH,User.class);
 
         for(User userEntry:allUsers)
         {
@@ -63,12 +60,24 @@ public class LoginScreen {
 
 
 /**
- * Registers a new user
+ * Registers a new user. Will check if username has been taken
  */
     public void registerUser() {
-        System.out.println("Enter a username:");
-        String userName = sc.next();
-        //TODO check if username already exists and throw error
+	    ArrayList<User> allUsers = (ArrayList<User>) Data.getInstance().getObjectFromPath(SaveLoadPath.USER_PATH,User.class);
+	    boolean taken = true;
+	    
+	    while(taken){
+		taken = false;
+        	System.out.println("Enter a username:");
+        	String userName = sc.next();
+		for(User userEntry:allUsers)
+        		{
+			if(userEntry.getUsername().equals(userName)){
+				System.out.println("Username taken. Please try again");
+				taken = true;
+				break;}
+		}
+	      }
 		System.out.println("Enter a password:");
 		String password = sc.next();
 

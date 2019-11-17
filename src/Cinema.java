@@ -58,6 +58,7 @@ public class Cinema implements Serializable {
 
     }
 
+
     public Cinema (Boolean type,String cinemaID){
 
         showings = new ArrayList<>();
