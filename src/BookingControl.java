@@ -24,6 +24,7 @@ public class BookingControl {
        Seat seat = showing.getSeatingPlan().getSeat(row, column);
        int price = calculatePrice(age);
         tickets.add(new Ticket(client, seat, showing, price));
+        seat.assignSeat(client.getUsername());
    }
 
    private int calculatePrice(String age)
