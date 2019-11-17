@@ -142,7 +142,7 @@ public class StaffApp {
                     updateShowing();
                     break;
                 case 3:
-
+                    deleteShowing();
                     break;
                 case 4:
 
@@ -151,10 +151,25 @@ public class StaffApp {
                     System.out.println("Invalid input. Enter again!");
             } while (sc_in != 4) ;
 
-            //TODO add new showing
-            //TODO update showing
+
             //TODO delete showing
         } while (sc_in != 4);
+    }
+
+    private void deleteShowing() {
+
+        System.out.println("Select a showing number to delete: ");
+        ArrayList<Showing> allShowings = ShowingControl.getAllShowings();
+
+        for(int i=0; i<allShowings.size(); ++i){
+            System.out.println( (i+1) + ". " + allShowings.get(i).getMovie().getName() + " is playing at " +
+                    allShowings.get(i).getCineplex().getName() + " on " + allShowings.get(i).getDayOfWeek() +
+                    " at " + allShowings.get(i).getTimeSlotString(allShowings.get(i).getTimeSlot()));
+        }
+        Scanner sc = new Scanner(System.in);
+        int sc_in = sc.nextInt();
+        allShowings.remove(sc_in-1);
+        Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH,allShowings);
     }
 
     private void updateShowing() {
@@ -163,15 +178,11 @@ public class StaffApp {
         ArrayList<Showing> allShowings = ShowingControl.getAllShowings();
 
         for(int i=0; i<allShowings.size(); ++i){
-            System.out.println( (i+1) + ". " + allShowings.get(i).movie.getName() + " is playing at " +
-                    allShowings.get(i).cineplex.getName() + " on " + allShowings.get(i).getDayOfWeek() +
-                    " at " + allShowings.get(i).getTimeSlotString(getTimeSlot()) );
+            System.out.println(allShowings.get(i).printShowing());
         }
 
         int sc_in = MainApp.sc.nextInt();
-        System.out.println( (sc_in) + ". " + allShowings.get(sc_in-1).movie.getName() + " is playing at " +
-                allShowings.get(sc_in-1).cineplex.getName() + " on " + allShowings.get(sc_in-1).getDayOfWeek() +
-                " at " + allShowings.get(sc_in-1).getTimeSlotString(getTimeSlot()) );
+        System.out.println(allShowings.get(sc_in).printShowing());
         System.out.println("Which part do you want to edit: ");
         System.out.println("1. Movie + " +
                             "\n2. Date");

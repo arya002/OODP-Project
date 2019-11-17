@@ -69,6 +69,21 @@ public class MainApp {
 					}
 					break;
 
+<<<<<<< HEAD
+=======
+				case 25:
+
+					BookingControl bookingControl = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),ShowingControl.getAllShowings().get(0));
+
+					bookingControl.addTicket("adult",10,11);
+					bookingControl.addTicket("adult",12,11);
+					bookingControl.addTicket("adult",8,11);
+
+					BookingControl.getMoviesByTicketSales("Better Days");
+
+
+
+>>>>>>> f6de28ec0624f40c4e305b256b1a8a614c5a29e1
 				default:
 					System.out.println("Please choose from the following:");
 					break;
@@ -91,7 +106,6 @@ public class MainApp {
 
 		String[] castArray = new String[2];
 		ArrayList<Cineplex> cpes = CineplexControl.getCineplexes();
-		ArrayList<Movie> movies = MovieControl.getAllMovies();
 		castArray[0] = "Zhou Dongyu";
 		castArray[1] = "Jackson Yee";
 		MovieControl.addMovieListing(new Movie(
@@ -143,7 +157,7 @@ public class MainApp {
 		int day =20;
 		int dotw =1;
 		int tmslot =1;
-
+		ArrayList<Movie> movies = (ArrayList<Movie>) Data.getInstance().getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class);
 		for (day = 20; day < 25; day++){
 			for (cineplex =0;cineplex < 2;cineplex++){
 				for (cinema = 0; cinema < 3;cinema++){

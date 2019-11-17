@@ -8,7 +8,7 @@ public class Movie implements Serializable {
     private String director;
     private String[] cast;
     private boolean isBlockbuster;
-    private double avg_rating;
+    //private double avg_rating;
     //private ArrayList<Review> movieReviews;
     public enum Status{
         notShowing,comingSoon,Showing
@@ -29,26 +29,6 @@ public class Movie implements Serializable {
         return isBlockbuster;
     }
 
-    //<editor-fold desc="Printers">
-    public void print() {
-        System.out.println(status);
-        System.out.println("Name: " + name);
-        System.out.println("Directed by: " + director);
-        System.out.println("Starring: " + String.join(", ", cast));
-        System.out.printf("Average rating: %.1f/5\n", avg_rating);
-        System.out.println("\nSynopsis:\n" + synopsis);
-        System.out.println();
-//        this.printReviews();
-    }
-
-    public void printLess() {
-        System.out.println(status);
-        System.out.println("Name: " + name);
-        System.out.println("Directed by: " + director);
-        System.out.println("Starring: " + String.join(", ", cast));
-        System.out.printf("Average rating: %.1f/5\n", avg_rating);
-        System.out.println("\nSynopsis:\n" + synopsis);
-    }
 
     //</editor-fold>
 

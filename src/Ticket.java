@@ -12,11 +12,6 @@ public class Ticket implements Serializable {
     private  String type;
     private double price;
 
-    //private static ArrayList<Integer> holidays;
-    //{
-    //    holidays.add(359);
-    //}
-
 
     public Ticket(Client client, Seat seat, Showing showing, double price, String age)
     {
@@ -37,8 +32,8 @@ public class Ticket implements Serializable {
             case 2:
             case 3:
             case 4:
-                for (Integer day : this.holidays) {
-                    if (showing.getDay() == day) {
+                for (String day : BookingControl.holidays) {
+                    if (this.showing.getYYYYMMDD() == day) {
                         this.price += 2;
                         break;
                     } else {

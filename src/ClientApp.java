@@ -194,8 +194,15 @@ public class ClientApp {
     {
         for (Movie movie : movies)
         {
-            System.out.println(movie.getName());
 
+        System.out.println("------------------------------------------");
+        System.out.println("Name: " + movie.getName());
+        System.out.println("\nSynopsis:\n" + movie.getSynopsis());
+        System.out.println(movie.getStatus());
+        System.out.println("Directed by: " + movie.getDirector());
+        System.out.println("Starring: " + String.join(", ", movie.getCast()));
+        //System.out.printf("Average rating: %.1f/5\n", avg_rating);
+        System.out.println("------------------------------------------");
         }
     }
 

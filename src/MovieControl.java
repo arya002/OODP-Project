@@ -20,10 +20,7 @@ public class MovieControl {
 
     }
 
-    public MovieControl(){
 
-
-    }
 
     public static void addMovieListing(Movie movie){
 
@@ -31,8 +28,6 @@ public class MovieControl {
         Data.getInstance().saveObjectToPath(SaveLoadPath.MOVIE_PATH,allMovies);
 
     }
-
-
 
     public static ArrayList<Movie> getAllMoviesByRating() {
 
