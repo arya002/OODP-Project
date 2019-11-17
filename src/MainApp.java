@@ -168,7 +168,7 @@ public class MainApp {
 			dotw=dotw%6;
 			dotw++;
 		}
-		Data.saveObjectToPath(SaveLoadPath.SHOWING_PATH,newShowings);
+		ShowingControl.addShowing(newShowings);
 		Data.saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,cpes);
 		Data.saveObjectToPath(SaveLoadPath.USER_PATH,user);
 		Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH,movieListings);

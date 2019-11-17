@@ -26,14 +26,14 @@ public class CineplexControl {
         return arrayList;
     }
 
-    public static String getCineplexName(String name) {
-        Reinitialize();
-        for (int i = 0; i < cineplexs.size(); i++) {
-            if (cineplexs.get(i).getName().equals(name)) ;
-            return cineplexs.get(i).getName();
-        }
-        return null;
-    }
+//    public static String getCineplexName(String name) {
+//        Reinitialize();
+//        for (int i = 0; i < cineplexs.size(); i++) {
+//            if (cineplexs.get(i).getName().equals(name)) ;
+//            return cineplexs.get(i).getName();
+//        }
+//        return null;
+//    }
 
     public static Cineplex getCineplex(String name) {
         Reinitialize();
