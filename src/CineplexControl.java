@@ -2,10 +2,10 @@ import java.util.ArrayList;
 
 public class CineplexControl {
 
-    private static ArrayList<Cineplex> cineplexs=null;
+    private static ArrayList<Cineplex> cineplexs = null;
 
     public static void Reinitialize() {
-        if ((cineplexs = (ArrayList<Cineplex>) Data.getInstance().getObjectFromPath(SaveLoadPath.CINEPLEX_PATH, Cineplex.class)) == null){
+        if ((cineplexs = (ArrayList<Cineplex>) Data.getInstance().getObjectFromPath(SaveLoadPath.CINEPLEX_PATH, Cineplex.class)) == null) {
             cineplexs = new ArrayList<>();
         }
     }
@@ -18,7 +18,7 @@ public class CineplexControl {
         Reinitialize();
         ArrayList<String> arrayList = new ArrayList<>();
 
-        for (int i =0; i < cineplexs.size();i++){
+        for (int i = 0; i < cineplexs.size(); i++) {
 
             arrayList.add(cineplexs.get(i).getName());
 
@@ -46,23 +46,8 @@ public class CineplexControl {
 
 
     public static ArrayList<Cineplex> getCineplexes() {
-        return (ArrayList<Cineplex>) Data.getObjectFromPath(SaveLoadPath.CINEPLEX_PATH,Cineplex.class);
-    }
 
-
-    public static void addCineplex(Cineplex cineplex) {
-
-        ArrayList<Cineplex> cineplexes = getCineplexes();
-        cineplexes.add(cineplex);
-        Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH, cineplexs);
-
-    }
-
-    public static void addCineplex(ArrayList<Cineplex> cineplex) {
-
-        ArrayList<Cineplex> cineplexes = getCineplexes();
-        cineplexes.addAll(cineplex);
-        Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH, cineplexs);
+        return (ArrayList<Cineplex>) Data.getObjectFromPath(SaveLoadPath.CINEPLEX_PATH, Cineplex.class);
 
     }
 
@@ -80,25 +65,46 @@ public class CineplexControl {
 
     }
 
-    public static Cinema addShowingToCinema(Showing showing) {
+    public static Cinema addShowingToCinema(ArrayList<Showing> showing) {
+
+        Reinitialize();
+        ArrayList<Cineplex> testdata = getCineplexes();
+        for (Showing this_showing : showing) {
+            int whichDay = this_showing.getDayOfWeek();
+            int whichTimeSlot = this_showing.getTimeSlot();
+            String whichCinema = this_showing.getCinema().getCinemaID();
+            for (Cineplex thisCineplex : testdata)
+                for (Cinema cinema : thisCineplex.getCinemas())
+                    if (cinema.getCinemaID().equals(whichCinema))
+                        if (allocateTimeSlot(this_showing.getCinema(), whichDay, whichTimeSlot)) {
+                            cinema.addShowing(this_showing);
+                        } else {
+                            System.out.println("error already allocated");
+                        }
+
+
+        }
+        Data.saveObjectToPath(SaveLoadPath.CINEPLEX_PATH, testdata);
+        return null;
+
+    }
+
+    public static void addShowingToCinema(Showing showing) {
 
         Reinitialize();
         int whichDay = showing.getDayOfWeek();
         int whichTimeSlot = showing.getTimeSlot();
-        Cinema whichCinema = showing.getCinema();
+        String whichCinema = showing.getCinema().getCinemaID();
         for (Cineplex thisCineplex : cineplexs)
-            for(Cinema cinema : thisCineplex.getCinemas())
-                if(cinema.equals(whichCinema))
+            for (Cinema cinema : thisCineplex.getCinemas())
+                if (cinema.getCinemaID().equals(whichCinema))
                     if (allocateTimeSlot(showing.getCinema(), whichDay, whichTimeSlot)) {
                         cinema.addShowing(showing);
-                        return cinema;
-                }else{
-                    System.out.println("error already allocated");
-                }
+                        Data.saveObjectToPath(SaveLoadPath.CINEPLEX_PATH, cineplexs);
+                        return;
+                    }
 
 
-
-        return null;
 
     }
 

@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class ClientApp {
     private Client current;
 
-    public ClientApp (Client current) {
+    public ClientApp(Client current) {
         this.current = current;
         run();
     }
@@ -21,15 +21,14 @@ public class ClientApp {
             else
                 System.out.println("Welcome guest!");
 
-            while (sc_in < 1 || sc_in > 5)
-            {
+            while (sc_in < 1 || sc_in > 5) {
                 System.out.println("Please select your next action from the following:");
                 System.out.println
-                    ("1. Display movies " +
-                            "\n2. Search for a movie" +
-                            "\n3. Display all cineplexes" +
-                            "\n4. View booking history" +                            
-                            "\n5. Exit\n");
+                        ("1. Display movies " +
+                                "\n2. Search for a movie" +
+                                "\n3. Display all cineplexes" +
+                                "\n4. View booking history" +
+                                "\n5. Exit\n");
 
                 sc_in = sc.nextInt();
                 System.out.println();
@@ -112,42 +111,46 @@ public class ClientApp {
                     }
 
                 case 3:
-                    int temp=1;
-                    int count=0;
+                    int temp = 1;
+                    int count = 0;
                     for (Cineplex cineplex : CineplexControl.getCineplexes()) {
-                        System.out.println(temp +". " + cineplex.getName());
+                        System.out.println(temp + ". " + cineplex.getName());
                         temp++;
                     }
                     sc_in = sc.nextInt();
                     sc_in--;
                     System.out.println("you chose " + CineplexControl.getCineplexes().get(sc_in).getName());
-                    temp=0;
-                    Showing selectedShowing =null;
-                    if(sc_in >= 0 && sc_in <3) {
+                    temp = 0;
+                    Showing selectedShowing = null;
+                    if (sc_in >= 0 && sc_in < 3) {
+
                         for (Cinema cinema : CineplexControl.getCineplexes().get(sc_in).getCinemas()) {
+
                             for (Showing showing : cinema.getShowings()) {
-                                System.out.println(temp + ". " +showing.printShowing());
+                                System.out.println(temp + ". " + showing.printShowing());
                                 temp++;
                             }
+
                         }
+
                     }
 
                     for (Cinema cinema : CineplexControl.getCineplexes().get(sc_in).getCinemas()) {
                         for (Showing showing : cinema.getShowings()) {
                             count++;
-                            if(count == temp)
+                            if (count == temp)
                                 selectedShowing = showing;
 
                         }
                     }
 
                     sc_in = sc.nextInt();
-                    if (sc_in > 0 && sc_in < temp&& selectedShowing !=null) {
-                        if(current!=null) {
+                    if (sc_in > 0 && sc_in < temp && selectedShowing != null) {
+                        if (current != null) {
                             new BookingApp(current, selectedShowing);
-                        }else{
-                            LoginScreen lin=null;
-                            while(lin == null) {
+                        } else {
+                            LoginScreen lin = null;
+                            while (lin == null) {
                                 current = (Client) new LoginScreen().run();
                             }
                             new BookingApp(current, selectedShowing);
@@ -158,9 +161,9 @@ public class ClientApp {
 
                     //BookingApp(current, showing);
                 case 4:
-                    if(current!=null) {
-                        for(Booking bookings:BookingControl.getBookings()){
-                            if(bookings.getClient().equals(current)){
+                    if (current != null) {
+                        for (Booking bookings : BookingControl.getBookings()) {
+                            if (bookings.getClient().equals(current)) {
                                 System.out.println(bookings.bookingPrint());
                             }
                         }
@@ -199,19 +202,17 @@ public class ClientApp {
     }
     */
 
-    private void printMovies(ArrayList<Movie> movies)
-    {
-        for (Movie movie : movies)
-        {
+    private void printMovies(ArrayList<Movie> movies) {
+        for (Movie movie : movies) {
 
-        System.out.println("------------------------------------------");
-        System.out.println("Name: " + movie.getName());
-        System.out.println("\nSynopsis:\n" + movie.getSynopsis());
-        System.out.println(movie.getStatus());
-        System.out.println("Directed by: " + movie.getDirector());
-        System.out.println("Starring: " + String.join(", ", movie.getCast()));
-        //System.out.printf("Average rating: %.1f/5\n", avg_rating);
-        System.out.println("------------------------------------------");
+            System.out.println("------------------------------------------");
+            System.out.println("Name: " + movie.getName());
+            System.out.println("\nSynopsis:\n" + movie.getSynopsis());
+            System.out.println(movie.getStatus());
+            System.out.println("Directed by: " + movie.getDirector());
+            System.out.println("Starring: " + String.join(", ", movie.getCast()));
+            //System.out.printf("Average rating: %.1f/5\n", avg_rating);
+            System.out.println("------------------------------------------");
         }
     }
 
