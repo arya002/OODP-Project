@@ -1,10 +1,13 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class MainApp {
 
 	static Scanner sc = new Scanner(System.in);
-
+/**
+ * main function, initialises control classes
+ */
 	public static void main(String[] args) throws InterruptedException {
 
 		ShowingControl.Reinitialize();
@@ -17,6 +20,9 @@ public class MainApp {
 	}
 
 	private static void menu() throws InterruptedException {
+		/**
+ * Prints menu to login or continue as guest
+ */
 
 		int sc_in;
 
