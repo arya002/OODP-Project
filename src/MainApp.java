@@ -101,7 +101,6 @@ public class MainApp {
 
 		String[] castArray = new String[2];
 		ArrayList<Cineplex> cpes = CineplexControl.getCineplexes();
-		ArrayList<Movie> movies = MovieControl.getAllMovies();
 		castArray[0] = "Zhou Dongyu";
 		castArray[1] = "Jackson Yee";
 		MovieControl.addMovieListing(new Movie(
@@ -153,7 +152,7 @@ public class MainApp {
 		int day =20;
 		int dotw =1;
 		int tmslot =1;
-
+		ArrayList<Movie> movies = (ArrayList<Movie>) Data.getInstance().getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class);
 		for (day = 20; day < 25; day++){
 			for (cineplex =0;cineplex < 2;cineplex++){
 				for (cinema = 0; cinema < 3;cinema++){

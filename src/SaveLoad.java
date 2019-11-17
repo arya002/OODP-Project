@@ -36,7 +36,6 @@ public class SaveLoad<K> {
     }
 
     public void saveObject(ArrayList<K> o, String file) {
-
         try {
             FileOutputStream f = new FileOutputStream(file,false);
             ObjectOutputStream out = new ObjectOutputStream(f);

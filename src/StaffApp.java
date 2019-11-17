@@ -162,11 +162,12 @@ public class StaffApp {
         ArrayList<Showing> allShowings = ShowingControl.getAllShowings();
 
         for(int i=0; i<allShowings.size(); ++i){
-            System.out.println( (i+1) + ". " + allShowings.get(i).movie.getName() + " is playing at " +
-                    allShowings.get(i).cineplex.getName() + " on " + allShowings.get(i).getDayOfWeek() +
-                    " at " + allShowings.get(i).getTimeSlotString(getTimeSlot()) );
+            System.out.println( (i+1) + ". " + allShowings.get(i).getMovie().getName() + " is playing at " +
+                    allShowings.get(i).getCineplex().getName() + " on " + allShowings.get(i).getDayOfWeek() +
+                    " at " + allShowings.get(i).getTimeSlotString(allShowings.get(i).getTimeSlot()));
         }
-        int sc_in = MainApp.sc.nexInt();
+        Scanner sc = new Scanner(System.in);
+        int sc_in = sc.nextInt();
         allShowings.remove(sc_in-1);
         Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH,allShowings);
     }
@@ -177,15 +178,11 @@ public class StaffApp {
         ArrayList<Showing> allShowings = ShowingControl.getAllShowings();
 
         for(int i=0; i<allShowings.size(); ++i){
-            System.out.println( (i+1) + ". " + allShowings.get(i).movie.getName() + " is playing at " +
-                    allShowings.get(i).cineplex.getName() + " on " + allShowings.get(i).getDayOfWeek() +
-                    " at " + allShowings.get(i).getTimeSlotString(getTimeSlot()) );
+            System.out.println(allShowings.get(i).printShowing());
         }
 
         int sc_in = MainApp.sc.nextInt();
-        System.out.println( (sc_in) + ". " + allShowings.get(sc_in-1).movie.getName() + " is playing at " +
-                allShowings.get(sc_in-1).cineplex.getName() + " on " + allShowings.get(sc_in-1).getDayOfWeek() +
-                " at " + allShowings.get(sc_in-1).getTimeSlotString(getTimeSlot()) );
+        System.out.println(allShowings.get(sc_in).printShowing());
         System.out.println("Which part do you want to edit: ");
         System.out.println("1. Movie + " +
                             "\n2. Date");
