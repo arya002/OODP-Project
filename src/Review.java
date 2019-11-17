@@ -2,17 +2,21 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+/**
+ * The review data object. Each object is an individual review
+ */
+
 public class Review implements Serializable {
     private String review;
     private double rating;
     private String date;
     private Client reviewer;
-
-
-
     private String movieName;
 
     public Review(String review, String movieName,double rating, Client reviewer) throws IllegalArgumentException {
+        /**
+ * The age of this student.
+ */
         this.setReview(review);
         this.setRating(rating);
         this.movieName =movieName;
@@ -27,7 +31,7 @@ public class Review implements Serializable {
         System.out.println("Review by: " + this.reviewer.getUsername());
         System.out.println("Movie: " + this.movieName);
         System.out.println("Date: " + this.date);
-        //System.out.printf("❀".repeat((int) rating) + ", %.1f/5\n\n", rating);
+        //System.out.printf("*".repeat((int) rating) + ", %.1f/5\n\n", rating);
         System.out.println("Review:\n" + review);
     }
 

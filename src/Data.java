@@ -1,5 +1,8 @@
 import java.io.*;
 import java.util.ArrayList;
+/**
+Our IO interface to deal with saving and loading data files
+*/
 
 public class Data implements Serializable {
 
@@ -9,7 +12,9 @@ public class Data implements Serializable {
     private Data () {
 
     }
-
+/**
+Create new data object 
+*/
     static public Data getInstance() {
         if (instance == null) {
                 //instance = (Data) loadObject(path);
@@ -19,8 +24,12 @@ public class Data implements Serializable {
         }
         return instance;
     }
-
-    public void saveObjectToPath(String path,ArrayList<?> arrayToSave) {
+/**
+Saves data
+@param gives the location to save the data
+@param arrayToSave is the arraylist of entity objects to be saved (e.g. Reviews etc)
+*/
+    public static void saveObjectToPath(String path,ArrayList<?> arrayToSave) {
         if (arrayToSave.size() !=0) {
             System.out.println("saving" + arrayToSave.get(0).getClass() + " type of class");
             SaveLoad saveLoad = new SaveLoad(arrayToSave.get(0).getClass());
@@ -29,8 +38,10 @@ public class Data implements Serializable {
             System.out.println("Array empty :(");
         }
     }
-
-    public ArrayList<?> getObjectFromPath(String path,Class o){
+/**
+Returns an arraylist of objects loaded
+*/
+    public static ArrayList<?> getObjectFromPath(String path,Class o){
         SaveLoad pair= new SaveLoad<>(o);
         ArrayList objectsFromPath = pair.loadObject(path);
         return objectsFromPath;

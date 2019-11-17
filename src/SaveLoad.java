@@ -36,7 +36,7 @@ public class SaveLoad<K> implements Serializable{
 
     public void saveObject(ArrayList<K> o, String file) {
         try {
-            FileOutputStream f = new FileOutputStream(file);
+            FileOutputStream f = new FileOutputStream(file,false);
             ObjectOutputStream out = new ObjectOutputStream(f);
             out.writeObject(o);
             out.close();

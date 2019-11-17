@@ -8,12 +8,9 @@ public class ShowingControl  {
 
     }
 
-    public static void Initialize(){
-        if (((ArrayList<Showing>) Data.getInstance().getObjectFromPath(SaveLoadPath.SHOWING_PATH,Showing.class)) == null){
+    public static void Reinitialize(){
+        if ((allShowings = (ArrayList<Showing>) Data.getInstance().getObjectFromPath(SaveLoadPath.SHOWING_PATH,Showing.class)) == null){
             allShowings = new ArrayList<>();
-        }else{
-            allShowings = (ArrayList<Showing>) Data.getInstance().getObjectFromPath(SaveLoadPath.SHOWING_PATH,Showing.class).clone();
-
         }
     }
 
@@ -21,18 +18,23 @@ public class ShowingControl  {
 
     public static void addShowing(Showing showing){
 
-        allShowings.add(showing);
-        //CineplexControl.addShowingToCinema(showing);
-        //Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH,allShowings);
+        ArrayList al = getAllShowings();
+        al.add(showing);
+        Data.saveObjectToPath(SaveLoadPath.SHOWING_PATH,al);
+        CineplexControl.addShowingToCinema(showing);
 
     }
 
     public static void addShowing(ArrayList<Showing> showing){
 
-        allShowings.addAll(showing);
-//        for(Showing showings:allShowings) {
-//            CineplexControl.addShowingToCinema(showings);
-//        }
+//        CineplexControl.addShowingToCinema(showings);
+//        ArrayList al = getAllShowings();
+//        al.addAll(showing);
+//        Data.saveObjectToPath(SaveLoadPath.SHOWING_PATH,al);
+        Data.saveObjectToPath(SaveLoadPath.SHOWING_PATH,showing);
+        for(Showing showings:showing) {
+            CineplexControl.addShowingToCinema(showings);
+        }
 
         //Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH,allShowings);
 

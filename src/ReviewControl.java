@@ -16,8 +16,13 @@ public class ReviewControl {
 
     public static ArrayList<Review> getAllReviews() {
 
-        return allReviews;
+        return (ArrayList<Review>) Data.getInstance().getObjectFromPath(SaveLoadPath.SHOWING_PATH,Showing.class);
 
+    }
+    public static void Reinitialize(){
+        if ((allReviews = (ArrayList<Review>) Data.getInstance().getObjectFromPath(SaveLoadPath.SHOWING_PATH,Showing.class)) == null){
+            allReviews = new ArrayList<>();
+        }
     }
 
     public static ArrayList<String> getAllReviewsNames() {

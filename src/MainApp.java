@@ -1,22 +1,28 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class MainApp {
 
 	static Scanner sc = new Scanner(System.in);
+/**
+ * main function, initialises control classes
+ */
+	public static void main(String[] args) throws InterruptedException {
 
-	public static void main(String[] args) {
-
-		ShowingControl.Initialize();
-		CineplexControl.Initialize();
-		MovieControl.Initialize();
+		ShowingControl.Reinitialize();
+		CineplexControl.Reinitialize();
+		MovieControl.Reinitialize();
 
 		System.out.println("Welcome to MOBLIMA, the best way book your movie tickets.");
 		System.out.println("What would you like to do?");
 		menu();
 	}
 
-	private static void menu() {
+	private static void menu() throws InterruptedException {
+		/**
+ * Prints menu to login or continue as guest
+ */
 
 		int sc_in;
 
@@ -59,11 +65,9 @@ public class MainApp {
 					break;
 
 				case 22:
-					try {
-						instantiateTestData();
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
+
+					instantiateTestData();
+
 					break;
 
 				case 25:
@@ -93,13 +97,13 @@ public class MainApp {
 		Client client = new Client("hello","korea","012021314","a@gmail.com","Beck Gillespe");
 		user.add(client);
 
-		CineplexControl.addCineplex(new Cineplex("Jurong"));
-        CineplexControl.addCineplex(new Cineplex("Orchard"));
-        CineplexControl.addCineplex(new Cineplex("Central"));
+		ArrayList<Cineplex> cpes = new ArrayList<>();
+		cpes.add(new Cineplex("Jurong"));
+		cpes.add(new Cineplex("Orchard"));
+		cpes.add(new Cineplex("Central"));
 
 
 		String[] castArray = new String[2];
-		ArrayList<Cineplex> cpes = CineplexControl.getCineplexes();
 		ArrayList<Movie> movieListings = new ArrayList<>();
 		castArray[0] = "Zhou Dongyu";
 		castArray[1] = "Jackson Yee";
@@ -113,7 +117,7 @@ public class MainApp {
 
 		castArray[0] ="Chloe Benne";
 		castArray[1] ="TenzNorgay Trainor";
-		movieListings.add(new Movie("Abominable (PG)", Movie.Status.Showing,"Abominable” takes audiences on an epic 2,000-mile adventure from the streets of a Chinese city to the breathtaking Himalayan snowscapes. When teenage Yi (Chloe Bennet) encounters a young Yeti on the roof of her apartment building, she and her friends, Jin (Tenzing Norgay Trainor) and Peng (Albert Tsai), name him “Everest” and embark on an epic quest to reunite the magical creature with his family at the highest point on Earth.\n",
+		movieListings.add(new Movie("Abominable (PG)", Movie.Status.Showing,"Abominable takes audiences on an epic 2,000-mile adventure from the streets of a Chinese city to the breathtaking Himalayan snowscapes. When teenage Yi (Chloe Bennet) encounters a young Yeti on the roof of her apartment building, she and her friends, Jin (Tenzing Norgay Trainor) and Peng (Albert Tsai), name him 'Everest' and embark on an epic quest to reunite the magical creature with his family at the highest point on Earth.\n",
 				"Jill Culton",castArray));
 
 
@@ -171,12 +175,13 @@ public class MainApp {
 			dotw++;
 		}
 		ShowingControl.addShowing(newShowings);
-		MovieControl.addMovieListing(movieListings);
-		Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH,cpes);
-		Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,CineplexControl.getCineplexes());
-		Data.getInstance().saveObjectToPath(SaveLoadPath.USER_PATH,user);
-		Data.getInstance().saveObjectToPath(SaveLoadPath.MOVIE_PATH,MovieControl.getAllMovies());
-        System.out.println("There are " + ShowingControl.getAllShowings().size() + " Showings");
+		Data.saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,cpes);
+		Data.saveObjectToPath(SaveLoadPath.USER_PATH,user);
+		Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH,movieListings);
+		ShowingControl.Reinitialize();
+		MovieControl.Reinitialize();
+
+		System.out.println("There are " + ShowingControl.getAllShowings().size() + " Showings");
         System.out.println("There are " + MovieControl.getAllMovies().size() + " Movies");
 
     }
