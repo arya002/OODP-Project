@@ -146,7 +146,7 @@ public class StaffApp {
                 default:
                     System.out.println("Invalid input. Enter again!")
             }
-        while(sc_in!=4)
+        while(sc_in!=4);
 
         //TODO add new showing
         //TODO update showing
