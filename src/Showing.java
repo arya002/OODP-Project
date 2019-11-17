@@ -51,7 +51,7 @@ public class Showing implements Serializable {
                 + (getDayOfWeek()) + " at " + getTimeSlotString(getTimeSlot()));
     }
 
-    private String getTimeSlotString(int timeSlot) {
+    public String getTimeSlotString(int timeSlot) {
         switch (timeSlot) {
             case 1:
                 return "10 am";
