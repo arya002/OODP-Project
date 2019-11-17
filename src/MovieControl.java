@@ -10,12 +10,12 @@ import java.util.*;
 
 public class MovieControl {
 
-    private static ArrayList<Movie> allMovies = new ArrayList<>();
+    private static ArrayList<Movie> allMovies;
 
     public static void Initialize(){
 
-        if ((ArrayList<Movie>) Data.getInstance().getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class) != null){
-            allMovies= (ArrayList<Movie>) Data.getInstance().getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class);
+        if ((allMovies = (ArrayList<Movie>) Data.getInstance().getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class)) == null){
+            allMovies = new ArrayList<>();
         }
 
     }

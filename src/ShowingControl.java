@@ -2,11 +2,21 @@ import java.util.ArrayList;
 
 public class ShowingControl  {
 
-    private static ArrayList<Showing> allShowings = (ArrayList<Showing>) Data.getInstance().getObjectFromPath(SaveLoadPath.SHOWING_PATH,Showing.class);
+    private static ArrayList<Showing> allShowings;
+
+    public ShowingControl(){
+
+    }
+
+    public static void Initialize(){
+        if ((allShowings = (ArrayList<Showing>) Data.getInstance().getObjectFromPath(SaveLoadPath.SHOWING_PATH,Showing.class)) == null){
+            allShowings = new ArrayList<>();
+        }
+    }
+
+
 
     public static void addShowing(Showing showing){
-
-        if (allShowings== null) allShowings = new ArrayList<>();
 
         allShowings.add(showing);
         MovieControl.addLocation(showing,showing.getCineplex().getName(),showing.getTimeSlot());
@@ -20,9 +30,7 @@ public class ShowingControl  {
         return false;
     }
 
-    public ShowingControl(){
 
-    }
 
     public static void printSeats(Showing showing)
     {

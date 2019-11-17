@@ -5,7 +5,7 @@ import java.util.ArrayList;
     private static ArrayList<Cineplex> cineplexs;
 
     public static void Initialize(){
-       if ((ArrayList<Cineplex>) Data.getInstance().getObjectFromPath(SaveLoadPath.CINEPLEX_PATH,Cineplex.class) != null);
+       if ((cineplexs = (ArrayList<Cineplex>) Data.getInstance().getObjectFromPath(SaveLoadPath.CINEPLEX_PATH,Cineplex.class)) != null);
          cineplexs= new ArrayList<>();
 
     }

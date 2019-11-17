@@ -198,47 +198,47 @@ public class StaffApp {
 
                             case 2:
 
-                                do {
-                                    System.out.println("1. Add location" +
-                                            "\n2. Remove location" +
-                                            "\n3. Exit.");
-                                    sc_in = MainApp.sc.nextInt();
-                                    switch (sc_in) {
-                                        case 1:
-                                            System.out.println("1. Locations to add\n");
-                                            ArrayList<Cineplex> cineplexes = CineplexControl.getCineplexes();
-                                            for (int index = 0; index < cineplexes.size(); index++) {
-                                                System.out.println(index + ". " + cineplexes.get(index));
-                                            }
-                                            break;
-
-                                        case 2:
-                                            //TODO add option to delete
-                                            for (Cineplex cineplex :CineplexControl.getCineplexes()){
-                                                for (Cinema cinema:cineplex.getCinemas()){
-                                                    System.out.println("cineplex " + cineplex + " has showings of ");
-                                                    for(Showing showing:cinema.getShowings()){
-                                                        System.out.println(showing.getMovie() + " ");
-
-                                                    }
-                                                }
-
-                                            }
+//                                do {
+//                                    System.out.println("1. Add location" +
+//                                            "\n2. Remove location" +
+//                                            "\n3. Exit.");
+//                                    sc_in = MainApp.sc.nextInt();
+//                                    switch (sc_in) {
+//                                        case 1:
+//                                            System.out.println("1. Locations to add\n");
+//                                            ArrayList<Cineplex> cineplexes = CineplexControl.getCineplexes();
+//                                            for (int index = 0; index < cineplexes.size(); index++) {
+//                                                System.out.println(index + ". " + cineplexes.get(index));
+//                                            }
+//                                            break;
 //
-                                            break;
+//                                        case 2:
+//                                            //TODO add option to delete
+//                                            for (Cineplex cineplex :CineplexControl.getCineplexes()){
+//                                                for (Cinema cinema:cineplex.getCinemas()){
+//                                                    System.out.println("cineplex " + cineplex + " has showings of ");
+//                                                    for(Showing showing:cinema.getShowings()){
+//                                                        System.out.println(showing.getMovie() + " ");
+//
+//                                                    }
+//                                                }
+//
+//                                            }
+////
+//                                            break;
+//
+//                                        case 3:
+//
+//                                            break;
+//
+//                                        default:
+//                                            System.out.println("Please enter a valid integer");
+//                                            break;
+//                                    }
+//                                    while (sc_in != 3) ;
+//                                    break;
 
-                                        case 3:
-
-                                            break;
-
-                                        default:
-                                            System.out.println("Please enter a valid integer");
-                                            break;
-                                    }
-                                    while (sc_in != 3) ;
-                                    break;
-
-                                } while (sc_in != 3);
+//                                } while (sc_in != 3);
 
                                 break;
                             case 3:

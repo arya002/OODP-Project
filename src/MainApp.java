@@ -71,18 +71,17 @@ public class MainApp {
 
 	private static void instantiateTestData() throws InterruptedException {
 
-		CineplexControl cc = new CineplexControl();
+		ShowingControl.Initialize();
 		CineplexControl.Initialize();
-		MovieControl mc = new MovieControl();
-
+		MovieControl.Initialize();
 		CineplexControl.addCineplex(new Cineplex("Jurong"));
         CineplexControl.addCineplex(new Cineplex("Orchard"));
         CineplexControl.addCineplex(new Cineplex("Central"));
 		Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,CineplexControl.getCineplexes());
 
 		String[] castArray = new String[2];
-		ArrayList<Cineplex> cpes = (ArrayList<Cineplex>) Data.getInstance().getObjectFromPath(SaveLoadPath.CINEPLEX_PATH,Cineplex.class);
-
+		ArrayList<Cineplex> cpes = CineplexControl.getCineplexes();
+		ArrayList<Movie> movies = MovieControl.getAllMovies();
 		castArray[0] = "Zhou Dongyu";
 		castArray[1] = "Jackson Yee";
 		MovieControl.addMovieListing(new Movie(
@@ -113,20 +112,92 @@ public class MainApp {
 				"Todd Phillips",
 				castArray));
 
+		castArray[0] = "Matt Damon";
+		castArray[1] = "Christian Bale";
+		MovieControl.addMovieListing(new Movie(
+				"Ford vs Ferrari",
+				Movie.Status.Showing,
+				"Academy Award-winners Matt Damon and Christian Bale star in FORD v FERRARI, based on the remarkable true story of the visionary American car designer Carroll Shelby (Damon) and the fearless British-born driver Ken Miles (Bale), who together battled corporate interference, the laws of physics, and their own personal demons to build a revolutionary race car for Ford Motor Company and take on the dominating race cars of Enzo Ferrari at the 24 Hours of Le Mans in France in 1966.",
+				"James Mangold",
+				castArray));
+
 		int cineplex =0;
 		int cinema =0;
 		int day =20;
 		int dotw =1;
+		int tmslot =1;
+
+		for (day = 20; day < 25; day++){
+			for (cineplex =0;cineplex < 2;cineplex++){
+				for (cinema = 0; cinema < 2;cinema++){
+					for (tmslot =1; tmslot <5;tmslot++){
+
+						ShowingControl.addShowing(new Showing(
+								cpes.get(cineplex).getCinemas().get(cinema),
+								cpes.get(cineplex),
+								movies.get(tmslot),
+								"201911"+day+dotw+tmslot,
+								"normal"
+						));
+
+					}
+
+				}
+
+			}
+			dotw++;
+		}
+
+
+
+		cinema++;
+		ShowingControl.addShowing(new Showing(
+				new Cinema("normal"),
+				cpes.get(cineplex),
+				movies.get(0),
+				"201911"+day+dotw+1,
+				"normal"
+		));
+		cinema++;
 
 		ShowingControl.addShowing(new Showing(
 				new Cinema("normal"),
 				cpes.get(cineplex),
-				new Movie(
-						"Better Days",
-						Movie.Status.Showing,
-						"Seventeen-year-old Nian is the subject of cruel bullying at high school when she meets Bei, a tough street kid. The two teenagers find a kindred spirit in each other that gradually rises above love, forming a world of their own. But the cocoon is crushed when they are being dragged into a teenage girl murder case as prime suspects. An emotional roller coaster that is heartwarming and heartbreaking at the same time, the China coming-of-age movie offers thought-provoking insights into the intense competition faced by nearly 10 million teenagers every year who sit for the National College Entrance Examination and national issues of school bullying. If you are one amongst 10 million to secure a promising future with a topnotch college passport, would you kill to do it?",
-						"Derek Tsang",
-						castArray),
+				movies.get(0),
+				"201911"+day+dotw+1,
+				"normal"
+		));
+		cinema++;
+
+		ShowingControl.addShowing(new Showing(
+				new Cinema("normal"),
+				cpes.get(cineplex),
+				movies.get(0),
+				"201911"+day+dotw+1,
+				"normal"
+		));
+
+		ShowingControl.addShowing(new Showing(
+				new Cinema("normal"),
+				cpes.get(cineplex),
+				movies.get(0),
+				"201911"+day+dotw+1,
+				"normal"
+		));
+
+		ShowingControl.addShowing(new Showing(
+				new Cinema("normal"),
+				cpes.get(cineplex),
+				movies.get(0),
+				"201911"+day+dotw+1,
+				"normal"
+		));
+		day++;
+
+		ShowingControl.addShowing(new Showing(
+				new Cinema("normal"),
+				cpes.get(cineplex),
+				movies.get(0),
 				"201911"+day+dotw+1,
 				"normal"
 		));
