@@ -101,6 +101,8 @@ public class StaffApp {
 
     }
 
+
+
     private void addNewStaff(String user, String pass, String first) {
 
         ArrayList<User> allusers = (ArrayList<User>) Data.getInstance().getObjectFromPath(SaveLoadPath.USER_PATH, User.class);
@@ -137,7 +139,7 @@ public class StaffApp {
                     addShowing();
                     break;
                 case 2:
-
+                    updateShowing();
                     break;
                 case 3:
 
@@ -153,6 +155,43 @@ public class StaffApp {
             //TODO update showing
             //TODO delete showing
         } while (sc_in != 4);
+    }
+
+    private void updateShowing() {
+
+        System.out.println("Select a showing number to edit: ");
+        ArrayList<Showing> allShowings = ShowingControl.getAllShowings();
+
+        for(int i=0; i<allShowings.size(); ++i){
+            System.out.println( (i+1) + ". " + allShowings.get(i).movie.getName() + " is playing at " +
+                    allShowings.get(i).cineplex.getName() + " on " + allShowings.get(i).getDayOfWeek() +
+                    " at " + allShowings.get(i).getTimeSlotString(getTimeSlot()) );
+        }
+
+        int sc_in = MainApp.sc.nextInt();
+        System.out.println( (sc_in) + ". " + allShowings.get(sc_in-1).movie.getName() + " is playing at " +
+                allShowings.get(sc_in-1).cineplex.getName() + " on " + allShowings.get(sc_in-1).getDayOfWeek() +
+                " at " + allShowings.get(sc_in-1).getTimeSlotString(getTimeSlot()) );
+        System.out.println("Which part do you want to edit: ");
+        System.out.println("1. Movie + " +
+                            "\n2. Date");
+        int sc_in2 = MainApp.sc.nextInt();
+
+        switch (sc_in2) {
+
+            case 1:
+                System.out.println("Enter new movie: ");
+                String mov = MainApp.sc.next();
+                allShowings.get(sc_in-1).movie.setName(mov);
+                break;
+            case 2:
+                System.out.println("Enter new date: ");
+                String date = MainApp.sc.next();
+                allShowings.get(sc_in-1).setDate(date);
+                break;
+        }
+        Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH,allShowings);
+
     }
 
     private void printMovies(ArrayList<Movie> movies) {
