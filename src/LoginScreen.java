@@ -11,7 +11,6 @@ public class LoginScreen {
     public User run() {
         int sc_in;
 		User currentUser= null;
-        System.out.println("RUN");
         do {
             System.out.println("1. Login \n2. Register new user \n3. Back");
             sc_in = sc.nextInt();
@@ -25,7 +24,7 @@ public class LoginScreen {
                 case 3:
                     break;
                 default:
-                    System.out.println("Invalid input, please choose from the following:");
+                    System.out.println("Please choose from the following:");
                     break;
             }
 
@@ -37,21 +36,23 @@ public class LoginScreen {
 
     public User enterUserPass() {
 
+        System.out.println();
         System.out.print("Enter username : ");
         String user = sc.next();
 		System.out.print("Enter password : ");
 		String pass = sc.next();
 
-		ArrayList<User> allUsers = (ArrayList<User>) Data.getInstance().getObjectFromPath(SaveLoadPath.USER_PATH,User.class).clone();
+		ArrayList<User> allUsers = (ArrayList<User>) Data.getInstance().getObjectFromPath(SaveLoadPath.USER_PATH,User.class);
 
-		for(User userEntry:allUsers)
+        for(User userEntry:allUsers)
+        {
 			if(userEntry.getUsername().equals(user))
 				if(userEntry.getPassword().equals(pass)) {
-                    System.out.println("success");
+                    System.out.println("You have successfully logged in!");
                     return userEntry;
 				}
-
-        allUsers = null;
+        }
+        System.out.println("Something went wrong, please enter correct login details");
 		return null;
     }
 

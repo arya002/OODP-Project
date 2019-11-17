@@ -19,7 +19,7 @@ public class BookingControl {
 
    public BookingControl(Client client, Showing showing)
    {
-        System.out.println(client.getEmail());
+        //System.out.println(client.getEmail());
         tickets = new ArrayList<>();
         this.client = client;
         this.showing = showing;
@@ -42,6 +42,7 @@ public class BookingControl {
    {
         Seat seat = showing.getSeatingPlan().getSeat(row, column);
         int price = calculatePrice(age);
+
         if (client == null)
             System.out.println("client is null");
         if (seat == null)
@@ -68,6 +69,8 @@ public class BookingControl {
             price += PREMIUM_MOVIE_MARKUP;
         if (showing.getCinema().isPremium())
             price += PREMIUM_CINEMA_MARKUP;
+        if (showing.getDayOfWeek() == 5 || showing.getDayOfWeek() == 6)
+            price += HOLIDAY_MARKUP;
 
         System.out.println("Your ticket costs " + price);
         return price;
@@ -76,8 +79,10 @@ public class BookingControl {
    public void completeBooking()
    {
        Booking booking = new Booking(tickets, client, showing);
+       System.out.println("Thank you for booking with us! To view your bookings please look at your booking history.");
        System.out.println("Your booking ID is " + booking.getBookingID());
        System.out.println("Your total amount owed is S$" + booking.getTotalPrice());
+       System.out.println();
 
        ArrayList<Booking> bookings;
        if((bookings = (ArrayList<Booking>) Data.getInstance().getObjectFromPath(SaveLoadPath.BOOKING_PATH,
