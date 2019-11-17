@@ -60,6 +60,7 @@ public class Cinema implements Serializable {
 
     public Cinema (String type,String cinemaID){
 
+        showings = new ArrayList<>();
         this.type = type;
         this.CinemaID = cinemaID;
         timeSlotsArray = new int[DaysOfWeek.size][TimeSlots.size];

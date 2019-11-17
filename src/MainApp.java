@@ -70,6 +70,10 @@ public class MainApp {
 
 	private static void instantiateTestData() throws InterruptedException {
 
+		ArrayList<User> user = new ArrayList<>();
+		Client client = new Client("hello","korea","012021314","a@gmail.com","Beck Gillespe",17);
+		user.add(client);
+		Data.getInstance().saveObjectToPath(SaveLoadPath.USER_PATH,user);
 		ShowingControl.Initialize();
 		CineplexControl.Initialize();
 		MovieControl.Initialize();
