@@ -20,10 +20,7 @@ public class MovieControl {
 
     }
 
-    public MovieControl(){
 
-
-    }
 
     public static void addMovieListing(Movie movie){
 
