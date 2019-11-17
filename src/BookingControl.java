@@ -64,7 +64,7 @@ public class BookingControl {
 
        for(Ticket ticket:tickets){
 
-           ticket.
+           
 
        }
 

@@ -81,11 +81,7 @@ public class MainApp {
 	private static void instantiateTestData() throws InterruptedException {
 
 		ArrayList<User> user = new ArrayList<>();
-<<<<<<< HEAD
 		Client client = new Client("hello","korea","012021314","a@gmail.com","Beck Gillespe");
-=======
-		Client client = new Client("hello","korea","012021314","a@gmail.com","Beck","Gillespie",17);
->>>>>>> 0f4b0763f46af422e2a2a70f7890be3391ead580
 		user.add(client);
 		Data.getInstance().saveObjectToPath(SaveLoadPath.USER_PATH,user);
 
