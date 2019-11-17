@@ -15,7 +15,7 @@ public class CineplexControl {
     }
 
     public static ArrayList<String> getCineplexesByNames() {
-
+        Reinitialize();
         ArrayList<String> arrayList = new ArrayList<>();
 
         for (int i =0; i < cineplexs.size();i++){
@@ -27,7 +27,7 @@ public class CineplexControl {
     }
 
     public static String getCineplexName(String name) {
-
+        Reinitialize();
         for (int i = 0; i < cineplexs.size(); i++) {
             if (cineplexs.get(i).getName().equals(name)) ;
             return cineplexs.get(i).getName();
@@ -36,7 +36,7 @@ public class CineplexControl {
     }
 
     public static Cineplex getCineplex(String name) {
-
+        Reinitialize();
         for (int i = 0; i < cineplexs.size(); i++) {
             if (cineplexs.get(i).getName().equals(name)) ;
             return cineplexs.get(i);
@@ -46,27 +46,29 @@ public class CineplexControl {
 
 
     public static ArrayList<Cineplex> getCineplexes() {
-        return cineplexs;
+        return (ArrayList<Cineplex>) Data.getObjectFromPath(SaveLoadPath.CINEPLEX_PATH,Cineplex.class);
     }
 
 
     public static void addCineplex(Cineplex cineplex) {
 
-        cineplexs.add(cineplex);
-        // Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH, cineplexs);
+        ArrayList<Cineplex> cineplexes = getCineplexes();
+        cineplexes.add(cineplex);
+        Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH, cineplexs);
 
     }
 
     public static void addCineplex(ArrayList<Cineplex> cineplex) {
 
-        cineplexs.addAll(cineplex);
-        // Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH, cineplexs);
+        ArrayList<Cineplex> cineplexes = getCineplexes();
+        cineplexes.addAll(cineplex);
+        Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH, cineplexs);
 
     }
 
     private static boolean allocateTimeSlot(Cinema whichCinema, int whichDay, int whichTimeSlot) {
 
-
+        Reinitialize();
         int[][] tempTS;
         tempTS = whichCinema.getTimeSlotsArray();
         if (tempTS[whichDay][whichTimeSlot] == 1) {
@@ -80,6 +82,7 @@ public class CineplexControl {
 
     public static Cinema addShowingToCinema(Showing showing) {
 
+        Reinitialize();
         int whichDay = showing.getDayOfWeek();
         int whichTimeSlot = showing.getTimeSlot();
         Cinema whichCinema = showing.getCinema();

@@ -45,6 +45,10 @@ public class BookingControl {
 
         if (client == null)
             System.out.println("client is null");
+            while (client == null){
+                User lis = new LoginScreen().run();
+                client = (Client) lis;
+            }
         if (seat == null)
             System.out.println("seat is null");
         if (showing == null)
@@ -53,6 +57,7 @@ public class BookingControl {
         System.out.println(price);
         tickets.add(new Ticket(client, seat, showing, price, age));
         seat.assignSeat(client.getUsername());
+
    }
 
    private int calculatePrice(String age)

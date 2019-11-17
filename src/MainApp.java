@@ -8,7 +8,7 @@ public class MainApp {
 	public static void main(String[] args) throws InterruptedException {
 
 		ShowingControl.Reinitialize();
-		CineplexControl.Initialize();
+		CineplexControl.Reinitialize();
 		MovieControl.Reinitialize();
 
 		System.out.println("Welcome to MOBLIMA, the best way book your movie tickets.");

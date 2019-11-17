@@ -18,15 +18,18 @@ public class ShowingControl  {
 
     public static void addShowing(Showing showing){
 
-        allShowings.add(showing);
-        //CineplexControl.addShowingToCinema(showing);
-        //Data.getInstance().(SaveLoadPath.SHOWING_PATH,allShowings);
+        ArrayList al = getAllShowings();
+        al.add(showing);
+        Data.saveObjectToPath(SaveLoadPath.SHOWING_PATH,al);
 
     }
 
     public static void addShowing(ArrayList<Showing> showing){
 
-        allShowings.addAll(showing);
+
+        ArrayList al = getAllShowings();
+        al.addAll(showing);
+        Data.saveObjectToPath(SaveLoadPath.SHOWING_PATH,al);
 //        for(Showing showings:allShowings) {
 //            CineplexControl.addShowingToCinema(showings);
 //        }

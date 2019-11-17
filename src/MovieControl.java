@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -24,24 +25,23 @@ public class MovieControl {
 
     public static void addMovieListing(ArrayList<Movie> movie){
 
-        if(!allMovies.contains(movie)) {
-            allMovies.addAll(movie);
-            Data.getInstance().saveObjectToPath(SaveLoadPath.MOVIE_PATH,allMovies);
-        }
+        ArrayList<Movie> movies= getAllMovies();
+        movies.addAll(movie);
+        Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH,movies);
 
     }
 
     public static void addMovieListing(Movie movie){
 
-        if(!allMovies.contains(movie)) {
-            allMovies.add(movie);
-            Data.getInstance().saveObjectToPath(SaveLoadPath.MOVIE_PATH,allMovies);
-        }
+        ArrayList movies = getAllMovies();
+        movies.add(movie);
+        Data.getInstance().saveObjectToPath(SaveLoadPath.MOVIE_PATH,movies);
+
 
     }
 
     public static ArrayList<Movie> getAllMoviesByRating() {
-
+        Reinitialize();
         int i = 0;
         ArrayList<Movie> movies = new ArrayList<>();
         System.out.println("The top rated movies are \n");
@@ -85,6 +85,8 @@ public class MovieControl {
 
     public static Movie getMovie(String name) {
 
+        Reinitialize();
+
         for (int i =0; i< allMovies.size();i++) {
             if(allMovies.get(i).getName().equals(name));
             return allMovies.get(i);
@@ -93,6 +95,8 @@ public class MovieControl {
     }
 
     public static ArrayList<String> getAllMoviesNames() {
+
+        Reinitialize();
 
         System.out.println("All movies are\n");
 
@@ -110,7 +114,7 @@ public class MovieControl {
 
     public static ArrayList<Movie> getAllMovies() {
 
-        return (ArrayList<Movie>) Data.getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class).clone();
+        return (ArrayList<Movie>) Data.getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class);
         //System.out.println("All Movies: " + uniqueMovies);
     }
 
