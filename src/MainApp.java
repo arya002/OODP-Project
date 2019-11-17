@@ -69,8 +69,6 @@ public class MainApp {
 					}
 					break;
 
-<<<<<<< HEAD
-=======
 				case 25:
 
 					BookingControl bookingControl = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),ShowingControl.getAllShowings().get(0));
@@ -83,7 +81,6 @@ public class MainApp {
 
 
 
->>>>>>> f6de28ec0624f40c4e305b256b1a8a614c5a29e1
 				default:
 					System.out.println("Please choose from the following:");
 					break;
