@@ -1,8 +1,9 @@
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class Booking {
+public class Booking implements Serializable{
 
     private ArrayList<Ticket> tickets;
     private Client client;
@@ -43,7 +44,7 @@ public class Booking {
     public String bookingPrint(){
         String retString="";
         retString+= "Booking ID" + bookingID + "\n";
-        retString+= "Customer " + client.getName() + "\n";
+        retString+= "Customer " + client.getFirstName() + "\n";
         retString+= "Movie " + showing.getMovie().getName() + "\n";
         retString+= "For " + tickets.size() + " Tickets " + "\n";
         return retString;

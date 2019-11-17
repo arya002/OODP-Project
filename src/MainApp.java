@@ -28,6 +28,7 @@ public class MainApp {
 					User lis = null;
 					lis = new LoginScreen().run();
 
+
 					if(lis.getType().equals("client")){
 
 						new ClientApp((Client) lis);
@@ -53,7 +54,8 @@ public class MainApp {
 					break;
 
 				case 10:
-
+					Client client = new Client("testuser", "testpassword", "w", "w", "w");
+					new ClientApp(client);
 					break;
 
 				case 22:
@@ -79,7 +81,7 @@ public class MainApp {
 	private static void instantiateTestData() throws InterruptedException {
 
 		ArrayList<User> user = new ArrayList<>();
-		Client client = new Client("hello","korea","012021314","a@gmail.com","Beck","Gillespie",17);
+		Client client = new Client("hello","korea","012021314","a@gmail.com","Beck Gillespe");
 		user.add(client);
 		Data.getInstance().saveObjectToPath(SaveLoadPath.USER_PATH,user);
 

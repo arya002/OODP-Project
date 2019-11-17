@@ -17,7 +17,8 @@ public class LoginScreen {
             sc_in = sc.nextInt();
             switch (sc_in) {
                 case 1:
-                    return (currentUser = enterUserPass());
+                    currentUser = enterUserPass();
+                    return currentUser;
                 case 2:
                 	registerUser();
                     break;
@@ -28,7 +29,7 @@ public class LoginScreen {
                     break;
             }
 
-        } while (sc_in != 3&& currentUser!=null);
+        } while (sc_in != 3 && currentUser == null);
 
         return currentUser;
 

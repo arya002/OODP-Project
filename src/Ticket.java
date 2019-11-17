@@ -12,10 +12,10 @@ public class Ticket implements Serializable {
     private enum type { child, adult }; 
     private double price;
 
-    private static ArrayList<Integer> holidays;
-    {
-        holidays.add(359);
-    }
+    //private static ArrayList<Integer> holidays;
+    //{
+    //    holidays.add(359);
+    //}
 
 
     public Ticket(Client client, Seat seat, Showing showing, double price)
@@ -25,18 +25,11 @@ public class Ticket implements Serializable {
         this.showing = showing;
         this.price = price;
 
-        this.calculatePrice();
+        //this.calculatePrice();
     }
 
     private void calculatePrice() {
-        int age = this.client.getAge();
-        if (age < 12) {
-            this.price += 1;
-        } else if (age < 65) {
-            this.price += 4;
-        } else {
-            this.price += 1;
-        }
+
 
         switch (this.showing.getDayOfWeek()) {
             case 1:
@@ -109,7 +102,7 @@ public class Ticket implements Serializable {
     //<editor-fold desc="Getters">
     public String getName()
     {
-        return this.client.getName();
+        return this.client.getFirstName();
     }
 
     public String getEmail()
