@@ -93,6 +93,13 @@ public class MainApp {
 
 	private static void instantiateTestData() throws InterruptedException {
 
+		ArrayList<String> holidays = new ArrayList<>();
+		holidays.add("20200101");
+		Prices price = new Prices(10, 7, 2, 3, 1, holidays);
+		ArrayList<Prices> prices = new ArrayList<>();
+		prices.add(price);
+
+
 		ArrayList<User> user = new ArrayList<>();
 		Client client = new Client("hello","korea","012021314","a@gmail.com","Beck Gillespe");
 		user.add(client);
@@ -179,6 +186,7 @@ public class MainApp {
 		Data.saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,cpes);
 		ShowingControl.addShowing(newShowings);
 		Data.saveObjectToPath(SaveLoadPath.USER_PATH,user);
+		Data.saveObjectToPath(SaveLoadPath.PRICE_PATH, prices);
 		Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH,movieListings);
 		ShowingControl.Reinitialize();
 		MovieControl.Reinitialize();

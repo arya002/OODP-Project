@@ -4,38 +4,33 @@ import java.util.Set;
 
 public class BookingControl {
 
-    private static int BASE_ADULT = 10;
-    private static int BASE_CHILD = 7;
-    private static int HOLIDAY_MARKUP = 2;
-    private static int PREMIUM_MOVIE_MARKUP = 1;
-    private static int PREMIUM_CINEMA_MARKUP = 3;
-
     private Client client;
     private Showing showing;
     private static ArrayList<Ticket> tickets;
     public static ArrayList<String> holidays;
-
+    private static Prices prices = null;
 
 
    public BookingControl(Client client, Showing showing)
    {
         //System.out.println(client.getEmail());
+
         tickets = new ArrayList<>();
         this.client = client;
         this.showing = showing;
+        Initialize();
    } 
 
    public static void Initialize(){
-       if ((holidays = (ArrayList<String>) Data.getInstance().getObjectFromPath(SaveLoadPath.HOLIDAY_PATH, String.class).clone()) != null)
-            holidays = new ArrayList<>();
-
-   }
-
-   public static void AddHoliday(String stringToAdd){
-
-        holidays.add(stringToAdd);
-        Data.getInstance().saveObjectToPath(SaveLoadPath.HOLIDAY_PATH,holidays);
-
+       
+            ArrayList<Prices> inte;
+            if((inte = (ArrayList<Prices>) Data.getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class)) == null){
+                inte = new ArrayList<>();
+            }
+            else
+            {
+                prices = inte.get(0);
+            }
    }
 
    public void addTicket(String age, int row, int column)
@@ -64,18 +59,18 @@ public class BookingControl {
    {
        int price = 0;
        if (age.equals("adult"))
-            price += BASE_ADULT;
+            price += prices.getBASE_ADULT();
        else
-            price += BASE_CHILD;
+            price += prices.getBASE_CHILD();
 
         if (showing.is3D())
-            price += PREMIUM_MOVIE_MARKUP;
+            price += prices.getPREMIUM_MOVIE_MARKUP();
         if (showing.getMovie().isBlockbuster())
-            price += PREMIUM_MOVIE_MARKUP;
+            price += prices.getPREMIUM_MOVIE_MARKUP();
         if (showing.getCinema().isPremium())
-            price += PREMIUM_CINEMA_MARKUP;
+            price += prices.getPREMIUM_CINEMA_MARKUP();
         if (showing.getDayOfWeek() == 5 || showing.getDayOfWeek() == 6)
-            price += HOLIDAY_MARKUP;
+            price += prices.getHOLIDAY_MARKUP();
 
         System.out.println("Your ticket costs " + price);
         return price;
