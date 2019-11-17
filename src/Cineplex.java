@@ -13,9 +13,10 @@ public class Cineplex implements Serializable {
         this.name = name;
         this.cinemas = new ArrayList<>();
         this.movies = new ArrayList<>();
-        Cinema cinema1 = new Cinema("normal");
-        Cinema cinema2 = new Cinema("normal");
-        Cinema cinema3 = new Cinema("gold");
+        int count = 0;
+        Cinema cinema1 = new Cinema("normal",this.getName().substring(0,2)+count++);
+        Cinema cinema2 = new Cinema("normal",this.getName().substring(0,2)+count++);
+        Cinema cinema3 = new Cinema("gold",this.getName().substring(0,2)+count++);
 
         cinemas.add(cinema1);
         cinemas.add(cinema2);

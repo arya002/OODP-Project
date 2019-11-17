@@ -60,7 +60,6 @@ public class MainApp {
 					break;
 
 				default:
-
 					System.out.println("Invalid input, please choose from the following:");
 					break;
 
@@ -141,117 +140,14 @@ public class MainApp {
 						));
 
 					}
-
 				}
-
 			}
+			dotw=dotw%8;
 			dotw++;
 		}
 
 
 
-		cinema++;
-		ShowingControl.addShowing(new Showing(
-				new Cinema("normal"),
-				cpes.get(cineplex),
-				movies.get(0),
-				"201911"+day+dotw+1,
-				"normal"
-		));
-		cinema++;
-
-		ShowingControl.addShowing(new Showing(
-				new Cinema("normal"),
-				cpes.get(cineplex),
-				movies.get(0),
-				"201911"+day+dotw+1,
-				"normal"
-		));
-		cinema++;
-
-		ShowingControl.addShowing(new Showing(
-				new Cinema("normal"),
-				cpes.get(cineplex),
-				movies.get(0),
-				"201911"+day+dotw+1,
-				"normal"
-		));
-
-		ShowingControl.addShowing(new Showing(
-				new Cinema("normal"),
-				cpes.get(cineplex),
-				movies.get(0),
-				"201911"+day+dotw+1,
-				"normal"
-		));
-
-		ShowingControl.addShowing(new Showing(
-				new Cinema("normal"),
-				cpes.get(cineplex),
-				movies.get(0),
-				"201911"+day+dotw+1,
-				"normal"
-		));
-		day++;
-
-		ShowingControl.addShowing(new Showing(
-				new Cinema("normal"),
-				cpes.get(cineplex),
-				movies.get(0),
-				"201911"+day+dotw+1,
-				"normal"
-		));
-
-
-
-//		while (day < 30) {
-//			int movie = 0;
-//			int timeslot=1;
-//
-//			timeslot++;//2
-//			movie++;
-//			ShowingControl.addShowing(new Showing(
-//					cpes.get(cinema).getCinemas().get(cinema),
-//					cpes.get(cineplex),
-//					MovieControl.getAllMovies().get(movie),
-//					"201911"+day+dotw+timeslot,
-//					MovieControl.getAllMovies().get(movie).getType()
-//			));
-//			timeslot++;//3
-//			movie++;
-//			ShowingControl.addShowing(new Showing(
-//					cpes.get(cinema).getCinemas().get(cinema),
-//					cpes.get(cineplex),
-//					MovieControl.getAllMovies().get(movie),
-//					"201911"+day+dotw+timeslot,
-//					MovieControl.getAllMovies().get(movie).getType()
-//			));
-//			timeslot++;//4
-//			movie++;
-//			ShowingControl.addShowing(new Showing(
-//					cpes.get(cinema).getCinemas().get(cinema),
-//					cpes.get(cineplex),
-//					MovieControl.getAllMovies().get(movie),
-//					"201911"+day+dotw+timeslot,
-//					MovieControl.getAllMovies().get(movie).getType()
-//			));
-//			movie = 1;
-//			timeslot++;//5
-//			ShowingControl.addShowing(new Showing(
-//					cpes.get(cinema).getCinemas().get(cinema),
-//					cpes.get(cineplex),
-//					MovieControl.getAllMovies().get(movie),
-//					"201911"+day+dotw+timeslot,
-//					MovieControl.getAllMovies().get(movie).getType()
-//			));
-//
-//			cinema++;
-//			day++;
-//
-//		}
-//
-//
-//
 	}
 
 
