@@ -35,11 +35,17 @@ public class ShowingControl  {
     public static void printSeats(Showing showing)
     {
         Seat seatingPlan[][] = showing.getSeatingPlan().getSeats();
+
+        for (int j = 0; j < seatingPlan[1].length; j++)
+            System.out.print(j + " ");
+        System.out.println();
         
         for (int i = 0; i < seatingPlan.length; i ++)
         {
+            System.out.print(i);
             for (int j = 0; j < seatingPlan[1].length; j++)
             {
+                System.out.print(" ");
                 if (seatingPlan[i][j].isAllocated())
                     System.out.print("U");
                 else

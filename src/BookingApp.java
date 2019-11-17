@@ -16,19 +16,17 @@ public class BookingApp
     public void main()
     {
         Scanner sc = new Scanner(System.in);
-        int totalPrice = 0;
 
         System.out.println("Would you like to purchase a ticket? (Yes/No)");
         String anotherTicket = sc.nextLine();
         BookingControl bookingControl = new BookingControl(client, showing);
 
         while (anotherTicket.equalsIgnoreCase("yes"))
-        {
-            //TODO check that there are spaces available 
+        { 
             System.out.println("Is this an adult or a child ticket?");
             String age = sc.nextLine();
 
-            System.out.println("U vor unavailable, P for premuim, N for normal");
+            System.out.println("Legend : U for unavailable, P for premuim, N for normal");
             ShowingControl.printSeats(showing);
 
             System.out.println("Please enter the row of your chosen seat:");

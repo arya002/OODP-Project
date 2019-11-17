@@ -23,22 +23,25 @@ public class MainApp {
 		do {
 			System.out.println("1. Login/Register \n2. Continue as guest \n3. Exit");
 			sc_in = sc.nextInt();
+			System.out.println();
 			switch (sc_in) {
 				case 1:
 					User lis = null;
 					lis = new LoginScreen().run();
 
+					if (lis != null)
+						{
+						if(lis.getType().equals("client")){
 
-					if(lis.getType().equals("client")){
+							new ClientApp((Client) lis);
 
-						new ClientApp((Client) lis);
+						}else if(lis.getType().equals("staff")){
 
-					}else if(lis.getType().equals("staff")){
+							new StaffApp((Staff) lis);
 
-						new StaffApp((Staff) lis);
-
-					}else {
-                        System.out.println("error in determining class");
+						}else {
+                        	System.out.println("error in determining class");
+						}
 					}
 
 					break;
@@ -66,13 +69,9 @@ public class MainApp {
 					}
 					break;
 
-				case 25:
-
-
 				default:
-					System.out.println("Invalid input, please choose from the following:");
+					System.out.println("Please choose from the following:");
 					break;
-
 			}
 
 		} while (sc_in != 3);
@@ -164,7 +163,7 @@ public class MainApp {
 			dotw=dotw%8;
 			dotw++;
 		}
-
+		Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH, ShowingControl.getAllShowings());
 
 
 	}

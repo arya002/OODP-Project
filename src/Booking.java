@@ -24,7 +24,7 @@ public class Booking implements Serializable{
 
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMddhhmm");
-        this.bookingID = showing.getCineplex().getName() + format1.format(calendar.getTime());
+        this.bookingID = showing.getCineplex().getName().substring(0, 3).toUpperCase() + format1.format(calendar.getTime());
     }
 
     public double getTotalPrice()

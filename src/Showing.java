@@ -105,7 +105,7 @@ public class Showing implements Serializable {
     }
 
     public int getDayOfWeek() {
-        return Integer.parseInt(date.substring(8,9));
+        return Integer.parseInt(date.substring(8, 9));
     }
 
     public int getDay() {
