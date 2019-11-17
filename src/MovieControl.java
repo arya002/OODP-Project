@@ -1,4 +1,7 @@
 import java.util.*;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  *
@@ -7,65 +10,61 @@ import java.util.*;
  *
  */
 
-
 public class MovieControl {
 
-    private static ArrayList<Movie> allMovies =null;
+    private static ArrayList<Movie> allMovies = null;
 
-    public static void Initialize(){
+    public static void Initialize() {
 
-        if (((ArrayList<Movie>) Data.getInstance().getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class)) == null){
+        if (((ArrayList<Movie>) Data.getInstance().getObjectFromPath(SaveLoadPath.MOVIE_PATH, Movie.class)) == null) {
             allMovies = new ArrayList<>();
         } else {
-            allMovies = (ArrayList<Movie>) Data.getInstance().getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class).clone();
+            allMovies = (ArrayList<Movie>) Data.getInstance().getObjectFromPath(SaveLoadPath.MOVIE_PATH, Movie.class)
+                    .clone();
         }
 
     }
 
-    public MovieControl(){
+    public MovieControl() {
     }
 
-    public static void addMovieListing(ArrayList<Movie> movie){
+    public static void addMovieListing(ArrayList<Movie> movie) {
 
-        if(!allMovies.contains(movie)) {
+        if (!allMovies.contains(movie)) {
             allMovies.addAll(movie);
-            Data.getInstance().saveObjectToPath(SaveLoadPath.MOVIE_PATH,allMovies);
+            Data.getInstance().saveObjectToPath(SaveLoadPath.MOVIE_PATH, allMovies);
         }
 
     }
 
-    public static void addMovieListing(Movie movie){
+    public static void addMovieListing(Movie movie) {
 
-        if(!allMovies.contains(movie)) {
+        if (!allMovies.contains(movie)) {
             allMovies.add(movie);
-            Data.getInstance().saveObjectToPath(SaveLoadPath.MOVIE_PATH,allMovies);
+            Data.getInstance().saveObjectToPath(SaveLoadPath.MOVIE_PATH, allMovies);
         }
 
     }
 
-    public static ArrayList<Movie> getMoviesByTicketSales(String movieName){
+    public static ArrayList<Movie> getMoviesByTicketSales() {
 
-        ArrayList<String> ticketSalesName= getAllMoviesNames();
+        ArrayList<String> ticketSalesName = getAllMoviesNames();
         Map<String, Integer> ticketSales = new HashMap<String, Integer>();
-        for (int i = 0; i < ticketSalesName.size(); i++)
-        {
+        for (int i = 0; i < ticketSalesName.size(); i++) {
             ticketSales.put(ticketSalesName.get(i), 0);
         }
- 
+
         HashSet<Booking> bookings = new HashSet<>(BookingControl.getBookings());
-        for (Booking booking:bookings)
-        {
-            for (Ticket ticket:booking.getTickets())
-            {
-                for (Map.Entry<String, Integer> entry : ticketSales.entrySet())
-                {
-                    
+        for (Booking booking : bookings) {
+            for (Ticket ticket : booking.getTickets()) {
+                for (Map.Entry<String, Integer> entry : ticketSales.entrySet()) {
+                    if (ticket.getShowingMovieName().equals(entry.getKey()))
+                        entry.setValue(entry.getValue() + 1);
                 }
             }
         }
- 
-      //
 
+        ticketSales.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).forEach(System.out::println);
         return null;
     }
 

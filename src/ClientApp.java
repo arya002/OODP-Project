@@ -44,7 +44,7 @@ public class ClientApp {
                             printMovies(MovieControl.getAllMovies());
                             break;
                         case 2:
-                            //TODO
+                            MovieControl.getMoviesByTicketSales();
                             break;
                         case 3:
                             printMovies(MovieControl.getAllMoviesByRating()); //TODO print top 5
