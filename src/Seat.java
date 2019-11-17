@@ -1,25 +1,25 @@
 import java.io.Serializable;
 import java.util.HashMap;
 
-public class Seat implements Serializable {
+public class Seat {
 
-    private int seatID;
-    private int custID = 0;
+    private String seatID;
+    private String custID;
     private String type;
     private boolean allocated;
 
-    public Seat(int seatID, String type) throws IllegalArgumentException {
+    public Seat(String seatID, String type) throws IllegalArgumentException {
         this.setSeatID(seatID);
         this.setType(type);
         this.allocated = false;
     }
 
     //<editor-fold desc="Getters">
-    public int getSeatID() {
+    public String getSeatID() {
         return seatID;
     }
 
-    public int getCustID() {
+    public String getCustID() {
         return custID;
     }
 
@@ -33,11 +33,11 @@ public class Seat implements Serializable {
     //</editor-fold>
 
     //<editor-fold desc="Setters">
-    public void setSeatID(int seatID) {
+    public void setSeatID(String seatID) {
         this.seatID = seatID;
     }
 
-    public void setCustID(int custID) {
+    public void setCustID(String custID) {
         this.custID = custID;
     }
 
@@ -47,7 +47,7 @@ public class Seat implements Serializable {
         this.type = type;
     }
 
-    public void assignSeat(int custID) {
+    public void assignSeat(String custID) {
         this.allocated = true;
         this.setCustID(custID);
     }

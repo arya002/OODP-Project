@@ -71,14 +71,18 @@ public class Cinema implements Serializable {
 
     private void buildRoomLayout() {
 
-        if (type.equals("normal")){
+        if (type.equals("N")){
 
             roomLayout = new RoomLayout(n,m);
 
         }
 
         // TODO roomLayout.assignSeatTypes();
+    }
 
+    public void buildRoomLayout(int rows, int columns)
+    {
+        
     }
 
     private void buildTimeSlots() {

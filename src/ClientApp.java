@@ -82,7 +82,6 @@ public class ClientApp {
                             } else {
                                 System.out.println("error in selecting movies");
                             }
-
                     }
 
                 case 3:
