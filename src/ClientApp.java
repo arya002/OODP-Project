@@ -33,13 +33,13 @@ public class ClientApp {
                     sc_in = sc.nextInt();
                     switch (sc_in) {
                         case 1:
-                            printMovies(MovieControl.getAllMovies());
+                            printMovieArrayFromControl(MovieControl.getAllMovies());
                             break;
                         case 2:
 
                             break;
                         case 3:
-                            printMovies(MovieControl.getAllMoviesByRating());
+                            printMovieArrayFromControl(MovieControl.getAllMoviesByRating());
                             break;
                     }
                 case 2:
@@ -171,12 +171,10 @@ public class ClientApp {
     }
     */
 
-    private void printMovies(ArrayList<Movie> movies)
+    private void printMovieArrayFromControl(ArrayList<Movie> movies)
     {
-        for (Movie movie : movies)
-        {
+        for (Movie movie : movies) {
             System.out.println(movie.getName());
-
         }
     }
 

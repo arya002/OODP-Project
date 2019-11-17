@@ -29,7 +29,7 @@ public class LoginScreen {
                     break;
             }
 
-        } while (sc_in != 3);
+        } while (sc_in != 3&& currentUser!=null);
 
         return currentUser;
 

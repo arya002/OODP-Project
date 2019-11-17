@@ -48,7 +48,7 @@ public class Showing implements Serializable {
 
     public String printShowing(){
         return (movie.getName() + " is playing at " + cineplex.getName() + " on "
-                + getDayOfWeekString(getDayOfWeek()) + " at " + getTimeSlotString(getTimeSlot()));
+                + (getDayOfWeek()) + " at " + getTimeSlotString(getTimeSlot()));
     }
 
     private String getTimeSlotString(int timeSlot) {
@@ -106,33 +106,11 @@ public class Showing implements Serializable {
     }
 
     public int getDayOfWeek() {
-        return Integer.parseInt(date.substring(8));
-    }
-
-    public String getDayOfWeekString(int dotw) {
-        switch (dotw) {
-            case 1:
-                return "Monday";
-            case 2:
-                return "Tuesday";
-            case 3:
-                return "Wednesday";
-            case 4:
-                return "Thursday";
-            case 5:
-                return "Friday";
-            case 6:
-                return "Saturday";
-            case 7 :
-                return "Sunday";
-            default:
-                return "";
-        }
-
+        return Integer.parseInt(date.substring(8,9));
     }
 
     public int getDay() {
-        return Integer.parseInt(date.substring(5,7));
+        return Integer.parseInt(date.substring(6,8));
     }
 
     public int getTimeSlot() {
@@ -140,7 +118,7 @@ public class Showing implements Serializable {
     }
 
     public int getYYYYMMDD() {
-        return Integer.parseInt(date.substring(0,7));
+        return Integer.parseInt(date.substring(0,8));
     }
 
     public boolean isAllocated(int i, int j)

@@ -117,33 +117,31 @@ public class MovieControl {
             if (mov.equals(movie)){
 
                     CineplexControl.getCineplex(cineplexName).getMovies().add(movie.getMovie());
-                    CineplexControl.addShowingToCinema(movie.getCinema(),movie,movie.getTimeSlot());
+                    CineplexControl.addShowingToCinema(whichCinema,movie,movie.getTimeSlot());
                     MovieControl.getAllMovies().add(movie.getMovie());
                     Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,CineplexControl.getCineplexes());
-                    Data.getInstance().saveObjectToPath(SaveLoadPath.MOVIE_PATH,allMovies);
 
             }
 
         }
 
     }
-
-    public static void RemoveLocation(Movie movie,String cineplexName){
-
-        for (Movie mov: allMovies){
-
-            if (mov.equals(movie)){
-                if(CineplexControl.getCineplex(cineplexName).getMovies().size()!=0) {
-                    CineplexControl.getCineplex(cineplexName).getMovies().remove(movie);
-                    MovieControl.getAllMovies().remove(movie);
-                }
-                Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,CineplexControl.getCineplexes());
-                Data.getInstance().saveObjectToPath(SaveLoadPath.MOVIE_PATH,allMovies);
-
-            }
-
-        }
-
-    }
+//
+//    public static void RemoveLocation(Movie movie,String cineplexName){
+//
+//        for (Movie mov: allMovies){
+//
+//            if (mov.equals(movie)){
+//                if(CineplexControl.getCineplex(cineplexName).getMovies().size()!=0) {
+//                    CineplexControl.getCineplex(cineplexName).getMovies().remove(movie);
+//                    MovieControl.getAllMovies().remove(movie);
+//                }
+//                Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,CineplexControl.getCineplexes());
+//
+//            }
+//
+//        }
+//
+//    }
 
 }

@@ -134,6 +134,19 @@ public class StaffApp {
             switch (sc_in) {
 
                 case 1:
+                    int whichMovie = 0;
+                    int whichCineplex =0;
+                    int whichDay =0;
+                    int whichTimeSlot =0;
+                    int whichCinema =0;
+                    for(Movie movie:MovieControl.getAllMovies()){
+                        System.out.println(whichMovie + ". " +movie.getName());
+                    }
+                    whichMovie = sc.nextInt();
+
+//                    for (Cineplex cinplex);
+
+
 
                     break;
                 case 2:
