@@ -29,10 +29,11 @@ public class BookingApp
             System.out.println("Legend : U for unavailable, P for premuim, N for normal");
             ShowingControl.printSeats(showing);
 
+            System.out.println();
             System.out.println("Please enter the row of your chosen seat:");
-            int row = Integer.parseInt(sc.nextLine());
+            int row = Integer.parseInt(sc.nextLine()) - 1;
             System.out.println("Please enter the column of your chosen seat:");
-            int column = Integer.parseInt(sc.nextLine());
+            int column = Integer.parseInt(sc.nextLine()) - 1;
 
             if (confirmSeat(row, column))
             {

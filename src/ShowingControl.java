@@ -44,7 +44,7 @@ public class ShowingControl  {
 
 
 
-    public static void printSeats(Showing showing)
+    public static void print(Showing showing)
     {
         Seat seatingPlan[][] = showing.getSeatingPlan().getSeats();
 
@@ -65,6 +65,50 @@ public class ShowingControl  {
             }
             System.out.println();
         }
+    }
+
+    public static void printSeats(Showing showing)
+    {
+        Seat seatingPlan[][] = showing.getSeatingPlan().getSeats();
+        System.out.println("\n\n");
+
+        //int [][] arr = new int[seatingPlan.length][seatingPlan[1].length];
+        
+        for(int i=65; i<65+seatingPlan[1].length/2; ++i) {
+          System.out.print(" " + (char)i + "  ");
+        }
+        System.out.print("     ");
+        for(int i=65+seatingPlan[1].length/2; i<65+seatingPlan[1].length; ++i) {
+          System.out.print(" " + (char)i + "  ");
+        }
+        System.out.println("\n");
+        
+        for(int i=0, r=1; i<seatingPlan.length; ++i) {
+          for(int j=0; j<seatingPlan[1].length; ++j) {
+            if(seatingPlan[i][j].isAllocated())
+              System.out.print("[" + "U");
+            else if (seatingPlan[i][j].getType().equals("N"))
+              System.out.print("[" + "N");
+            else
+                System.out.print("[" + "P");
+
+            if(j==seatingPlan[1].length/2-1)
+              System.out.print("]" +  " |==| ");
+            else
+              System.out.print("]" +  " ");
+            if(j==seatingPlan[1].length-1) {
+              System.out.println(" (" + r++ + ")");
+            }
+          }
+        }
+        for(int i=1; i<=4*seatingPlan.length+4; ++i) {
+            System.out.print("_");
+        }
+        System.out.println();
+        for(int i=1; i<=2*seatingPlan[1].length-2; ++i) {
+            System.out.print(" ");
+        }
+        System.out.print("SCREEN");
     }
 
 

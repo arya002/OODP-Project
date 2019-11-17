@@ -111,7 +111,7 @@ public class MainApp {
 
 		castArray[0] ="Chloe Benne";
 		castArray[1] ="TenzNorgay Trainor";
-		movieListings.add(new Movie("Abominable (PG)", Movie.Status.Showing,"Abominable” takes audiences on an epic 2,000-mile adventure from the streets of a Chinese city to the breathtaking Himalayan snowscapes. When teenage Yi (Chloe Bennet) encounters a young Yeti on the roof of her apartment building, she and her friends, Jin (Tenzing Norgay Trainor) and Peng (Albert Tsai), name him “Everest” and embark on an epic quest to reunite the magical creature with his family at the highest point on Earth.\n",
+		movieListings.add(new Movie("Abominable (PG)", Movie.Status.Showing,"Abominable takes audiences on an epic 2,000-mile adventure from the streets of a Chinese city to the breathtaking Himalayan snowscapes. When teenage Yi (Chloe Bennet) encounters a young Yeti on the roof of her apartment building, she and her friends, Jin (Tenzing Norgay Trainor) and Peng (Albert Tsai), name him 'Everest' and embark on an epic quest to reunite the magical creature with his family at the highest point on Earth.\n",
 				"Jill Culton",castArray));
 
 
