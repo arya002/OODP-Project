@@ -15,11 +15,13 @@ public class ClientApp {
         Scanner sc = new Scanner(System.in);
 
         do {
-            System.out.println("Welcome " + current.getName());
+            System.out.println("Welcome ");
+            if (current != null) System.out.print(current.getName());
+
             System.out.println
-                    ("1. Display movies " +
-                            "\n2. Search for a movie" +
-                            "\n3. Display all cineplexes" +
+                    ("1. Display Movies " +
+                            "\n2. Search for a Movie" +
+                            "\n3. Display all Cineplexes" +
                             "\n4. View booking history" +                            
                             "\n5. Exit\n");
 

@@ -76,10 +76,10 @@ public class StaffApp {
                     System.out.println("Please Enter the staff Username");
                     user = sc.next();
                     System.out.println("Please Enter the staff Password");
-                    pass = sc.next();    
+                    pass = sc.next();
                     System.out.println("Please Enter the staff FirstName");
                     first = sc.next();
-                    addNewStaff(user,pass,first);
+                    addNewStaff(user, pass, first);
                     break;
                 case 4:
                     //    public Movie( name, Status status,  synopsis,  director,  cast, ArrayList<Review> , ArrayList<Cineplex> ) {
@@ -103,9 +103,9 @@ public class StaffApp {
 
     private void addNewStaff(String user, String pass, String first) {
 
-        ArrayList<User> allusers= (ArrayList<User>) Data.getInstance().getObjectFromPath(SaveLoadPath.USER_PATH, User.class);
-        allusers.add(new Staff(user,pass,first));
-        Data.getInstance().saveObjectToPath(SaveLoadPath.USER_PATH,allusers);
+        ArrayList<User> allusers = (ArrayList<User>) Data.getInstance().getObjectFromPath(SaveLoadPath.USER_PATH, User.class);
+        allusers.add(new Staff(user, pass, first));
+        Data.getInstance().saveObjectToPath(SaveLoadPath.USER_PATH, allusers);
 
     }
 
@@ -121,16 +121,17 @@ public class StaffApp {
     }
 
     private void handleShowTimes() {
-        int sc_in;
+        int sc_in =0;
         Scanner sc = new Scanner(System.in);
         do {
             System.out.println("Welcome " + currentStaff.getFirstName());
             System.out.println
                     ("1. Add new movie showing " +
-                                    "\n2. Update movie showing" +
-                                    "\n3. Delete movie showing" +
-                                    "\n4. Back");
-            switch(sc_in){
+                            "\n2. Update movie showing" +
+                            "\n3. Delete movie showing" +
+                            "\n4. Back");
+
+            switch (sc_in) {
 
                 case 1:
 
@@ -142,17 +143,17 @@ public class StaffApp {
 
                     break;
                 case 4:
+
                     break;
                 default:
-                    System.out.println("Invalid input. Enter again!")
-            }
-        while(sc_in!=4);
+                    System.out.println("Invalid input. Enter again!");
+            } while (sc_in != 4);
 
-        //TODO add new showing
-        //TODO update showing
-        //TODO delete showing
+            //TODO add new showing
+            //TODO update showing
+            //TODO delete showing
+        }while (sc_in != 4);
     }
-
 
     private void handleMovieListings() {
 
@@ -281,6 +282,7 @@ public class StaffApp {
             }
 
 
-        }while (sc_in!=3);
+        } while (sc_in != 3);
     }
+
 }
