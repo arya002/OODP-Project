@@ -5,20 +5,13 @@ public class Client extends User implements Serializable {
 	private String phoneNum;
 	private String email;
 	private int age;
-
-	public Client(String username, String password) {
-		super(username, password, username);
-		this.phoneNum = "";
-		this.email = "";
-		super.setType("client");
-	}
-
 	
-	public Client(String username, String password, String phoneNum, String email, String name, int age){
-		super(username, password, name);
+	public Client(String username, String password, String phoneNum, String email, String firstName,String lastName, int age){
+		super(username, password, firstName);
 		this.setPhoneNum(phoneNum);
 		this.setEmail(email);
 		this.setAge(age);
+		super.setType("client");
 	}
 
 	//<editor-fold desc="Getters">

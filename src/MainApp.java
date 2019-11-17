@@ -25,7 +25,8 @@ public class MainApp {
 			sc_in = sc.nextInt();
 			switch (sc_in) {
 				case 1:
-					User lis = new LoginScreen().run();
+					User lis = null;
+					lis = new LoginScreen().run();
 
 					if(lis.getType().equals("client")){
 
@@ -78,7 +79,7 @@ public class MainApp {
 	private static void instantiateTestData() throws InterruptedException {
 
 		ArrayList<User> user = new ArrayList<>();
-		Client client = new Client("hello","korea","012021314","a@gmail.com","Beck Gillespe",17);
+		Client client = new Client("hello","korea","012021314","a@gmail.com","Beck","Gillespie",17);
 		user.add(client);
 		Data.getInstance().saveObjectToPath(SaveLoadPath.USER_PATH,user);
 
