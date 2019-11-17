@@ -107,7 +107,7 @@ public class StaffApp {
 
         ArrayList<User> allusers = (ArrayList<User>) Data.getInstance().getObjectFromPath(SaveLoadPath.USER_PATH, User.class);
         allusers.add(new Staff(user, pass, first));
-        Data.getInstance().saveObjectToPath(SaveLoadPath.USER_PATH, allusers);
+        //Data.getInstance().saveObjectToPath(SaveLoadPath.USER_PATH, allusers);
 
     }
 
@@ -193,7 +193,7 @@ public class StaffApp {
             case 1:
                 System.out.println("Enter new movie: ");
                 String mov = MainApp.sc.next();
-                allShowings.get(sc_in-1).movie.setName(mov);
+                allShowings.get(sc_in-1).getMovie().setName(mov);
                 break;
             case 2:
                 System.out.println("Enter new date: ");

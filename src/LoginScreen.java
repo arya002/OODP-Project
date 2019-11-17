@@ -42,7 +42,7 @@ public class LoginScreen {
 		System.out.print("Enter password : ");
 		String pass = sc.next();
 
-		ArrayList<User> allUsers = (ArrayList<User>) Data.getInstance().getObjectFromPath(SaveLoadPath.USER_PATH,User.class);
+		ArrayList<User> allUsers = (ArrayList<User>) Data.getInstance().getObjectFromPath(SaveLoadPath.USER_PATH,User.class).clone();
 
 		for(User userEntry:allUsers)
 			if(userEntry.getUsername().equals(user))
@@ -51,7 +51,7 @@ public class LoginScreen {
                     return userEntry;
 				}
 
-
+        allUsers = null;
 		return null;
     }
 

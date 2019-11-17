@@ -48,7 +48,7 @@ public class ClientApp {
                 case 2:
                     String mov;
                     System.out.println("Enter movie name to search for: ");
-                    mov = sc.next();
+                    mov = sc.nextLine();
                     Movie searchedMovie = null;
                     for (Movie movie : MovieControl.getAllMovies()) {
 

@@ -2,8 +2,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 
-public class SaveLoad<K> {
-
+public class SaveLoad<K> implements Serializable{
 
     private K key;
 
@@ -37,7 +36,7 @@ public class SaveLoad<K> {
 
     public void saveObject(ArrayList<K> o, String file) {
         try {
-            FileOutputStream f = new FileOutputStream(file,false);
+            FileOutputStream f = new FileOutputStream(file);
             ObjectOutputStream out = new ObjectOutputStream(f);
             out.writeObject(o);
             out.close();

@@ -1,7 +1,7 @@
 import java.io.Serializable;
 import java.util.HashMap;
 
-public class Seat {
+public class Seat implements Serializable{
 
     private String seatID;
     private String custID;
