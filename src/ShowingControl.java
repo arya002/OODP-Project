@@ -2,15 +2,18 @@ import java.util.ArrayList;
 
 public class ShowingControl  {
 
-    private static ArrayList<Showing> allShowings;
+    private static ArrayList<Showing> allShowings= null;
 
     public ShowingControl(){
 
     }
 
     public static void Initialize(){
-        if ((allShowings = (ArrayList<Showing>) Data.getInstance().getObjectFromPath(SaveLoadPath.SHOWING_PATH,Showing.class)) == null){
+        if (((ArrayList<Showing>) Data.getInstance().getObjectFromPath(SaveLoadPath.SHOWING_PATH,Showing.class)) == null){
             allShowings = new ArrayList<>();
+        }else{
+            allShowings = (ArrayList<Showing>) Data.getInstance().getObjectFromPath(SaveLoadPath.SHOWING_PATH,Showing.class).clone();
+
         }
     }
 
@@ -19,7 +22,19 @@ public class ShowingControl  {
     public static void addShowing(Showing showing){
 
         allShowings.add(showing);
-        MovieControl.addLocation(showing,showing.getCineplex().getName(),showing.getTimeSlot());
+        //CineplexControl.addShowingToCinema(showing);
+        //Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH,allShowings);
+
+    }
+
+    public static void addShowing(ArrayList<Showing> showing){
+
+        allShowings.addAll(showing);
+//        for(Showing showings:allShowings) {
+//            CineplexControl.addShowingToCinema(showings);
+//        }
+
+        //Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH,allShowings);
 
     }
 

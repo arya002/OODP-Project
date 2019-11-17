@@ -10,22 +10,36 @@ import java.util.*;
 
 public class MovieControl {
 
-    private static ArrayList<Movie> allMovies;
+    private static ArrayList<Movie> allMovies =null;
 
     public static void Initialize(){
 
-        if ((allMovies = (ArrayList<Movie>) Data.getInstance().getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class)) == null){
+        if (((ArrayList<Movie>) Data.getInstance().getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class)) == null){
             allMovies = new ArrayList<>();
+        } else {
+            allMovies = (ArrayList<Movie>) Data.getInstance().getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class).clone();
         }
 
     }
 
+    public MovieControl(){
+    }
 
+    public static void addMovieListing(ArrayList<Movie> movie){
+
+        if(!allMovies.contains(movie)) {
+            allMovies.addAll(movie);
+            Data.getInstance().saveObjectToPath(SaveLoadPath.MOVIE_PATH,allMovies);
+        }
+
+    }
 
     public static void addMovieListing(Movie movie){
 
-        allMovies.add(movie);
-        Data.getInstance().saveObjectToPath(SaveLoadPath.MOVIE_PATH,allMovies);
+        if(!allMovies.contains(movie)) {
+            allMovies.add(movie);
+            Data.getInstance().saveObjectToPath(SaveLoadPath.MOVIE_PATH,allMovies);
+        }
 
     }
 
@@ -114,16 +128,14 @@ public class MovieControl {
     }
 
 
-    public static void addLocation(Showing movie,String cineplexName,int whichCinema){
+    public static void addLocation(Showing showing,String cineplexName,int whichCinema){
 
         for (Movie mov: allMovies){
 
-            if (mov.equals(movie)){
+            if (mov.equals(showing.getMovie())){
 
-                    CineplexControl.getCineplex(cineplexName).getMovies().add(movie.getMovie());
-                    CineplexControl.addShowingToCinema(whichCinema,movie,movie.getTimeSlot());
-                    MovieControl.getAllMovies().add(movie.getMovie());
-                    Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,CineplexControl.getCineplexes());
+                CineplexControl.addShowingToCinema(showing);
+                Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,CineplexControl.getCineplexes());
 
             }
 

@@ -2,12 +2,14 @@ import java.util.ArrayList;
 
 public class CineplexControl {
 
-    private static ArrayList<Cineplex> cineplexs;
+    private static ArrayList<Cineplex> cineplexs=null;
 
     public static void Initialize() {
-        if ((cineplexs = (ArrayList<Cineplex>) Data.getInstance().getObjectFromPath(SaveLoadPath.CINEPLEX_PATH, Cineplex.class)) != null)
-            ;
-        cineplexs = new ArrayList<>();
+        if (((ArrayList<Cineplex>) Data.getInstance().getObjectFromPath(SaveLoadPath.CINEPLEX_PATH, Cineplex.class)) == null){
+            cineplexs = new ArrayList<>();
+        } else {
+            cineplexs = (ArrayList<Cineplex>) Data.getInstance().getObjectFromPath(SaveLoadPath.CINEPLEX_PATH, Cineplex.class).clone();
+        }
 
     }
 
@@ -54,7 +56,14 @@ public class CineplexControl {
     public static void addCineplex(Cineplex cineplex) {
 
         cineplexs.add(cineplex);
-        Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH, cineplexs);
+        // Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH, cineplexs);
+
+    }
+
+    public static void addCineplex(ArrayList<Cineplex> cineplex) {
+
+        cineplexs.addAll(cineplex);
+        // Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH, cineplexs);
 
     }
 
@@ -72,37 +81,23 @@ public class CineplexControl {
 
     }
 
-    public static Cinema addShowingToCinema(int whichCinema, Showing showing, int timeSlot) {
+    public static Cinema addShowingToCinema(Showing showing) {
 
         int whichDay = showing.getDayOfWeek();
-        int whichTimeSlot = timeSlot;
-
-        //loop through all cineplexs
-        for (Cineplex thisCineplex : cineplexs) {
-
-                //if able to allocate a time slot
-                if (allocateTimeSlot(thisCineplex.getCinemas().get(whichCinema), whichDay, whichTimeSlot)) {
-                    //add showing
-                    thisCineplex.getCinemas().get(whichCinema).addShowing(showing);
-
+        int whichTimeSlot = showing.getTimeSlot();
+        Cinema whichCinema = showing.getCinema();
+        for (Cineplex thisCineplex : cineplexs)
+            for(Cinema cinema : thisCineplex.getCinemas())
+                if(cinema.equals(whichCinema))
+                    if (allocateTimeSlot(showing.getCinema(), whichDay, whichTimeSlot)) {
+                        cinema.addShowing(showing);
+                        return cinema;
                 }else{
                     System.out.println("error already allocated");
                 }
 
 
 
-        }
-
-//        if(allocateTimeSlot(whichCinema,whichDay,whichTimeSlot)){
-//
-//            System.out.print("Allocated in Cinema Control");
-//
-//        } else {
-//
-//            System.out.println("Cannot Be allocated");
-//
-//
-//        }
         return null;
 
     }

@@ -26,7 +26,7 @@ public class BookingControl {
    } 
 
    public static void Initialize(){
-       if ((holidays = (ArrayList<String>) Data.getInstance().getObjectFromPath(SaveLoadPath.HOLIDAY_PATH, String.class)) != null)
+       if ((holidays = (ArrayList<String>) Data.getInstance().getObjectFromPath(SaveLoadPath.HOLIDAY_PATH, String.class).clone()) != null)
             holidays = new ArrayList<>();
 
    }
@@ -101,19 +101,15 @@ public class BookingControl {
    public static ArrayList<Movie> getMoviesByTicketSales(String movieName){
 
        HashSet<String> ticketSalesName= new HashSet<>(MovieControl.getAllMoviesNames());
-       Integer[] ticketSales = (Integer[]) ticketSalesName.toArray();
+       int ticketSales[] = new int[ticketSalesName.size()];
 
        for(Ticket ticket:tickets){
 
            for(int i=0;i < ticketSalesName.size();i++){
-               System.out.println(ticketSalesName.toArray()[i]);
                if(ticket.getShowingMovieName().equals(ticketSalesName.toArray()[i])){
                    ticketSales[i]++;
                }
-
            }
-
-
        }
 
        return null;

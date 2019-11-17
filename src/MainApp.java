@@ -23,25 +23,22 @@ public class MainApp {
 		do {
 			System.out.println("1. Login/Register \n2. Continue as guest \n3. Exit");
 			sc_in = sc.nextInt();
-			System.out.println();
 			switch (sc_in) {
 				case 1:
 					User lis = null;
 					lis = new LoginScreen().run();
 
-					if (lis != null)
-						{
-						if(lis.getType().equals("client")){
 
-							new ClientApp((Client) lis);
+					if(lis.getType().equals("client")){
 
-						}else if(lis.getType().equals("staff")){
+						new ClientApp((Client) lis);
 
-							new StaffApp((Staff) lis);
+					}else if(lis.getType().equals("staff")){
 
-						}else {
-                        	System.out.println("error in determining class");
-						}
+						new StaffApp((Staff) lis);
+
+					}else {
+                        System.out.println("error in determining class");
 					}
 
 					break;
@@ -73,17 +70,22 @@ public class MainApp {
 
 					BookingControl bookingControl = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),ShowingControl.getAllShowings().get(0));
 
-					bookingControl.addTicket("adult",10,11);
-					bookingControl.addTicket("adult",12,11);
-					bookingControl.addTicket("adult",8,11);
+					bookingControl.addTicket("adult",1,8);
+					bookingControl.addTicket("adult",2,1);
+					bookingControl.addTicket("adult",8,1);
 
 					BookingControl.getMoviesByTicketSales("Better Days");
 
-
-
-				default:
-					System.out.println("Please choose from the following:");
 					break;
+
+<<<<<<< HEAD
+
+=======
+>>>>>>> 28db1bd2946c42d1e9f3eb033e75e916027bb722
+				default:
+					System.out.println("Invalid input, please choose from the following:");
+					break;
+
 			}
 
 		} while (sc_in != 3);
@@ -94,18 +96,18 @@ public class MainApp {
 		ArrayList<User> user = new ArrayList<>();
 		Client client = new Client("hello","korea","012021314","a@gmail.com","Beck Gillespe");
 		user.add(client);
-		Data.getInstance().saveObjectToPath(SaveLoadPath.USER_PATH,user);
 
 		CineplexControl.addCineplex(new Cineplex("Jurong"));
         CineplexControl.addCineplex(new Cineplex("Orchard"));
         CineplexControl.addCineplex(new Cineplex("Central"));
-		Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,CineplexControl.getCineplexes());
+
 
 		String[] castArray = new String[2];
 		ArrayList<Cineplex> cpes = CineplexControl.getCineplexes();
+		ArrayList<Movie> movieListings = new ArrayList<>();
 		castArray[0] = "Zhou Dongyu";
 		castArray[1] = "Jackson Yee";
-		MovieControl.addMovieListing(new Movie(
+		movieListings.add(new Movie(
 				"Better Days",
 				Movie.Status.Showing,
 				"Seventeen-year-old Nian is the subject of cruel bullying at high school when she meets Bei, a tough street kid. The two teenagers find a kindred spirit in each other that gradually rises above love, forming a world of their own. But the cocoon is crushed when they are being dragged into a teenage girl murder case as prime suspects. An emotional roller coaster that is heartwarming and heartbreaking at the same time, the China coming-of-age movie offers thought-provoking insights into the intense competition faced by nearly 10 million teenagers every year who sit for the National College Entrance Examination and national issues of school bullying. If you are one amongst 10 million to secure a promising future with a topnotch college passport, would you kill to do it?",
@@ -115,14 +117,14 @@ public class MainApp {
 
 		castArray[0] ="Chloe Benne";
 		castArray[1] ="TenzNorgay Trainor";
-		MovieControl.addMovieListing(new Movie("Abominable (PG)", Movie.Status.Showing,"Abominable” takes audiences on an epic 2,000-mile adventure from the streets of a Chinese city to the breathtaking Himalayan snowscapes. When teenage Yi (Chloe Bennet) encounters a young Yeti on the roof of her apartment building, she and her friends, Jin (Tenzing Norgay Trainor) and Peng (Albert Tsai), name him “Everest” and embark on an epic quest to reunite the magical creature with his family at the highest point on Earth.\n",
+		movieListings.add(new Movie("Abominable (PG)", Movie.Status.Showing,"Abominable” takes audiences on an epic 2,000-mile adventure from the streets of a Chinese city to the breathtaking Himalayan snowscapes. When teenage Yi (Chloe Bennet) encounters a young Yeti on the roof of her apartment building, she and her friends, Jin (Tenzing Norgay Trainor) and Peng (Albert Tsai), name him “Everest” and embark on an epic quest to reunite the magical creature with his family at the highest point on Earth.\n",
 				"Jill Culton",castArray));
 
 
 
 		castArray[0] ="Woody Harrelson";
 		castArray[1] ="Jesse Eisenberg";
-		MovieControl.addMovieListing(new Movie("Zombieland: Double Tap",
+		movieListings.add(new Movie("Zombieland: Double Tap",
 				Movie.Status.Showing,
 				"A decade after Zombieland became a hit film and a cult classic, the lead cast (Woody Harrelson, Jesse Eisenberg, Abigail Breslin, and Emma Stone) have reunited with director Ruben Fleischer (Venom) and writers Rhett Reese & Paul Wernick (Deadpool) for Zombieland 2. In the sequel, through comic mayhem that stretches from the White House and through the heartland, these four slayers must face off against the many new kinds of zombies that have evolved since the first movie, as well as some new human survivors. But most of all, they have to face the growing pains of their own snarky, makeshift family.",
 				"Ruben Fleischer",
@@ -132,17 +134,15 @@ public class MainApp {
 
 		castArray[0] ="Joaquin Phoenix";
 		castArray[1] ="Robert De Niro";
-		MovieControl.addMovieListing(new Movie("Joker",
+		movieListings.add(new Movie("Joker",
 				Movie.Status.Showing,
 				"A failed stand-up comedian is driven insane and becomes a psychopathic murderer.",
 				"Todd Phillips",
 				castArray));
 
-
-
 		castArray[0] = "Matt Damon";
 		castArray[1] = "Christian Bale";
-		MovieControl.addMovieListing(new Movie(
+		movieListings.add(new Movie(
 				"Ford vs Ferrari",
 				Movie.Status.Showing,
 				"Academy Award-winners Matt Damon and Christian Bale star in FORD v FERRARI, based on the remarkable true story of the visionary American car designer Carroll Shelby (Damon) and the fearless British-born driver Ken Miles (Bale), who together battled corporate interference, the laws of physics, and their own personal demons to build a revolutionary race car for Ford Motor Company and take on the dominating race cars of Enzo Ferrari at the 24 Hours of Le Mans in France in 1966.",
@@ -154,30 +154,36 @@ public class MainApp {
 		int day =20;
 		int dotw =1;
 		int tmslot =1;
-		ArrayList<Movie> movies = (ArrayList<Movie>) Data.getInstance().getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class);
+
+        ArrayList<Showing> newShowings = new ArrayList<>();
 		for (day = 20; day < 25; day++){
 			for (cineplex =0;cineplex < 2;cineplex++){
 				for (cinema = 0; cinema < 3;cinema++){
-					for (tmslot =1; tmslot <5;tmslot++){
+					for (tmslot =0; tmslot <5;tmslot++){
 
-						ShowingControl.addShowing(new Showing(
+						newShowings.add(new Showing(
 								cpes.get(cineplex).getCinemas().get(cinema),
 								cpes.get(cineplex),
-								movies.get(tmslot),
+								movieListings.get(tmslot),
 								"201911"+day+dotw+tmslot,
 								"normal"
 						));
-
 					}
 				}
 			}
-			dotw=dotw%8;
+			dotw=dotw%6;
 			dotw++;
 		}
-		Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH, ShowingControl.getAllShowings());
+		ShowingControl.addShowing(newShowings);
+		MovieControl.addMovieListing(movieListings);
+		Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH,cpes);
+		Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,CineplexControl.getCineplexes());
+		Data.getInstance().saveObjectToPath(SaveLoadPath.USER_PATH,user);
+		Data.getInstance().saveObjectToPath(SaveLoadPath.MOVIE_PATH,MovieControl.getAllMovies());
+        System.out.println("There are " + ShowingControl.getAllShowings().size() + " Showings");
+        System.out.println("There are " + MovieControl.getAllMovies().size() + " Movies");
 
-
-	}
+    }
 
 
 }
