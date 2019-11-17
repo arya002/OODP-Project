@@ -13,7 +13,6 @@ public class MovieControl {
     private static ArrayList<Movie> allMovies;
 
     public static void Initialize(){
-    public static void Initialize(){
 
         if ((allMovies = (ArrayList<Movie>) Data.getInstance().getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class)) == null){
             allMovies = new ArrayList<>();
