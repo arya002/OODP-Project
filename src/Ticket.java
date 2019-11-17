@@ -9,7 +9,7 @@ public class Ticket implements Serializable {
     private Client client;
     private Showing showing;
     private Seat seat;
-    private enum type { child, adult }; 
+    private  String type;
     private double price;
 
     //private static ArrayList<Integer> holidays;
@@ -18,16 +18,17 @@ public class Ticket implements Serializable {
     //}
 
 
-    public Ticket(Client client, Seat seat, Showing showing, double price)
+    public Ticket(Client client, Seat seat, Showing showing, double price, String age)
     {
         this.client = client;
         this.seat = seat;
         this.showing = showing;
         this.price = price;
+        this.type = age;
 
         //this.calculatePrice();
     }
-
+/*
     private void calculatePrice() {
 
 
@@ -98,7 +99,7 @@ public class Ticket implements Serializable {
                 break;
         }
     }
-
+*/
     //<editor-fold desc="Getters">
     public String getName()
     {
@@ -151,7 +152,7 @@ public class Ticket implements Serializable {
     }
 
 //</editor-fold>
-
+/*
     public void print() {
         HashMap<String, String> fields =  new HashMap<>();
         fields.put("cineplex", showing.getCineplex().getName());
@@ -160,7 +161,7 @@ public class Ticket implements Serializable {
         fields.put("type", this.seat.getType());
         fields.put("date", this.getDate());
         fields.put("price", Double.toString(this.price));
-
+*/
 //        TODO
 //        ++++++++++++++++++++++++
 //        +  TID:      Id        +
@@ -172,4 +173,4 @@ public class Ticket implements Serializable {
 //        +  price:    price     +
 //        ++++++++++++++++++++++++
     }
-}
+

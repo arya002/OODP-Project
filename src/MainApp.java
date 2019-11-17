@@ -147,7 +147,7 @@ public class MainApp {
 
 		for (day = 20; day < 25; day++){
 			for (cineplex =0;cineplex < 2;cineplex++){
-				for (cinema = 0; cinema < 2;cinema++){
+				for (cinema = 0; cinema < 3;cinema++){
 					for (tmslot =1; tmslot <5;tmslot++){
 
 						ShowingControl.addShowing(new Showing(

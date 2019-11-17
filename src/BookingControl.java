@@ -33,14 +33,27 @@ public class BookingControl {
             System.out.println("showing is null");
         
         System.out.println(price);
-        tickets.add(new Ticket(client, seat, showing, price));
+        tickets.add(new Ticket(client, seat, showing, price, age));
         seat.assignSeat(client.getUsername());
    }
 
    private int calculatePrice(String age)
    {
-       //TODO calculate price
-        return 5;
+       int price = 0;
+       if (age.equals("adult"))
+            price += BASE_ADULT;
+       else
+            price += BASE_CHILD;
+
+        if (showing.is3D())
+            price += PREMIUM_MOVIE_MARKUP;
+        if (showing.getMovie().isBlockbuster())
+            price += PREMIUM_MOVIE_MARKUP;
+        if (showing.getCinema().isPremium())
+            price += PREMIUM_CINEMA_MARKUP;
+
+        System.out.println("Your ticket costs " + price);
+        return price;
    }
 
    public void completeBooking()
@@ -49,7 +62,10 @@ public class BookingControl {
        System.out.println("Your booking ID is " + booking.getBookingID());
        System.out.println("Your total amount owed is S$" + booking.getTotalPrice());
 
-       ArrayList<Booking> bookings = (ArrayList<Booking>) Data.getInstance().getObjectFromPath(SaveLoadPath.BOOKING_PATH, Booking.class);
+       ArrayList<Booking> bookings;
+       if((bookings = (ArrayList<Booking>) Data.getInstance().getObjectFromPath(SaveLoadPath.BOOKING_PATH,
+                Booking.class)) == null)
+            bookings = new ArrayList<>();
        bookings.add(booking);
        Data.getInstance().saveObjectToPath(SaveLoadPath.BOOKING_PATH, bookings);
    }

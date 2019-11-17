@@ -4,7 +4,7 @@ import java.util.*;
 public class Showing implements Serializable {
     private Cinema cinema;
     private Movie movie;
-    private String type;
+    private boolean is3D;
     private String date;
     private Cineplex cineplex;
     private final SeatingPlan seatingPlan;
@@ -15,7 +15,7 @@ public class Showing implements Serializable {
      * @param cineplex
      * @param movie
      * @param date     = YYYYMMDDXY (X = DOTW, Y = TimeSlot)
-     * @param type
+     * @param is3D
      */
     //
     public Showing(final Cinema cinema, final Cineplex cineplex, final Movie movie, final String date,
@@ -23,7 +23,7 @@ public class Showing implements Serializable {
         this.setCinema(cinema);
         this.setMovie(movie);
         this.setDate(date);
-        this.setType(type);
+        this.setType(is3D);
         this.setCineplex(cineplex);
         this.seatingPlan = new SeatingPlan(cinema.getRoomLayout());
     }
@@ -48,7 +48,7 @@ public class Showing implements Serializable {
 
     public String printShowing(){
         return (movie.getName() + " is playing at " + cineplex.getName() + " on "
-                + (getDayOfWeek()) + " at " + getTimeSlotString(getTimeSlot()));
+                + (getDayOfWeek()) + " at " + getTimeSlotString(getTimeSlot()) + " on screen " + cinema.getCinemaID() + " ");
     }
 
     public String getTimeSlotString(int timeSlot) {
@@ -83,14 +83,13 @@ public class Showing implements Serializable {
         this.cinema = cinema;
     }
 
-    public void setType(final String type) {
-        if (type.isEmpty())
-            throw new IllegalArgumentException("Type cannot be empty");
-        this.type = type;
+    public void setType(final boolean is3D) {
+
+        this.is3D = is3D;
     }
 
-    public String getType() {
-        return type;
+    public boolean is3D() {
+        return is3D;
     }
 
     public Cinema getCinema() {
