@@ -7,6 +7,7 @@ import java.util.*;
 public class LoginScreen {
 
     Scanner sc = new Scanner(System.in);
+    ArrayList<User> allUsers = (ArrayList<User>) Data.getInstance().getObjectFromPath(SaveLoadPath.USER_PATH,User.class);
 
 /**
  * Offer user a choice to login, register or go back
@@ -47,7 +48,6 @@ public class LoginScreen {
 		System.out.print("Enter password : ");
 		String pass = sc.next();
 
-		ArrayList<User> allUsers = (ArrayList<User>) Data.getInstance().getObjectFromPath(SaveLoadPath.USER_PATH,User.class);
 
         for(User userEntry:allUsers)
         {
@@ -63,12 +63,22 @@ public class LoginScreen {
 
 
 /**
- * Registers a new user
+ * Registers a new user. Will check if username has been taken
  */
     public void registerUser() {
-        System.out.println("Enter a username:");
-        String userName = sc.next();
-        //TODO check if username already exists and throw error
+	    boolean taken = true;
+	    while(taken){
+		taken = false;
+        	System.out.println("Enter a username:");
+        	String userName = sc.next();
+		for(User userEntry:allUsers)
+        		{
+			if(userEntry.getUsername().equals(userName)){
+				System.out.println("Username taken. Please try again");
+				taken = true;
+				break;}
+		}
+	      }
 		System.out.println("Enter a password:");
 		String password = sc.next();
 
