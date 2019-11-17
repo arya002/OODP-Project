@@ -30,7 +30,7 @@ public class SeatingPlan implements Serializable {
         {
             for (int j = 0; j < seatTypes[1].length; j++)
             {
-                seats[i][j] = new Seat(i + j, seatTypes[i][j]);
+                seats[i][j] = new Seat(String.valueOf(i) + "/" + String.valueOf(j), seatTypes[i][j]);
             }
         }
     }

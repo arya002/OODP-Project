@@ -34,7 +34,7 @@ public class ShowingControl  {
 
     public static void printSeats(Showing showing)
     {
-        Seat[][] seatingPlan = showing.getSeatingPlan().getSeats();
+        Seat seatingPlan[][] = showing.getSeatingPlan().getSeats();
         
         for (int i = 0; i < seatingPlan.length; i ++)
         {

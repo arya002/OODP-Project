@@ -159,7 +159,7 @@ public class Ticket implements Serializable {
         HashMap<String, String> fields =  new HashMap<>();
         fields.put("cineplex", showing.getCineplex().getName());
         fields.put("room", this.showing.getCinema().getType());
-        fields.put("seat", Integer.toString(this.seat.getSeatID()));
+        fields.put("seat", this.seat.getSeatID());
         fields.put("type", this.seat.getType());
         fields.put("date", this.getDate());
         fields.put("price", Double.toString(this.price));

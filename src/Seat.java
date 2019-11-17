@@ -58,8 +58,8 @@ public class Seat {
     //</editor-fold>
 
     public void print() {
-        System.out.println("seatID: " + Integer.toString(seatID));
-        System.out.println("custID: " + Integer.toString(custID));
+        System.out.println("seatID: " + seatID);
+        System.out.println("custID: " + custID);
         System.out.println("type: " + type);
         System.out.println("allocated: " + Boolean.toString(allocated));
     }
