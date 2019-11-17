@@ -38,15 +38,16 @@ public class ClientApp {
                             printMovies(MovieControl.getAllMovies());
                             break;
                         case 2:
-
+                            //TODO
                             break;
                         case 3:
-                            printMovies(MovieControl.getAllMoviesByRating());
+                            printMovies(MovieControl.getAllMoviesByRating()); //TODO print top 5
                             break;
                     }
+                    //Without break here to automatically go to case 2. Makes intuitive sense 
                 case 2:
                     String mov;
-                    System.out.println("Enter movie name: ");
+                    System.out.println("Enter movie name to search for: ");
                     mov = sc.next();
                     Movie searchedMovie = null;
                     for (Movie movie : MovieControl.getAllMovies()) {
@@ -73,6 +74,7 @@ public class ClientApp {
                             }
                             overallRating = overallRating / listReviews.size(); //average ratings
                             //System.out.printf("❀".repeat((int) overallRating) + ", %.1f/5\n\n", overallRating);
+                            break;
                         case 2:
                             int count = 0;
                             for (Showing showing : ShowingControl.getAllShowingOfMovie(searchedMovie)) {
@@ -86,7 +88,9 @@ public class ClientApp {
                             } else {
                                 System.out.println("error in selecting movies");
                             }
+                            break;
                     }
+                    break;
 
                 case 3:
                     for (Cineplex cineplex : CineplexControl.getCineplexes())
