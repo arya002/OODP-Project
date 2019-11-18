@@ -26,7 +26,7 @@ Create new data object
     }
 /**
 Saves data
-@param gives the location to save the data
+@param path gives the location to save the data
 @param arrayToSave is the arraylist of entity objects to be saved (e.g. Reviews etc)
 */
     public static void saveObjectToPath(String path,ArrayList<?> arrayToSave) {
@@ -34,6 +34,7 @@ Saves data
             System.out.println("saving" + arrayToSave.get(0).getClass() + " type of class");
             SaveLoad saveLoad = new SaveLoad(arrayToSave.get(0).getClass());
             saveLoad.saveObject(arrayToSave,path);
+            System.out.println("done");
         } else {
             System.out.println("Array empty :(");
         }

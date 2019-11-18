@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -9,13 +11,22 @@ import java.util.Scanner;
  */
 public class StaffApp {
 
+    /**
+    * The current staff member logged in
+    */
     private Staff currentStaff;
 
+    /**
+    * Initializes the StaffApp application for the current staff member
+    */
     public StaffApp(Staff _currentStaff) {
         currentStaff = _currentStaff;
         run();
     }
 
+    /**
+    * Runs the StaffApp
+    */
     private void run() {
         int sc_in;
 
@@ -46,6 +57,9 @@ public class StaffApp {
         } while (sc_in != 4);
     }
 
+    /**
+    * Handles the system settings
+    */
     private void handleSystemSettings() {
         int sc_in;
         Scanner sc = new Scanner(System.in);
@@ -118,8 +132,12 @@ public class StaffApp {
 
     }
 
-
-
+    /**
+    * Adds a new staff member
+    * @param user Staff member's username
+    * @param password Staff member's password
+    * @param first Staff member's first name
+    */
     private void addNewStaff(String user, String pass, String first) {
 
         ArrayList<User> allusers = (ArrayList<User>) Data.getInstance().getObjectFromPath(SaveLoadPath.USER_PATH, User.class);
@@ -128,6 +146,7 @@ public class StaffApp {
 
     }
 
+<<<<<<< HEAD
     private void addHoliday(String holiday) {
         ArrayList<Prices> prices =new ArrayList<>();
         if((prices= (ArrayList<Prices>) Data.getInstance().getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class))!=null);
@@ -136,6 +155,12 @@ public class StaffApp {
         prices.add(price);
         System.out.println("Holiday added");
     }
+=======
+    /**
+    * Adds a new holiday
+    */
+    private void addHoliday() {
+>>>>>>> 1963949210947ab7eafda7a107e66bdc01b55ea6
 
     private void printHolidays(){
         ArrayList<Prices> prices =new ArrayList<>();
@@ -152,12 +177,19 @@ public class StaffApp {
             System.out.println("Holiday not on the list");
     }
 
+    /**
+    * Changes the price of a ticket
+    * @param price New price of the ticket
+    */
     private void changePriceOfTicket(double price) {
 
         boolean returnVal = false;
 
     }
 
+    /**
+    * Handles the show times
+    */
     private void handleShowTimes() {
         int sc_in;
         Scanner sc = new Scanner(System.in);
@@ -192,6 +224,9 @@ public class StaffApp {
         } while (sc_in != 4);
     }
 
+    /** 
+    * Deletes a movie showing
+    */
     private void deleteShowing() {
 
         System.out.println("Select a showing number to delete: ");
@@ -208,6 +243,9 @@ public class StaffApp {
         Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH,allShowings);
     }
 
+    /**
+    * Updates the details of a showing
+    */
     private void updateShowing() {
 
         System.out.println("Select a showing number to edit: ");
@@ -242,6 +280,10 @@ public class StaffApp {
 
     }
 
+    /**
+    * Prints all the movie names
+    * @param movies Array list of all the movie objects
+    */
     private void printMovies(ArrayList<Movie> movies) {
         for (Movie movie : movies) {
             System.out.println(movie.getName());
@@ -249,6 +291,10 @@ public class StaffApp {
         }
     }
 
+    /**
+    * Prints all the cineplexes
+    * @param cineplexs Array list of all the cineplex objects
+    */
     private void printCineplexs(ArrayList<Cineplex> cineplexs) {
         for (Cineplex cineplex : cineplexs) {
             System.out.println(cineplex.getName());
@@ -256,30 +302,86 @@ public class StaffApp {
         }
     }
 
+    /**
+    * Adds a new showing
+    */
     private void addShowing() {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Choose a cineplex: ");
-        printCineplexs(CineplexControl.getCineplexes());
-        String cineplex = sc.next();
+        int count=0;
+        int cineplexIndex=0;
+        int cinemaIndex=0;
+        for(Cineplex cineplex:CineplexControl.getCineplexes()) {
+            System.out.println(count + "." + cineplex.getName());
+            count++;
+        }
+        cineplexIndex= sc.nextInt();
+        Cineplex cineplex = CineplexControl.getCineplexes().get(cineplexIndex);
+        count =0;
+        System.out.println("Choose a cinema: ");
+        for(Cinema cinema:cineplex.getCinemas()){
+            System.out.println(count + "." + cinema.getCinemaID());
+            count++;
+        }
+
+        cinemaIndex= sc.nextInt();
+        Cinema cinema = cineplex.getCinemas().get(cinemaIndex);
 
         System.out.println("Choose a movie: ");
-        printMovies(MovieControl.getAllMovies());
-        String movie = sc.next();
+        count =0;
+        for(Movie movie:MovieControl.getAllMovies()){
+            System.out.println(count + ". " + movie.getName());
+            count++;
+        }
+        int movieIndex = sc.nextInt();
+        Movie movie = MovieControl.getAllMovies().get(movieIndex);
 
         System.out.println("is it 3d? :");
         String type = sc.next();
         boolean threedee=  false;
-        if (type.equalsIgnoreCase("yes"))
+        if (type.equalsIgnoreCase("yes")){
+            threedee = true;
+        }
 
+        String date =getDateInput(sc);
 
-        System.out.println("Enter date: ");
-        String date = sc.next();
+        if(cinema.getTimeSlotsArray()[Integer.parseInt(date.substring(8,9))][Integer.parseInt(date.substring(9))] == 1) {
+            ShowingControl.addShowing(new Showing(cinema, cineplex, movie, date, type));
+        }else{
+            System.out.println("error -");
+        }
+        return;
 
-        ShowingControl.addShowing(new Showing(CineplexControl.getCineplex(cineplex).getCinemas().get(0), CineplexControl.getCineplex(cineplex),
-                MovieControl.getMovie(movie), date, type));
     }
 
+    private String getDateInput(Scanner sc) {
+        System.out.println("Enter date in format YYYYMMDD: ");
+        String date;
+        date = sc.next();
+
+        Cinema.DaysOfWeek[] dotwvals= Cinema.DaysOfWeek.values();
+        System.out.println("Enter which Day of the week: ");
+        for(int choice = 0;choice<dotwvals.length;choice++){
+            System.out.println(choice+". "+dotwvals[choice].toString());
+        }
+        int dotwIndex= sc.nextInt();
+        date+=(dotwIndex);
+
+        System.out.println("Enter Time Slot: ");
+        Cinema.TimeSlots[] timeSlots= Cinema.TimeSlots.values();
+
+        for(int choice = 0;choice<timeSlots.length;choice++){
+            System.out.println(choice+". "+timeSlots[choice].toString());
+        }
+        int timeSlotIndex = sc.nextInt();
+        date+=(timeSlotIndex);
+        return date;
+    }
+
+    /**
+    * handles Movie Listing changes
+    */
     private void handleMovieListings() {
 
         int sc_in;
@@ -353,8 +455,11 @@ public class StaffApp {
                                 String name;
                                 Movie.Status status;
                                 String synopsis;
-                                String type;
-                                ArrayList<String> cast;
+                                String type="";
+                                String actor="";
+                                ArrayList<String> cast= new ArrayList<>();
+                                String director;
+                                boolean blockbuster = false;
                                 System.out.println("Please enter the movies name");
                                 name = MainApp.sc.nextLine();
                                 System.out.println("Please enter which Status");
@@ -365,16 +470,28 @@ public class StaffApp {
                                 sc_in = MainApp.sc.nextInt();
                                 status = moviestatus[sc_in];
                                 System.out.println("Please enter the movie synopsis");
-                                name = MainApp.sc.nextLine();
+                                synopsis = MainApp.sc.nextLine();
                                 System.out.println("Is this a BlockBuster");
                                 type =MainApp.sc.nextLine();
                                 if(type.equalsIgnoreCase("yes")){
+                                    blockbuster = true;
+                                }
+                                System.out.println("Enter the directors name");
+                                director =MainApp.sc.nextLine();
 
-                                }else if(type.equalsIgnoreCase("no")){
 
+                                while(!actor.equalsIgnoreCase("exit")){
+                                    System.out.println("Enter the cast members name or type exit to exit");
+                                    actor =MainApp.sc.nextLine();
+                                    cast.add(actor);
                                 }
 
+                                String[] castArray = new String[cast.size()];
+                                castArray = (String[]) cast.toArray();
+                                Movie newMovie = new Movie(name,status,synopsis,director,castArray);
+                                MovieControl.addMovieListing(newMovie);
 
+                                System.out.println("new movie "+newMovie.getName() +" added");
 
                             default:
                                 System.out.println("Invalid input, please choose from the following:");
