@@ -1,15 +1,23 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
+/**
+Client application to display the interface
+ */
 public class ClientApp {
     private Client current;
 
+    /**
+Create a ClientApp for the current user
+@param current is the current user account
+ */
     public ClientApp(Client current) {
         this.current = current;
         run();
     }
-
+/**
+Runs the client app functions
+ */
     private void run() {
         int sc_in = 0;
         Scanner sc = new Scanner(System.in);
@@ -233,7 +241,10 @@ public class ClientApp {
         //TODO process the booking
     }
     */
-
+/**
+Print the list of movies
+@param cast The cast of a movie as a string
+ */
     private void printMovies(ArrayList<Movie> movies) {
         for (Movie movie : movies) {
 
