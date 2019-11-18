@@ -117,7 +117,7 @@ public class StaffApp {
     /**
     * Adds a new staff member
     * @param user Staff member's username
-    * @param password Staff member's password
+    * @param pass Staff member's password
     * @param first Staff member's first name
     */
     private void addNewStaff(String user, String pass, String first) {
@@ -200,6 +200,7 @@ public class StaffApp {
         int sc_in = sc.nextInt();
         allShowings.remove(sc_in-1);
         Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH,allShowings);
+        return;
     }
 
     /**
