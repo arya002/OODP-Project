@@ -85,21 +85,9 @@ public class Cinema implements Serializable {
         
     }
 
-    public RoomLayout setRoomLayoutSize(int rows, int columns)
+    public void setRoomLayout(int rows, int columns)
     {
-<<<<<<< HEAD
 
-=======
-        String[][] seats = new String[rows][columns];
-        for (int i = 0; i < 10; i++)
-        {
-            for (int j = 0; j < 15; j ++)
-            {
-                seats[i][j] = "N";
-            }
-        }
-        return new RoomLayout(seats);
->>>>>>> 66615a09fadafa3e39f3edde8a6470e6cba18bf7
     }
 
     private void buildTimeSlots() {

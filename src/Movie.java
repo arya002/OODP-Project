@@ -11,8 +11,7 @@ public class Movie implements Serializable {
     private String director;
     private String[] cast;
     private boolean isBlockbuster;
-    private double avg_rating;
-    private double howManyReviews;
+    //private double avg_rating;
     //private ArrayList<Review> movieReviews;
     
     /**

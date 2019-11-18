@@ -13,7 +13,7 @@ public class Review implements Serializable {
     private Client reviewer;
     private String movieName;
 
-    public Review(String review, String movieName,double rating, Client reviewer){
+    public Review(String review, String movieName,double rating, Client reviewer) throws IllegalArgumentException {
         /**
  * The age of this student.
  */
@@ -24,9 +24,8 @@ public class Review implements Serializable {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat formatter = new SimpleDateFormat("hh:mm a, dd-MM-yyyy");
         this.date = formatter.format(calendar.getTime());
+
     }
-
-
 
 
     //<editor-fold desc="Getters">
@@ -49,6 +48,8 @@ public class Review implements Serializable {
 
     //<editor-fold desc="mutators">
     public void setReview(String review) {
+        if (review.isEmpty())
+            throw new IllegalArgumentException("Review cannot be empty");
         this.review = review;
     }
     public void setRating(double rating) {

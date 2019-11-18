@@ -70,7 +70,7 @@ Loads the data of cineplexes from file into an arraylist of Cineplex objects
     }
 /**
 Add an arraylist showing to cinema. Main purpose is to save the showings in bulk to file
-@param showing an arraylist of showing objects, which contains the movie, date, and type. As well as the cinema and cineplex
+@param is an arraylist of showing objects, which contains the movie, date, and type. As well as the cinema and cineplex
  */
     public static Cinema addShowingToCinema(ArrayList<Showing> showing) {
 
@@ -97,7 +97,7 @@ Add an arraylist showing to cinema. Main purpose is to save the showings in bulk
     }
 /**
 Add a showing to cinema. Main purpose is to save the showing to file
-@param showing a showing object, which contains the movie, date, and type. As well as the cinema and cineplex
+@param is a showing object, which contains the movie, date, and type. As well as the cinema and cineplex
  */
     public static void addShowingToCinema(Showing showing) {
 
@@ -120,7 +120,7 @@ Add a showing to cinema. Main purpose is to save the showing to file
 /**
 Get all cinemas in a cineplex
 @return arraylist of all Cinema(objects) within a particular cineplex
-@param whichCineplex in a Cineplex Name (String)
+@param takes in a Cineplex Name (String)
  */
     public static ArrayList<Cinema> getCinemaFromCineplex(String whichCineplex) {
 
@@ -137,7 +137,7 @@ Get all cinemas in a cineplex
 /**
 Get all cinemas in a cineplex
 @return arraylist of all Cinema(objects) within a particular cineplex
-@param whichCineplex in a Cineplex object to load cinemas from
+@param takes in a Cineplex object to load cinemas from
  */
     public static ArrayList<Cinema> getCinemaFromCineplex(Cineplex whichCineplex) {
 
@@ -152,18 +152,5 @@ Get all cinemas in a cineplex
         return null;
     }
 
-//    public static RoomLayout getNewRoomLayoutForCinema(String cinemaID){
-//
-//        for(Cineplex cineplex:getCineplexes())
-//            for (Cinema cinema:cineplex.getCinemas()){
-//
-//            }
-//
-//    }
-//
-//    public static RoomLayout setRoomLayoutForCinema(String cinemaID){
-//
-//
-//    }
 
 }

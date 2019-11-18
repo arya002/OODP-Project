@@ -47,6 +47,7 @@ public class ShowingControl  {
     */
     public static void addShowing(ArrayList<Showing> showing){
 
+
         Data.saveObjectToPath(SaveLoadPath.SHOWING_PATH,showing);
         CineplexControl.addShowingToCinema(showing);
 
