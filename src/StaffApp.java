@@ -4,7 +4,6 @@ import java.util.Scanner;
 /**
  * Handles all the Staff capabilities
  *
- * @author Beck
  * @version 1
  * @since 11/11/2019
  */

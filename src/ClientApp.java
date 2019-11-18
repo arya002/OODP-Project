@@ -78,7 +78,7 @@ public class ClientApp {
                                         double overallRating = 0;
                                         listReviews = ReviewControl.getMovieReviews(mov);
                                         for (int i = 0; i < listReviews.size(); i++) {
-                                            listReviews.get(i).print(); // print all Reviews for a movie
+                                            ReviewControl.print(listReviews.get(i)); // print all Reviews for a movie
                                             overallRating = overallRating + listReviews.get(i).getRating();
                                         }
                                         overallRating = overallRating / listReviews.size(); //average ratings

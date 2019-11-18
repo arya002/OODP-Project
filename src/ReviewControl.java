@@ -9,7 +9,6 @@ import java.util.*;
 public class ReviewControl {
 
     public static ArrayList<Review> allReviews = new ArrayList<>();
-
     
 /**
  * Get all the reviews from the file
@@ -43,6 +42,14 @@ public class ReviewControl {
         }
         return arrayList;
 
+    }
+
+    public static void print(Review review) { // print review
+        System.out.println("Review by: " + review.getReviewer().getUsername());
+        System.out.println("Movie: " + review.getMovieName());
+        System.out.println("Date: " + review.getDate());
+        //System.out.printf("*".repeat((int) rating) + ", %.1f/5\n\n", rating);
+        System.out.println("Review:\n" + review.getReview());
     }
     
     /**
