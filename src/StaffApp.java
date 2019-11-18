@@ -172,23 +172,6 @@ public class StaffApp {
         if (sc.next().equalsIgnoreCase("yes")) {
             StaffControl.changePrices();
         }
-        Scanner sc = new Scanner(System.in);
-        ArrayList<Prices> prices = (ArrayList<Prices>) Data.getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class);
-        Prices price = prices.get(0);
-        System.out.println("Enter the new adult base price");
-        price.setBASE_ADULT(sc.nextInt());
-        System.out.println("Enter the new concession base price");
-        price.setBASE_CONCESSION(sc.nextInt());
-        System.out.println("Enter the new holiday/weekend markup");
-        price.setHOLIDAY_MARKUP(sc.nextInt());
-        System.out.println("Enter the new premium cinema markup");
-        price.setPREMIUM_CINEMA_MARKUP(sc.nextInt());
-        System.out.println("Enter the new premium movie markup");
-        price.setPREMIUM_MOVIE_MARKUP(sc.nextInt());
-        System.out.println("Enter the new premium seat markup");
-        price.setPREMIUM_SEAT_MARKUP(sc.nextInt());
-
-        Data.saveObjectToPath(SaveLoadPath.PRICE_PATH, prices);
     }
 
 
