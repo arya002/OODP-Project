@@ -40,7 +40,6 @@ public class StaffApp {
                             "\n4. Exit\n");
 
             //sc.nextLine();
-            sc_in=0;
             sc_in = sc.nextInt();
             switch (sc_in) {
                 case 1:
@@ -71,9 +70,9 @@ public class StaffApp {
         do {
             System.out.println("Welcome " + currentStaff.getFirstName());
             System.out.println
-                    ("1. Edit movie Prices " +
-                            "\n2. Edit holidays" +
-                            "\n3. Add new staff member" +
+                    ("1. Edit Movie Prices " +
+                            "\n2. Edit Holidays" +
+                            "\n3. Add New Staff Member" +
                             "\n4. Edit Cinema Layout" +
                             "\n5. Exit");
 
@@ -87,7 +86,7 @@ public class StaffApp {
                 }
                 break;
                 case 2:
-                    printHolidays();
+                    StaffControl.printHolidays();
                     System.out.println("What would you like to do?\n1. Add holiday \n2. Remove holiday");
                     sc_in = sc.nextInt();
                     String holiday;
@@ -96,7 +95,7 @@ public class StaffApp {
                             System.out.println("Please enter the new holiday (YYYYMMDD):");
                             sc.nextLine();
                             holiday = sc.nextLine();
-                            addHoliday(holiday);
+                            StaffControl.addHoliday(holiday);
                             break;
 
                         case 2:
@@ -116,7 +115,8 @@ public class StaffApp {
                     pass = sc.next();
                     System.out.println("Please Enter the staff FirstName");
                     first = sc.next();
-                    addNewStaff(user, pass, first);
+                    StaffControl.addNewStaff(user, pass, first);
+
                     break;
                 case 4:
                     int row;
@@ -150,7 +150,6 @@ public class StaffApp {
             }
 
         } while (sc_in != 3);
-        sc.close();
 
     }
 
@@ -171,40 +170,9 @@ public class StaffApp {
         }
         return layout;
     }
-    /**
-     * Adds a new staff member
-     *
-     * @param user  Staff member's username
-     * @param pass  Staff member's password
-     * @param first Staff member's first name
-     */
-    private void addNewStaff(String user, String pass, String first) {
 
-        ArrayList<User> allusers = (ArrayList<User>) Data.getInstance().getObjectFromPath(SaveLoadPath.USER_PATH, User.class);
-        allusers.add(new Staff(user, pass, first));
-        Data.getInstance().saveObjectToPath(SaveLoadPath.USER_PATH, allusers);
 
-    }
 
-    /**
-     * Adds a new holiday
-     */
-
-    private void addHoliday(String holiday) {
-        ArrayList<Prices> prices = new ArrayList<>();
-        if ((prices = (ArrayList<Prices>) Data.getInstance().getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class)) != null);
-
-        Prices price = prices.get(0);
-        price.addHolyday(holiday);
-        prices.add(price);
-        System.out.println("Holiday added");
-    }
-
-    private void printHolidays(){
-        ArrayList<Prices> prices =new ArrayList<>();
-        if((prices= (ArrayList<Prices>) Data.getInstance().getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class))!=null)
-        prices.get(0).getHOLIDAYS().forEach(System.out::println);
-    }
 
     private void removeHoliday(String holiday){
         ArrayList<Prices> prices =new ArrayList<>();
@@ -479,6 +447,7 @@ public class StaffApp {
                     String synopsis;
                     String type = "";
                     String actor = "";
+                    String rating="";
                     ArrayList<String> cast = new ArrayList<>();
                     String director;
                     boolean blockbuster = false;
@@ -497,6 +466,8 @@ public class StaffApp {
                     synopsis = sc.nextLine();
                     System.out.println("Is this a BlockBuster");
                     type = sc.nextLine();
+                    System.out.println("Enter rating");
+                    rating = sc.nextLine();
                     if (type.equalsIgnoreCase("yes")) {
                         blockbuster = true;
                     }
@@ -514,7 +485,8 @@ public class StaffApp {
                         castArray[i] = cast.get(i);
                     }
 
-                    Movie newMovie = new Movie(name, status, synopsis, director, castArray);
+                    Movie newMovie = new Movie(name, status, synopsis, director,rating, castArray);
+                    newMovie.setBlockbuster(blockbuster);
                     MovieControl.addMovieListing(newMovie);
 
                     System.out.println("new movie " + newMovie.getName() + " added");

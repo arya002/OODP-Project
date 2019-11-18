@@ -12,6 +12,7 @@ public class Movie implements Serializable {
     private String[] cast;
     private boolean isBlockbuster;
     private double avg_rating;
+    private String rating;
     private double howManyReviews;
     //private ArrayList<Review> movieReviews;
     
@@ -46,13 +47,14 @@ Create a new movie object
 @param director The director of the movie as a string
 @param cast The cast of a movie as a string
  */
-    public Movie(String name, Status status, String synopsis, String director, String[] cast) {
+    public Movie(String name, Status status, String synopsis, String director,String rating, String[] cast) {
         this.setName(name);
         this.setStatus(status);
         this.setSynopsis(synopsis);
         this.setDirector(director);
         this.setCast(cast);
         //movieReviews = new ArrayList<>();
+        this.rating = rating;
         this.isBlockbuster = false;
 
     }
@@ -64,10 +66,6 @@ Check is movie is a blockbuster
         return isBlockbuster;
     }
 
-
-    //</editor-fold>
-
-    //<editor-fold desc="Setters">
     /**
 Sets the status 
 @param status is a status object
@@ -94,7 +92,7 @@ Sets the status
         this.cast = cast;
     }
 /**Change the sunopsis
-@param Takes a string description of the movie
+@param synopsis a string description of the movie
  */
     public void setSynopsis(String synopsis) {
         if (synopsis.isEmpty())
@@ -122,6 +120,8 @@ Sets the status
     public String getName() {
         return name;
     }
+
+    public void setBlockbuster(boolean isBlockbuster){this.isBlockbuster = isBlockbuster;}
 /**Get the status
 @return Status object of the movie
  */
@@ -142,4 +142,5 @@ Sets the status
     }
 
     //</editor-fold>
+
 }
