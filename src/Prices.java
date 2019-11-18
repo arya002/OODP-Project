@@ -8,6 +8,7 @@ public class Prices implements Serializable
     private int HOLIDAY_MARKUP;
     private int PREMIUM_MOVIE_MARKUP;
     private int PREMIUM_CINEMA_MARKUP;
+    private int PREMIUM_SEAT_MARKUP;
 
     private static ArrayList<String> HOLIDAYS = new ArrayList<>();
 
@@ -17,16 +18,29 @@ public class Prices implements Serializable
 
     }
 
-    public Prices(int bASE_ADULT, int bASE_CHILD, int hOLIDAY_MARKUP, int pREMIUM_CINEMA_MARKUP, int pREMIUM_MOVIE_MARKUP, ArrayList<String> holidays)
+    public Prices(int bASE_ADULT, int bASE_CHILD, int hOLIDAY_MARKUP, int pREMIUM_CINEMA_MARKUP, int pREMIUM_MOVIE_MARKUP, int PREMIUM_SEAT_MARKUP, ArrayList<String> holidays)
     {
         this.BASE_ADULT = bASE_ADULT;
         this.BASE_CHILD = bASE_CHILD;
         this.HOLIDAY_MARKUP = hOLIDAY_MARKUP;
         this.PREMIUM_CINEMA_MARKUP = pREMIUM_CINEMA_MARKUP;
         this.PREMIUM_MOVIE_MARKUP = pREMIUM_MOVIE_MARKUP;
+        this.PREMIUM_SEAT_MARKUP = PREMIUM_SEAT_MARKUP;
         this.HOLIDAYS = holidays;
     }
     
+/**
+ * @return the pREMIUM_SEAT_MARKUP
+ */
+public int getPREMIUM_SEAT_MARKUP() {
+    return PREMIUM_SEAT_MARKUP;
+}
+/**
+ * @param pREMIUM_SEAT_MARKUP the pREMIUM_SEAT_MARKUP to set
+ */
+public void setPREMIUM_SEAT_MARKUP(int pREMIUM_SEAT_MARKUP) {
+    PREMIUM_SEAT_MARKUP = pREMIUM_SEAT_MARKUP;
+}
 
     /**
      * @param bASE_ADULT the bASE_ADULT to set
