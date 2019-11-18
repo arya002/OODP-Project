@@ -66,105 +66,53 @@ public class MovieControl {
         Reinitialize();
 
         ArrayList<String> allMovieNames = getAllMoviesNames();
-        Map<String, Integer> avgReviewMap = new HashMap<String, Integer>();
+        Map<String, String> avgReviewMap = new HashMap<String, String>();
         ArrayList<Review> allReviews = ReviewControl.getAllReviews();
         if (allReviews == null)
             allReviews = new ArrayList<Review>();
 
         for (int i = 0; i < allMovieNames.size(); i++) {
-            avgReviewMap.put(allMovieNames.get(i), 0);
+            avgReviewMap.put(allMovieNames.get(i), String.valueOf(0));
         }
 
 
         for (Review review : allReviews) {
             String movieName = review.getMovieName();
-            Integer reviewScore = (int) (review.getRating());
+            String reviewScore = String.valueOf(review.getRating());
             if (avgReviewMap.containsKey(movieName))
-                avgReviewMap.replace(movieName, avgReviewMap.get(movieName) + reviewScore);
+                avgReviewMap.replace(movieName, String.valueOf(Double.parseDouble(avgReviewMap.get(movieName)) + Double.parseDouble(reviewScore)));
             else
                 avgReviewMap.put(movieName, reviewScore);
         }
 
-        for (Map.Entry<String, Integer> entry : avgReviewMap.entrySet()) {
+        ArrayList<String> notEnoughReviewsNames = new ArrayList<>();
+
+        for (Map.Entry<String, String> entry : avgReviewMap.entrySet()) {
             int counter = 0;
             for (Review review : allReviews) {
                 if (review.getMovieName().equals(entry.getKey()))
                     counter++;
-                if (counter != 0)
-                    entry.setValue(entry.getValue() / counter);
-
+            }
+            if (counter > 1)
+            {
+                double avg = Double.parseDouble(entry.getValue()) / counter;
+                entry.setValue(String.valueOf(avg));
+            }
+            else
+            {
+                notEnoughReviewsNames.add(entry.getKey());
             }
         }
 
+        for (String movie : notEnoughReviewsNames)
+        {
+            avgReviewMap.remove(movie);
+        }
+        
+
         avgReviewMap.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).forEach(System.out::println);
     }
-//    public static ArrayList<Movie> getAllMoviesByRating() {
-//
-//        ArrayList<String> ticketSalesName = getAllMoviesNames();
-//        Map<String, Integer> ticketSales = new HashMap<String, Integer>();
-//        for (int i = 0; i < ticketSalesName.size(); i++) {
-//            ticketSales.put(ticketSalesName.get(i), 0);
-//        }
-//
-//        HashSet<Booking> bookings = new HashSet<>(BookingControl.getBookings());
-//        for (Booking booking : bookings) {
-//            for (Ticket ticket : booking.getTickets()) {
-//                for (Map.Entry<String, Integer> entry : ticketSales.entrySet()) {
-//                    if (ticket.getShowingMovieName().equals(entry.getKey()))
-//                        entry.setValue(entry.getValue() + 1);
-//                }
-//            }
-//        }
-//
-//        ticketSales.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).forEach(System.out::println);
-//        return null;
-//    }
 
-
-//    public static ArrayList<Movie> getAllMoviesByRating() {
-//        Reinitialize();
-//        int i = 0;
-//        ArrayList<Movie> movies = new ArrayList<>();
-//        System.out.println("The top rated movies are \n");
-//        ArrayList<Review> sortedList = ReviewControl.getAllReviews();
-//        if (sortedList!=null) {
-//            sortedList.sort(new CustomComparitor());
-//            String oldReviewMovie = sortedList.get(0).getMovieName();
-//            Review oldReview;
-//            double total;
-//            boolean exitCond = false;
-//            for (i = 0; i < sortedList.size(); i++) {
-//                total = 0;
-//                int j = 0;
-//                int index = i;
-//                oldReviewMovie = sortedList.get(i).getMovieName();
-//                while (i + j < sortedList.size() && j + index < sortedList.size() && sortedList.get(i + j).getMovieName().equals(oldReviewMovie)) {
-//                    System.out.println("old -" + oldReviewMovie);
-//                    System.out.println("new - i + j- " + sortedList.get(i + j).getMovieName() + "\n");
-//                    total += sortedList.get(index + j).getRating();
-//                    oldReview = sortedList.get(index + j);
-//                    oldReviewMovie = oldReview.getMovieName();
-//                    j++;
-//                    if (index + j == sortedList.size())
-//                        exitCond = true;
-//
-//                }
-//
-//                for (Movie movie : getAllMovies()) {
-//                    if (movie.getName().equalsIgnoreCase(sortedList.get(i).getMovieName()))
-//                        movies.add(movie);
-//                }
-//                //System.out.println("total " + sortedList.get(i).getMovieName() + " " + total + "\n");
-//
-//                if (exitCond)
-//                    break;
-//            }
-//        }else{
-//            System.out.println("no reviews have been left");
-//        }
-//
-//        return movies;
-//    }
 
     public static Movie getMovie(String name) {
 

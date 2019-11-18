@@ -80,7 +80,6 @@ public class BookingControl {
             price += prices.getBASE_ADULT();
         else
             price += prices.getBASE_CONCESSION();
-
         if (showing.is3D())
             price += prices.getPREMIUM_MOVIE_MARKUP();
         if (showing.getMovie().isBlockbuster())
