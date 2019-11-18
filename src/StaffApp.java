@@ -119,8 +119,23 @@ public class StaffApp {
                     row = sc.nextInt();
                     System.out.println("how many columns would you like this new cinema to be");
                     column = sc.nextInt();
-                    //RoomLayout Cinema.getNewRoomLayout(row,column);
-                    //emoji
+                    ArrayList<Cineplex> cineplex = (ArrayList<Cineplex>) Data.getObjectFromPath(SaveLoadPath.CINEPLEX_PATH, Cineplex.class);
+
+                    int selectedCineplex = 0;
+                    int selectedCinema = 0;
+                    System.out.println("Choose the cineplex: ");
+                    for(Cineplex cp:cineplex){
+                        System.out.println(selectedCineplex + ". " +cp.getName());
+                        selectedCineplex++;
+                    }
+                    selectedCineplex = sc.nextInt();
+                    for(Cinema cinema:cineplex.get(selectedCineplex).getCinemas()){
+                        System.out.println(selectedCineplex + ". " +cinema.getCinemaID());
+                        selectedCinema++;
+                    }
+                    selectedCinema = sc.nextInt();
+                    cineplex.get(selectedCineplex).getCinemas().get(selectedCinema).buildRoomLayout(newLayout(row, column));
+                    Data.saveObjectToPath(SaveLoadPath.CINEPLEX_PATH, cineplex);
                     break;
                 case 5:
                 default:
@@ -133,6 +148,23 @@ public class StaffApp {
 
     }
 
+    private String[][] newLayout(int rows, int columns)
+    {
+        String[][] layout = new String[rows][columns];
+        System.out.println("Would you like the first two rows to be premium?");
+        boolean premium = (MainApp.sc.next()).equalsIgnoreCase("yes");
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                if(premium)
+                    layout[i][j] = "P";
+                else
+                    layout[i][j] = "N";
+            }
+        }
+        return layout;
+    }
     /**
      * Adds a new staff member
      *

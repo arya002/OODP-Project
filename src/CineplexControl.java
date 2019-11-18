@@ -184,13 +184,5 @@ public class CineplexControl {
      *
      * @param cinemaID is the cinema which layout will change
      */
-    public static void setRoomLayoutForCinema(String cinemaID, RoomLayout rl) {
-
-        for (Cineplex cineplex : getCineplexes())
-            for (Cinema cinema : cineplex.getCinemas())
-                if (cinema.getCinemaID().equals(cinemaID))
-                    cinema.setRoomLayout(rl);
-
-    }
 
 }
