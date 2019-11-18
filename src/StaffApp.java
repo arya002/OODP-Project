@@ -4,7 +4,6 @@ import java.util.Scanner;
 /**
  * Handles all the Staff capabilities
  *
- * @author Beck
  * @version 1
  * @since 11/11/2019
  */
@@ -260,6 +259,7 @@ public class StaffApp {
                     i = 0;
                     for (Movie movie : MovieControl.getAllMovies()) {
                         System.out.println(i + " - " + movie.getName() + " is currently " + movie.getStatus() + " \n" + movie.getSynopsis() + "\n\n");
+                    i++;
                     }
                 case 2:
 
