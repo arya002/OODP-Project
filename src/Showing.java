@@ -94,9 +94,9 @@ public class Showing implements Serializable {
      * Prints the showing
      */
     public String printShowing(){
-        return (movie.getName() + " is playing at " + cineplex.getName() + " on"
+        return (movie.getName() + " is playing at " + cineplex.getName() + " on "
                + (getDotwString(getDayOfWeek())) + " at "+ getTimeSlotString(getTimeSlot())
-                +"on the " + getDDMMYYYYformatted() + " on screen " + cinema.getCinemaID() + " ");
+                +" on the " + getDDMMYYYYformatted() + " on screen " + cinema.getCinemaID() + " ");
     }
 
     /**
@@ -227,10 +227,10 @@ public class Showing implements Serializable {
 
     public String getDDMMYYYYformatted(){
         String string= "";
-
-        string+= date.substring(0,4) + "/";
+        string+= getDay() + "/";
         string+= date.substring(4,6) + "/";
-        string+= getDay();
+        string+= date.substring(0,4);
+
 
 
         return string;
