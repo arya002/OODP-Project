@@ -252,7 +252,8 @@ public class StaffApp {
             System.out.println("Welcome " + currentStaff.getFirstName());
             System.out.println("1. View Movie Listings " +
                             "\n2. Edit Movie Listings" +
-                            "\n3. Exit\n");
+                            "\n3. Add New Movie" +
+                            "\n4. Exit\n");
 
             sc_in = MainApp.sc.nextInt();
             switch (sc_in) {
@@ -267,16 +268,15 @@ public class StaffApp {
                     System.out.println("Which movie would you like to edit");
 
                     i = 0;
-                    for (Movie movie : MovieControl.getAllMovies()) {
+                    ArrayList<Movie> movies=MovieControl.getAllMovies();
+                    for (Movie movie : movies) {
 
                         System.out.println(i + ". " + movie.getName() + " is currently " + movie.getStatus());
-
+                        i++;
                     }
 
                     sc_in = MainApp.sc.nextInt();
                     int indexToEdit = sc_in;
-
-                    ArrayList<Movie> editedMovieList = MovieControl.getAllMovies();
 
                     do {
                         System.out.println("1. Status " +
@@ -293,13 +293,13 @@ public class StaffApp {
                                     sc_in = MainApp.sc.nextInt();
                                     switch (sc_in) {
                                         case 1:
-                                            editedMovieList.get(indexToEdit).setStatus(Movie.Status.Showing);
+                                            movies.get(indexToEdit).setStatus(Movie.Status.Showing);
                                             break;
                                         case 2:
-                                            editedMovieList.get(indexToEdit).setStatus(Movie.Status.comingSoon);
+                                            movies.get(indexToEdit).setStatus(Movie.Status.comingSoon);
                                             break;
                                         case 3:
-                                            editedMovieList.get(indexToEdit).setStatus(Movie.Status.notShowing);
+                                            movies.get(indexToEdit).setStatus(Movie.Status.notShowing);
                                             break;
                                         case 4:
                                             break;
@@ -309,58 +309,36 @@ public class StaffApp {
                                             break;
                                     }
 
-                                    Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH,editedMovieList);
+                                    Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH,movies);
 
                                 } while (sc_in != 4);
 
-                            //case 3:
+                            case 3:
+                                String name;
+                                Movie.Status status;
+                                String synopsis;
+                                String type;
+                                ArrayList<String> cast;
+                                System.out.println("Please enter the movies name");
+                                name = MainApp.sc.nextLine();
+                                System.out.println("Please enter which Status");
+                                Movie.Status[] moviestatus = Movie.Status.values();
+                                for(int index=0; i <Movie.Status.size;i++){
+                                    System.out.println(i + ". " +moviestatus.toString());
+                                }
+                                sc_in = MainApp.sc.nextInt();
+                                status = moviestatus[sc_in];
+                                System.out.println("Please enter the movie synopsis");
+                                name = MainApp.sc.nextLine();
+                                System.out.println("Is this a BlockBuster");
+                                type =MainApp.sc.nextLine();
+                                if(type.equalsIgnoreCase("yes")){
 
-//                                do {
-//                                    System.out.println("1. Add location" +
-//                                            "\n2. Remove location" +
-//                                            "\n3. Exit.");
-//                                    sc_in = MainApp.sc.nextInt();
-//                                    switch (sc_in) {
-//                                        case 1:
-//                                            System.out.println("1. Locations to add\n");
-//                                            ArrayList<Cineplex> cineplexes = CineplexControl.getCineplexes();
-//                                            for (int index = 0; index < cineplexes.size(); index++) {
-//                                                System.out.println(index + ". " + cineplexes.get(index));
-//                                            }
-//                                            break;
-//
-//                                        case 2:
-//                                            //TODO add option to delete
-//                                            for (Cineplex cineplex :CineplexControl.getCineplexes()){
-//                                                for (Cinema cinema:cineplex.getCinemas()){
-//                                                    System.out.println("cineplex " + cineplex + " has showings of ");
-//                                                    for(Showing showing:cinema.getShowings()){
-//                                                        System.out.println(showing.getMovie() + " ");
-//
-//                                                    }
-//                                                }
-//
-//                                            }
-////
-//                                            break;
-//
-//                                        case 3:
-//
-//                                            break;
-//
-//                                        default:
-//                                            System.out.println("Please enter a valid integer");
-//                                            break;
-//                                    }
-//                                    while (sc_in != 3) ;
-//                                    break;
+                                }else if(type.equalsIgnoreCase("no")){
 
-//                                } while (sc_in != 3);
+                                }
 
-                                //break;
-                            case 2:
 
-                                break;
 
                             default:
                                 System.out.println("Invalid input, please choose from the following:");

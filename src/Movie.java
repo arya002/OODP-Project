@@ -11,7 +11,23 @@ public class Movie implements Serializable {
     //private double avg_rating;
     //private ArrayList<Review> movieReviews;
     public enum Status{
-        notShowing,comingSoon,Showing
+        notShowing{
+            @Override
+            public String toString() {
+                return "Not Showing";
+            }
+        },comingSoon{
+            @Override
+            public String toString() {
+                return "Coming Soon";
+            }
+        },Showing{
+            @Override
+            public String toString() {
+                return "Currently Showing";
+            }
+        };
+        public static int size =3;
     }
     //<editor-fold desc="Constructors">
     public Movie(String name, Status status, String synopsis, String director, String[] cast) {
