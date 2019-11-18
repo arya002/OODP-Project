@@ -143,4 +143,12 @@ Sets the status
 
     //</editor-fold>
 
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public String getRating() {
+        return rating;
+    }
 }
