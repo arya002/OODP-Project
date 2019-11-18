@@ -37,7 +37,9 @@ public class StaffApp {
                     ("1. Create/Update/Remove Movie" +
                             "\n2. Create/Update/Remove cinema Show times" +
                             "\n3. Configure System Settings" +
-                            "\n4. Exit\n");
+                            "\n4. Get All Movies by Ticket Sales" +
+                            "\n5. Get All Movies by Ratings" +
+                            "\n6. Exit\n");
 
             //sc.nextLine();
             sc_in = sc.nextInt();
@@ -52,13 +54,19 @@ public class StaffApp {
                     handleSystemSettings();
                     break;
                 case 4:
+                    MovieControl.getMoviesByTicketSales();
+                    break;
+                case 5:
+                    MovieControl.getAllMoviesByRating();
+                    break;
+                case 6:
                     break;
                 default:
                     System.out.println("Invalid input, please choose from the following:");
                     break;
             }
 
-        } while (sc_in != 4);
+        } while (sc_in != 6);
     }
 
     /**
@@ -164,6 +172,23 @@ public class StaffApp {
         if (sc.next().equalsIgnoreCase("yes")) {
             StaffControl.changePrices();
         }
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Prices> prices = (ArrayList<Prices>) Data.getObjectFromPath(SaveLoadPath.PRICE_PATH,Prices.class);
+        Prices price = prices.get(0);
+        System.out.println("Enter the new adult base price");
+        price.setBASE_ADULT(sc.nextInt());
+        System.out.println("Enter the new concession base price");
+        price.setBASE_CONCESSION(sc.nextInt());
+        System.out.println("Enter the new holiday/weekend markup");
+        price.setHOLIDAY_MARKUP(sc.nextInt());
+        System.out.println("Enter the new premium cinema markup");
+        price.setPREMIUM_CINEMA_MARKUP(sc.nextInt());
+        System.out.println("Enter the new premium movie markup");
+        price.setPREMIUM_MOVIE_MARKUP(sc.nextInt());
+        System.out.println("Enter the new premium seat markup");
+        price.setPREMIUM_SEAT_MARKUP(sc.nextInt());
+
+        Data.saveObjectToPath(SaveLoadPath.PRICE_PATH, prices);
     }
 
 
@@ -326,7 +351,7 @@ public class StaffApp {
             sc_in = sc.nextInt();
             switch (sc_in) {
                 case 1:
-                   viewListings();
+                    viewListings();
                     break;
                 case 2:
                     editListings();
@@ -381,6 +406,8 @@ public class StaffApp {
                             break;
                         case 3:
                             movies.get(indexToEdit).setStatus(Movie.Status.notShowing);
+                            ShowingControl.notShowing(movies.get(indexToEdit).getName());
+                            sc_in =4;
                             break;
                         case 4:
                             break;
@@ -393,6 +420,9 @@ public class StaffApp {
                     Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH, movies);
 
                 } while (sc_in != 4);
+
+
+
                 break;
             case 2:
                 break;

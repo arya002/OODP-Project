@@ -90,7 +90,7 @@ public class ClientApp {
                                                     ReviewControl.print(listReviews.get(i)); // print all Reviews for a movie
                                                     overallRating = overallRating + listReviews.get(i).getRating();
                                                 }
-                                                System.out.println(x);
+                                                System.out.println();
                                                 if(listReviews.size() == 0)
                                                 {
                                                     System.out.println("No reviews have been left");
