@@ -31,7 +31,7 @@ Note: NOT the main method of this project
 
         while (anotherTicket.equalsIgnoreCase("yes"))
         { 
-            System.out.println("Is this an adult or a child ticket?");
+            System.out.println("Is this an adult, senior or a child ticket?");
             String age = sc.nextLine();
 
             System.out.println("Legend : U for unavailable, P for premuim, N for normal");
