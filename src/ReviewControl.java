@@ -15,14 +15,14 @@ public class ReviewControl {
  */
     public static ArrayList<Review> getAllReviews() {
 
-        return (ArrayList<Review>) Data.getInstance().getObjectFromPath(SaveLoadPath.SHOWING_PATH,Showing.class);
+        return (ArrayList<Review>) Data.getInstance().getObjectFromPath(SaveLoadPath.REVIEW_PATH,Review.class);
 
     }
     /**
  * Ran at the start of program to load reviews from file.
  */
     public static void Reinitialize(){
-        if ((allReviews = (ArrayList<Review>) Data.getInstance().getObjectFromPath(SaveLoadPath.SHOWING_PATH,Showing.class)) == null){
+        if ((allReviews = (ArrayList<Review>) Data.getInstance().getObjectFromPath(SaveLoadPath.REVIEW_PATH,Review.class)) == null){
             allReviews = new ArrayList<>();
         }
     }
@@ -81,7 +81,7 @@ public class ReviewControl {
 
 /**
  * Add a review (already created) to the list of all other reviews
- @param takes a review object
+ @param review a review object
  */
     public static void addReview(Review review) {
 
