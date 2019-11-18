@@ -184,7 +184,7 @@ public class MainApp {
 			dotw++;
 		}
 
-		ArrayList<Review> reviews = new ArrayList<Review>;
+		ArrayList<Review> reviews = new ArrayList<>();
 		reviews.add(new Review("Really capturing!", "Better Days", 5, client));
 		reviews.add(new Review("Horrible acting, wouldn't recommend.", "Ford vs Ferrari", 1, client));
 		reviews.add(new Review("Really scary and horryfying. Zombies looked real.", "Zombieland: Double Tap", 5, client));
