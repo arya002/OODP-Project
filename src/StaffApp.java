@@ -68,7 +68,8 @@ public class StaffApp {
                     ("1. Edit movie Prices " +
                             "\n2. Edit holidays" +
                             "\n3. Add new staff member" +
-                            "\n4. Exit\n");
+                            "\n4. Edit Cinema Layout" +
+                            "\n5. Exit");
 
             sc_in = sc.nextInt();
             switch (sc_in) {
@@ -112,15 +113,15 @@ public class StaffApp {
                     addNewStaff(user, pass, first);
                     break;
                 case 4:
-                    //    public Movie( name, Status status,  synopsis,  director,  cast, ArrayList<Review> , ArrayList<Cineplex> ) {
-
-                    //ArrayList<Review> reviews = new ArrayList<>();
-
-                    //    public Review(String review, String movieName,double rating, Client reviewer) throws IllegalArgumentException
-
-
-                    //Movie movie = new Movie("shrek", Movie.Status.Showing,"synopsis","beck",new String[] {"tom cruise","donkey"}, )
+                    int row;
+                    int column;
+                    System.out.println("How many rows would you like this new cinema to be");
+                    row = sc.nextInt();
+                    System.out.println("how many columns would you like this new cinema to be");
+                    column = sc.nextInt();
+                    //CineplexControl.
                     break;
+                case 5:
                 default:
                     System.out.println("Invalid input, please choose from the following:");
                     break;
