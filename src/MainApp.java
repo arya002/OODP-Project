@@ -248,6 +248,10 @@ public class MainApp {
 				"Ford vs Ferrari",
 				1,
 				client));
+		reviews.add(new Review("its ok i like car",
+				"Ford vs Ferrari",
+				4,
+				client));
         reviews.add(new Review("Really scary and horryfying. Zombies looked real.", "Zombieland: Double Tap", 5, client));
         reviews.add(new Review("Todd acted great. Storyline could have been better though.", "Joker", 4, client));
         reviews.add(new Review("Movie was overall okay. Some parts were worth watching.", "Abominable (PG)", 3, client));

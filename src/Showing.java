@@ -94,8 +94,13 @@ public class Showing implements Serializable {
      * Prints the showing
      */
     public String printShowing(){
-        return (movie.getName() + " is playing at " + cineplex.getName() + " on "
-                + (getDayOfWeek()) + " at " + getTimeSlotString(getTimeSlot()) + " on screen " + cinema.getCinemaID() + " ");
+        if(getMovie().getStatus() == Movie.Status.Showing || getMovie().getStatus() == Movie.Status.comingSoon) {
+            return (movie.getName() + " is playing at " + cineplex.getName() + " on "
+                    + (getDotwString(getDayOfWeek())) + " at " + getTimeSlotString(getTimeSlot())
+                    + " on the " + getDDMMYYYYformatted() + " on screen " + cinema.getCinemaID() + " at "+ cineplex.getName());
+        }
+        return "this move is no longer showing";
+
     }
 
     /**
@@ -104,15 +109,15 @@ public class Showing implements Serializable {
      */
     public String getTimeSlotString(int timeSlot) {
         switch (timeSlot) {
-        case 1:
+        case 0:
             return "10 am";
-        case 2:
+        case 1:
             return "1 pm";
-        case 3:
+        case 2:
             return "3 pm";
-        case 4:
+        case 3:
             return "6 pm";
-        case 5:
+        case 4:
             return "9 pm";
         default:
             return "";
@@ -192,6 +197,7 @@ public class Showing implements Serializable {
     public int getDay() {
         return Integer.parseInt(date.substring(6,8));
     }
+    //YYYYMMDDXY
 
     /**
      * Gets the time slot of the showing
@@ -215,5 +221,22 @@ public class Showing implements Serializable {
         if (seatingPlan.getSeat(i, j).isAllocated())
             return true;
         return false;
+    }
+
+    public String getDotwString(int i){
+        Cinema.DaysOfWeek[] dotw = Cinema.DaysOfWeek.values();
+        return dotw[i].toString();
+
+    }
+
+    public String getDDMMYYYYformatted(){
+        String string= "";
+        string+= getDay() + "/";
+        string+= date.substring(4,6) + "/";
+        string+= date.substring(0,4);
+
+
+
+        return string;
     }
 }
