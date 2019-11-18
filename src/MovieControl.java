@@ -23,13 +23,6 @@ public class MovieControl {
     public MovieControl() {
     }
 
-    public static void addMovieListing(ArrayList<Movie> movie) {
-
-        ArrayList<Movie> movies = getAllMovies();
-        movies.addAll(movie);
-        Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH, movies);
-
-    }
 
     public static void addMovieListing(Movie movie) {
 
@@ -113,16 +106,6 @@ public class MovieControl {
     }
 
 
-    public static Movie getMovie(String name) {
-
-        Reinitialize();
-
-        for (int i = 0; i < allMovies.size(); i++) {
-            if (allMovies.get(i).getName().equals(name)) ;
-            return allMovies.get(i);
-        }
-        return null;
-    }
 
     public static ArrayList<String> getAllMoviesNames() {
 

@@ -276,6 +276,7 @@ public class MainApp {
 
         ReviewControl.addReview(reviews);
 
+		System.out.println("There are " + CineplexControl.getCineplexes().size() + " Cineplexes each with " + CineplexControl.getCineplexes().get(0).getCinemas().size() + " Cinemas");
         System.out.println("There are " + ReviewControl.getAllReviews().size() + " Reviews");
 		System.out.println("There are " + ShowingControl.getAllShowings().size() + " Showings");
         System.out.println("There are " + MovieControl.getAllMovies().size() + " Movies");

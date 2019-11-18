@@ -20,8 +20,6 @@ public class BookingControl {
      * @param showing is a showing object
      */
     public BookingControl(Client client, Showing showing) {
-        //System.out.println(client.getEmail());
-
         tickets = new ArrayList<>();
         this.client = client;
         this.showing = showing;

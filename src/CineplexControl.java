@@ -56,19 +56,22 @@ public class CineplexControl {
     }
 
     /**
-     * @return a boolean
+     * Time slots are not really needed as input is staff, left in here to show this is easily
+     * implemented at any time, just need to do it from a certain point and every week.
+     *
+     * @return true as its a stub
      */
     private static boolean allocateTimeSlot(Cinema whichCinema, int whichDay, int whichTimeSlot) {
 
-        Reinitialize();
-        int[][] tempTS;
-        tempTS = whichCinema.getTimeSlotsArray();
-        if (tempTS[whichDay][whichTimeSlot] == 1) {
-            tempTS[whichDay][whichTimeSlot] = 0;
-            System.out.println(" to " + Cinema.DaysOfWeek.values()[whichDay] + " at " + Cinema.TimeSlots.values()[whichTimeSlot]);
-            return true;
-        }
-        return false;
+//        Reinitialize();
+//        int[][] tempTS;
+//        tempTS = whichCinema.getTimeSlotsArray();
+//        if (tempTS[whichDay][whichTimeSlot] == 1) {
+//            tempTS[whichDay][whichTimeSlot] = 0;
+//            System.out.println(" to " + Cinema.DaysOfWeek.values()[whichDay] + " at " + Cinema.TimeSlots.values()[whichTimeSlot]);
+//            return true;
+//        }
+        return true;
 
     }
 
