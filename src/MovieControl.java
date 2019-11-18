@@ -62,52 +62,73 @@ public class MovieControl {
         return null;
     }
 
-    public static ArrayList<Movie> getAllMoviesByRating() {
-        Reinitialize();
-        int i = 0;
-        ArrayList<Movie> movies = new ArrayList<>();
-        System.out.println("The top rated movies are \n");
-        ArrayList<Review> sortedList = ReviewControl.getAllReviews();
-        if (sortedList!=null) {
-            sortedList.sort(new CustomComparitor());
-            String oldReviewMovie = sortedList.get(0).getMovieName();
-            Review oldReview;
-            double total;
-            boolean exitCond = false;
-            for (i = 0; i < sortedList.size(); i++) {
-                total = 0;
-                int j = 0;
-                int index = i;
+//    public static ArrayList<Movie> getAllMoviesByRating() {
+//
+//        ArrayList<String> ticketSalesName = getAllMoviesNames();
+//        Map<String, Integer> ticketSales = new HashMap<String, Integer>();
+//        for (int i = 0; i < ticketSalesName.size(); i++) {
+//            ticketSales.put(ticketSalesName.get(i), 0);
+//        }
+//
+//        HashSet<Booking> bookings = new HashSet<>(BookingControl.getBookings());
+//        for (Booking booking : bookings) {
+//            for (Ticket ticket : booking.getTickets()) {
+//                for (Map.Entry<String, Integer> entry : ticketSales.entrySet()) {
+//                    if (ticket.getShowingMovieName().equals(entry.getKey()))
+//                        entry.setValue(entry.getValue() + 1);
+//                }
+//            }
+//        }
+//
+//        ticketSales.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).forEach(System.out::println);
+//        return null;
+//    }
 
-                oldReviewMovie = sortedList.get(i).getMovieName();
 
-                while (i + j < sortedList.size() && j + index < sortedList.size() && sortedList.get(i + j).getMovieName().equals(oldReviewMovie)) {
-                    System.out.println("old -" + oldReviewMovie);
-                    System.out.println("new - i + j- " + sortedList.get(i + j).getMovieName() + "\n");
-                    total += sortedList.get(index + j).getRating();
-                    oldReview = sortedList.get(index + j);
-                    oldReviewMovie = oldReview.getMovieName();
-                    j++;
-                    if (index + j == sortedList.size())
-                        exitCond = true;
-
-                }
-
-                for (Movie movie : getAllMovies()) {
-                    if (movie.getName().equalsIgnoreCase(sortedList.get(i).getMovieName()))
-                        movies.add(movie);
-                }
-                //System.out.println("total " + sortedList.get(i).getMovieName() + " " + total + "\n");
-
-                if (exitCond)
-                    break;
-            }
-        }else{
-            System.out.println("no reviews have been left");
-        }
-
-        return movies;
-    }
+//    public static ArrayList<Movie> getAllMoviesByRating() {
+//        Reinitialize();
+//        int i = 0;
+//        ArrayList<Movie> movies = new ArrayList<>();
+//        System.out.println("The top rated movies are \n");
+//        ArrayList<Review> sortedList = ReviewControl.getAllReviews();
+//        if (sortedList!=null) {
+//            sortedList.sort(new CustomComparitor());
+//            String oldReviewMovie = sortedList.get(0).getMovieName();
+//            Review oldReview;
+//            double total;
+//            boolean exitCond = false;
+//            for (i = 0; i < sortedList.size(); i++) {
+//                total = 0;
+//                int j = 0;
+//                int index = i;
+//                oldReviewMovie = sortedList.get(i).getMovieName();
+//                while (i + j < sortedList.size() && j + index < sortedList.size() && sortedList.get(i + j).getMovieName().equals(oldReviewMovie)) {
+//                    System.out.println("old -" + oldReviewMovie);
+//                    System.out.println("new - i + j- " + sortedList.get(i + j).getMovieName() + "\n");
+//                    total += sortedList.get(index + j).getRating();
+//                    oldReview = sortedList.get(index + j);
+//                    oldReviewMovie = oldReview.getMovieName();
+//                    j++;
+//                    if (index + j == sortedList.size())
+//                        exitCond = true;
+//
+//                }
+//
+//                for (Movie movie : getAllMovies()) {
+//                    if (movie.getName().equalsIgnoreCase(sortedList.get(i).getMovieName()))
+//                        movies.add(movie);
+//                }
+//                //System.out.println("total " + sortedList.get(i).getMovieName() + " " + total + "\n");
+//
+//                if (exitCond)
+//                    break;
+//            }
+//        }else{
+//            System.out.println("no reviews have been left");
+//        }
+//
+//        return movies;
+//    }
 
     public static Movie getMovie(String name) {
 
@@ -153,38 +174,5 @@ public class MovieControl {
 
         }
     }
-
-
-//    public static void addLocation(Showing showing,String cineplexName,int whichCinema){
-//
-//        for (Movie mov: allMovies){
-//
-//            if (mov.equals(showing.getMovie())){
-//
-//                CineplexControl.addShowingToCinema(showing);
-//                Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,CineplexControl.getCineplexes());
-//
-//            }
-//
-//        }
-//
-//    }
-//
-//    public static void RemoveLocation(Movie movie,String cineplexName){
-//
-//        for (Movie mov: allMovies){
-//
-//            if (mov.equals(movie)){
-//                if(CineplexControl.getCineplex(cineplexName).getMovies().size()!=0) {
-//                    CineplexControl.getCineplex(cineplexName).getMovies().remove(movie);
-//                    MovieControl.getAllMovies().remove(movie);
-//                }
-//                Data.getInstance().saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,CineplexControl.getCineplexes());
-//
-//            }
-//
-//        }
-//
-//    }
 
 }

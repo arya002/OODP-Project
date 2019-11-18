@@ -92,6 +92,13 @@ public class ReviewControl {
 
     }
 
+    public static void addReview(ArrayList<Review> review) {
+
+        ArrayList<Review> ar = getAllReviews();
+        ar.addAll(review);
+        Data.saveObjectToPath(SaveLoadPath.REVIEW_PATH,ar);
+
+    }
 
 
 }
