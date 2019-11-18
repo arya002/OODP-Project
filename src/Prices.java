@@ -49,6 +49,11 @@ public class Prices implements Serializable
         HOLIDAYS = hOLIDAYS;
     }
 
+    public void addHolyday(String holiday)
+    {
+        HOLIDAYS.add(holiday);
+    }
+
     /**
      * @param hOLIDAY_MARKUP the hOLIDAY_MARKUP to set
      */

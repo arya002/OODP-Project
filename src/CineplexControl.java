@@ -1,24 +1,19 @@
 import java.util.ArrayList;
-/**
-Manages Cineplexes
- */
+
 public class CineplexControl {
 
     private static ArrayList<Cineplex> cineplexs = null;
 
-    /**
-Loads the data of cineplexes from file into an arraylist of Cineplex objects
- */
     public static void Reinitialize() {
         if ((cineplexs = (ArrayList<Cineplex>) Data.getInstance().getObjectFromPath(SaveLoadPath.CINEPLEX_PATH, Cineplex.class)) == null) {
             cineplexs = new ArrayList<>();
         }
     }
 
-/**
- * Get names of the cineplexes available
- @return an arraylist of the String names
- */
+    public CineplexControl() {
+
+    }
+
     public static ArrayList<String> getCineplexesByNames() {
         Reinitialize();
         ArrayList<String> arrayList = new ArrayList<>();
@@ -31,10 +26,15 @@ Loads the data of cineplexes from file into an arraylist of Cineplex objects
         return arrayList;
     }
 
-/**
-@return a single Cineplex object
-@param takes the name of a cineplex to find
- */
+//    public static String getCineplexName(String name) {
+//        Reinitialize();
+//        for (int i = 0; i < cineplexs.size(); i++) {
+//            if (cineplexs.get(i).getName().equals(name)) ;
+//            return cineplexs.get(i).getName();
+//        }
+//        return null;
+//    }
+
     public static Cineplex getCineplex(String name) {
         Reinitialize();
         for (int i = 0; i < cineplexs.size(); i++) {
@@ -44,17 +44,13 @@ Loads the data of cineplexes from file into an arraylist of Cineplex objects
         return null;
     }
 
-/**
-@return an arraylist of all available cineplexes object
- */
+
     public static ArrayList<Cineplex> getCineplexes() {
 
         return (ArrayList<Cineplex>) Data.getObjectFromPath(SaveLoadPath.CINEPLEX_PATH, Cineplex.class);
 
     }
-/**
-@return a boolean
- */
+
     private static boolean allocateTimeSlot(Cinema whichCinema, int whichDay, int whichTimeSlot) {
 
         Reinitialize();
@@ -68,10 +64,7 @@ Loads the data of cineplexes from file into an arraylist of Cineplex objects
         return false;
 
     }
-/**
-Add an arraylist showing to cinema. Main purpose is to save the showings in bulk to file
-@param is an arraylist of showing objects, which contains the movie, date, and type. As well as the cinema and cineplex
- */
+
     public static Cinema addShowingToCinema(ArrayList<Showing> showing) {
 
         Reinitialize();
@@ -95,10 +88,7 @@ Add an arraylist showing to cinema. Main purpose is to save the showings in bulk
         return null;
 
     }
-/**
-Add a showing to cinema. Main purpose is to save the showing to file
-@param is a showing object, which contains the movie, date, and type. As well as the cinema and cineplex
- */
+
     public static void addShowingToCinema(Showing showing) {
 
         Reinitialize();
@@ -117,11 +107,7 @@ Add a showing to cinema. Main purpose is to save the showing to file
 
 
     }
-/**
-Get all cinemas in a cineplex
-@return arraylist of all Cinema(objects) within a particular cineplex
-@param takes in a Cineplex Name (String)
- */
+
     public static ArrayList<Cinema> getCinemaFromCineplex(String whichCineplex) {
 
         for (Cineplex cineplex : cineplexs) {
@@ -134,11 +120,7 @@ Get all cinemas in a cineplex
 
         return null;
     }
-/**
-Get all cinemas in a cineplex
-@return arraylist of all Cinema(objects) within a particular cineplex
-@param takes in a Cineplex object to load cinemas from
- */
+
     public static ArrayList<Cinema> getCinemaFromCineplex(Cineplex whichCineplex) {
 
         for (Cineplex cineplex : cineplexs) {

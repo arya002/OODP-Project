@@ -9,11 +9,10 @@ public class MainApp {
  * main function, initialises control classes
  */
 	public static void main(String[] args) throws InterruptedException {
-		System.out.println("Loading Data From Files");
+
 		ShowingControl.Reinitialize();
 		CineplexControl.Reinitialize();
 		MovieControl.Reinitialize();
-		System.out.println("Done!");
 
 		System.out.println("Welcome to MOBLIMA, the best way book your movie tickets.");
 		System.out.println("What would you like to do?");
@@ -60,12 +59,24 @@ public class MainApp {
 					System.exit(1);
 					break;
 
+				case 10:
+					Client client = new Client("testuser", "testpassword", "w", "w", "w");
+					new ClientApp(client);
+					break;
+
 				case 22:
 
 					instantiateTestData();
 
 					break;
-					
+
+				case 25:
+
+
+					//BookingControl.getMoviesByTicketSales("Better Days");
+
+					break;
+
 				default:
 					System.out.println("Invalid input, please choose from the following:");
 					break;
@@ -174,7 +185,8 @@ public class MainApp {
 		Data.saveObjectToPath(SaveLoadPath.USER_PATH,user);
 		Data.saveObjectToPath(SaveLoadPath.PRICE_PATH, prices);
 		Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH,movieListings);
-
+		ShowingControl.Reinitialize();
+		MovieControl.Reinitialize();
 
 		BookingControl bookingControl = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),ShowingControl.getAllShowings().get(0));
 
@@ -219,7 +231,7 @@ public class MainApp {
 		bookingControl5.addTicket("adult",8,1);
 		bookingControl5.addTicket("adult",7,1);
 		bookingControl5.addTicket("adult",6,1);
-		bookingControl.completeBooking();
+		bookingControl5.completeBooking();
 
 		System.out.println("There are " + ShowingControl.getAllShowings().size() + " Showings");
         System.out.println("There are " + MovieControl.getAllMovies().size() + " Movies");

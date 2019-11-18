@@ -200,7 +200,6 @@ public class StaffApp {
         int sc_in = sc.nextInt();
         allShowings.remove(sc_in-1);
         Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH,allShowings);
-        return;
     }
 
     /**
