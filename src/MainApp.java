@@ -72,11 +72,6 @@ public class MainApp {
 
 				case 25:
 
-					BookingControl bookingControl = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),ShowingControl.getAllShowings().get(0));
-
-					bookingControl.addTicket("adult",1,8);
-					bookingControl.addTicket("adult",2,1);
-					bookingControl.addTicket("adult",8,1);
 
 					//BookingControl.getMoviesByTicketSales("Better Days");
 
@@ -183,6 +178,43 @@ public class MainApp {
 			dotw=dotw%6;
 			dotw++;
 		}
+
+		BookingControl bookingControl = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),ShowingControl.getAllShowings().get(0));
+
+		bookingControl.addTicket("adult",1,8);
+		bookingControl.addTicket("adult",2,1);
+		bookingControl.addTicket("adult",8,1);
+
+		BookingControl bookingControl2 = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),ShowingControl.getAllShowings().get(2));
+
+		bookingControl2.addTicket("adult",1,8);
+		bookingControl2.addTicket("adult",2,1);
+
+		BookingControl bookingControl3 = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),ShowingControl.getAllShowings().get(3));
+
+		bookingControl3.addTicket("adult",1,8);
+		bookingControl3.addTicket("adult",2,1);
+		bookingControl3.addTicket("adult",8,1);
+
+		BookingControl bookingControl4 = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),ShowingControl.getAllShowings().get(4));
+
+		bookingControl4.addTicket("adult",1,8);
+		bookingControl4.addTicket("adult",2,1);
+		bookingControl4.addTicket("adult",8,1);
+		bookingControl4.addTicket("adult",2,5);
+
+
+		BookingControl bookingControl5 = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),ShowingControl.getAllShowings().get(5));
+
+		bookingControl5.addTicket("adult",1,8);
+		bookingControl5.addTicket("adult",2,1);
+		bookingControl5.addTicket("adult",8,1);
+		bookingControl5.addTicket("adult",8,1);
+		bookingControl5.addTicket("adult",7,1);
+		bookingControl5.addTicket("adult",6,1);
+
+
+
 		Data.saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,cpes);
 		ShowingControl.addShowing(newShowings);
 		Data.saveObjectToPath(SaveLoadPath.USER_PATH,user);
