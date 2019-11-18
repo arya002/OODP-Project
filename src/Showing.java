@@ -94,9 +94,13 @@ public class Showing implements Serializable {
      * Prints the showing
      */
     public String printShowing(){
-        return (movie.getName() + " is playing at " + cineplex.getName() + " on "
-               + (getDotwString(getDayOfWeek())) + " at "+ getTimeSlotString(getTimeSlot())
-                +" on the " + getDDMMYYYYformatted() + " on screen " + cinema.getCinemaID() + " ");
+        if(getMovie().getStatus() == Movie.Status.Showing || getMovie().getStatus() == Movie.Status.comingSoon) {
+            return (movie.getName() + " is playing at " + cineplex.getName() + " on "
+                    + (getDotwString(getDayOfWeek())) + " at " + getTimeSlotString(getTimeSlot())
+                    + " on the " + getDDMMYYYYformatted() + " on screen " + cinema.getCinemaID() + " at "+ cineplex.getName());
+        }
+        return "this move is no longer showing";
+
     }
 
     /**
