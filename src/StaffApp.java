@@ -207,6 +207,9 @@ public class StaffApp {
         price.setPREMIUM_CINEMA_MARKUP(sc.nextInt());
         System.out.println("Enter the new premium movie markup");
         price.setPREMIUM_MOVIE_MARKUP(sc.nextInt());
+        System.out.println("Enter the new premium seat markup");
+        price.setPREMIUM_SEAT_MARKUP(sc.nextInt());
+
 
         Data.saveObjectToPath(SaveLoadPath.PRICE_PATH, prices);
     }
@@ -538,6 +541,8 @@ public class StaffApp {
         System.out.println("Holiday/weekend markup: S$" + price.getHOLIDAY_MARKUP());
         System.out.println("Premium cinema markum: S$" + price.getPREMIUM_CINEMA_MARKUP());
         System.out.println("Premium movie markup: S$" + price.getPREMIUM_MOVIE_MARKUP());
+        System.out.println("Premium seat markup: S$" + price.getPREMIUM_SEAT_MARKUP());
+
 
         System.out.println();
 
