@@ -23,7 +23,8 @@ Note: NOT the main method of this project
     public void main()
     {
         Scanner sc = new Scanner(System.in);
-
+        if (!showing.getMovie().getStatus().equals(Movie.Status.notShowing))
+        {
         System.out.println("Would you like to purchase a ticket? (Yes/No)");
         String anotherTicket = sc.nextLine();
         BookingControl bookingControl = new BookingControl(client, showing);
@@ -38,7 +39,7 @@ Note: NOT the main method of this project
 
             System.out.println("\n\n");
             System.out.println("Please enter the row of your chosen seat (letter):");
-            int column = (int)(sc.nextLine().charAt(0)) - 65;
+            int column = (int)(sc.nextLine().toUpperCase().charAt(0)) - 65;
             System.out.println("Please enter the column of your chosen seat (number):");
             int row = Integer.parseInt(sc.nextLine()) - 1;
 
@@ -57,6 +58,11 @@ Note: NOT the main method of this project
         }
         
         bookingControl.completeBooking();
+    }
+    else
+    {
+        System.out.print("Movie not currently showing");
+    }
     }
 /**
 Checks if seat allocation is successful

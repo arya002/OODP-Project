@@ -30,6 +30,7 @@ public class RoomLayout implements Serializable {
         //this.setType(type);
     }
 
+
     public String[][] getSeats() {
         return seats;
     }

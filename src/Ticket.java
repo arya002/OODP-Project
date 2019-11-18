@@ -32,6 +32,10 @@ Create a new ticket
 
     }
 
+    public String getType() {
+        return type;
+    }
+
     //<editor-fold desc="Getters">
     public String getName()
     {

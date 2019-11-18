@@ -84,10 +84,10 @@ public class LoginScreen {
 		System.out.println("Enter a phone number:");
 		String phone = sc.next();
 
-		System.out.println("Enter a email:");
+		System.out.println("Enter an email:");
 		String email = sc.next();
 
-		System.out.println("Enter a age:");
+		System.out.println("Enter an age:");
 		int age = sc.nextInt();
 
 

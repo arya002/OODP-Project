@@ -9,3 +9,9 @@ settings.json
 CZ2002_Assignment__OODP-Project.iml
 *.txt
 *.txt
+*.txt
+Data/user.txt
+Data/prices.txt
+Data/bookings.txt
+*.txt
+*.txt

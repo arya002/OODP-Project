@@ -21,6 +21,9 @@ public class SaveLoad<K> implements Serializable{
             return retArray;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            return null;}
+            catch (EOFException e){
+                //System.out.println();
             return null;
         } catch (IOException e) {
             e.printStackTrace();

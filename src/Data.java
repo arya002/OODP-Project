@@ -31,16 +31,15 @@ Saves data
 */
     public static void saveObjectToPath(String path,ArrayList<?> arrayToSave) {
         if (arrayToSave.size() !=0) {
-            System.out.println("saving" + arrayToSave.get(0).getClass() + " type of class");
             SaveLoad saveLoad = new SaveLoad(arrayToSave.get(0).getClass());
             saveLoad.saveObject(arrayToSave,path);
-            System.out.println("done");
         } else {
             System.out.println("Array empty :(");
         }
     }
 /**
-Returns an arraylist of objects loaded
+Returns an arraylist of objects loaded from file
+@return the arraylist of objects, depending on what was loaded
 */
     public static ArrayList<?> getObjectFromPath(String path,Class o){
         SaveLoad pair= new SaveLoad<>(o);

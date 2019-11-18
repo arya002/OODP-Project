@@ -4,10 +4,11 @@ import java.util.ArrayList;
 public class Prices implements Serializable
 {
     private int BASE_ADULT;
-    private int BASE_CHILD;
+    private int BASE_CONCESSION;
     private int HOLIDAY_MARKUP;
     private int PREMIUM_MOVIE_MARKUP;
     private int PREMIUM_CINEMA_MARKUP;
+    private int PREMIUM_SEAT_MARKUP;
 
     private static ArrayList<String> HOLIDAYS = new ArrayList<>();
 
@@ -17,16 +18,29 @@ public class Prices implements Serializable
 
     }
 
-    public Prices(int bASE_ADULT, int bASE_CHILD, int hOLIDAY_MARKUP, int pREMIUM_CINEMA_MARKUP, int pREMIUM_MOVIE_MARKUP, ArrayList<String> holidays)
+    public Prices(int bASE_ADULT, int BASE_CONCESSION, int hOLIDAY_MARKUP, int pREMIUM_CINEMA_MARKUP, int pREMIUM_MOVIE_MARKUP, int PREMIUM_SEAT_MARKUP, ArrayList<String> holidays)
     {
         this.BASE_ADULT = bASE_ADULT;
-        this.BASE_CHILD = bASE_CHILD;
+        this.BASE_CONCESSION = BASE_CONCESSION;
         this.HOLIDAY_MARKUP = hOLIDAY_MARKUP;
         this.PREMIUM_CINEMA_MARKUP = pREMIUM_CINEMA_MARKUP;
         this.PREMIUM_MOVIE_MARKUP = pREMIUM_MOVIE_MARKUP;
+        this.PREMIUM_SEAT_MARKUP = PREMIUM_SEAT_MARKUP;
         this.HOLIDAYS = holidays;
     }
     
+/**
+ * @return the pREMIUM_SEAT_MARKUP
+ */
+public int getPREMIUM_SEAT_MARKUP() {
+    return PREMIUM_SEAT_MARKUP;
+}
+/**
+ * @param pREMIUM_SEAT_MARKUP the pREMIUM_SEAT_MARKUP to set
+ */
+public void setPREMIUM_SEAT_MARKUP(int pREMIUM_SEAT_MARKUP) {
+    PREMIUM_SEAT_MARKUP = pREMIUM_SEAT_MARKUP;
+}
 
     /**
      * @param bASE_ADULT the bASE_ADULT to set
@@ -36,10 +50,10 @@ public class Prices implements Serializable
     }
 
     /**
-     * @param bASE_CHILD the bASE_CHILD to set
+     * @param BASE_CONCESSION the BASE_CONCESSION to set
      */
-    public void setBASE_CHILD(int bASE_CHILD) {
-        BASE_CHILD = bASE_CHILD;
+    public void setBASE_CONCESSION(int BASE_CONCESSION) {
+        BASE_CONCESSION = BASE_CONCESSION;
     }
 
     /**
@@ -83,10 +97,10 @@ public class Prices implements Serializable
     }
 
     /**
-     * @return the bASE_CHILD
+     * @return the BASE_CONCESSION
      */
-    public int getBASE_CHILD() {
-        return BASE_CHILD;
+    public int getBASE_CONCESSION() {
+        return BASE_CONCESSION;
     }
 
     /**

@@ -58,7 +58,6 @@ public class Cinema implements Serializable {
 
     }
 
-
     public Cinema (Boolean type,String cinemaID){
 
         showings = new ArrayList<>();
@@ -80,16 +79,18 @@ public class Cinema implements Serializable {
                 seats[i][j] = "N";
             }
         }
-        roomLayout = new RoomLayout(seats);
-
-        
+        this.roomLayout = new RoomLayout(seats);  
     }
 
-    public void setRoomLayout(int rows, int columns)
+    public void buildRoomLayout(String[][] layout)
     {
-        // TODO roomLayout.assignSeatTypes();
+        this.roomLayout = new RoomLayout(layout);
     }
 
+    /**
+     * time slots are not really needed therefore no testing of this was done. left
+     * them in as they would be easily implementable.
+     */
     private void buildTimeSlots() {
 
         for(int i =0; i < DaysOfWeek.size;i++){
@@ -107,10 +108,6 @@ public class Cinema implements Serializable {
 
         showings.add(showing);
 
-    }
-
-    public void setTimeSlotsArray(int[][] timeSlotsArray) {
-        this.timeSlotsArray = timeSlotsArray;
     }
 
     public boolean isPremium() {
