@@ -27,13 +27,6 @@ public class Review implements Serializable {
 
     }
 
-    public void print() { // print review
-        System.out.println("Review by: " + this.reviewer.getUsername());
-        System.out.println("Movie: " + this.movieName);
-        System.out.println("Date: " + this.date);
-        //System.out.printf("*".repeat((int) rating) + ", %.1f/5\n\n", rating);
-        System.out.println("Review:\n" + review);
-    }
 
     //<editor-fold desc="Getters">
     public double getRating() {
