@@ -57,8 +57,12 @@ public class BookingControl {
             System.out.println("You must Log In to buy Tickets");
         while (client == null) {
             User lis = new LoginScreen().run();
-            if (lis.getType().equals("client"))
-                client = (Client) lis;
+            if (lis != null)
+                if (lis.getType().equals("client")) {
+                    client = (Client) lis;
+                }else{
+                    System.out.println("admins cannot log in here");
+                }
         }
         if (seat == null)
             System.out.println("seat is null");
@@ -87,8 +91,9 @@ public class BookingControl {
             price += prices.getPREMIUM_MOVIE_MARKUP();
         if (showing.getCinema().isPremium())
             price += prices.getPREMIUM_CINEMA_MARKUP();
-        if (showing.getDayOfWeek() == 5 || showing.getDayOfWeek() == 6 || prices.getHOLIDAYS().contains(showing.getYYYYMMDD()));
-            price += prices.getHOLIDAY_MARKUP();
+        if (showing.getDayOfWeek() == 5 || showing.getDayOfWeek() == 6 || prices.getHOLIDAYS().contains(showing.getYYYYMMDD()))
+            ;
+        price += prices.getHOLIDAY_MARKUP();
         if (seat.getType().equalsIgnoreCase("P"))
             price += prices.getPREMIUM_SEAT_MARKUP();
 

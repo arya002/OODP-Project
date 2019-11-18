@@ -62,8 +62,8 @@ public class StaffApp {
     }
 
     /**
-    * Handles the system settings
-    */
+     * Handles the system settings
+     */
     private void handleSystemSettings() {
         int sc_in;
         Scanner sc = new Scanner(System.in);
@@ -79,69 +79,16 @@ public class StaffApp {
             sc_in = sc.nextInt();
             switch (sc_in) {
                 case 1:
-                printPrices();
-                System.out.println("Would you like to edit the prices?");
-                if (sc.next().equalsIgnoreCase("yes")) {
-                    changePrices();
-                }
-                break;
+                   editMoviePrices();
+                    break;
                 case 2:
-                    StaffControl.printHolidays();
-                    System.out.println("What would you like to do?\n1. Add holiday \n2. Remove holiday");
-                    sc_in = sc.nextInt();
-                    String holiday;
-                    switch (sc_in) {
-                        case 1:
-                            System.out.println("Please enter the new holiday (YYYYMMDD):");
-                            sc.nextLine();
-                            holiday = sc.nextLine();
-                            StaffControl.addHoliday(holiday);
-                            break;
-
-                        case 2:
-                            System.out.println("Please enter the holiday to remove (YYYYMMDD):");
-                            sc.nextLine();
-                            holiday = sc.nextLine();
-                            removeHoliday(holiday);
-                            break;
-                    }
+                    editHolidays();
                     break;
                 case 3:
-                    //Add new staff
-                    String user, pass, first;
-                    System.out.println("Please Enter the staff Username");
-                    user = sc.next();
-                    System.out.println("Please Enter the staff Password");
-                    pass = sc.next();
-                    System.out.println("Please Enter the staff FirstName");
-                    first = sc.next();
-                    StaffControl.addNewStaff(user, pass, first);
-
+                    addNewStaff();
                     break;
                 case 4:
-                    int row;
-                    int column;
-                    System.out.println("How many rows would you like this new cinema to be");
-                    row = sc.nextInt();
-                    System.out.println("how many columns would you like this new cinema to be");
-                    column = sc.nextInt();
-                    ArrayList<Cineplex> cineplex = (ArrayList<Cineplex>) Data.getObjectFromPath(SaveLoadPath.CINEPLEX_PATH, Cineplex.class);
-
-                    int selectedCineplex = 0;
-                    int selectedCinema = 0;
-                    System.out.println("Choose the cineplex: ");
-                    for(Cineplex cp:cineplex){
-                        System.out.println(selectedCineplex + ". " +cp.getName());
-                        selectedCineplex++;
-                    }
-                    selectedCineplex = sc.nextInt();
-                    for(Cinema cinema:cineplex.get(selectedCineplex).getCinemas()){
-                        System.out.println(selectedCineplex + ". " +cinema.getCinemaID());
-                        selectedCinema++;
-                    }
-                    selectedCinema = sc.nextInt();
-                    cineplex.get(selectedCineplex).getCinemas().get(selectedCinema).buildRoomLayout(newLayout(row, column));
-                    Data.saveObjectToPath(SaveLoadPath.CINEPLEX_PATH, cineplex);
+                    editCinemaLayouts();
                     break;
                 case 5:
                 default:
@@ -153,66 +100,72 @@ public class StaffApp {
 
     }
 
-    private String[][] newLayout(int rows, int columns)
-    {
-        String[][] layout = new String[rows][columns];
-        System.out.println("Would you like the first two rows to be premium?");
-        boolean premium = (MainApp.sc.next()).equalsIgnoreCase("yes");
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < columns; j++)
-            {
-                if(premium)
-                    layout[i][j] = "P";
-                else
-                    layout[i][j] = "N";
-            }
+    private void addNewStaff() {
+        String user, pass, first;
+        System.out.println("Please Enter the staff Username");
+        user = sc.next();
+        System.out.println("Please Enter the staff Password");
+        pass = sc.next();
+        System.out.println("Please Enter the staff FirstName");
+        first = sc.next();
+        StaffControl.addNewStaff(user, pass, first);
+    }
+
+    private void editCinemaLayouts() {
+        int row;
+        int column;
+        System.out.println("How many rows would you like this new cinema to be");
+        row = sc.nextInt();
+        System.out.println("how many columns would you like this new cinema to be");
+        column = sc.nextInt();
+        ArrayList<Cineplex> cineplex = (ArrayList<Cineplex>) Data.getObjectFromPath(SaveLoadPath.CINEPLEX_PATH, Cineplex.class);
+        int selectedCineplex = 0;
+        int selectedCinema = 0;
+        System.out.println("Choose the cineplex: ");
+        for (Cineplex cp : cineplex) {
+            System.out.println(selectedCineplex + ". " + cp.getName());
+            selectedCineplex++;
         }
-        return layout;
+        selectedCineplex = sc.nextInt();
+        for (Cinema cinema : cineplex.get(selectedCineplex).getCinemas()) {
+            System.out.println(selectedCineplex + ". " + cinema.getCinemaID());
+            selectedCinema++;
+        }
+        selectedCinema = sc.nextInt();
+        cineplex.get(selectedCineplex).getCinemas().get(selectedCinema).buildRoomLayout(StaffControl.newLayout(row, column));
+        Data.saveObjectToPath(SaveLoadPath.CINEPLEX_PATH, cineplex);
     }
 
+    private void editHolidays() {
+        StaffControl.printHolidays();
+        System.out.println("What would you like to do?\n1. Add holiday \n2. Remove holiday");
+        int sc_in = sc.nextInt();
+        String holiday;
+        switch (sc_in) {
+            case 1:
+                System.out.println("Please enter the new holiday (YYYYMMDD):");
+                sc.nextLine();
+                holiday = sc.nextLine();
+                StaffControl.addHoliday(holiday);
+                break;
 
-
-
-    private void removeHoliday(String holiday){
-        ArrayList<Prices> prices =new ArrayList<>();
-        if((prices= (ArrayList<Prices>) Data.getInstance().getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class))!=null)
-        if (prices.get(0).getHOLIDAYS().remove(holiday))
-            System.out.println("Holiday removed");
-        else
-            System.out.println("Holiday not on the list");
+            case 2:
+                System.out.println("Please enter the holiday to remove (YYYYMMDD):");
+                sc.nextLine();
+                holiday = sc.nextLine();
+                StaffControl.removeHoliday(holiday);
+                break;
+        }
     }
 
-    /**
-     * Changes the price of a ticket
-     *
-     */
-
-
-    private void changePrices() {
-
-        ArrayList<Prices> prices = new ArrayList<>();
-        if ((prices = (ArrayList<Prices>) Data.getInstance().getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class)) != null)
-            ;
-        Prices price = prices.get(0);
-
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the new adult base price");
-        price.setBASE_ADULT(sc.nextInt());
-        System.out.println("Enter the new child base price");
-        price.setBASE_CHILD(sc.nextInt());
-        System.out.println("Enter the new holiday/weekend markup");
-        price.setHOLIDAY_MARKUP(sc.nextInt());
-        System.out.println("Enter the new premium cinema markup");
-        price.setPREMIUM_CINEMA_MARKUP(sc.nextInt());
-        System.out.println("Enter the new premium movie markup");
-        price.setPREMIUM_MOVIE_MARKUP(sc.nextInt());
-        System.out.println("Enter the new premium seat markup");
-        price.setPREMIUM_SEAT_MARKUP(sc.nextInt());
-
-
-        Data.saveObjectToPath(SaveLoadPath.PRICE_PATH, prices);
+    private void editMoviePrices() {
+        StaffControl.printPrices();
+        System.out.println("Would you like to edit the prices?");
+        if (sc.next().equalsIgnoreCase("yes")) {
+            StaffControl.changePrices();
+        }
     }
+
 
     /**
      * Handles the show times
@@ -272,7 +225,7 @@ public class StaffApp {
         System.out.println("Select a showing number to edit: ");
         ArrayList<Showing> allShowings = ShowingControl.getAllShowings();
 
-        for(int i=0; i<allShowings.size(); ++i){
+        for (int i = 0; i < allShowings.size(); ++i) {
             System.out.println(allShowings.get(i).printShowing());
         }
 
@@ -343,40 +296,18 @@ public class StaffApp {
             threedee = true;
         }
 
-        String date = getDateInput(sc);
+        String date = StaffControl.getDateInput(sc);
 
         if (cinema.getTimeSlotsArray()[Integer.parseInt(date.substring(8, 9))][Integer.parseInt(date.substring(9))] == 1) {
-            ShowingControl.addShowing(new Showing(cinema, cineplex, movie, date, type));
+            Showing showing = new Showing(cinema, cineplex, movie, date, type);
+            showing.setIs3D(threedee);
+            ShowingControl.addShowing(showing);
         } else {
             System.out.println("error -");
         }
         return;
-
     }
 
-    private String getDateInput(Scanner sc) {
-        System.out.println("Enter date in format YYYYMMDD: ");
-        String date;
-        date = sc.next();
-
-        Cinema.DaysOfWeek[] dotwvals = Cinema.DaysOfWeek.values();
-        System.out.println("Enter which Day of the week: ");
-        for (int choice = 0; choice < dotwvals.length; choice++) {
-            System.out.println(choice + ". " + dotwvals[choice].toString());
-        }
-        int dotwIndex = sc.nextInt();
-        date += (dotwIndex);
-
-        System.out.println("Enter Time Slot: ");
-        Cinema.TimeSlots[] timeSlots = Cinema.TimeSlots.values();
-
-        for (int choice = 0; choice < timeSlots.length; choice++) {
-            System.out.println(choice + ". " + timeSlots[choice].toString());
-        }
-        int timeSlotIndex = sc.nextInt();
-        date += (timeSlotIndex);
-        return date;
-    }
 
     /**
      * handles Movie Listing changes
@@ -384,7 +315,6 @@ public class StaffApp {
     private void handleMovieListings() {
 
         int sc_in;
-        int i = 0;
         do {
             System.out.println("Welcome " + currentStaff.getFirstName());
             System.out.println("1. View Movie Listings " +
@@ -396,113 +326,17 @@ public class StaffApp {
             sc_in = sc.nextInt();
             switch (sc_in) {
                 case 1:
-                    i = 0;
-                    for (Movie movie : MovieControl.getAllMovies()) {
-                        System.out.println(i + " - " + movie.getName() + " is currently " + movie.getStatus() + " \n" + movie.getSynopsis() + "\n\n");
-                        i++;
-                    }
+                   viewListings();
                     break;
-                case 2: {
-                    ArrayList<Movie> movies = MovieControl.getAllMovies();
-                    int indexToEdit = printWhichMovieToEdit("Edit", movies);
-                    System.out.println("1. Status " +
-                            "\n2. Exit");
-                    sc_in = sc.nextInt();
-                    System.out.println("Edit - ");
-                    switch (sc_in) {
-                        case 1:
-                            do {
-                                System.out.println("1. Showing " +
-                                        "\n2. Preview" +
-                                        "\n3. Not Showing" +
-                                        "\n4. Exit.");
-                                sc_in = sc.nextInt();
-                                switch (sc_in) {
-                                    case 1:
-                                        movies.get(indexToEdit).setStatus(Movie.Status.Showing);
-                                        break;
-                                    case 2:
-                                        movies.get(indexToEdit).setStatus(Movie.Status.comingSoon);
-                                        break;
-                                    case 3:
-                                        movies.get(indexToEdit).setStatus(Movie.Status.notShowing);
-                                        break;
-                                    case 4:
-                                        break;
-
-                                    default:
-                                        System.out.println("Please enter a valid integer");
-                                        break;
-                                }
-
-                                Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH, movies);
-
-                            } while (sc_in != 4);
-                            break;
-                        case 2:
-                            break;
-                    }
+                case 2:
+                    editListings();
                     break;
-                }
-                case 3: {
-                    String name;
-                    Movie.Status status;
-                    String synopsis;
-                    String type = "";
-                    String actor = "";
-                    String rating="";
-                    ArrayList<String> cast = new ArrayList<>();
-                    String director;
-                    boolean blockbuster = false;
-                    System.out.println("Please enter the movies name");
-                    sc.nextLine();
-                    name = sc.nextLine();
-                    System.out.println("Please enter which Status");
-                    Movie.Status[] moviestatus = Movie.Status.values();
-                    for (int index = 0; index < Movie.Status.size; index++) {
-                        System.out.println(index + ". " + moviestatus[index].toString());
-                    }
-                    sc_in = sc.nextInt();
-                    status = moviestatus[sc_in];
-                    System.out.println("Please enter the movie synopsis");
-                    sc.nextLine();
-                    synopsis = sc.nextLine();
-                    System.out.println("Is this a BlockBuster");
-                    type = sc.nextLine();
-                    System.out.println("Enter rating");
-                    rating = sc.nextLine();
-                    if (type.equalsIgnoreCase("yes")) {
-                        blockbuster = true;
-                    }
-                    System.out.println("Enter the directors name");
-                    director = sc.nextLine();
-
-                    while (!actor.equalsIgnoreCase("exit")) {
-                        System.out.println("Enter the cast members name or type exit to exit");
-                        actor = sc.nextLine();
-                        cast.add(actor);
-                    }
-
-                    String[] castArray = new String[cast.size()];
-                    for (int index = 0; index < cast.size(); index++) {
-                        castArray[index] = cast.get(index);
-                    }
-
-                    Movie newMovie = new Movie(name, status, synopsis, director,rating, castArray);
-                    newMovie.setBlockbuster(blockbuster);
-                    MovieControl.addMovieListing(newMovie);
-
-                    System.out.println("new movie " + newMovie.getName() + " added");
+                case 3:
+                    addMovieListing();
                     break;
-                }
-                case 4: {
-                    ArrayList<Movie> movies = MovieControl.getAllMovies();
-                    int indexToEdit = printWhichMovieToEdit("Delete", movies);
-                    movies.remove(indexToEdit);
-                    Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH, movies);
-
-
-                }
+                case 4:
+                    deleteListings();
+                    break;
                 case 5:
                     break;
                 default:
@@ -510,41 +344,117 @@ public class StaffApp {
                     break;
             }
 
-
-        } while (sc_in != 4);
-
+        } while (sc_in != 5);
 
     }
 
-    private int printWhichMovieToEdit(String control, ArrayList<Movie> movies) {
-        System.out.println("Which movie would you like to " + control);
+    private void deleteListings() {
 
-        int i = 0;
-        for (Movie movie : movies) {
+            ArrayList<Movie> movies = MovieControl.getAllMovies();
+            int indexToEdit = StaffControl.printWhichMovieToEdit("Delete", movies);
+            movies.remove(indexToEdit);
+            Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH, movies);
 
-            System.out.println(i + ". " + movie.getName() + " is currently " + movie.getStatus());
-            i++;
+    }
+
+    private void editListings() {
+        ArrayList<Movie> movies = MovieControl.getAllMovies();
+        int indexToEdit = StaffControl.printWhichMovieToEdit("Edit", movies);
+        System.out.println("1. Status " +
+                "\n2. Exit");
+        int sc_in = sc.nextInt();
+        System.out.println("Edit - ");
+        switch (sc_in) {
+            case 1:
+                do {
+                    System.out.println("1. Showing " +
+                            "\n2. Preview" +
+                            "\n3. Not Showing" +
+                            "\n4. Exit.");
+                    sc_in = sc.nextInt();
+                    switch (sc_in) {
+                        case 1:
+                            movies.get(indexToEdit).setStatus(Movie.Status.Showing);
+                            break;
+                        case 2:
+                            movies.get(indexToEdit).setStatus(Movie.Status.comingSoon);
+                            break;
+                        case 3:
+                            movies.get(indexToEdit).setStatus(Movie.Status.notShowing);
+                            break;
+                        case 4:
+                            break;
+
+                        default:
+                            System.out.println("Please enter a valid integer");
+                            break;
+                    }
+
+                    Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH, movies);
+
+                } while (sc_in != 4);
+                break;
+            case 2:
+                break;
+        }
+    }
+
+    private void addMovieListing() {
+        String name;
+        Movie.Status status;
+        String synopsis;
+        String type = "";
+        String actor = "";
+        String rating = "";
+        ArrayList<String> cast = new ArrayList<>();
+        String director;
+        boolean blockbuster = false;
+        System.out.println("Please enter the movies name");
+        sc.nextLine();
+        name = sc.nextLine();
+        System.out.println("Please enter which Status");
+        Movie.Status[] moviestatus = Movie.Status.values();
+        for (int index = 0; index < Movie.Status.size; index++) {
+            System.out.println(index + ". " + moviestatus[index].toString());
+        }
+        int sc_in = sc.nextInt();
+        status = moviestatus[sc_in];
+        System.out.println("Please enter the movie synopsis");
+        sc.nextLine();
+        synopsis = sc.nextLine();
+        System.out.println("Is this a BlockBuster");
+        type = sc.nextLine();
+        System.out.println("Enter rating");
+        rating = sc.nextLine();
+        if (type.equalsIgnoreCase("yes")) {
+            blockbuster = true;
+        }
+        System.out.println("Enter the directors name");
+        director = sc.nextLine();
+
+        while (!actor.equalsIgnoreCase("exit")) {
+            System.out.println("Enter the cast members name or type exit to exit");
+            actor = sc.nextLine();
+            cast.add(actor);
         }
 
-        int sc_in = sc.nextInt();
-        int indexToEdit = sc_in;
-        return indexToEdit;
+        String[] castArray = new String[cast.size()];
+        for (int index = 0; index < cast.size(); index++) {
+            castArray[index] = cast.get(index);
+        }
+
+        Movie newMovie = new Movie(name, status, synopsis, director, rating, castArray);
+        newMovie.setBlockbuster(blockbuster);
+        MovieControl.addMovieListing(newMovie);
+        System.out.println("new movie " + newMovie.getName() + " added");
     }
 
-    private void printPrices()
-    {
-        ArrayList<Prices> prices =new ArrayList<>();
-        if((prices= (ArrayList<Prices>) Data.getInstance().getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class))!=null);
-        Prices price = prices.get(0);
-        System.out.println("Adult base price: S$" + price.getBASE_ADULT());
-        System.out.println("Child base price: S$" + price.getBASE_CHILD());
-        System.out.println("Holiday/weekend markup: S$" + price.getHOLIDAY_MARKUP());
-        System.out.println("Premium cinema markum: S$" + price.getPREMIUM_CINEMA_MARKUP());
-        System.out.println("Premium movie markup: S$" + price.getPREMIUM_MOVIE_MARKUP());
-        System.out.println("Premium seat markup: S$" + price.getPREMIUM_SEAT_MARKUP());
-
-
-        System.out.println();
+    public void viewListings(){
+        int i = 0;
+        for (Movie movie : MovieControl.getAllMovies()) {
+            System.out.println(i + " - " + movie.getName() + " is currently " + movie.getStatus() + " \n" + movie.getSynopsis()+"\n");
+            i++;
+        }
 
     }
 }

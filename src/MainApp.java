@@ -120,24 +120,27 @@ public class MainApp {
 		castArray[0] = "Zhou Dongyu";
 		castArray[1] = "Jackson Yee";
 		movieListings.add(new Movie(
-				"Better Days (G)",
+				"Better Days",
 				Movie.Status.Showing,
 				"Seventeen-year-old Nian is the subject of cruel bullying at high school when she meets Bei, a tough street kid. The two teenagers find a kindred spirit in each other that gradually rises above love, forming a world of their own. But the cocoon is crushed when they are being dragged into a teenage girl murder case as prime suspects. An emotional roller coaster that is heartwarming and heartbreaking at the same time, the China coming-of-age movie offers thought-provoking insights into the intense competition faced by nearly 10 million teenagers every year who sit for the National College Entrance Examination and national issues of school bullying. If you are one amongst 10 million to secure a promising future with a topnotch college passport, would you kill to do it?",
 				"Derek Tsang",
-				"PG",
+				"NR",
 				castArray));
 
 
 		castArray[0] ="Chloe Benne";
 		castArray[1] ="TenzNorgay Trainor";
-		movieListings.add(new Movie("Abominable", Movie.Status.Showing,"Abominable takes audiences on an epic 2,000-mile adventure from the streets of a Chinese city to the breathtaking Himalayan snowscapes. When teenage Yi (Chloe Bennet) encounters a young Yeti on the roof of her apartment building, she and her friends, Jin (Tenzing Norgay Trainor) and Peng (Albert Tsai), name him 'Everest' and embark on an epic quest to reunite the magical creature with his family at the highest point on Earth.\n",
-				"Jill Culton","PG",castArray));
+		movieListings.add(new Movie("Abominable",
+				Movie.Status.Showing,"Abominable takes audiences on an epic 2,000-mile adventure from the streets of a Chinese city to the breathtaking Himalayan snowscapes. When teenage Yi (Chloe Bennet) encounters a young Yeti on the roof of her apartment building, she and her friends, Jin (Tenzing Norgay Trainor) and Peng (Albert Tsai), name him 'Everest' and embark on an epic quest to reunite the magical creature with his family at the highest point on Earth.",
+				"Jill Culton",
+				"PG",
+				castArray));
 
 
 
 		castArray[0] ="Woody Harrelson";
 		castArray[1] ="Jesse Eisenberg";
-		movieListings.add(new Movie("Zombieland: Double Tap (PG-13)",
+		movieListings.add(new Movie("Zombieland: Double Tap",
 				Movie.Status.Showing,
 				"A decade after Zombieland became a hit film and a cult classic, the lead cast (Woody Harrelson, Jesse Eisenberg, Abigail Breslin, and Emma Stone) have reunited with director Ruben Fleischer (Venom) and writers Rhett Reese & Paul Wernick (Deadpool) for Zombieland 2. In the sequel, through comic mayhem that stretches from the White House and through the heartland, these four slayers must face off against the many new kinds of zombies that have evolved since the first movie, as well as some new human survivors. But most of all, they have to face the growing pains of their own snarky, makeshift family.",
 				"Ruben Fleischer",
@@ -148,7 +151,7 @@ public class MainApp {
 
 		castArray[0] ="Joaquin Phoenix";
 		castArray[1] ="Robert De Niro";
-		movieListings.add(new Movie("Joker (R)",
+		movieListings.add(new Movie("Joker",
 				Movie.Status.Showing,
 				"A failed stand-up comedian is driven insane and becomes a psychopathic murderer.",
 				"Todd Phillips",
@@ -158,7 +161,7 @@ public class MainApp {
 		castArray[0] = "Matt Damon";
 		castArray[1] = "Christian Bale";
 		movieListings.add(new Movie(
-				"Ford vs Ferrari (G)",
+				"Ford vs Ferrari",
 				Movie.Status.Showing,
 				"Academy Award-winners Matt Damon and Christian Bale star in FORD v FERRARI, based on the remarkable true story of the visionary American car designer Carroll Shelby (Damon) and the fearless British-born driver Ken Miles (Bale), who together battled corporate interference, the laws of physics, and their own personal demons to build a revolutionary race car for Ford Motor Company and take on the dominating race cars of Enzo Ferrari at the 24 Hours of Le Mans in France in 1966.",
 				"James Mangold",
@@ -245,20 +248,31 @@ public class MainApp {
 
         ArrayList<Review> reviews = new ArrayList<>();
         reviews.add(new Review("Really capturing!",
-				"Better Days",
+				movieListings.get(0).getName(),
 				5,
 				client));
         reviews.add(new Review("Horrible acting, wouldn't recommend.",
-				"Ford vs Ferrari",
+				movieListings.get(1).getName(),
 				1,
 				client));
 		reviews.add(new Review("its ok i like car",
-				"Ford vs Ferrari",
+				movieListings.get(1).getName(),
 				4,
 				client));
-        reviews.add(new Review("Really scary and horryfying. Zombies looked real.", "Zombieland: Double Tap", 5, client));
-        reviews.add(new Review("Todd acted great. Storyline could have been better though.", "Joker", 4, client));
-        reviews.add(new Review("Movie was overall okay. Some parts were worth watching.", "Abominable (PG)", 3, client));
+        reviews.add(new Review("Really scary and horryfying. Zombies looked real.",
+				movieListings.get(2).getName(), 5, client));
+
+        reviews.add(new Review("Todd acted great. Storyline could have been better though.",
+				movieListings.get(3).getName(), 4, client));
+
+        reviews.add(new Review("Movie was overall okay. Some parts were worth watching.",
+				movieListings.get(4).getName(), 3, client));
+
+		reviews.add(new Review("good movie!",
+				movieListings.get(4).getName(), 1, client));
+
+		reviews.add(new Review("worth watching.",
+				movieListings.get(4).getName(), 2, client));
 
         ReviewControl.addReview(reviews);
 

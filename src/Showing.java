@@ -239,4 +239,8 @@ public class Showing implements Serializable {
 
         return string;
     }
+
+    public void setIs3D(boolean is3D) {
+        this.is3D = is3D;
+    }
 }
