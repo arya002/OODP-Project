@@ -119,7 +119,8 @@ public class StaffApp {
                     row = sc.nextInt();
                     System.out.println("how many columns would you like this new cinema to be");
                     column = sc.nextInt();
-                    //CineplexControl.
+                    //RoomLayout Cinema.getNewRoomLayout(row,column);
+                    //emoji
                     break;
                 case 5:
                 default:
