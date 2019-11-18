@@ -184,14 +184,14 @@ public class MainApp {
 			dotw++;
 		}
 
-		//ArrayList<Review> reviews = new ArrayList<Review>;
-		//reviews.add(new Review("Really capturing!", "Better Days", 5, client));
-		//reviews.add(new Review("Horrible acting, wouldn't recommend.", "Ford vs Ferrari", 1, client));
-		//reviews.add(new Review("Really scary and horryfying. Zombies looked real.", "Zombieland: Double Tap", 5, client));
-		//reviews.add(new Review("Todd acted great. Storyline could have been better though.", "Joker", 4, client));
-		//reviews.add(new Review("Movie was overall okay. Some parts were worth watching.", "Abominable (PG)", 3, client));
+		ArrayList<Review> reviews = new ArrayList<Review>;
+		reviews.add(new Review("Really capturing!", "Better Days", 5, client));
+		reviews.add(new Review("Horrible acting, wouldn't recommend.", "Ford vs Ferrari", 1, client));
+		reviews.add(new Review("Really scary and horryfying. Zombies looked real.", "Zombieland: Double Tap", 5, client));
+		reviews.add(new Review("Todd acted great. Storyline could have been better though.", "Joker", 4, client));
+		reviews.add(new Review("Movie was overall okay. Some parts were worth watching.", "Abominable (PG)", 3, client));
 
-		
+		Data.saveObjectToPath(SaveLoadPath.REVIEW_PATH,reviews);
 		Data.saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,cpes);
 		ShowingControl.addShowing(newShowings);
 		Data.saveObjectToPath(SaveLoadPath.USER_PATH,user);
@@ -199,7 +199,7 @@ public class MainApp {
 		Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH,movieListings);
 		//Data.saveObjectToPath(SaveLoadPath.REVIEW_PATH,reviews);
 		
-		BookingControl bookingControl = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),ShowingControl.getAllShowings().get(0));
+		BookingControl bookingControl = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),newShowings.get(0));
 
 		bookingControl.addTicket("adult",1,8);
 		bookingControl.addTicket("adult",2,1);
