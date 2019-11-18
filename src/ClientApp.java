@@ -79,7 +79,7 @@ public class ClientApp {
                                         printMovie(searchedMovie);
                                         System.out.println();
 
-                                        System.out.println("What would you like to see? \n1. Reviews \n2. Listings\n3. Leave review \n4. Exit");
+                                        System.out.println("What would you like to see? \n1. Reviews \n2. All listings\n3. Listings on a specific date\n4. Leave review \n5. Exit");
                                         sc_in = sc.nextInt();
                                         switch (sc_in) {
                                             case 1:
@@ -128,6 +128,32 @@ public class ClientApp {
                                                 System.out.println();
                                                 break;
                                             case 3:
+                                                System.out.println("Enter the date (YYYYMMDD):");
+                                                String dateOfShowing = sc.next();
+                                                int c = 0;
+                                                System.out.println("\nListings on the date selected:");
+                                                ArrayList<Showing> allShowings = ShowingControl.getAllShowingOfMovie(searchedMovie);
+                                                ArrayList<Showing> showingsOnDate = new ArrayList<>();
+                                                for (Showing showing : allShowings) {
+                                                    if (showing.getDate().substring(0, 8).equals(dateOfShowing))
+                                                    {
+                                                        System.out.println(c + ". " + showing.printShowing());
+                                                        c++;
+                                                        showingsOnDate.add(showing);
+                                                    }
+                                                }
+                                                System.out.println("\nPlease select which showing you would like to attend:");
+                                                c = sc.nextInt();
+                                                if (c > 0 && c < showingsOnDate.size()) {
+                                                    new BookingApp(current, showingsOnDate.get(c));
+                                                    ShowingControl.saveAllShowings(allShowings);
+                                                    mov = "exit";
+                                                } else {
+                                                    System.out.println("error in selecting movies");
+                                                }
+                                                System.out.println();
+                                                break;
+                                            case 4:
                                                 int rating = 0;
                                                 String blurb = "";
                                                 while (current == null) {
@@ -147,7 +173,7 @@ public class ClientApp {
                                                 sc_in = 0;
 
                                                 break;
-                                            case 4:
+                                            case 5:
 
                                                 break;
                                             default:
