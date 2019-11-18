@@ -119,7 +119,7 @@ public class StaffApp {
                     row = sc.nextInt();
                     System.out.println("how many columns would you like this new cinema to be");
                     column = sc.nextInt();
-                    //RoomLayout Cinema.getNewRoomLayout(row,column);
+                    RoomLayout rl = CineplexControl.getNewRoomLayout(row,column);
                     //emoji
                     break;
                 case 5:
