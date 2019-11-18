@@ -124,13 +124,14 @@ public class MainApp {
 				Movie.Status.Showing,
 				"Seventeen-year-old Nian is the subject of cruel bullying at high school when she meets Bei, a tough street kid. The two teenagers find a kindred spirit in each other that gradually rises above love, forming a world of their own. But the cocoon is crushed when they are being dragged into a teenage girl murder case as prime suspects. An emotional roller coaster that is heartwarming and heartbreaking at the same time, the China coming-of-age movie offers thought-provoking insights into the intense competition faced by nearly 10 million teenagers every year who sit for the National College Entrance Examination and national issues of school bullying. If you are one amongst 10 million to secure a promising future with a topnotch college passport, would you kill to do it?",
 				"Derek Tsang",
+				"PG",
 				castArray));
 
 
 		castArray[0] ="Chloe Benne";
 		castArray[1] ="TenzNorgay Trainor";
-		movieListings.add(new Movie("Abominable (PG)", Movie.Status.Showing,"Abominable takes audiences on an epic 2,000-mile adventure from the streets of a Chinese city to the breathtaking Himalayan snowscapes. When teenage Yi (Chloe Bennet) encounters a young Yeti on the roof of her apartment building, she and her friends, Jin (Tenzing Norgay Trainor) and Peng (Albert Tsai), name him 'Everest' and embark on an epic quest to reunite the magical creature with his family at the highest point on Earth.\n",
-				"Jill Culton",castArray));
+		movieListings.add(new Movie("Abominable", Movie.Status.Showing,"Abominable takes audiences on an epic 2,000-mile adventure from the streets of a Chinese city to the breathtaking Himalayan snowscapes. When teenage Yi (Chloe Bennet) encounters a young Yeti on the roof of her apartment building, she and her friends, Jin (Tenzing Norgay Trainor) and Peng (Albert Tsai), name him 'Everest' and embark on an epic quest to reunite the magical creature with his family at the highest point on Earth.\n",
+				"Jill Culton","PG",castArray));
 
 
 
@@ -140,6 +141,7 @@ public class MainApp {
 				Movie.Status.Showing,
 				"A decade after Zombieland became a hit film and a cult classic, the lead cast (Woody Harrelson, Jesse Eisenberg, Abigail Breslin, and Emma Stone) have reunited with director Ruben Fleischer (Venom) and writers Rhett Reese & Paul Wernick (Deadpool) for Zombieland 2. In the sequel, through comic mayhem that stretches from the White House and through the heartland, these four slayers must face off against the many new kinds of zombies that have evolved since the first movie, as well as some new human survivors. But most of all, they have to face the growing pains of their own snarky, makeshift family.",
 				"Ruben Fleischer",
+				"R",
 				castArray));
 
 
@@ -150,6 +152,7 @@ public class MainApp {
 				Movie.Status.Showing,
 				"A failed stand-up comedian is driven insane and becomes a psychopathic murderer.",
 				"Todd Phillips",
+				"R",
 				castArray));
 
 		castArray[0] = "Matt Damon";
@@ -159,6 +162,7 @@ public class MainApp {
 				Movie.Status.Showing,
 				"Academy Award-winners Matt Damon and Christian Bale star in FORD v FERRARI, based on the remarkable true story of the visionary American car designer Carroll Shelby (Damon) and the fearless British-born driver Ken Miles (Bale), who together battled corporate interference, the laws of physics, and their own personal demons to build a revolutionary race car for Ford Motor Company and take on the dominating race cars of Enzo Ferrari at the 24 Hours of Le Mans in France in 1966.",
 				"James Mangold",
+				"PG",
 				castArray));
 
 		int cineplex =0;

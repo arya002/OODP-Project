@@ -456,8 +456,8 @@ public class StaffApp {
                     name = sc.nextLine();
                     System.out.println("Please enter which Status");
                     Movie.Status[] moviestatus = Movie.Status.values();
-                    for (int index = 0; i < Movie.Status.size; i++) {
-                        System.out.println(i + ". " + moviestatus[i].toString());
+                    for (int index = 0; index < Movie.Status.size; index++) {
+                        System.out.println(index + ". " + moviestatus[index].toString());
                     }
                     sc_in = sc.nextInt();
                     status = moviestatus[sc_in];
@@ -481,8 +481,8 @@ public class StaffApp {
                     }
 
                     String[] castArray = new String[cast.size()];
-                    for (int index = 0; i < cast.size(); i++) {
-                        castArray[i] = cast.get(i);
+                    for (int index = 0; index < cast.size(); index++) {
+                        castArray[index] = cast.get(index);
                     }
 
                     Movie newMovie = new Movie(name, status, synopsis, director,rating, castArray);
