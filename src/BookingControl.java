@@ -46,7 +46,7 @@ public class BookingControl {
      */
     public void addTicket(String age, int row, int column) {
         Seat seat = showing.getSeatingPlan().getSeat(row, column);
-        seat.setSeatID(String.valueOf((char) (row + 65)) + String.valueOf(column + 1));
+        seat.setSeatID(String.valueOf((char) (column + 65)) + String.valueOf(row + 1));
         int price = calculatePrice(age, seat);
 
         if (client == null)

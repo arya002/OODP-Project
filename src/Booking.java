@@ -77,7 +77,7 @@ public class Booking implements Serializable{
         retString+= "Booking ID " + bookingID + "\n";
         retString+= "Customer " + client.getFirstName() + "\n";
         retString+= "Movie " + showing.getMovie().getName() + "\n";
-        retString+= "For " + tickets.size() + " Tickets on the " + tickets.get(0).getDate() +"\n";
+        retString+= "For " + tickets.size() /*+ " Tickets on the " + tickets.get(0).getDate()*/ +"\n";
         for(int i =0; i<tickets.size();i++) {
             retString += "\t"+tickets.get(i).getSeat().getSeatID()+" for " + tickets.get(i).getType() +" \n";
         }
