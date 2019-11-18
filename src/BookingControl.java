@@ -1,7 +1,9 @@
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-
+/**
+Controls the booking of a user
+ */
 public class BookingControl {
 
     private Client client;
@@ -10,7 +12,11 @@ public class BookingControl {
     public static ArrayList<String> holidays;
     private static Prices prices = null;
 
-
+/**
+Initialises the class. Creates arrays of empty tickets for holding on later, set the client and particular showing he/she wants
+@param client is a client object
+@param showing is a showing object
+ */
    public BookingControl(Client client, Showing showing)
    {
         //System.out.println(client.getEmail());
@@ -20,7 +26,9 @@ public class BookingControl {
         this.showing = showing;
         Initialize();
    } 
-
+/**
+Loads the prices from file
+ */
    public static void Initialize(){
        
             ArrayList<Prices> inte;
@@ -32,7 +40,12 @@ public class BookingControl {
                 prices = inte.get(0);
             }
    }
-
+/**
+Add a new ticket. Will deduce the price and assign the selected seat to the client
+@param age is a string of either adult or child.
+@param row Row of the seat the user wants
+@param column Column of the seat the user wants
+ */
    public void addTicket(String age, int row, int column)
    {
         Seat seat = showing.getSeatingPlan().getSeat(row, column);
@@ -53,7 +66,10 @@ public class BookingControl {
         seat.assignSeat(client.getUsername());
 
    }
-
+/**
+Calculates the price of a ticket. First checks if its adult or child
+Then, it addons any markups, such as premium tickets or weekends/holiday prices
+ */
    private int calculatePrice(String age)
    {
        int price = 0;
@@ -74,7 +90,10 @@ public class BookingControl {
         System.out.println("Your ticket costs S$" + price);
         return price;
    }
-
+/**
+Prints the details of a confirmed booking.
+Saves the booking to file
+ */
    public void completeBooking()
    {
        Booking booking = new Booking(tickets, client, showing);
@@ -91,7 +110,9 @@ public class BookingControl {
        bookings.add(booking);
        Data.getInstance().saveObjectToPath(SaveLoadPath.BOOKING_PATH, bookings);
    }
-
+ /**
+Loads an arraylist of bookings from file
+ */
    public static ArrayList<Booking> getBookings(){
        return (ArrayList<Booking>) Data.getObjectFromPath(SaveLoadPath.BOOKING_PATH, Booking.class);
 
