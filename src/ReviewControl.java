@@ -47,8 +47,9 @@ public class ReviewControl {
         System.out.println("Review by: " + review.getReviewer().getUsername());
         System.out.println("Movie: " + review.getMovieName());
         System.out.println("Date: " + review.getDate());
-        //System.out.printf("*".repeat((int) rating) + ", %.1f/5\n\n", rating);
+        System.out.printf("Rating: %.1f/5\n", review.getRating());
         System.out.println("Review:\n" + review.getReview());
+        System.out.println();
     }
 
     /**
