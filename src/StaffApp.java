@@ -27,7 +27,8 @@ public class StaffApp {
      */
 
     private void run() {
-        int sc_in;
+        Scanner sc = MainApp.sc;
+        int sc_in = 0;
 
         do {
             System.out.println("Welcome " + currentStaff.getFirstName());
@@ -37,15 +38,17 @@ public class StaffApp {
                             "\n3. Configure System Settings" +
                             "\n4. Exit\n");
 
-
-            sc_in = MainApp.sc.nextInt();
+            sc_in = sc.nextInt();
             switch (sc_in) {
                 case 1:
                     handleMovieListings();
+                    break;
                 case 2:
                     handleShowTimes();
+                    break;
                 case 3:
                     handleSystemSettings();
+                    break;
                 case 4:
                     break;
                 default:
@@ -61,7 +64,7 @@ public class StaffApp {
     */
     private void handleSystemSettings() {
         int sc_in;
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = MainApp.sc;
         do {
             System.out.println("Welcome " + currentStaff.getFirstName());
             System.out.println
@@ -74,9 +77,12 @@ public class StaffApp {
             switch (sc_in) {
                 case 1:
                     //TODO Allow staff to edit ticket prices
-                    System.out.println("Please enter the new price of an adult ticket.");
-                    double price = MainApp.sc.nextDouble();
-                    changePriceOfTicket(price);
+                    printPrices();
+                    System.out.println("Would you like to edit the prices?");
+                    if (sc.next().equalsIgnoreCase("yes"))
+                    {
+                        changePrices();
+                    }
                     break;
                 case 2:
                     printHolidays();
@@ -112,26 +118,37 @@ public class StaffApp {
                     addNewStaff(user, pass, first);
                     break;
                 case 4:
-                    //    public Movie( name, Status status,  synopsis,  director,  cast, ArrayList<Review> , ArrayList<Cineplex> ) {
-
-                    //ArrayList<Review> reviews = new ArrayList<>();
-
-                    //    public Review(String review, String movieName,double rating, Client reviewer) throws IllegalArgumentException
-
-
-                    //Movie movie = new Movie("shrek", Movie.Status.Showing,"synopsis","beck",new String[] {"tom cruise","donkey"}, )
                     break;
                 default:
                     System.out.println("Invalid input, please choose from the following:");
                     break;
             }
 
-        } while (sc_in != 3);
-        sc.close();
+        } while (sc_in != 4);
+
+    }
+    private void printPrices()
+    {
+        ArrayList<Prices> prices =new ArrayList<>();
+        if((prices= (ArrayList<Prices>) Data.getInstance().getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class))!=null);
+        Prices price = prices.get(0);
+        System.out.println("Adult base price: S$" + price.getBASE_ADULT());
+        System.out.println("Child base price: S$" + price.getBASE_CHILD());
+        System.out.println("Holiday/weekend markup: S$" + price.getHOLIDAY_MARKUP());
+        System.out.println("Premium cinema markum: S$" + price.getPREMIUM_CINEMA_MARKUP());
+        System.out.println("Premium movie markup: S$" + price.getPREMIUM_MOVIE_MARKUP());
+        
+        System.out.println();
 
     }
 
     /**
+    * Adds a new staff member
+    * @param user Staff member's username
+    * @param password Staff member's password
+    * @param first Staff member's first name
+
+
      * Adds a new staff member
      *
      * @param user  Staff member's username
@@ -157,6 +174,7 @@ public class StaffApp {
         price.addHolyday(holiday);
         prices.add(price);
         System.out.println("Holiday added");
+        Data.saveObjectToPath(SaveLoadPath.PRICE_PATH, prices);
     }
 
     private void printHolidays(){
@@ -172,6 +190,7 @@ public class StaffApp {
             System.out.println("Holiday removed");
         else
             System.out.println("Holiday not on the list");
+        Data.saveObjectToPath(SaveLoadPath.PRICE_PATH, prices);
     }
 
     /**
@@ -183,10 +202,25 @@ public class StaffApp {
     * Changes the price of a ticket
     * @param price New price of the ticket
     */
-    private void changePriceOfTicket(double price) {
+    private void changePrices() {
 
-        boolean returnVal = false;
+        ArrayList<Prices> prices =new ArrayList<>();
+        if((prices= (ArrayList<Prices>) Data.getInstance().getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class))!=null);
+        Prices price = prices.get(0);
 
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the new adult base price");
+        price.setBASE_ADULT(sc.nextInt());
+        System.out.println("Enter the new child base price");
+        price.setBASE_CHILD(sc.nextInt());
+        System.out.println("Enter the new holiday/weekend markup");
+        price.setHOLIDAY_MARKUP(sc.nextInt());
+        System.out.println("Enter the new premium cinema markup");
+        price.setPREMIUM_CINEMA_MARKUP(sc.nextInt());
+        System.out.println("Enter the new premium movie markup");
+        price.setPREMIUM_MOVIE_MARKUP(sc.nextInt());
+
+        Data.saveObjectToPath(SaveLoadPath.PRICE_PATH, prices);
     }
 
     /**
