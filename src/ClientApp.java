@@ -168,7 +168,6 @@ public class ClientApp {
 
                                                 //sc.next();
                                                 blurb = sc.next();
-                                                System.out.println(blurb);
                                                 ReviewControl.addReview(new Review(blurb, searchedMovie.getName(), new Double(rating), current));
                                                 sc_in = 0;
 
