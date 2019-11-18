@@ -79,7 +79,7 @@ public class Booking implements Serializable{
         retString+= "Movie " + showing.getMovie().getName() + "\n";
         retString+= "For " + tickets.size() + " Tickets " + "\n";
         for(int i =0; i<tickets.size();i++) {
-            retString += "\t"+tickets.get(i).getSeat().getSeatID()+ " " + tickets.get(i).getType() +" \n";
+            retString += "\t"+tickets.get(i).getSeat().getSeatID()+" for a " + tickets.get(i).getType() +" \n";
         }
         return retString;
     }
