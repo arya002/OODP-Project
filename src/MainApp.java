@@ -60,6 +60,7 @@ public class MainApp {
 					break;
 
 				case 3:
+
 					System.exit(1);
 					break;
 
@@ -192,8 +193,6 @@ public class MainApp {
 		Data.saveObjectToPath(SaveLoadPath.USER_PATH,user);
 		Data.saveObjectToPath(SaveLoadPath.PRICE_PATH, prices);
 		Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH,movieListings);
-		ShowingControl.Reinitialize();
-		MovieControl.Reinitialize();
 
 		BookingControl bookingControl = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),ShowingControl.getAllShowings().get(0));
 
@@ -256,11 +255,8 @@ public class MainApp {
 
         ReviewControl.addReview(reviews);
 
-        System.out.println("There are " + ShowingControl.getAllShowings().size() + " Showings");
+		System.out.println("There are " + ShowingControl.getAllShowings().size() + " Showings");
         System.out.println("There are " + MovieControl.getAllMovies().size() + " Movies");
-
-
-
 
     }
 
