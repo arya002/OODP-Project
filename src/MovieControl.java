@@ -5,19 +5,17 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- *
  * Movie Manager for movies which handles all interfacing with the Movie class.
  * has all the static methods to seperate from the purely
- *
  */
 
 public class MovieControl {
 
     private static ArrayList<Movie> allMovies = null;
 
-    public static void Reinitialize(){
+    public static void Reinitialize() {
 
-        if ((allMovies = (ArrayList<Movie>) Data.getInstance().getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class)) == null){
+        if ((allMovies = (ArrayList<Movie>) Data.getInstance().getObjectFromPath(SaveLoadPath.MOVIE_PATH, Movie.class)) == null) {
             allMovies = new ArrayList<>();
         }
     }
@@ -27,9 +25,9 @@ public class MovieControl {
 
     public static void addMovieListing(ArrayList<Movie> movie) {
 
-        ArrayList<Movie> movies= getAllMovies();
+        ArrayList<Movie> movies = getAllMovies();
         movies.addAll(movie);
-        Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH,movies);
+        Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH, movies);
 
     }
 
@@ -70,38 +68,42 @@ public class MovieControl {
         ArrayList<Movie> movies = new ArrayList<>();
         System.out.println("The top rated movies are \n");
         ArrayList<Review> sortedList = ReviewControl.getAllReviews();
-        sortedList.sort(new CustomComparitor());
-        String oldReviewMovie = sortedList.get(0).getMovieName();
-        Review oldReview;
-        double total;
-        boolean exitCond=false;
-        for (i = 0; i < sortedList.size(); i++) {
-            total = 0;
-            int j = 0;
-            int index = i;
+        if (sortedList!=null) {
+            sortedList.sort(new CustomComparitor());
+            String oldReviewMovie = sortedList.get(0).getMovieName();
+            Review oldReview;
+            double total;
+            boolean exitCond = false;
+            for (i = 0; i < sortedList.size(); i++) {
+                total = 0;
+                int j = 0;
+                int index = i;
 
-            oldReviewMovie = sortedList.get(i).getMovieName();
+                oldReviewMovie = sortedList.get(i).getMovieName();
 
-            while (i+j < sortedList.size() && j+index < sortedList.size() &&sortedList.get(i+j).getMovieName().equals(oldReviewMovie)) {
-                System.out.println("old -" + oldReviewMovie);
-                System.out.println("new - i + j- " + sortedList.get(i+j).getMovieName() +"\n");
-                total += sortedList.get(index+j).getRating();
-                oldReview = sortedList.get(index+j);
-                oldReviewMovie = oldReview.getMovieName();
-                j++;
-                if(index+j == sortedList.size())
-                    exitCond = true;
+                while (i + j < sortedList.size() && j + index < sortedList.size() && sortedList.get(i + j).getMovieName().equals(oldReviewMovie)) {
+                    System.out.println("old -" + oldReviewMovie);
+                    System.out.println("new - i + j- " + sortedList.get(i + j).getMovieName() + "\n");
+                    total += sortedList.get(index + j).getRating();
+                    oldReview = sortedList.get(index + j);
+                    oldReviewMovie = oldReview.getMovieName();
+                    j++;
+                    if (index + j == sortedList.size())
+                        exitCond = true;
 
+                }
+
+                for (Movie movie : getAllMovies()) {
+                    if (movie.getName().equalsIgnoreCase(sortedList.get(i).getMovieName()))
+                        movies.add(movie);
+                }
+                //System.out.println("total " + sortedList.get(i).getMovieName() + " " + total + "\n");
+
+                if (exitCond)
+                    break;
             }
-
-            for(Movie movie:getAllMovies()){
-                if (movie.getName().equalsIgnoreCase(sortedList.get(i).getMovieName()))
-                    movies.add(movie);
-            }
-            //System.out.println("total " + sortedList.get(i).getMovieName() + " " + total + "\n");
-
-            if (exitCond)
-                break;
+        }else{
+            System.out.println("no reviews have been left");
         }
 
         return movies;
@@ -111,8 +113,8 @@ public class MovieControl {
 
         Reinitialize();
 
-        for (int i =0; i< allMovies.size();i++) {
-            if(allMovies.get(i).getName().equals(name));
+        for (int i = 0; i < allMovies.size(); i++) {
+            if (allMovies.get(i).getName().equals(name)) ;
             return allMovies.get(i);
         }
         return null;
@@ -126,7 +128,7 @@ public class MovieControl {
 
         ArrayList<String> names = new ArrayList<>();
 
-        for (Movie movie:allMovies){
+        for (Movie movie : allMovies) {
 
             names.add(movie.getName());
 
@@ -138,7 +140,7 @@ public class MovieControl {
 
     public static ArrayList<Movie> getAllMovies() {
 
-        return (ArrayList<Movie>) Data.getObjectFromPath(SaveLoadPath.MOVIE_PATH,Movie.class);
+        return (ArrayList<Movie>) Data.getObjectFromPath(SaveLoadPath.MOVIE_PATH, Movie.class);
         //System.out.println("All Movies: " + uniqueMovies);
     }
 

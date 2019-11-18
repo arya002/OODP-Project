@@ -40,7 +40,8 @@ Saves data
         }
     }
 /**
-Returns an arraylist of objects loaded
+Returns an arraylist of objects loaded from file
+@return the arraylist of objects, depending on what was loaded
 */
     public static ArrayList<?> getObjectFromPath(String path,Class o){
         SaveLoad pair= new SaveLoad<>(o);

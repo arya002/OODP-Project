@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * main screen
+ */
 
 public class MainApp {
 
@@ -13,6 +15,7 @@ public class MainApp {
 		ShowingControl.Reinitialize();
 		CineplexControl.Reinitialize();
 		MovieControl.Reinitialize();
+		ReviewControl.Reinitialize();
 
 		System.out.println("Welcome to MOBLIMA, the best way book your movie tickets.");
 		System.out.println("What would you like to do?");
@@ -31,8 +34,10 @@ public class MainApp {
 			sc_in = sc.nextInt();
 			switch (sc_in) {
 				case 1:
-					User lis = null;
-					lis = new LoginScreen().run();
+                    User lis = null;
+                    while(lis == null) {
+                        lis = new LoginScreen().run();
+                    }
 
 
 					if(lis.getType().equals("client")){
@@ -55,7 +60,6 @@ public class MainApp {
 					break;
 
 				case 3:
-
 					System.exit(1);
 					break;
 
@@ -85,7 +89,9 @@ public class MainApp {
 
 		} while (sc_in != 3);
 	}
-
+/**
+ * Create test data
+ */
 	private static void instantiateTestData() throws InterruptedException {
 
 		ArrayList<String> holidays = new ArrayList<>();
@@ -180,7 +186,6 @@ public class MainApp {
 		}
 
 
-
 		Data.saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,cpes);
 		ShowingControl.addShowing(newShowings);
 		Data.saveObjectToPath(SaveLoadPath.USER_PATH,user);
@@ -232,8 +237,7 @@ public class MainApp {
 		bookingControl5.addTicket("adult",8,1);
 		bookingControl5.addTicket("adult",7,1);
 		bookingControl5.addTicket("adult",6,1);
-		bookingControl.completeBooking();
-
+		bookingControl5.completeBooking();
 
 		System.out.println("There are " + ShowingControl.getAllShowings().size() + " Showings");
         System.out.println("There are " + MovieControl.getAllMovies().size() + " Movies");

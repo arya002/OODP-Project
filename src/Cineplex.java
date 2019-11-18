@@ -1,12 +1,18 @@
 import java.io.Serializable;
 import java.util.ArrayList;
-
+/**
+ * Cineplex object class
+ */
 public class Cineplex implements Serializable {
 
     private String name;
     private ArrayList<Cinema> cinemas;
 
     //<editor-fold desc="Constructors">
+    /**
+ * Create new cineplex object
+ @param name Takes the name of the new cineplex
+ */
     public Cineplex(String name) {
         this.name = name;
         this.cinemas = new ArrayList<>();
@@ -19,11 +25,17 @@ public class Cineplex implements Serializable {
         cinemas.add(cinema2);
         cinemas.add(cinema3);
     }
-
+/**
+ * Gets the name of the cineplex object
+ @return the name as string
+ */
     public String getName() {
         return name;
     }
-
+/**
+Gets the cinemas of the cineplex
+ * @return an array list of all cinemas in a cineplex.
+ */
     public ArrayList<Cinema> getCinemas() {
         return cinemas;
     }

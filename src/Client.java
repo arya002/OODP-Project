@@ -16,12 +16,17 @@ public class Client extends User implements Serializable {
 		this.setEmail(email);
 		this.setType("client");
 	}
-
-	//<editor-fold desc="Getters">
+/**
+ * Returns the ohone number of the client
+ @return phoneNum
+ */
 	public String getPhoneNum() {
 		return phoneNum;
 	}
-
+/**
+ * Create a new client with the username, password, phoneNumber, email and Name.
+ @return the email as string
+ */
 	public String getEmail() {
 		return email;
 	}
