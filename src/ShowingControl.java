@@ -144,9 +144,7 @@ public class ShowingControl  {
     * Gets all the showings
     */
     public static ArrayList<Showing> getAllShowings() {
-
-        return (ArrayList<Showing>) Data.getObjectFromPath(SaveLoadPath.SHOWING_PATH, Showing.class);
-
+        return (ArrayList<Showing>) Data.getObjectFromPath(SaveLoadPath.SHOWING_PATH,Showing.class);
     }
 
     /**

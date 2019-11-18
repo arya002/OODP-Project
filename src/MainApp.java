@@ -97,7 +97,7 @@ public class MainApp {
 
 		ArrayList<String> holidays = new ArrayList<>();
 		holidays.add("20200101");
-		Prices price = new Prices(10, 7, 2, 3, 1, holidays);
+		Prices price = new Prices(10, 7, 2, 3, 1, 2, holidays);
 		ArrayList<Prices> prices = new ArrayList<>();
 		prices.add(price);
 

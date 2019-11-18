@@ -51,7 +51,7 @@ public class BookingControl {
     public void addTicket(String age, int row, int column) {
         Seat seat = showing.getSeatingPlan().getSeat(row, column);
         seat.setSeatID(String.valueOf((char) (row + 65)) + String.valueOf(column + 1));
-        int price = calculatePrice(age);
+        int price = calculatePrice(age, seat);
 
         if (client == null)
             System.out.println("You must Log In to buy Tickets");
@@ -74,7 +74,7 @@ public class BookingControl {
      * Calculates the price of a ticket. First checks if its adult or child
      * Then, it addons any markups, such as premium tickets or weekends/holiday prices
      */
-    private int calculatePrice(String age) {
+    private int calculatePrice(String age, Seat seat) {
         int price = 0;
         if (age.equals("adult"))
             price += prices.getBASE_ADULT();
@@ -87,9 +87,10 @@ public class BookingControl {
             price += prices.getPREMIUM_MOVIE_MARKUP();
         if (showing.getCinema().isPremium())
             price += prices.getPREMIUM_CINEMA_MARKUP();
-        if (showing.getDayOfWeek() == 5 || showing.getDayOfWeek() == 6 || prices.getHOLIDAYS().contains(showing.getYYYYMMDD()))
-            ;
-        price += prices.getHOLIDAY_MARKUP();
+        if (showing.getDayOfWeek() == 5 || showing.getDayOfWeek() == 6 || prices.getHOLIDAYS().contains(showing.getYYYYMMDD()));
+            price += prices.getHOLIDAY_MARKUP();
+        if (seat.getType().equalsIgnoreCase("P"))
+            price += prices.getPREMIUM_SEAT_MARKUP();
 
         System.out.println("Your ticket costs S$" + price);
         return price;

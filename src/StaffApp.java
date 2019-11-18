@@ -1,5 +1,3 @@
-import com.sun.tools.javac.Main;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -32,6 +30,7 @@ public class StaffApp {
 
     private void run() {
         int sc_in;
+
         do {
             System.out.println("Welcome " + currentStaff.getFirstName());
             System.out.println
@@ -64,8 +63,8 @@ public class StaffApp {
     }
 
     /**
-     * Handles the system settings
-     */
+    * Handles the system settings
+    */
     private void handleSystemSettings() {
         int sc_in;
         Scanner sc = new Scanner(System.in);
@@ -131,20 +130,18 @@ public class StaffApp {
                     int selectedCineplex = 0;
                     int selectedCinema = 0;
                     System.out.println("Choose the cineplex: ");
-                    for (Cineplex cp : cineplex) {
-                        System.out.println(selectedCineplex + ". " + cp.getName());
+                    for(Cineplex cp:cineplex){
+                        System.out.println(selectedCineplex + ". " +cp.getName());
                         selectedCineplex++;
                     }
                     selectedCineplex = sc.nextInt();
-                    for (Cinema cinema : cineplex.get(selectedCineplex).getCinemas()) {
-                        System.out.println(selectedCineplex + ". " + cinema.getCinemaID());
+                    for(Cinema cinema:cineplex.get(selectedCineplex).getCinemas()){
+                        System.out.println(selectedCineplex + ". " +cinema.getCinemaID());
                         selectedCinema++;
                     }
                     selectedCinema = sc.nextInt();
                     cineplex.get(selectedCineplex).getCinemas().get(selectedCinema).buildRoomLayout(newLayout(row, column));
                     Data.saveObjectToPath(SaveLoadPath.CINEPLEX_PATH, cineplex);
-                    RoomLayout rl = CineplexControl.getNewRoomLayout(row, column);
-                    //emoji
                     break;
                 case 5:
                 default:
@@ -157,13 +154,16 @@ public class StaffApp {
 
     }
 
-    private String[][] newLayout(int rows, int columns) {
+    private String[][] newLayout(int rows, int columns)
+    {
         String[][] layout = new String[rows][columns];
         System.out.println("Would you like the first two rows to be premium?");
-        boolean premium = (sc.next()).equalsIgnoreCase("yes");
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                if (premium)
+        boolean premium = (MainApp.sc.next()).equalsIgnoreCase("yes");
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                if(premium)
                     layout[i][j] = "P";
                 else
                     layout[i][j] = "N";
@@ -171,7 +171,6 @@ public class StaffApp {
         }
         return layout;
     }
-
     /**
      * Adds a new staff member
      *
@@ -193,31 +192,32 @@ public class StaffApp {
 
     private void addHoliday(String holiday) {
         ArrayList<Prices> prices = new ArrayList<>();
-        if ((prices = (ArrayList<Prices>) Data.getInstance().getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class)) != null)
-            ;
+        if ((prices = (ArrayList<Prices>) Data.getInstance().getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class)) != null);
+
         Prices price = prices.get(0);
         price.addHolyday(holiday);
         prices.add(price);
         System.out.println("Holiday added");
     }
 
-    private void printHolidays() {
-        ArrayList<Prices> prices = new ArrayList<>();
-        if ((prices = (ArrayList<Prices>) Data.getInstance().getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class)) != null)
-            prices.get(0).getHOLIDAYS().forEach(System.out::println);
+    private void printHolidays(){
+        ArrayList<Prices> prices =new ArrayList<>();
+        if((prices= (ArrayList<Prices>) Data.getInstance().getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class))!=null)
+        prices.get(0).getHOLIDAYS().forEach(System.out::println);
     }
 
-    private void removeHoliday(String holiday) {
-        ArrayList<Prices> prices = new ArrayList<>();
-        if ((prices = (ArrayList<Prices>) Data.getInstance().getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class)) != null)
-            if (prices.get(0).getHOLIDAYS().remove(holiday))
-                System.out.println("Holiday removed");
-            else
-                System.out.println("Holiday not on the list");
+    private void removeHoliday(String holiday){
+        ArrayList<Prices> prices =new ArrayList<>();
+        if((prices= (ArrayList<Prices>) Data.getInstance().getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class))!=null)
+        if (prices.get(0).getHOLIDAYS().remove(holiday))
+            System.out.println("Holiday removed");
+        else
+            System.out.println("Holiday not on the list");
     }
 
     /**
      * Changes the price of a ticket
+     *
      */
 
 
@@ -301,7 +301,7 @@ public class StaffApp {
         System.out.println("Select a showing number to edit: ");
         ArrayList<Showing> allShowings = ShowingControl.getAllShowings();
 
-        for (int i = 0; i < allShowings.size(); ++i) {
+        for(int i=0; i<allShowings.size(); ++i){
             System.out.println(allShowings.get(i).printShowing());
         }
 
