@@ -58,9 +58,8 @@ public class ClientApp {
                     mov = sc.next();
                     Movie searchedMovie = null;
                     int counter = 0;
-                    while (!mov.equals("exit") && counter <MovieControl.getAllMovies().size()) {
+                    while (!mov.equals("exit") && counter < MovieControl.getAllMovies().size()) {
                         for (Movie movie : MovieControl.getAllMovies()) {
-
                             System.out.println("Looking for " + mov);
                             System.out.println(movie.getName());
                             if (movie.getName().contains(mov)) {
@@ -103,9 +102,9 @@ public class ClientApp {
                                         System.out.println();
                                         break;
                                     case 3:
-                                        int rating =0;
+                                        int rating = 0;
                                         String blurb = "";
-                                        while(current == null){
+                                        while (current == null) {
                                             User lis = new LoginScreen().run();
                                             current = (Client) lis;
                                             System.out.println(current.getFirstName());
@@ -115,96 +114,99 @@ public class ClientApp {
                                         rating = sc.nextInt();
                                         System.out.println("Please write a short blurb about why you have chosen your score");
 
-                                        blurb= sc.next();
-
-                                        ReviewControl.addReview(new Review(blurb,searchedMovie.getName(),new Double(rating),current));
+                                        blurb = sc.nextLine();
+                                        ReviewControl.addReview(new Review(blurb, searchedMovie.getName(), new Double(rating), current));
                                         sc_in = 0;
+
                                         break;
                                     case 4:
+
                                         break;
                                     default:
                                         System.out.println("error select a correct statement");
                                 }
-                                if (searchedMovie != null && sc_in!=4) {
+                                if (searchedMovie != null && sc_in != 4) {
                                     break;
                                 }
                             }
                         }
                         counter++;
-                        if (searchedMovie == null || counter >= MovieControl.getAllMovies().size())
+                        if (searchedMovie == null || counter >= MovieControl.getAllMovies().size()) {
                             System.out.println("Movie with this name has not been found");
-                    }
-                    sc_in = 0;
-                    break;
-                case 3:
-                    int temp = 1;
-                    int count = 0;
-                    for (Cineplex cineplex : CineplexControl.getCineplexes()) {
-                        System.out.println(temp + ". " + cineplex.getName());
-                        temp++;
-                    }
-                    sc_in = sc.nextInt();
-                    sc_in--;
-                    System.out.println("you chose " + CineplexControl.getCineplexes().get(sc_in).getName());
-                    temp = 0;
-                    Showing selectedShowing = null;
-                    if (sc_in >= 0 && sc_in < 3) {
-
-                        for (Cinema cinema : CineplexControl.getCineplexes().get(sc_in).getCinemas()) {
-
-                            for (Showing showing : cinema.getShowings()) {
-                                System.out.println(temp + ". " + showing.printShowing());
-                                temp++;
-                            }
-
+                        } else {
+                            break;
                         }
-
                     }
+            break;
+            case 3:
+                int temp = 1;
+                int count = 0;
+                for (Cineplex cineplex : CineplexControl.getCineplexes()) {
+                    System.out.println(temp + ". " + cineplex.getName());
+                    temp++;
+                }
+                sc_in = sc.nextInt();
+                sc_in--;
+                System.out.println("you chose " + CineplexControl.getCineplexes().get(sc_in).getName());
+                temp = 0;
+                Showing selectedShowing = null;
+                if (sc_in >= 0 && sc_in < 3) {
 
                     for (Cinema cinema : CineplexControl.getCineplexes().get(sc_in).getCinemas()) {
+
                         for (Showing showing : cinema.getShowings()) {
-                            count++;
-                            if (count == temp)
-                                selectedShowing = showing;
-
+                            System.out.println(temp + ". " + showing.printShowing());
+                            temp++;
                         }
+
                     }
 
-                    sc_in = sc.nextInt();
-                    if (sc_in > 0 && sc_in < temp && selectedShowing != null) {
-                        if (current != null) {
-                            new BookingApp(current, selectedShowing);
-                        } else {
-                            while (current == null) {
-                                current = (Client) new LoginScreen().run();
-                            }
-                            new BookingApp(current, selectedShowing);
-                        }
-                    } else {
-                        System.out.println("error in selecting movies");
-                    }
-                    break;
+                }
 
-                //BookingApp(current, showing);
-                case 4:
+                for (Cinema cinema : CineplexControl.getCineplexes().get(sc_in).getCinemas()) {
+                    for (Showing showing : cinema.getShowings()) {
+                        count++;
+                        if (count == temp)
+                            selectedShowing = showing;
+
+                    }
+                }
+
+                sc_in = sc.nextInt();
+                if (sc_in > 0 && sc_in < temp && selectedShowing != null) {
                     if (current != null) {
-                        for (Booking booking : BookingControl.getBookings()) {
-                            if (booking.getClient().getUsername().equals(current.getUsername())) {
-                                System.out.println(booking.bookingPrint());
-                            }
+                        new BookingApp(current, selectedShowing);
+                    } else {
+                        while (current == null) {
+                            current = (Client) new LoginScreen().run();
+                        }
+                        new BookingApp(current, selectedShowing);
+                    }
+                } else {
+                    System.out.println("error in selecting movies");
+                }
+                break;
+
+            //BookingApp(current, showing);
+            case 4:
+                if (current != null) {
+                    for (Booking booking : BookingControl.getBookings()) {
+                        if (booking.getClient().getUsername().equals(current.getUsername())) {
+                            System.out.println(booking.bookingPrint());
                         }
                     }
-                    sc_in = 0;
-                    break;
-                case 5:
-                    break;
-                default:
-                    System.out.println("Invalid input, please choose from the following:");
-                    break;
-            }
+                }
+                sc_in = 0;
+                break;
+            case 5:
+                break;
+            default:
+                System.out.println("Invalid input, please choose from the following:");
+                break;
+        }
 
-        } while (sc_in != 5);
-    }
+    } while(sc_in !=5);
+}
 /*
     public void bookMovie(Showing showingToBook)
     {

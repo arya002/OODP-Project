@@ -195,7 +195,8 @@ public class StaffApp {
                 allShowings.get(sc_in-1).getMovie().setName(mov);
                 break;
             case 2:
-                System.out.println("Enter new date: ");
+                System.out.println("\t X = Day of the week 0-6 - Y = Time Slot" );
+                System.out.println("Enter new date in format YYYYMMDDXY: ");
                 String date = MainApp.sc.next();
                 allShowings.get(sc_in-1).setDate(date);
                 break;
@@ -248,8 +249,7 @@ public class StaffApp {
         int i = 0;
         do {
             System.out.println("Welcome " + currentStaff.getFirstName());
-            System.out.println
-                    ("1. View Movie Listings " +
+            System.out.println("1. View Movie Listings " +
                             "\n2. Edit Movie Listings" +
                             "\n3. Exit\n");
 
@@ -259,7 +259,7 @@ public class StaffApp {
                     i = 0;
                     for (Movie movie : MovieControl.getAllMovies()) {
                         System.out.println(i + " - " + movie.getName() + " is currently " + movie.getStatus() + " \n" + movie.getSynopsis() + "\n\n");
-                    i++;
+                        i++;
                     }
                 case 2:
 
@@ -274,12 +274,12 @@ public class StaffApp {
 
                     sc_in = MainApp.sc.nextInt();
                     int indexToEdit = sc_in;
+
                     ArrayList<Movie> editedMovieList = MovieControl.getAllMovies();
 
                     do {
                         System.out.println("1. Status " +
-                                "\n2. Location" +
-                                "\n3. Exit");
+                                "\n2. Exit");
                         sc_in = MainApp.sc.nextInt();
                         System.out.println("Edit - ");
                         switch (sc_in) {
@@ -301,7 +301,6 @@ public class StaffApp {
                                             editedMovieList.get(indexToEdit).setStatus(Movie.Status.notShowing);
                                             break;
                                         case 4:
-
                                             break;
 
                                         default:
@@ -309,9 +308,11 @@ public class StaffApp {
                                             break;
                                     }
 
+                                    Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH,editedMovieList);
+
                                 } while (sc_in != 4);
 
-                            case 2:
+                            //case 3:
 
 //                                do {
 //                                    System.out.println("1. Add location" +
@@ -355,8 +356,8 @@ public class StaffApp {
 
 //                                } while (sc_in != 3);
 
-                                break;
-                            case 3:
+                                //break;
+                            case 2:
 
                                 break;
 
@@ -365,7 +366,7 @@ public class StaffApp {
                                 break;
                         }
 
-                    } while (sc_in != 3);
+                    } while (sc_in != 2);
 
             }
 

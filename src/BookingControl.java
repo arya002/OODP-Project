@@ -93,9 +93,8 @@ public class BookingControl {
    }
 
    public static ArrayList<Booking> getBookings(){
-       ArrayList<Booking> bookings = (ArrayList<Booking>) Data.getInstance().getObjectFromPath(SaveLoadPath.BOOKING_PATH, Booking.class);
+       return (ArrayList<Booking>) Data.getObjectFromPath(SaveLoadPath.BOOKING_PATH, Booking.class);
 
-       return bookings;
    }
 
 }

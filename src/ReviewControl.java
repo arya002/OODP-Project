@@ -85,9 +85,10 @@ public class ReviewControl {
  */
     public static void addReview(Review review) {
 
-        allReviews.add(review);
-        new Review(review.getReview(), review.getMovieName(), review.getRating(), review.getReviewer());
-
+        ArrayList<Review> ar = getAllReviews();
+        ar.add(review);
+        Data.saveObjectToPath(SaveLoadPath.REVIEW_PATH,ar);
+        //new Review(review.getReview(), review.getMovieName(), review.getRating(), review.getReviewer());
 
     }
 
