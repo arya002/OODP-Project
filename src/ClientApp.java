@@ -38,9 +38,51 @@ public class ClientApp {
                                 "\n5. Exit\n");
 
                 sc_in = sc.nextInt();
+<<<<<<< HEAD
+
+switch (sc_in) {
+    case 1:
+        System.out.println("Would you like to see \n1. Every movie\n2. Top 5 movies by ticket sales\n3. Top 5 movies by review score");
+        sc_in = sc.nextInt();
+        switch (sc_in) {
+            case 1:
+                printMovies(MovieControl.getAllMovies());
+                break;
+            case 2:
+                MovieControl.getMoviesByTicketSales();
+                break;
+            case 3:
+                MovieControl.getAllMoviesByRating(); //TODO print top 5
+                break;
+        }
+        System.out.println();
+        //Without break here to automatically go to case 2. Makes intuitive sense 
+    case 2:
+        String mov="";
+        int counter = 0;
+        System.out.println("Enter movie name to search for or type exit to go back:");
+        if(!mov.equals("exit")) {
+            sc.nextLine();
+            mov = sc.nextLine();
+            Movie searchedMovie = null;
+            while (counter < MovieControl.getAllMovies().size() && !mov.equals("exit")) {
+                for (Movie movie : MovieControl.getAllMovies()) {
+                    if (mov.equals("exit")) break;
+                    System.out.println("Looking for " + mov);
+                    System.out.println(movie.getName());
+                    if (movie.getName().contains(mov)) {
+
+                        System.out.println("Movie Found");
+                        searchedMovie = movie;
+                        printMovie(searchedMovie);
+                        System.out.println();
+
+                        System.out.println("What would you like to see? \n1. Reviews \n2. Listings\n3. Leave review \n4. Exit");
+=======
                 switch (sc_in) {
                     case 1:
                         System.out.println("Would you like to see \n1. Every movie\n2. Top 5 movies by ticket sales\n3. Top 5 movies by review score");
+>>>>>>> 66615a09fadafa3e39f3edde8a6470e6cba18bf7
                         sc_in = sc.nextInt();
                         switch (sc_in) {
                             case 1:
@@ -50,7 +92,28 @@ public class ClientApp {
                                 MovieControl.getMoviesByTicketSales();
                                 break;
                             case 3:
+<<<<<<< HEAD
+                                int rating = 0;
+                                String blurb = "";
+                                while (current == null) {
+                                    User lis = new LoginScreen().run();
+                                    current = (Client) lis;
+                                    System.out.println(current.getFirstName());
+                                }
+                                System.out.println("What would you like to rate this film (1-5)");
+
+                                rating = sc.nextInt();
+                                System.out.println("Please write a short blurb about why you have chosen your score");
+                                
+                                //sc.next();
+                                blurb = sc.next();
+                                System.out.println(blurb);
+                                ReviewControl.addReview(new Review(blurb, searchedMovie.getName(), new Double(rating), current));
+                                sc_in = 0;
+
+=======
                                 //printMovies(MovieControl.getAllMoviesByRating()); //TODO print top 5
+>>>>>>> 66615a09fadafa3e39f3edde8a6470e6cba18bf7
                                 break;
                         }
                         System.out.println();

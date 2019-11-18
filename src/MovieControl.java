@@ -42,26 +42,64 @@ public class MovieControl {
 
     public static ArrayList<Movie> getMoviesByTicketSales() {
 
-        ArrayList<String> ticketSalesName = getAllMoviesNames();
-        Map<String, Integer> ticketSales = new HashMap<String, Integer>();
-        for (int i = 0; i < ticketSalesName.size(); i++) {
-            ticketSales.put(ticketSalesName.get(i), 0);
+        ArrayList<String> allMovieNames = getAllMoviesNames();
+        Map<String, Integer> ticketSalesMap = new HashMap<String, Integer>();
+        for (int i = 0; i < allMovieNames.size(); i++) {
+            ticketSalesMap.put(allMovieNames.get(i), 0);
         }
 
         HashSet<Booking> bookings = new HashSet<>(BookingControl.getBookings());
         for (Booking booking : bookings) {
             for (Ticket ticket : booking.getTickets()) {
-                for (Map.Entry<String, Integer> entry : ticketSales.entrySet()) {
+                for (Map.Entry<String, Integer> entry : ticketSalesMap.entrySet()) {
                     if (ticket.getShowingMovieName().equals(entry.getKey()))
                         entry.setValue(entry.getValue() + 1);
                 }
             }
         }
 
-        ticketSales.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).forEach(System.out::println);
+        ticketSalesMap.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).forEach(System.out::println);
         return null;
     }
 
+<<<<<<< HEAD
+    public static void getAllMoviesByRating() {
+        Reinitialize();
+
+        ArrayList<String> allMovieNames = getAllMoviesNames();
+        Map<String, Integer> avgReviewMap = new HashMap<String, Integer>();
+        ArrayList<Review> allReviews = ReviewControl.getAllReviews();
+        if (allReviews == null)
+            allReviews = new ArrayList<Review>();
+
+        for (int i = 0; i < allMovieNames.size(); i++) {
+            avgReviewMap.put(allMovieNames.get(i), 0);
+        }
+
+        
+        for (Review review : allReviews) {
+            String movieName = review.getMovieName();
+            Integer reviewScore = (int)(review.getRating());
+            if (avgReviewMap.containsKey(movieName))
+                avgReviewMap.replace(movieName, avgReviewMap.get(movieName) + reviewScore);
+            else
+                avgReviewMap.put(movieName, reviewScore);
+        }
+
+        for (Map.Entry<String, Integer> entry : avgReviewMap.entrySet())
+        {
+            int counter = 0;
+            for (Review review : allReviews)
+            {
+                if (review.getMovieName().equals(entry.getKey()))
+                    counter++;
+                entry.setValue(entry.getValue()/counter);
+            }
+        }
+
+        avgReviewMap.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).forEach(System.out::println);
+    }
+=======
 //    public static ArrayList<Movie> getAllMoviesByRating() {
 //
 //        ArrayList<String> ticketSalesName = getAllMoviesNames();
@@ -129,6 +167,7 @@ public class MovieControl {
 //
 //        return movies;
 //    }
+>>>>>>> 66615a09fadafa3e39f3edde8a6470e6cba18bf7
 
     public static Movie getMovie(String name) {
 
