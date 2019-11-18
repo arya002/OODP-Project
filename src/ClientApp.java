@@ -172,8 +172,7 @@ public class ClientApp {
                 for (Movie movie : MovieControl.getAllMovies()) {
                     if (mov.equals("exit"))
                         break;
-                    System.out.println("Looking for " + mov);
-                    System.out.println(movie.getName());
+
                     if (movie.getName().contains(mov)) {
 
                         System.out.println("Movie Found");
