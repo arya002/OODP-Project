@@ -62,7 +62,6 @@ public class MovieControl {
         return null;
     }
 
-<<<<<<< HEAD
     public static void getAllMoviesByRating() {
         Reinitialize();
 
@@ -76,30 +75,29 @@ public class MovieControl {
             avgReviewMap.put(allMovieNames.get(i), 0);
         }
 
-        
+
         for (Review review : allReviews) {
             String movieName = review.getMovieName();
-            Integer reviewScore = (int)(review.getRating());
+            Integer reviewScore = (int) (review.getRating());
             if (avgReviewMap.containsKey(movieName))
                 avgReviewMap.replace(movieName, avgReviewMap.get(movieName) + reviewScore);
             else
                 avgReviewMap.put(movieName, reviewScore);
         }
 
-        for (Map.Entry<String, Integer> entry : avgReviewMap.entrySet())
-        {
+        for (Map.Entry<String, Integer> entry : avgReviewMap.entrySet()) {
             int counter = 0;
-            for (Review review : allReviews)
-            {
+            for (Review review : allReviews) {
                 if (review.getMovieName().equals(entry.getKey()))
                     counter++;
-                entry.setValue(entry.getValue()/counter);
+                if (counter != 0)
+                    entry.setValue(entry.getValue() / counter);
+
             }
         }
 
         avgReviewMap.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).forEach(System.out::println);
     }
-=======
 //    public static ArrayList<Movie> getAllMoviesByRating() {
 //
 //        ArrayList<String> ticketSalesName = getAllMoviesNames();
@@ -167,7 +165,6 @@ public class MovieControl {
 //
 //        return movies;
 //    }
->>>>>>> 66615a09fadafa3e39f3edde8a6470e6cba18bf7
 
     public static Movie getMovie(String name) {
 
