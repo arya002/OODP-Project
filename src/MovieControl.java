@@ -75,6 +75,7 @@ public class MovieControl {
             avgReviewMap.put(allMovieNames.get(i), String.valueOf(0));
         }
 
+
         for (Review review : allReviews) {
             String movieName = review.getMovieName();
             String reviewScore = String.valueOf(review.getRating());

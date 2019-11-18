@@ -118,7 +118,9 @@ public class ClientApp {
                                                 System.out.println("\nPlease select which showing you would like to attend:");
                                                 count = sc.nextInt();
                                                 if (count > 0 && count < ShowingControl.getAllShowingOfMovie(searchedMovie).size()) {
-                                                    new BookingApp(current, ShowingControl.getAllShowingOfMovie(searchedMovie).get(count));
+                                                    ArrayList<Showing> allShowings = ShowingControl.getAllShowingOfMovie(searchedMovie);
+                                                    new BookingApp(current, allShowings.get(count));
+                                                    ShowingControl.saveAllShowings(allShowings);
                                                     mov = "exit";
                                                 } else {
                                                     System.out.println("error in selecting movies");
