@@ -55,7 +55,7 @@ public class ClientApp {
                     String mov="";
                     int counter = 0;
                     System.out.println("Enter movie name to search for or type exit to go back:");
-                    if(mov.equals("exit")) {
+                    if(!mov.equals("exit")) {
                         sc.nextLine();
                         mov = sc.next();
                         Movie searchedMovie = null;
