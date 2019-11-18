@@ -76,10 +76,10 @@ public class BookingControl {
      */
     private int calculatePrice(String age, Seat seat) {
         int price = 0;
-        if (age.equals("adult"))
+        if (age.equalsIgnoreCase("adult"))
             price += prices.getBASE_ADULT();
         else
-            price += prices.getBASE_CHILD();
+            price += prices.getBASE_CONCESSION();
 
         if (showing.is3D())
             price += prices.getPREMIUM_MOVIE_MARKUP();
