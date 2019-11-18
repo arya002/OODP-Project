@@ -51,7 +51,7 @@ switch (sc_in) {
                 MovieControl.getMoviesByTicketSales();
                 break;
             case 3:
-                printMovies(MovieControl.getAllMoviesByRating()); //TODO print top 5
+                MovieControl.getAllMoviesByRating(); //TODO print top 5
                 break;
         }
         System.out.println();
@@ -120,8 +120,10 @@ switch (sc_in) {
 
                                 rating = sc.nextInt();
                                 System.out.println("Please write a short blurb about why you have chosen your score");
-
-                                blurb = sc.nextLine();
+                                
+                                //sc.next();
+                                blurb = sc.next();
+                                System.out.println(blurb);
                                 ReviewControl.addReview(new Review(blurb, searchedMovie.getName(), new Double(rating), current));
                                 sc_in = 0;
 
