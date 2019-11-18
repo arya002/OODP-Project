@@ -93,6 +93,11 @@ public class ReviewControl {
 
     }
 
+    /**
+     * for initialising test data- dont have to save after every one
+     * 
+     * @param review
+     */
     public static void addReview(ArrayList<Review> review) {
         Data.saveObjectToPath(SaveLoadPath.REVIEW_PATH, review);
 

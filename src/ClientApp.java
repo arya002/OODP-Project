@@ -8,6 +8,7 @@ import javax.lang.model.util.ElementScanner6;
  */
 public class ClientApp {
     private Client current;
+    private static Scanner sc = MainApp.sc;
 
     /**
      * Create a ClientApp for the current user
@@ -21,9 +22,6 @@ public class ClientApp {
 
     private void run() {
         int sc_in = 0;
-
-        Scanner sc = MainApp.sc;
-
         do {
             System.out.println();
             if (current != null)
@@ -39,36 +37,121 @@ public class ClientApp {
                                 "\n3. Display all cineplexes" +
                                 "\n4. View booking history" +
                                 "\n5. Exit\n");
-
+                sc.nextLine();
                 sc_in = sc.nextInt();
 
                 switch (sc_in) {
                     case 1:
-                        System.out.println("Would you like to see \n1. Every movie\n2. Top 5 movies by ticket sales\n3. Top 5 movies by review score");
-                        sc_in = sc.nextInt();
-                        switch (sc_in) {
-                            case 1:
-                                printMovies(MovieControl.getAllMovies());
-                                break;
-                            case 2:
-                                MovieControl.getMoviesByTicketSales();
-                                break;
-                            case 3:
-                                MovieControl.getAllMoviesByRating(); //TODO print top 5
-                                break;
-                        }
-                        System.out.println();
+                        displayMovies();
                         //Without break here to automatically go to case 2. Makes intuitive sense
                     case 2:
-                        String mov = "";
-                        int counter = 0;
-                        System.out.println("Enter movie name to search for or type exit to go back:");
-                        if (!mov.equals("exit")) {
-                            sc.nextLine();
-                            mov = sc.nextLine();
-                            Movie searchedMovie = null;
-                            while (counter < MovieControl.getAllMovies().size() && !mov.equals("exit")) {
-                                for (Movie movie : MovieControl.getAllMovies()) {
+                        searchForMovie();
+                        break;
+                    case 3:
+                        displayCineplexes();
+                        break;
+                        //BookingApp(current, showing);
+                    case 4:
+                        viewBookingHistory();
+                        sc_in = 0;
+                        break;
+                    case 5:
+                        break;
+                    default:
+                        System.out.println("Invalid input, please choose from the following:");
+                        break;
+                }
+            } while (sc_in != 5);
+
+        } while (sc_in != 5);
+    }
+
+/**
+ Print the list of movies
+ @param movies array of movies
+ */
+
+    /**
+     * Print the list of movies
+     *
+     * @param movies The cast of a movie as a string
+     */
+    private void printMovies(ArrayList<Movie> movies) {
+        for (Movie movie : movies) {
+            System.out.println(movie.getName());
+        }
+    }
+
+    private void viewBookingHistory(){
+        if (current != null) {
+            for (Booking booking : BookingControl.getBookings()) {
+                if (booking.getClient().getUsername().equals(current.getUsername())) {
+                    System.out.println(booking.bookingPrint());
+                }
+            }
+        }
+    }
+    private void displayCineplexes()
+    {
+        int sc_in = 0;
+        int temp = 1;
+        int count = 0;
+        for (Cineplex cineplex : CineplexControl.getCineplexes()) {
+            System.out.println(temp + ". " + cineplex.getName());
+            temp++;
+        }
+        sc_in = sc.nextInt();
+        sc_in--;
+        System.out.println("you chose " + CineplexControl.getCineplexes().get(sc_in).getName());
+        temp = 0;
+        Showing selectedShowing = null;
+        if (sc_in >= 0 && sc_in < 3) {
+
+            for (Cinema cinema : CineplexControl.getCineplexes().get(sc_in).getCinemas()) {
+
+                for (Showing showing : cinema.getShowings()) {
+                    System.out.println(temp + ". " + showing.printShowing());
+                    temp++;
+                }
+            }
+        }
+
+        for (Cinema cinema : CineplexControl.getCineplexes().get(sc_in).getCinemas()) {
+            for (Showing showing : cinema.getShowings()) {
+                count++;
+                if (count == temp)
+                    selectedShowing = showing;
+
+            }
+        }
+
+        sc_in = sc.nextInt();
+        if (sc_in > 0 && sc_in < temp && selectedShowing != null) {
+            if (current != null) {
+                new BookingApp(current, selectedShowing);
+            } else {
+                while (current == null) {
+                current = (Client) new LoginScreen().run();
+            }
+                new BookingApp(current, selectedShowing);
+            }
+        } else {
+            System.out.println("error in selecting movies");
+        }
+    }
+
+    private void searchForMovie()
+    {
+        int sc_in = 0;
+        String mov = "";
+        int counter = 0;
+        System.out.println("Enter movie name to search for or type exit to go back:");
+        if (!mov.equals("exit")) {
+            sc.nextLine();
+            mov = sc.nextLine();
+            Movie searchedMovie = null;
+            while (counter < MovieControl.getAllMovies().size() && !mov.equals("exit")) {
+            for (Movie movie : MovieControl.getAllMovies()) {
                                     if (mov.equals("exit")) break;
                                     System.out.println("Looking for " + mov);
                                     System.out.println(movie.getName());
@@ -191,95 +274,26 @@ public class ClientApp {
                                 }
                             }
                         }
-                        break;
-                    case 3:
-                        int temp = 1;
-                        int count = 0;
-                        for (Cineplex cineplex : CineplexControl.getCineplexes()) {
-                            System.out.println(temp + ". " + cineplex.getName());
-                            temp++;
-                        }
-                        sc_in = sc.nextInt();
-                        sc_in--;
-                        System.out.println("you chose " + CineplexControl.getCineplexes().get(sc_in).getName());
-                        temp = 0;
-                        Showing selectedShowing = null;
-                        if (sc_in >= 0 && sc_in < 3) {
-
-                            for (Cinema cinema : CineplexControl.getCineplexes().get(sc_in).getCinemas()) {
-
-                                for (Showing showing : cinema.getShowings()) {
-                                    System.out.println(temp + ". " + showing.printShowing());
-                                    temp++;
-                                }
-
-                            }
-
-                        }
-
-                        for (Cinema cinema : CineplexControl.getCineplexes().get(sc_in).getCinemas()) {
-                            for (Showing showing : cinema.getShowings()) {
-                                count++;
-                                if (count == temp)
-                                    selectedShowing = showing;
-
-                            }
-                        }
-
-                        sc_in = sc.nextInt();
-                        if (sc_in > 0 && sc_in < temp && selectedShowing != null) {
-                            if (current != null) {
-                                new BookingApp(current, selectedShowing);
-                            } else {
-                                while (current == null) {
-                                    current = (Client) new LoginScreen().run();
-                                }
-                                new BookingApp(current, selectedShowing);
-                            }
-                        } else {
-                            System.out.println("error in selecting movies");
-                        }
-                        break;
-
-                    //BookingApp(current, showing);
-                    case 4:
-                        if (current != null) {
-                            for (Booking booking : BookingControl.getBookings()) {
-                                if (booking.getClient().getUsername().equals(current.getUsername())) {
-                                    System.out.println(booking.bookingPrint());
-                                }
-                            }
-                        }
-
-                        sc_in = 0;
-                        break;
-                    case 5:
-                        break;
-                    default:
-                        System.out.println("Invalid input, please choose from the following:");
-                        break;
-                }
-            } while (sc_in != 5);
-
-        } while (sc_in != 5);
     }
 
-/**
- Print the list of movies
- @param movies array of movies
- */
-
-    /**
-     * Print the list of movies
-     *
-     * @param movies The cast of a movie as a string
-     */
-    private void printMovies(ArrayList<Movie> movies) {
-        for (Movie movie : movies) {
-            System.out.println(movie.getName());
-        }
+    private void displayMovies()
+    {
+        int sc_in = 0;
+        System.out.println("Would you like to see \n1. Every movie\n2. Top 5 movies by ticket sales\n3. Top 5 movies by review score");
+                        sc_in = sc.nextInt();
+                        switch (sc_in) {
+                            case 1:
+                                printMovies(MovieControl.getAllMovies());
+                                break;
+                            case 2:
+                                MovieControl.getMoviesByTicketSales();
+                                break;
+                            case 3:
+                                MovieControl.getAllMoviesByRating(); //TODO print top 5
+                                break;
+                        }
+                        System.out.println();
     }
-
     private void printMovie(Movie movie) {
         System.out.println("------------------------------------------");
         System.out.println("Name: " + movie.getName());
