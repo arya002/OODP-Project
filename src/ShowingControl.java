@@ -1,22 +1,36 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+/**
+* Controls all the showings data
+*/
 public class ShowingControl  {
 
+    /**
+    * Array list of all the showing objects
+    */
     private static ArrayList<Showing> allShowings= null;
 
+    /**
+    * Constructor for ShowingControl class
+    */
     public ShowingControl(){
 
     }
 
+    /**
+    * Reinitializes the array list of showings
+    */
     public static void Reinitialize(){
         if ((allShowings = (ArrayList<Showing>) Data.getInstance().getObjectFromPath(SaveLoadPath.SHOWING_PATH,Showing.class)) == null){
             allShowings = new ArrayList<>();
         }
     }
 
-
-
+    /**
+    * Adds a new showing to the file
+    * @param showing new Showing object
+    */
     public static void addShowing(Showing showing){
 
         ArrayList al = getAllShowings();
@@ -27,6 +41,10 @@ public class ShowingControl  {
 
     }
 
+    /**
+    * Stores the array list of showings to the file
+    * @param Array list of showing objects
+    */
     public static void addShowing(ArrayList<Showing> showing){
 
 
@@ -35,6 +53,12 @@ public class ShowingControl  {
 
     }
 
+    /**
+    * Checks if a particular seat is allocated or not
+    * @param showing Showing object
+    * @param i Seat row
+    * @param j Seat column
+    */
     public static boolean isAllocated(Showing showing, int i, int j)
     {
         if (showing.isAllocated(i, j) || showing.getSeatingPlan().getSeat(i, j).getType().equals(" "))
@@ -42,8 +66,10 @@ public class ShowingControl  {
         return false;
     }
 
-
-
+    /**
+    * Prints the seating plan
+    * @param showing Showing object
+    */
     public static void print(Showing showing)
     {
         Seat seatingPlan[][] = showing.getSeatingPlan().getSeats();
@@ -67,6 +93,10 @@ public class ShowingControl  {
         }
     }
 
+    /**
+    * Prints the cinema seats layout
+    * @param showing Showing object
+    */
     public static void printSeats(Showing showing)
     {
         Seat seatingPlan[][] = showing.getSeatingPlan().getSeats();
@@ -111,11 +141,17 @@ public class ShowingControl  {
         System.out.print("SCREEN");
     }
 
-
+    /**
+    * Gets all the showings
+    */
     public static ArrayList<Showing> getAllShowings() {
         return allShowings;
     }
 
+    /**
+    * Gets all the showings for a particular cineplex
+    * @param cineplex Cineplex object
+    */
     public static ArrayList<Showing> getAllShowingsAtCineplex(String cineplex) {
 
         int i = 0;
@@ -140,6 +176,10 @@ public class ShowingControl  {
         return null;
     }
 
+    /**
+    * Gets all the showings for a particular movie
+    * @param movie Movie object
+    */
     public static ArrayList<Showing> getAllShowingOfMovie(Movie movie){
 
         ArrayList<Showing> allShowingsOfMovie = new ArrayList<>();
