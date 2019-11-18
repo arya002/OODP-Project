@@ -185,6 +185,13 @@ public class MainApp {
 			dotw++;
 		}
 
+		ArrayList<Review> reviews = new ArrayList<Review>;
+		reviews.add(new Review("Really capturing!", "Better Days", 5, client));
+		reviews.add(new Review("Horrible acting, wouldn't recommend.", "Ford vs Ferrari", 1, client));
+		reviews.add(new Review("Really scary and horryfying. Zombies looked real.", "Zombieland: Double Tap", 5, client));
+		reviews.add(new Review("Todd acted great. Storyline could have been better though.", "Joker", 4, client));
+		reviews.add(new Review("Movie was overall okay. Some parts were worth watching.", "Abominable (PG)", 3, client));
+
 
 		Data.saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,cpes);
 		ShowingControl.addShowing(newShowings);
@@ -238,7 +245,6 @@ public class MainApp {
 		bookingControl5.addTicket("adult",7,1);
 		bookingControl5.addTicket("adult",6,1);
 		bookingControl5.completeBooking();
-
 		System.out.println("There are " + ShowingControl.getAllShowings().size() + " Showings");
         System.out.println("There are " + MovieControl.getAllMovies().size() + " Movies");
 
