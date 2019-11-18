@@ -23,7 +23,8 @@ Note: NOT the main method of this project
     public void main()
     {
         Scanner sc = new Scanner(System.in);
-
+        if (!showing.getMovie().getStatus().equals(Movie.Status.notShowing))
+        {
         System.out.println("Would you like to purchase a ticket? (Yes/No)");
         String anotherTicket = sc.nextLine();
         BookingControl bookingControl = new BookingControl(client, showing);
@@ -57,6 +58,11 @@ Note: NOT the main method of this project
         }
         
         bookingControl.completeBooking();
+    }
+    else
+    {
+        System.out.print("Movie not currently showing");
+    }
     }
 /**
 Checks if seat allocation is successful

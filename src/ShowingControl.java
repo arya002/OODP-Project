@@ -196,6 +196,11 @@ public class ShowingControl {
         return allShowingsOfMovie;
     }
 
+    public static void saveAllShowings(ArrayList<Showing> showings)
+    {
+        Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH, showings);
+    }
+
     /**
      * deletes all showings of a movie thats status is no longer showing
      *
@@ -211,5 +216,7 @@ public class ShowingControl {
 
         Data.saveObjectToPath(SaveLoadPath.SHOWING_PATH,showings);
     }
+
+
 }
 

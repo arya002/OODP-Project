@@ -122,7 +122,7 @@ public class StaffControl{
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the new adult base price");
         price.setBASE_ADULT(sc.nextInt());
-        System.out.println("Enter the new child base price");
+        System.out.println("Enter the new concession base price");
         price.setBASE_CONCESSION(sc.nextInt());
         System.out.println("Enter the new holiday/weekend markup");
         price.setHOLIDAY_MARKUP(sc.nextInt());

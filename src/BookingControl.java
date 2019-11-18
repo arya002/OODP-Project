@@ -109,6 +109,7 @@ public class BookingControl {
             System.out.println("Thank you for booking with us! To view your bookings please look at your booking history.");
             System.out.println("Your booking ID is " + booking.getBookingID());
             System.out.println("Your total amount owed is S$" + booking.getTotalPrice());
+            System.out.println("Please proceed to pay at the counter");
             System.out.println();
 
             ArrayList<Booking> bookings;

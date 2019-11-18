@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.lang.model.util.ElementScanner6;
+
 /**
  * Client application to display the interface
  */
@@ -77,7 +79,7 @@ public class ClientApp {
                                         printMovie(searchedMovie);
                                         System.out.println();
 
-                                        System.out.println("What would you like to see? \n1. Reviews \n2. Listings\n3. Leave review \n4. Exit");
+                                        System.out.println("What would you like to see? \n1. Reviews \n2. All listings\n3. Listings on a specific date\n4. Leave review \n5. Exit");
                                         sc_in = sc.nextInt();
                                         switch (sc_in) {
                                             case 1:
@@ -88,8 +90,22 @@ public class ClientApp {
                                                     ReviewControl.print(listReviews.get(i)); // print all Reviews for a movie
                                                     overallRating = overallRating + listReviews.get(i).getRating();
                                                 }
-                                                overallRating = overallRating / listReviews.size(); //average ratings
-                                                System.out.printf((int) overallRating + ", %.1f/5\n\n", overallRating);
+                                                System.out.println();
+                                                if(listReviews.size() == 0)
+                                                {
+                                                    System.out.println("No reviews have been left");
+                                                }
+                                                else if (listReviews.size() > 1)
+                                                {
+                                                    overallRating = overallRating / listReviews.size(); //average ratings
+                                                    System.out.printf("Average rating: %.1f/5\n\n", overallRating);
+                                                }
+                                                else
+                                                {
+                                                    System.out.println("Average rating unavailable, not enough reviews");
+                                                }
+                                                
+                                                
                                                 break;
                                             case 2:
                                                 int count = 0;
@@ -102,7 +118,9 @@ public class ClientApp {
                                                 System.out.println("\nPlease select which showing you would like to attend:");
                                                 count = sc.nextInt();
                                                 if (count > 0 && count < ShowingControl.getAllShowingOfMovie(searchedMovie).size()) {
-                                                    new BookingApp(current, ShowingControl.getAllShowingOfMovie(searchedMovie).get(count));
+                                                    ArrayList<Showing> allShowings = ShowingControl.getAllShowingOfMovie(searchedMovie);
+                                                    new BookingApp(current, allShowings.get(count));
+                                                    ShowingControl.saveAllShowings(allShowings);
                                                     mov = "exit";
                                                 } else {
                                                     System.out.println("error in selecting movies");
@@ -110,6 +128,32 @@ public class ClientApp {
                                                 System.out.println();
                                                 break;
                                             case 3:
+                                                System.out.println("Enter the date (YYYYMMDD):");
+                                                String dateOfShowing = sc.next();
+                                                int c = 0;
+                                                System.out.println("\nListings on the date selected:");
+                                                ArrayList<Showing> allShowings = ShowingControl.getAllShowingOfMovie(searchedMovie);
+                                                ArrayList<Showing> showingsOnDate = new ArrayList<>();
+                                                for (Showing showing : allShowings) {
+                                                    if (showing.getDate().substring(0, 8).equals(dateOfShowing))
+                                                    {
+                                                        System.out.println(c + ". " + showing.printShowing());
+                                                        c++;
+                                                        showingsOnDate.add(showing);
+                                                    }
+                                                }
+                                                System.out.println("\nPlease select which showing you would like to attend:");
+                                                c = sc.nextInt();
+                                                if (c > 0 && c < showingsOnDate.size()) {
+                                                    new BookingApp(current, showingsOnDate.get(c));
+                                                    ShowingControl.saveAllShowings(allShowings);
+                                                    mov = "exit";
+                                                } else {
+                                                    System.out.println("error in selecting movies");
+                                                }
+                                                System.out.println();
+                                                break;
+                                            case 4:
                                                 int rating = 0;
                                                 String blurb = "";
                                                 while (current == null) {
@@ -129,7 +173,7 @@ public class ClientApp {
                                                 sc_in = 0;
 
                                                 break;
-                                            case 4:
+                                            case 5:
 
                                                 break;
                                             default:
