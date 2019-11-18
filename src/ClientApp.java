@@ -58,7 +58,8 @@ public class ClientApp {
                     mov = sc.next();
                     Movie searchedMovie = null;
                     int counter = 0;
-                    while (!mov.equals("exit") && counter < MovieControl.getAllMovies().size()) {
+                    while (counter < MovieControl.getAllMovies().size()) {
+                        if(mov.equals("exit")) break;
                         for (Movie movie : MovieControl.getAllMovies()) {
                             System.out.println("Looking for " + mov);
                             System.out.println(movie.getName());

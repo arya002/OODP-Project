@@ -179,6 +179,7 @@ public class MainApp {
 			dotw++;
 		}
 
+<<<<<<< HEAD
 		
 		ShowingControl.Reinitialize();
 		MovieControl.Reinitialize();
@@ -190,6 +191,17 @@ public class MainApp {
 		Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH,movieListings);
 
 		ShowingControl.addShowing(newShowings);
+=======
+
+
+		Data.saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,cpes);
+		ShowingControl.addShowing(newShowings);
+		Data.saveObjectToPath(SaveLoadPath.USER_PATH,user);
+		Data.saveObjectToPath(SaveLoadPath.PRICE_PATH, prices);
+		Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH,movieListings);
+		ShowingControl.Reinitialize();
+		MovieControl.Reinitialize();
+>>>>>>> 2891576dd28da057c047e39f051291a211791051
 
 		BookingControl bookingControl = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),ShowingControl.getAllShowings().get(0));
 
@@ -198,11 +210,15 @@ public class MainApp {
 		bookingControl.addTicket("adult",8,1);
 		bookingControl.completeBooking();
 
+		bookingControl.completeBooking();
+
 		BookingControl bookingControl2 = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),ShowingControl.getAllShowings().get(2));
 
 		bookingControl2.addTicket("adult",1,8);
 		bookingControl2.addTicket("adult",2,1);
 		bookingControl.completeBooking();
+
+		bookingControl2.completeBooking();
 
 		BookingControl bookingControl3 = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),ShowingControl.getAllShowings().get(3));
 
@@ -210,6 +226,8 @@ public class MainApp {
 		bookingControl3.addTicket("adult",2,1);
 		bookingControl3.addTicket("adult",8,1);
 		bookingControl.completeBooking();
+
+		bookingControl3.completeBooking();
 
 		BookingControl bookingControl4 = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),ShowingControl.getAllShowings().get(4));
 
@@ -219,7 +237,7 @@ public class MainApp {
 		bookingControl4.addTicket("adult",2,5);
 		bookingControl.completeBooking();
 
-
+		bookingControl4.completeBooking();
 		BookingControl bookingControl5 = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),ShowingControl.getAllShowings().get(5));
 
 		bookingControl5.addTicket("adult",1,8);
@@ -230,8 +248,12 @@ public class MainApp {
 		bookingControl5.addTicket("adult",6,1);
 		bookingControl.completeBooking();
 
+<<<<<<< HEAD
 
 
+=======
+		bookingControl5.completeBooking();
+>>>>>>> 2891576dd28da057c047e39f051291a211791051
 
 
 		System.out.println("There are " + ShowingControl.getAllShowings().size() + " Showings");
