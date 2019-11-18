@@ -66,8 +66,26 @@ public class StaffApp {
                     changePriceOfTicket(price);
                     break;
                 case 2:
-                    System.out.println("When would you like to add a holiday");
-                    addHoliday();
+                    printHolidays();
+                    System.out.println("What would you like to do?\n1. Add holiday \n2. Remove holiday");
+                    sc_in = sc.nextInt();
+                    String holiday;
+                    switch (sc_in)
+                    {
+                        case 1:
+                            System.out.println("Please enter the new holiday (YYYYMMDD):");
+                            sc.nextLine();
+                            holiday = sc.nextLine();
+                            addHoliday(holiday);
+                            break;
+                        
+                        case 2:
+                            System.out.println("Please enter the holiday to remove (YYYYMMDD):");
+                            sc.nextLine();
+                            holiday = sc.nextLine();
+                            removeHoliday(holiday);
+                            break;
+                    }
                     break;
                 case 3:
                     //Add new staff
@@ -110,9 +128,28 @@ public class StaffApp {
 
     }
 
-    private void addHoliday() {
+    private void addHoliday(String holiday) {
+        ArrayList<Prices> prices =new ArrayList<>();
+        if((prices= (ArrayList<Prices>) Data.getInstance().getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class))!=null);
+        Prices price = prices.get(0);
+        price.addHolyday(holiday);
+        prices.add(price);
+        System.out.println("Holiday added");
+    }
 
+    private void printHolidays(){
+        ArrayList<Prices> prices =new ArrayList<>();
+        if((prices= (ArrayList<Prices>) Data.getInstance().getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class))!=null)
+        prices.get(0).getHOLIDAYS().forEach(System.out::println);
+    }
 
+    private void removeHoliday(String holiday){
+        ArrayList<Prices> prices =new ArrayList<>();
+        if((prices= (ArrayList<Prices>) Data.getInstance().getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class))!=null)
+        if (prices.get(0).getHOLIDAYS().remove(holiday))
+            System.out.println("Holiday removed");
+        else
+            System.out.println("Holiday not on the list");
     }
 
     private void changePriceOfTicket(double price) {

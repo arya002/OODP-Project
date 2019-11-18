@@ -179,19 +179,6 @@ public class MainApp {
 			dotw++;
 		}
 
-<<<<<<< HEAD
-		
-		ShowingControl.Reinitialize();
-		MovieControl.Reinitialize();
-		Data.saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,cpes);
-
-
-		Data.saveObjectToPath(SaveLoadPath.USER_PATH,user);
-		Data.saveObjectToPath(SaveLoadPath.PRICE_PATH, prices);
-		Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH,movieListings);
-
-		ShowingControl.addShowing(newShowings);
-=======
 
 
 		Data.saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,cpes);
@@ -201,7 +188,6 @@ public class MainApp {
 		Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH,movieListings);
 		ShowingControl.Reinitialize();
 		MovieControl.Reinitialize();
->>>>>>> 2891576dd28da057c047e39f051291a211791051
 
 		BookingControl bookingControl = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),ShowingControl.getAllShowings().get(0));
 
@@ -247,13 +233,6 @@ public class MainApp {
 		bookingControl5.addTicket("adult",7,1);
 		bookingControl5.addTicket("adult",6,1);
 		bookingControl.completeBooking();
-
-<<<<<<< HEAD
-
-
-=======
-		bookingControl5.completeBooking();
->>>>>>> 2891576dd28da057c047e39f051291a211791051
 
 
 		System.out.println("There are " + ShowingControl.getAllShowings().size() + " Showings");

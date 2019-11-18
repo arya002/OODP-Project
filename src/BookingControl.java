@@ -68,7 +68,7 @@ public class BookingControl {
             price += prices.getPREMIUM_MOVIE_MARKUP();
         if (showing.getCinema().isPremium())
             price += prices.getPREMIUM_CINEMA_MARKUP();
-        if (showing.getDayOfWeek() == 5 || showing.getDayOfWeek() == 6)
+        if (showing.getDayOfWeek() == 5 || showing.getDayOfWeek() == 6 || prices.getHOLIDAYS().contains(showing.getYYYYMMDD()));
             price += prices.getHOLIDAY_MARKUP();
 
         System.out.println("Your ticket costs S$" + price);
