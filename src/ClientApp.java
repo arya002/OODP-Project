@@ -19,6 +19,7 @@ public class ClientApp {
 
     private void run() {
         int sc_in = 0;
+
         Scanner sc = MainApp.sc;
 
         do {
