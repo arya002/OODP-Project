@@ -120,7 +120,7 @@ public class MainApp {
 		castArray[0] = "Zhou Dongyu";
 		castArray[1] = "Jackson Yee";
 		movieListings.add(new Movie(
-				"Better Days",
+				"Better Days (G)",
 				Movie.Status.Showing,
 				"Seventeen-year-old Nian is the subject of cruel bullying at high school when she meets Bei, a tough street kid. The two teenagers find a kindred spirit in each other that gradually rises above love, forming a world of their own. But the cocoon is crushed when they are being dragged into a teenage girl murder case as prime suspects. An emotional roller coaster that is heartwarming and heartbreaking at the same time, the China coming-of-age movie offers thought-provoking insights into the intense competition faced by nearly 10 million teenagers every year who sit for the National College Entrance Examination and national issues of school bullying. If you are one amongst 10 million to secure a promising future with a topnotch college passport, would you kill to do it?",
 				"Derek Tsang",
@@ -136,7 +136,7 @@ public class MainApp {
 
 		castArray[0] ="Woody Harrelson";
 		castArray[1] ="Jesse Eisenberg";
-		movieListings.add(new Movie("Zombieland: Double Tap",
+		movieListings.add(new Movie("Zombieland: Double Tap (PG-13)",
 				Movie.Status.Showing,
 				"A decade after Zombieland became a hit film and a cult classic, the lead cast (Woody Harrelson, Jesse Eisenberg, Abigail Breslin, and Emma Stone) have reunited with director Ruben Fleischer (Venom) and writers Rhett Reese & Paul Wernick (Deadpool) for Zombieland 2. In the sequel, through comic mayhem that stretches from the White House and through the heartland, these four slayers must face off against the many new kinds of zombies that have evolved since the first movie, as well as some new human survivors. But most of all, they have to face the growing pains of their own snarky, makeshift family.",
 				"Ruben Fleischer",
@@ -146,7 +146,7 @@ public class MainApp {
 
 		castArray[0] ="Joaquin Phoenix";
 		castArray[1] ="Robert De Niro";
-		movieListings.add(new Movie("Joker",
+		movieListings.add(new Movie("Joker (R)",
 				Movie.Status.Showing,
 				"A failed stand-up comedian is driven insane and becomes a psychopathic murderer.",
 				"Todd Phillips",
@@ -155,12 +155,12 @@ public class MainApp {
 		castArray[0] = "Matt Damon";
 		castArray[1] = "Christian Bale";
 		movieListings.add(new Movie(
-				"Ford vs Ferrari",
+				"Ford vs Ferrari (G)",
 				Movie.Status.Showing,
 				"Academy Award-winners Matt Damon and Christian Bale star in FORD v FERRARI, based on the remarkable true story of the visionary American car designer Carroll Shelby (Damon) and the fearless British-born driver Ken Miles (Bale), who together battled corporate interference, the laws of physics, and their own personal demons to build a revolutionary race car for Ford Motor Company and take on the dominating race cars of Enzo Ferrari at the 24 Hours of Le Mans in France in 1966.",
 				"James Mangold",
 				castArray));
-
+		
 		int cineplex =0;
 		int cinema =0;
 		int day =20;
