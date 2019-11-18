@@ -26,24 +26,8 @@ public class ReviewControl {
         }
     }
 
-    /**
-     * @returns an array of movies that have reviews
-     */
-    public static ArrayList<String> getAllReviewsNames() {
-
-        ArrayList<String> arrayList = new ArrayList<>();
-        ArrayList<Review> allReviews = getAllReviews();
-
-        for (int i = 0; i < allReviews.size(); i++) {
-
-            arrayList.add(allReviews.get(i).getMovieName());
-
-        }
-        return arrayList;
-
-    }
-
     public static void print(Review review) { // print review
+
         System.out.println("Review by: " + review.getReviewer().getUsername());
         System.out.println("Movie: " + review.getMovieName());
         System.out.println("Date: " + review.getDate());
@@ -60,6 +44,8 @@ public class ReviewControl {
         for (int i = 0; i < allReviews.size(); i++) {
             if (allReviews.get(i).getMovieName().equals(movieName)) {
                 listReviews.add(allReviews.get(i));
+            }else {
+                System.out.println(allReviews.get(i).getMovieName() + "\n" + movieName);
             }
         }
         return listReviews;
@@ -99,6 +85,7 @@ public class ReviewControl {
      * @param review
      */
     public static void addReview(ArrayList<Review> review) {
+
         Data.saveObjectToPath(SaveLoadPath.REVIEW_PATH, review);
 
     }

@@ -50,7 +50,7 @@ public class ClientApp {
                     case 3:
                         displayCineplexes();
                         break;
-                        //BookingApp(current, showing);
+                    //BookingApp(current, showing);
                     case 4:
                         viewBookingHistory();
                         sc_in = 0;
@@ -82,17 +82,23 @@ public class ClientApp {
         }
     }
 
-    private void viewBookingHistory(){
-        if (current != null) {
-            for (Booking booking : BookingControl.getBookings()) {
-                if (booking.getClient().getUsername().equals(current.getUsername())) {
-                    System.out.println(booking.bookingPrint());
-                }
+    private void viewBookingHistory() {
+
+        while (current == null) {
+            User lis = new LoginScreen().run();
+            if (lis != null && lis.getType().equals("client"))
+                current = (Client) new LoginScreen().run();
+        }
+
+        for (Booking booking : BookingControl.getBookings()) {
+            if (booking.getClient().getUsername().equals(current.getUsername())) {
+                System.out.println(booking.bookingPrint());
             }
         }
+
     }
-    private void displayCineplexes()
-    {
+
+    private void displayCineplexes() {
         int sc_in = 0;
         int temp = 1;
         int count = 0;
@@ -131,8 +137,8 @@ public class ClientApp {
                 new BookingApp(current, selectedShowing);
             } else {
                 while (current == null) {
-                current = (Client) new LoginScreen().run();
-            }
+                    current = (Client) new LoginScreen().run();
+                }
                 new BookingApp(current, selectedShowing);
             }
         } else {
@@ -140,8 +146,7 @@ public class ClientApp {
         }
     }
 
-    private void searchForMovie()
-    {
+    private void searchForMovie() {
         int sc_in = 0;
         String mov = "";
         int counter = 0;
@@ -151,149 +156,142 @@ public class ClientApp {
             mov = sc.nextLine();
             Movie searchedMovie = null;
             while (counter < MovieControl.getAllMovies().size() && !mov.equals("exit")) {
-            for (Movie movie : MovieControl.getAllMovies()) {
-                                    if (mov.equals("exit")) break;
-                                    System.out.println("Looking for " + mov);
-                                    System.out.println(movie.getName());
-                                    if (movie.getName().contains(mov)) {
+                for (Movie movie : MovieControl.getAllMovies()) {
+                    if (mov.equals("exit")) break;
+                    if (movie.getName().contains(mov)) {
+                        System.out.println("Movie Found");
+                        searchedMovie = movie;
+                        printMovie(searchedMovie);
+                        System.out.println();
 
-                                        System.out.println("Movie Found");
-                                        searchedMovie = movie;
-                                        printMovie(searchedMovie);
-                                        System.out.println();
-
-                                        System.out.println("What would you like to see? \n1. Reviews \n2. All listings\n3. Listings on a specific date\n4. Leave review \n5. Exit");
-                                        sc_in = sc.nextInt();
-                                        switch (sc_in) {
-                                            case 1:
-                                                ArrayList<Review> listReviews = new ArrayList();
-                                                double overallRating = 0;
-                                                listReviews = ReviewControl.getMovieReviews(mov);
-                                                for (int i = 0; i < listReviews.size(); i++) {
-                                                    ReviewControl.print(listReviews.get(i)); // print all Reviews for a movie
-                                                    overallRating = overallRating + listReviews.get(i).getRating();
-                                                }
-                                                System.out.println();
-                                                if(listReviews.size() == 0)
-                                                {
-                                                    System.out.println("No reviews have been left");
-                                                }
-                                                else if (listReviews.size() > 1)
-                                                {
-                                                    overallRating = overallRating / listReviews.size(); //average ratings
-                                                    System.out.printf("Average rating: %.1f/5\n\n", overallRating);
-                                                }
-                                                else
-                                                {
-                                                    System.out.println("Average rating unavailable, not enough reviews");
-                                                }
-                                                
-                                                
-                                                break;
-                                            case 2:
-                                                int count = 0;
-                                                System.out.println("\nAll listings:");
-                                                for (Showing showing : ShowingControl.getAllShowingOfMovie(searchedMovie)) {
-
-                                                    System.out.println(count + ". " + showing.printShowing());
-                                                    count++;
-                                                }
-                                                System.out.println("\nPlease select which showing you would like to attend:");
-                                                count = sc.nextInt();
-                                                if (count > 0 && count < ShowingControl.getAllShowingOfMovie(searchedMovie).size()) {
-                                                    ArrayList<Showing> allShowings = ShowingControl.getAllShowingOfMovie(searchedMovie);
-                                                    new BookingApp(current, allShowings.get(count));
-                                                    ShowingControl.saveAllShowings(allShowings);
-                                                    mov = "exit";
-                                                } else {
-                                                    System.out.println("error in selecting movies");
-                                                }
-                                                System.out.println();
-                                                break;
-                                            case 3:
-                                                System.out.println("Enter the date (YYYYMMDD):");
-                                                String dateOfShowing = sc.next();
-                                                int c = 0;
-                                                System.out.println("\nListings on the date selected:");
-                                                ArrayList<Showing> allShowings = ShowingControl.getAllShowingOfMovie(searchedMovie);
-                                                ArrayList<Showing> showingsOnDate = new ArrayList<>();
-                                                for (Showing showing : allShowings) {
-                                                    if (showing.getDate().substring(0, 8).equals(dateOfShowing))
-                                                    {
-                                                        System.out.println(c + ". " + showing.printShowing());
-                                                        c++;
-                                                        showingsOnDate.add(showing);
-                                                    }
-                                                }
-                                                System.out.println("\nPlease select which showing you would like to attend:");
-                                                c = sc.nextInt();
-                                                if (c > 0 && c < showingsOnDate.size()) {
-                                                    new BookingApp(current, showingsOnDate.get(c));
-                                                    ShowingControl.saveAllShowings(allShowings);
-                                                    mov = "exit";
-                                                } else {
-                                                    System.out.println("error in selecting movies");
-                                                }
-                                                System.out.println();
-                                                break;
-                                            case 4:
-                                                int rating = 0;
-                                                String blurb = "";
-                                                while (current == null) {
-                                                    User lis = new LoginScreen().run();
-                                                    current = (Client) lis;
-                                                    System.out.println(current.getFirstName());
-                                                }
-                                                System.out.println("What would you like to rate this film (1-5)");
-
-                                                rating = sc.nextInt();
-                                                System.out.println("Please write a short blurb about why you have chosen your score");
-
-                                                //sc.next();
-                                                blurb = sc.next();
-                                                ReviewControl.addReview(new Review(blurb, searchedMovie.getName(), new Double(rating), current));
-                                                sc_in = 0;
-
-                                                break;
-                                            case 5:
-
-                                                break;
-                                            default:
-                                                System.out.println("error select a correct statement");
-                                        }
-                                        if (searchedMovie != null && sc_in != 4) {
-                                            break;
-                                        }
-                                    }
-                                }
-                                counter++;
-                                if (searchedMovie == null || counter >= MovieControl.getAllMovies().size()) {
-                                    System.out.println("Movie with this name has not been found");
-                                } else {
-                                    break;
-                                }
-                            }
-                        }
-    }
-
-    private void displayMovies()
-    {
-        int sc_in = 0;
-        System.out.println("Would you like to see \n1. Every movie\n2. Top 5 movies by ticket sales\n3. Top 5 movies by review score");
+                        System.out.println("What would you like to see? \n1. Reviews \n2. All listings\n3. Listings on a specific date\n4. Leave review \n5. Exit");
                         sc_in = sc.nextInt();
                         switch (sc_in) {
                             case 1:
-                                printMovies(MovieControl.getAllMovies());
+                                ArrayList<Review> listReviews;
+                                double overallRating = 0;
+                                if((listReviews = (ArrayList<Review>)Data.getObjectFromPath(SaveLoadPath.REVIEW_PATH,Review.class))==null){
+                                    listReviews = new ArrayList<>();
+                                }
+                                for (int i = 0; i < listReviews.size(); i++) {
+                                    ReviewControl.print(listReviews.get(i)); // print all Reviews for a movie
+                                    overallRating = overallRating + listReviews.get(i).getRating();
+                                }
+                                System.out.println();
+                                if (listReviews.size() == 0) {
+                                    System.out.println("No reviews have been left");
+                                } else if (listReviews.size() > 1) {
+                                    overallRating = overallRating / listReviews.size(); //average ratings
+                                    System.out.printf("Average rating: %.1f/5\n\n", overallRating);
+                                } else {
+                                    System.out.println("Average rating unavailable, not enough reviews");
+                                }
+
+
                                 break;
                             case 2:
-                                MovieControl.getMoviesByTicketSales();
+                                int count = 0;
+                                System.out.println("\nAll listings:");
+                                for (Showing showing : ShowingControl.getAllShowingOfMovie(searchedMovie)) {
+
+                                    System.out.println(count + ". " + showing.printShowing());
+                                    count++;
+                                }
+                                System.out.println("\nPlease select which showing you would like to attend:");
+                                count = sc.nextInt();
+                                if (count > 0 && count < ShowingControl.getAllShowingOfMovie(searchedMovie).size()) {
+                                    ArrayList<Showing> allShowings = ShowingControl.getAllShowingOfMovie(searchedMovie);
+                                    new BookingApp(current, allShowings.get(count));
+                                    ShowingControl.saveAllShowings(allShowings);
+                                    mov = "exit";
+                                } else {
+                                    System.out.println("error in selecting movies");
+                                }
+                                System.out.println();
                                 break;
                             case 3:
-                                MovieControl.getAllMoviesByRating(); //TODO print top 5
+                                System.out.println("Enter the date (YYYYMMDD):");
+                                String dateOfShowing = sc.next();
+                                int c = 0;
+                                System.out.println("\nListings on the date selected:");
+                                ArrayList<Showing> allShowings = ShowingControl.getAllShowingOfMovie(searchedMovie);
+                                ArrayList<Showing> showingsOnDate = new ArrayList<>();
+                                for (Showing showing : allShowings) {
+                                    if (showing.getDate().substring(0, 8).equals(dateOfShowing)) {
+                                        System.out.println(c + ". " + showing.printShowing());
+                                        c++;
+                                        showingsOnDate.add(showing);
+                                    }
+                                }
+                                System.out.println("\nPlease select which showing you would like to attend:");
+                                c = sc.nextInt();
+                                if (c > 0 && c < showingsOnDate.size()) {
+                                    new BookingApp(current, showingsOnDate.get(c));
+                                    ShowingControl.saveAllShowings(allShowings);
+                                    mov = "exit";
+                                } else {
+                                    System.out.println("error in selecting movies");
+                                }
+                                System.out.println();
                                 break;
+                            case 4:
+                                int rating = 0;
+                                String blurb = "";
+                                while (current == null) {
+                                    User lis = new LoginScreen().run();
+                                    current = (Client) lis;
+                                    System.out.println(current.getFirstName());
+                                }
+                                System.out.println("What would you like to rate this film (1-5)");
+
+                                rating = sc.nextInt();
+                                System.out.println("Please write a short blurb about why you have chosen your score");
+
+                                blurb = sc.nextLine();
+                                Review newReview = new Review(blurb, searchedMovie.getName(), rating, current);
+                                System.out.println(newReview.getRating());
+                                ReviewControl.addReview(newReview);
+
+                                break;
+                            case 5:
+
+                                break;
+                            default:
+                                System.out.println("error select a correct statement");
                         }
-                        System.out.println();
+                        if (searchedMovie != null && sc_in != 4) {
+                            break;
+                        }
+                    }
+                }
+                counter++;
+                if (searchedMovie == null || counter >= MovieControl.getAllMovies().size()) {
+                    System.out.println("Movie with this name has not been found");
+                } else {
+                    break;
+                }
+            }
+        }
     }
+
+    private void displayMovies() {
+        int sc_in = 0;
+        System.out.println("Would you like to see \n1. Every movie\n2. Top 5 movies by ticket sales\n3. Top 5 movies by review score");
+        sc_in = sc.nextInt();
+        switch (sc_in) {
+            case 1:
+                printMovies(MovieControl.getAllMovies());
+                break;
+            case 2:
+                MovieControl.getMoviesByTicketSales();
+                break;
+            case 3:
+                MovieControl.getAllMoviesByRating(); //TODO print top 5
+                break;
+        }
+        System.out.println();
+    }
+
     private void printMovie(Movie movie) {
         System.out.println("------------------------------------------");
         System.out.println("Name: " + movie.getName());
