@@ -31,8 +31,10 @@ public class MainApp {
 			sc_in = sc.nextInt();
 			switch (sc_in) {
 				case 1:
-					User lis = null;
-					lis = new LoginScreen().run();
+                    User lis = null;
+                    while(lis == null) {
+                        lis = new LoginScreen().run();
+                    }
 
 
 					if(lis.getType().equals("client")){
