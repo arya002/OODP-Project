@@ -15,6 +15,7 @@ public class MainApp {
 		ShowingControl.Reinitialize();
 		CineplexControl.Reinitialize();
 		MovieControl.Reinitialize();
+		ReviewControl.Reinitialize();
 
 		System.out.println("Welcome to MOBLIMA, the best way book your movie tickets.");
 		System.out.println("What would you like to do?");
@@ -59,7 +60,6 @@ public class MainApp {
 					break;
 
 				case 3:
-
 					System.exit(1);
 					break;
 
