@@ -34,8 +34,10 @@ public class MainApp {
 			sc_in = sc.nextInt();
 			switch (sc_in) {
 				case 1:
-					User lis = null;
-					lis = new LoginScreen().run();
+                    User lis = null;
+                    while(lis == null) {
+                        lis = new LoginScreen().run();
+                    }
 
 
 					if(lis.getType().equals("client")){
@@ -184,22 +186,15 @@ public class MainApp {
 			dotw++;
 		}
 
-		//ArrayList<Review> reviews = new ArrayList<Review>;
-		//reviews.add(new Review("Really capturing!", "Better Days", 5, client));
-		//reviews.add(new Review("Horrible acting, wouldn't recommend.", "Ford vs Ferrari", 1, client));
-		//reviews.add(new Review("Really scary and horryfying. Zombies looked real.", "Zombieland: Double Tap", 5, client));
-		//reviews.add(new Review("Todd acted great. Storyline could have been better though.", "Joker", 4, client));
-		//reviews.add(new Review("Movie was overall okay. Some parts were worth watching.", "Abominable (PG)", 3, client));
 
-		
+
 		Data.saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,cpes);
 		ShowingControl.addShowing(newShowings);
 		Data.saveObjectToPath(SaveLoadPath.USER_PATH,user);
 		Data.saveObjectToPath(SaveLoadPath.PRICE_PATH, prices);
 		Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH,movieListings);
-		//Data.saveObjectToPath(SaveLoadPath.REVIEW_PATH,reviews);
-		
-		BookingControl bookingControl = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),ShowingControl.getAllShowings().get(0));
+
+		BookingControl bookingControl = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),newShowings.get(0));
 
 		bookingControl.addTicket("adult",1,8);
 		bookingControl.addTicket("adult",2,1);
@@ -208,7 +203,7 @@ public class MainApp {
 
 		bookingControl.completeBooking();
 
-		BookingControl bookingControl2 = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),ShowingControl.getAllShowings().get(2));
+		BookingControl bookingControl2 = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),newShowings.get(2));
 
 		bookingControl2.addTicket("adult",1,8);
 		bookingControl2.addTicket("adult",2,1);
@@ -216,7 +211,7 @@ public class MainApp {
 
 		bookingControl2.completeBooking();
 
-		BookingControl bookingControl3 = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),ShowingControl.getAllShowings().get(3));
+		BookingControl bookingControl3 = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),newShowings.get(3));
 
 		bookingControl3.addTicket("adult",1,8);
 		bookingControl3.addTicket("adult",2,1);
@@ -225,7 +220,7 @@ public class MainApp {
 
 		bookingControl3.completeBooking();
 
-		BookingControl bookingControl4 = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),ShowingControl.getAllShowings().get(4));
+		BookingControl bookingControl4 = new BookingControl(client,newShowings.get(4));
 
 		bookingControl4.addTicket("adult",1,8);
 		bookingControl4.addTicket("adult",2,1);
@@ -234,7 +229,7 @@ public class MainApp {
 		bookingControl.completeBooking();
 
 		bookingControl4.completeBooking();
-		BookingControl bookingControl5 = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),ShowingControl.getAllShowings().get(5));
+		BookingControl bookingControl5 = new BookingControl(client,newShowings.get(5));
 
 		bookingControl5.addTicket("adult",1,8);
 		bookingControl5.addTicket("adult",2,1);
@@ -242,9 +237,24 @@ public class MainApp {
 		bookingControl5.addTicket("adult",8,1);
 		bookingControl5.addTicket("adult",7,1);
 		bookingControl5.addTicket("adult",6,1);
-		bookingControl.completeBooking();
+		bookingControl5.completeBooking();
 
+        ArrayList<Review> reviews = new ArrayList<>();
+        reviews.add(new Review("Really capturing!",
+				"Better Days",
+				5,
+				client));
+        reviews.add(new Review("Horrible acting, wouldn't recommend.",
+				"Ford vs Ferrari",
+				1,
+				client));
+        reviews.add(new Review("Really scary and horryfying. Zombies looked real.", "Zombieland: Double Tap", 5, client));
+        reviews.add(new Review("Todd acted great. Storyline could have been better though.", "Joker", 4, client));
+        reviews.add(new Review("Movie was overall okay. Some parts were worth watching.", "Abominable (PG)", 3, client));
 
+        ReviewControl.addReview(reviews);
+
+        System.out.println("There are " + ReviewControl.getAllReviews().size() + " Reviews");
 		System.out.println("There are " + ShowingControl.getAllShowings().size() + " Showings");
         System.out.println("There are " + MovieControl.getAllMovies().size() + " Movies");
 
