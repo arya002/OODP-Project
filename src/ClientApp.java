@@ -63,7 +63,7 @@ Create a ClientApp for the current user
                     System.out.println("Enter movie name to search for or type exit to go back:");
                     if(!mov.equals("exit")) {
                         sc.nextLine();
-                        mov = sc.next();
+                        mov = sc.nextLine();
                         Movie searchedMovie = null;
                         while (counter < MovieControl.getAllMovies().size() && !mov.equals("exit")) {
                             for (Movie movie : MovieControl.getAllMovies()) {
@@ -74,7 +74,7 @@ Create a ClientApp for the current user
 
                                     System.out.println("Movie Found");
                                     searchedMovie = movie;
-                                    //TODO print movie details (cast, synopsis etc)
+                                    printMovie(searchedMovie);
                                     System.out.println();
 
                                     System.out.println("What would you like to see? \n1. Reviews \n2. Listings\n3. Leave review \n4. Exit");
@@ -216,37 +216,20 @@ Create a ClientApp for the current user
 
     } while(sc_in !=5);
 }
-/*
-    public void bookMovie(Showing showingToBook)
-    {
 
-        showingToBook.getCinema().getRoomLayout().print();
-
-        String[][] seats = showingToBook.getCinema().getRoomLayout().getSeats();
-        String choice = MainApp.sc.next();
-        for(int i = 0;i<showingToBook.getCinema().n;i++){
-            for (int j =0; j < showingToBook.getCinema().m;j++){
-
-                if (choice == seats[i][j]){
-
-
-
-                }
-
-            }
-        }
-        //TODO let user choose a seat and display the price
-        //TODO process the booking
-    }
-    */
 /**
 Print the list of movies
-@param movies The cast of a movie as a string
+@param movies array of movies
  */
     private void printMovies(ArrayList<Movie> movies) {
         for (Movie movie : movies) {
+            System.out.println(movie.getName());
+        }
+    }
 
-            System.out.println("------------------------------------------");
+    private void printMovie(Movie movie)
+    {
+        System.out.println("------------------------------------------");
             System.out.println("Name: " + movie.getName());
             System.out.println("\nSynopsis:\n" + movie.getSynopsis());
             System.out.println(movie.getStatus());
@@ -254,7 +237,7 @@ Print the list of movies
             System.out.println("Starring: " + String.join(", ", movie.getCast()));
             //System.out.printf("Average rating: %.1f/5\n", avg_rating);
             System.out.println("------------------------------------------");
-        }
     }
+
 
 }
