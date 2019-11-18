@@ -238,7 +238,6 @@ public class MainApp {
 		bookingControl5.addTicket("adult",7,1);
 		bookingControl5.addTicket("adult",6,1);
 		bookingControl5.completeBooking();
-
 		System.out.println("There are " + ShowingControl.getAllShowings().size() + " Showings");
         System.out.println("There are " + MovieControl.getAllMovies().size() + " Movies");
 

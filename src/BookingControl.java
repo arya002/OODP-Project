@@ -49,6 +49,7 @@ Add a new ticket. Will deduce the price and assign the selected seat to the clie
    public void addTicket(String age, int row, int column)
    {
         Seat seat = showing.getSeatingPlan().getSeat(row, column);
+        seat.setSeatID(String.valueOf((char)(row + 65)) + String.valueOf(column));
         int price = calculatePrice(age);
 
         if (client == null)
@@ -97,18 +98,22 @@ Saves the booking to file
    public void completeBooking()
    {
        Booking booking = new Booking(tickets, client, showing);
-       System.out.println();
-       System.out.println("Thank you for booking with us! To view your bookings please look at your booking history.");
-       System.out.println("Your booking ID is " + booking.getBookingID());
-       System.out.println("Your total amount owed is S$" + booking.getTotalPrice());
-       System.out.println();
+       if (!booking.getTickets().isEmpty())
+       {
+        System.out.println();
+        System.out.println("Thank you for booking with us! To view your bookings please look at your booking history.");
+        System.out.println("Your booking ID is " + booking.getBookingID());
+        System.out.println("Your total amount owed is S$" + booking.getTotalPrice());
+        System.out.println();
+ 
+        ArrayList<Booking> bookings;
+        if((bookings = (ArrayList<Booking>) Data.getInstance().getObjectFromPath(SaveLoadPath.BOOKING_PATH,
+                 Booking.class)) == null)
+             bookings = new ArrayList<>();
+        bookings.add(booking);
+        Data.getInstance().saveObjectToPath(SaveLoadPath.BOOKING_PATH, bookings);
+       }
 
-       ArrayList<Booking> bookings;
-       if((bookings = (ArrayList<Booking>) Data.getInstance().getObjectFromPath(SaveLoadPath.BOOKING_PATH,
-                Booking.class)) == null)
-            bookings = new ArrayList<>();
-       bookings.add(booking);
-       Data.getInstance().saveObjectToPath(SaveLoadPath.BOOKING_PATH, bookings);
    }
  /**
 Loads an arraylist of bookings from file

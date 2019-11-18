@@ -127,14 +127,6 @@ public class StaffApp {
         } while (sc_in != 4);
 
     }
-
-    /**
-<<<<<<< HEAD
-    * Adds a new staff member
-    * @param user Staff member's username
-    * @param password Staff member's password
-    * @param first Staff member's first name
-    */
     private void printPrices()
     {
         ArrayList<Prices> prices =new ArrayList<>();
@@ -150,14 +142,19 @@ public class StaffApp {
 
     }
 
-=======
+    /**
+    * Adds a new staff member
+    * @param user Staff member's username
+    * @param password Staff member's password
+    * @param first Staff member's first name
+
+
      * Adds a new staff member
      *
      * @param user  Staff member's username
      * @param pass  Staff member's password
      * @param first Staff member's first name
      */
->>>>>>> ae851108a7493c40cce895eccb073590fdcbea7b
     private void addNewStaff(String user, String pass, String first) {
 
         ArrayList<User> allusers = (ArrayList<User>) Data.getInstance().getObjectFromPath(SaveLoadPath.USER_PATH, User.class);
@@ -166,13 +163,10 @@ public class StaffApp {
 
     }
 
-<<<<<<< HEAD
-=======
     /**
      * Adds a new holiday
      */
 
->>>>>>> ae851108a7493c40cce895eccb073590fdcbea7b
     private void addHoliday(String holiday) {
         ArrayList<Prices> prices =new ArrayList<>();
         if((prices= (ArrayList<Prices>) Data.getInstance().getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class))!=null);
