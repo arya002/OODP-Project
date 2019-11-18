@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * main screen
+ */
 
 public class MainApp {
 
@@ -87,7 +89,9 @@ public class MainApp {
 
 		} while (sc_in != 3);
 	}
-
+/**
+ * Create test data
+ */
 	private static void instantiateTestData() throws InterruptedException {
 
 		ArrayList<String> holidays = new ArrayList<>();

@@ -1,18 +1,25 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+Booking Application which would display the booking screen
+ */
 public class BookingApp
 {
     private Client client;
     private Showing showing;
-
+/**
+Takes the client and particular showing and run main method which would display the screen
+ */
     public BookingApp(Client client, Showing showing)
     {
         this.client = client;
         this.showing = showing;
         main();
     }
-
+/**
+Runs the interface to process a booking. E.g. asking for a user's age class, choose seats etc.
+Note: NOT the main method of this project
+ */
     public void main()
     {
         Scanner sc = new Scanner(System.in);
@@ -51,7 +58,10 @@ public class BookingApp
         
         bookingControl.completeBooking();
     }
-
+/**
+Checks if seat allocation is successful
+@return a boolean on the success(or failure) of allocation
+ */
     public boolean confirmSeat(int row, int column)
     {
         if (!ShowingControl.isAllocated(showing, row, column))

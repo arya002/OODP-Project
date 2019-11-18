@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -27,6 +25,7 @@ public class StaffApp {
     /**
      * Runs the StaffApp
      */
+
     private void run() {
         int sc_in;
 
@@ -58,8 +57,8 @@ public class StaffApp {
     }
 
     /**
-     * Handles the system settings
-     */
+    * Handles the system settings
+    */
     private void handleSystemSettings() {
         int sc_in;
         Scanner sc = new Scanner(System.in);
@@ -80,8 +79,26 @@ public class StaffApp {
                     changePriceOfTicket(price);
                     break;
                 case 2:
-                    System.out.println("When would you like to add a holiday");
-                    addHoliday();
+                    printHolidays();
+                    System.out.println("What would you like to do?\n1. Add holiday \n2. Remove holiday");
+                    sc_in = sc.nextInt();
+                    String holiday;
+                    switch (sc_in)
+                    {
+                        case 1:
+                            System.out.println("Please enter the new holiday (YYYYMMDD):");
+                            sc.nextLine();
+                            holiday = sc.nextLine();
+                            addHoliday(holiday);
+                            break;
+                        
+                        case 2:
+                            System.out.println("Please enter the holiday to remove (YYYYMMDD):");
+                            sc.nextLine();
+                            holiday = sc.nextLine();
+                            removeHoliday(holiday);
+                            break;
+                    }
                     break;
                 case 3:
                     //Add new staff
@@ -132,9 +149,29 @@ public class StaffApp {
     /**
      * Adds a new holiday
      */
-    private void addHoliday() {
 
+    private void addHoliday(String holiday) {
+        ArrayList<Prices> prices =new ArrayList<>();
+        if((prices= (ArrayList<Prices>) Data.getInstance().getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class))!=null);
+        Prices price = prices.get(0);
+        price.addHolyday(holiday);
+        prices.add(price);
+        System.out.println("Holiday added");
+    }
 
+    private void printHolidays(){
+        ArrayList<Prices> prices =new ArrayList<>();
+        if((prices= (ArrayList<Prices>) Data.getInstance().getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class))!=null)
+        prices.get(0).getHOLIDAYS().forEach(System.out::println);
+    }
+
+    private void removeHoliday(String holiday){
+        ArrayList<Prices> prices =new ArrayList<>();
+        if((prices= (ArrayList<Prices>) Data.getInstance().getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class))!=null)
+        if (prices.get(0).getHOLIDAYS().remove(holiday))
+            System.out.println("Holiday removed");
+        else
+            System.out.println("Holiday not on the list");
     }
 
     /**
@@ -142,6 +179,10 @@ public class StaffApp {
      *
      * @param price New price of the ticket
      */
+    /**
+    * Changes the price of a ticket
+    * @param price New price of the ticket
+    */
     private void changePriceOfTicket(double price) {
 
         boolean returnVal = false;
@@ -149,8 +190,9 @@ public class StaffApp {
     }
 
     /**
-     * Handles the show times
-     */
+    * Handles the show times
+    */
+
     private void handleShowTimes() {
         int sc_in;
         Scanner sc = new Scanner(System.in);
@@ -178,42 +220,35 @@ public class StaffApp {
                     break;
                 default:
                     System.out.println("Invalid input. Enter again!");
-            }
-            while (sc_in != 4) ;
+            } while (sc_in != 4) ;
 
 
             //TODO delete showing
         } while (sc_in != 4);
     }
 
-    /**
-     * Deletes a movie showing
-     */
     private void deleteShowing() {
 
         System.out.println("Select a showing number to delete: ");
         ArrayList<Showing> allShowings = ShowingControl.getAllShowings();
 
-        for (int i = 0; i < allShowings.size(); ++i) {
-            System.out.println((i + 1) + ". " + allShowings.get(i).getMovie().getName() + " is playing at " +
+        for(int i=0; i<allShowings.size(); ++i){
+            System.out.println( (i+1) + ". " + allShowings.get(i).getMovie().getName() + " is playing at " +
                     allShowings.get(i).getCineplex().getName() + " on " + allShowings.get(i).getDayOfWeek() +
                     " at " + allShowings.get(i).getTimeSlotString(allShowings.get(i).getTimeSlot()));
         }
         Scanner sc = new Scanner(System.in);
         int sc_in = sc.nextInt();
-        allShowings.remove(sc_in - 1);
-        Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH, allShowings);
+        allShowings.remove(sc_in-1);
+        Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH,allShowings);
     }
 
-    /**
-     * Updates the details of a showing
-     */
     private void updateShowing() {
 
         System.out.println("Select a showing number to edit: ");
         ArrayList<Showing> allShowings = ShowingControl.getAllShowings();
 
-        for (int i = 0; i < allShowings.size(); ++i) {
+        for(int i=0; i<allShowings.size(); ++i){
             System.out.println(allShowings.get(i).printShowing());
         }
 
@@ -221,7 +256,7 @@ public class StaffApp {
         System.out.println(allShowings.get(sc_in).printShowing());
         System.out.println("Which part do you want to edit: ");
         System.out.println("1. Movie + " +
-                "\n2. Date");
+                            "\n2. Date");
         int sc_in2 = MainApp.sc.nextInt();
 
         switch (sc_in2) {
@@ -229,16 +264,16 @@ public class StaffApp {
             case 1:
                 System.out.println("Enter new movie: ");
                 String mov = MainApp.sc.next();
-                allShowings.get(sc_in - 1).getMovie().setName(mov);
+                allShowings.get(sc_in-1).getMovie().setName(mov);
                 break;
             case 2:
-                System.out.println("\t X = Day of the week 0-6 - Y = Time Slot");
+                System.out.println("\t X = Day of the week 0-6 - Y = Time Slot" );
                 System.out.println("Enter new date in format YYYYMMDDXY: ");
                 String date = MainApp.sc.next();
-                allShowings.get(sc_in - 1).setDate(date);
+                allShowings.get(sc_in-1).setDate(date);
                 break;
         }
-        Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH, allShowings);
+        Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH,allShowings);
 
     }
 
@@ -329,9 +364,9 @@ public class StaffApp {
         do {
             System.out.println("Welcome " + currentStaff.getFirstName());
             System.out.println("1. View Movie Listings " +
-                    "\n2. Edit Movie Listings" +
-                    "\n3. Add New Movie" +
-                    "\n4. Exit\n");
+                            "\n2. Edit Movie Listings" +
+                            "\n3. Add New Movie" +
+                            "\n4. Exit\n");
 
             sc_in = MainApp.sc.nextInt();
             switch (sc_in) {
