@@ -43,7 +43,7 @@ public class ClientApp {
                 switch (sc_in) {
                     case 1:
                         displayMovies();
-                        //Without break here to automatically go to case 2. Makes intuitive sense
+                        // Without break here to automatically go to case 2. Makes intuitive sense
                     case 2:
                         searchForMovie();
                         break;
@@ -83,12 +83,17 @@ public class ClientApp {
         }
     }
 
+    /**
+     *
+     * helper for viewing the bookings history
+     *
+     */
     private void viewBookingHistory() {
 
         while (current == null) {
-            User lis = new LoginScreen().run();
+            User lis = new LoginApp().run();
             if (lis != null && lis.getType().equals("client"))
-                current = (Client) new LoginScreen().run();
+                current = (Client) new LoginApp().run();
         }
 
         for (Booking booking : BookingControl.getBookings()) {
@@ -98,6 +103,11 @@ public class ClientApp {
         }
     }
 
+    /**
+     *
+     * helper method for displaying cinemas
+     *
+     */
     private void displayCineplexes() {
         int sc_in = 0;
         int temp = 1;
@@ -137,7 +147,7 @@ public class ClientApp {
                 new BookingApp(current, selectedShowing);
             } else {
                 while (current == null) {
-                    current = (Client) new LoginScreen().run();
+                    current = (Client) new LoginApp().run();
                 }
                 new BookingApp(current, selectedShowing);
             }
@@ -146,6 +156,9 @@ public class ClientApp {
         }
     }
 
+    /**
+     * helper method for searchinng all the movies
+     */
     private void searchForMovie() {
         int sc_in = 0;
         String mov = "";
@@ -206,11 +219,16 @@ public class ClientApp {
         }
     }
 
+    /**
+     * helper method for leaving a review
+     * @param searchedMovie
+     */
+
     private void leaveReview(Movie searchedMovie) {
         int rating = 0;
         String blurb = "";
         while (current == null) {
-            User lis = new LoginScreen().run();
+            User lis = new LoginApp().run();
             current = (Client) lis;
             System.out.println(current.getFirstName());
         }
@@ -250,6 +268,11 @@ public class ClientApp {
         System.out.println();
     }
 
+    /**
+     * helper method for seeaing all listings of a movie,
+     *
+     * @param searchedMovie for this movie see all listings
+     */
 
     private void seeAllListings(Movie searchedMovie) {
         int count = 0;
@@ -290,6 +313,10 @@ public class ClientApp {
         }
     }
 
+    /**
+     * helper method for displaying movies
+     *
+     */
     private void displayMovies() {
         int sc_in = 0;
         System.out.println(
@@ -309,6 +336,10 @@ public class ClientApp {
         System.out.println();
     }
 
+    /**
+     * control class print for a specific move
+     * @param movie movie to print
+     */
     private void printMovie(Movie movie) {
         System.out.println("------------------------------------------");
         System.out.println("Name: " + movie.getName());

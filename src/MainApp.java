@@ -21,11 +21,11 @@ public class MainApp {
 		System.out.println("What would you like to do?");
 		menu();
 	}
-
+	/**
+	 * Prints menu to login or continue as guest
+	 */
 	private static void menu() throws InterruptedException {
-		/**
- * Prints menu to login or continue as guest
- */
+
 
 		int sc_in;
 
@@ -36,7 +36,7 @@ public class MainApp {
 				case 1:
                     User lis = null;
                     while(lis == null) {
-                        lis = new LoginScreen().run();
+                        lis = new LoginApp().run();
                     }
 
 
@@ -64,23 +64,13 @@ public class MainApp {
 					System.exit(1);
 					break;
 
-				case 10:
-					Client client = new Client("testuser", "testpassword", "w", "w", "w");
-					new ClientApp(client);
-					break;
-
 				case 22:
 
 					instantiateTestData();
 
 					break;
 
-				case 25:
 
-
-					//BookingControl.getMoviesByTicketSales("Better Days");
-
-					break;
 
 				default:
 					System.out.println("Invalid input, please choose from the following:");
@@ -90,8 +80,11 @@ public class MainApp {
 
 		} while (sc_in != 3);
 	}
+
 /**
- * Create test data
+ *
+ * Creating initial test data
+ *
  */
 	private static void instantiateTestData() throws InterruptedException {
 

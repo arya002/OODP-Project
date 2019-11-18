@@ -376,7 +376,8 @@ public class StaffApp {
     private void deleteListings() {
 
         ArrayList<Movie> movies = MovieControl.getAllMovies();
-        int indexToEdit = StaffControl.printWhichMovieToEdit("Delete", movies);
+        System.out.println("Which movie would you like to delete?");
+        int indexToEdit = StaffControl.printWhichMovieToEdit( movies);
         movies.remove(indexToEdit);
         Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH, movies);
 
@@ -384,7 +385,8 @@ public class StaffApp {
 
     private void editListings() {
         ArrayList<Movie> movies = MovieControl.getAllMovies();
-        int indexToEdit = StaffControl.printWhichMovieToEdit("Edit", movies);
+        System.out.println("Which movie would you like to edit?");
+        int indexToEdit = StaffControl.printWhichMovieToEdit(movies);
         System.out.println("1. Status" +
                 "\n2. Rating " +
                 "\n3. Exit");

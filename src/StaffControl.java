@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * helper class to break down some of the writing/saving of StaffApp
+ */
 public class StaffControl{
 
     public static void function(){
@@ -8,6 +11,9 @@ public class StaffControl{
 
     }
 
+    /**
+     * prints all the holidays from file
+     */
     public static void printHolidays(){
         ArrayList<Prices> prices;
         if((prices= (ArrayList<Prices>) Data.getInstance().getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class))!=null)
@@ -44,8 +50,14 @@ public class StaffControl{
 
     }
 
-    public static int printWhichMovieToEdit(String control, ArrayList<Movie> movies) {
-        System.out.println("Which movie would you like to " + control);
+    /**
+     *  prints all the movies in arraylist, and gets users choice for which to edit in index.
+     *
+     * @param movies the arrayList of movies which will be edited
+     * @return index of the movie to edit
+     */
+    public static int printWhichMovieToEdit(ArrayList<Movie> movies) {
+
 
         int i = 0;
         for (Movie movie : movies) {
@@ -79,6 +91,13 @@ public class StaffControl{
 
     }
 
+    /**
+     * making a new layout for a cinema.
+     *
+     * @param rows how many rows
+     * @param columns how many columns
+     * @return
+     */
     public static String[][] newLayout(int rows, int columns)
     {
         String[][] layout = new String[rows][columns];
@@ -97,9 +116,12 @@ public class StaffControl{
         return layout;
     }
 
-
+    /**
+     * removes a holdiay from the arraylist
+     * @param holiday holiday string to remove
+     */
     public static void removeHoliday(String holiday){
-        ArrayList<Prices> prices =new ArrayList<>();
+        ArrayList<Prices> prices;
         if((prices= (ArrayList<Prices>) Data.getInstance().getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class))!=null)
             if (prices.get(0).getHOLIDAYS().remove(holiday))
                 System.out.println("Holiday removed");
@@ -137,6 +159,12 @@ public class StaffControl{
         Data.saveObjectToPath(SaveLoadPath.PRICE_PATH, prices);
     }
 
+    /**
+     * helper method for speaking to cinema enum and capturing user input.
+     *
+     * @param sc a scanner object so we dont need to create
+     * @return
+     */
     public static String getDateInput(Scanner sc) {
         System.out.println("Enter date in format YYYYMMDD: ");
         String date;

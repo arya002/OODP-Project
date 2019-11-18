@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Controls the booking of a user
@@ -54,7 +52,7 @@ public class BookingControl {
         if (client == null)
             System.out.println("You must Log In to buy Tickets");
         while (client == null) {
-            User lis = new LoginScreen().run();
+            User lis = new LoginApp().run();
             if (lis != null)
                 if (lis.getType().equals("client")) {
                     client = (Client) lis;
