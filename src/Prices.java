@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Prices implements Serializable
 {
     private int BASE_ADULT;
-    private int BASE_CHILD;
+    private int BASE_CONCESSION;
     private int HOLIDAY_MARKUP;
     private int PREMIUM_MOVIE_MARKUP;
     private int PREMIUM_CINEMA_MARKUP;
@@ -18,10 +18,10 @@ public class Prices implements Serializable
 
     }
 
-    public Prices(int bASE_ADULT, int bASE_CHILD, int hOLIDAY_MARKUP, int pREMIUM_CINEMA_MARKUP, int pREMIUM_MOVIE_MARKUP, int PREMIUM_SEAT_MARKUP, ArrayList<String> holidays)
+    public Prices(int bASE_ADULT, int BASE_CONCESSION, int hOLIDAY_MARKUP, int pREMIUM_CINEMA_MARKUP, int pREMIUM_MOVIE_MARKUP, int PREMIUM_SEAT_MARKUP, ArrayList<String> holidays)
     {
         this.BASE_ADULT = bASE_ADULT;
-        this.BASE_CHILD = bASE_CHILD;
+        this.BASE_CONCESSION = BASE_CONCESSION;
         this.HOLIDAY_MARKUP = hOLIDAY_MARKUP;
         this.PREMIUM_CINEMA_MARKUP = pREMIUM_CINEMA_MARKUP;
         this.PREMIUM_MOVIE_MARKUP = pREMIUM_MOVIE_MARKUP;
@@ -50,10 +50,10 @@ public void setPREMIUM_SEAT_MARKUP(int pREMIUM_SEAT_MARKUP) {
     }
 
     /**
-     * @param bASE_CHILD the bASE_CHILD to set
+     * @param BASE_CONCESSION the BASE_CONCESSION to set
      */
-    public void setBASE_CHILD(int bASE_CHILD) {
-        BASE_CHILD = bASE_CHILD;
+    public void setBASE_CONCESSION(int BASE_CONCESSION) {
+        BASE_CONCESSION = BASE_CONCESSION;
     }
 
     /**
@@ -97,10 +97,10 @@ public void setPREMIUM_SEAT_MARKUP(int pREMIUM_SEAT_MARKUP) {
     }
 
     /**
-     * @return the bASE_CHILD
+     * @return the BASE_CONCESSION
      */
-    public int getBASE_CHILD() {
-        return BASE_CHILD;
+    public int getBASE_CONCESSION() {
+        return BASE_CONCESSION;
     }
 
     /**
