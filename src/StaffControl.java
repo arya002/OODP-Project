@@ -68,7 +68,7 @@ public class StaffControl{
         if((prices= (ArrayList<Prices>) Data.getInstance().getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class))!=null);
         Prices price = prices.get(0);
         System.out.println("Adult base price: S$" + price.getBASE_ADULT());
-        System.out.println("Child base price: S$" + price.getBASE_CHILD());
+        System.out.println("Child base price: S$" + price.getBASE_CONCESSION());
         System.out.println("Holiday/weekend markup: S$" + price.getHOLIDAY_MARKUP());
         System.out.println("Premium cinema markum: S$" + price.getPREMIUM_CINEMA_MARKUP());
         System.out.println("Premium movie markup: S$" + price.getPREMIUM_MOVIE_MARKUP());
@@ -122,8 +122,8 @@ public class StaffControl{
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the new adult base price");
         price.setBASE_ADULT(sc.nextInt());
-        System.out.println("Enter the new child base price");
-        price.setBASE_CHILD(sc.nextInt());
+        System.out.println("Enter the new concession base price");
+        price.setBASE_CONCESSION(sc.nextInt());
         System.out.println("Enter the new holiday/weekend markup");
         price.setHOLIDAY_MARKUP(sc.nextInt());
         System.out.println("Enter the new premium cinema markup");
