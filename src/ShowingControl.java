@@ -43,7 +43,7 @@ public class ShowingControl  {
 
     /**
     * Stores the array list of showings to the file
-    * @param Array list of showing objects
+    * @param showing list of showing objects
     */
     public static void addShowing(ArrayList<Showing> showing){
 
@@ -144,7 +144,7 @@ public class ShowingControl  {
     * Gets all the showings
     */
     public static ArrayList<Showing> getAllShowings() {
-        return allShowings;
+        return (ArrayList<Showing>) Data.getObjectFromPath(SaveLoadPath.SHOWING_PATH,Showing.class);
     }
 
     /**

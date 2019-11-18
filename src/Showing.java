@@ -95,7 +95,7 @@ public class Showing implements Serializable {
      */
     public String printShowing(){
         return (movie.getName() + " is playing at " + cineplex.getName() + " on "
-                + (getDayOfWeek()) + " at " + getTimeSlotString(getTimeSlot()) + " on screen " + cinema.getCinemaID() + " ");
+                + (getDotwString(getDayOfWeek())) + " at " + getTimeSlotString(getTimeSlot()) + " on screen " + cinema.getCinemaID() + " ");
     }
 
     /**
@@ -215,5 +215,11 @@ public class Showing implements Serializable {
         if (seatingPlan.getSeat(i, j).isAllocated())
             return true;
         return false;
+    }
+
+    public String getDotwString(int i){
+        Cinema.DaysOfWeek[] dotw = Cinema.DaysOfWeek.values();
+        return dotw[i].toString();
+
     }
 }
