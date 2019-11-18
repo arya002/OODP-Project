@@ -9,13 +9,22 @@ import java.util.Scanner;
  */
 public class StaffApp {
 
+    /**
+    * The current staff member logged in
+    */
     private Staff currentStaff;
 
+    /**
+    * Initializes the StaffApp application for the current staff member
+    */
     public StaffApp(Staff _currentStaff) {
         currentStaff = _currentStaff;
         run();
     }
 
+    /**
+    * Runs the StaffApp
+    */
     private void run() {
         int sc_in;
 
@@ -46,6 +55,9 @@ public class StaffApp {
         } while (sc_in != 4);
     }
 
+    /**
+    * Handles the system settings
+    */
     private void handleSystemSettings() {
         int sc_in;
         Scanner sc = new Scanner(System.in);
@@ -100,8 +112,12 @@ public class StaffApp {
 
     }
 
-
-
+    /**
+    * Adds a new staff member
+    * @param user Staff member's username
+    * @param password Staff member's password
+    * @param first Staff member's first name
+    */
     private void addNewStaff(String user, String pass, String first) {
 
         ArrayList<User> allusers = (ArrayList<User>) Data.getInstance().getObjectFromPath(SaveLoadPath.USER_PATH, User.class);
@@ -110,17 +126,27 @@ public class StaffApp {
 
     }
 
+    /**
+    * Adds a new holiday
+    */
     private void addHoliday() {
 
 
     }
 
+    /**
+    * Changes the price of a ticket
+    * @param price New price of the ticket
+    */
     private void changePriceOfTicket(double price) {
 
         boolean returnVal = false;
 
     }
 
+    /**
+    * Handles the show times
+    */
     private void handleShowTimes() {
         int sc_in;
         Scanner sc = new Scanner(System.in);
@@ -155,6 +181,9 @@ public class StaffApp {
         } while (sc_in != 4);
     }
 
+    /** 
+    * Deletes a movie showing
+    */
     private void deleteShowing() {
 
         System.out.println("Select a showing number to delete: ");
@@ -171,6 +200,9 @@ public class StaffApp {
         Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH,allShowings);
     }
 
+    /**
+    * Updates the details of a showing
+    */
     private void updateShowing() {
 
         System.out.println("Select a showing number to edit: ");
@@ -205,6 +237,10 @@ public class StaffApp {
 
     }
 
+    /**
+    * Prints all the movie names
+    * @param movies Array list of all the movie objects
+    */
     private void printMovies(ArrayList<Movie> movies) {
         for (Movie movie : movies) {
             System.out.println(movie.getName());
@@ -212,6 +248,10 @@ public class StaffApp {
         }
     }
 
+    /**
+    * Prints all the cineplexes
+    * @param cineplexs Array list of all the cineplex objects
+    */
     private void printCineplexs(ArrayList<Cineplex> cineplexs) {
         for (Cineplex cineplex : cineplexs) {
             System.out.println(cineplex.getName());
@@ -219,6 +259,9 @@ public class StaffApp {
         }
     }
 
+    /**
+    * Adds a new showing
+    */
     private void addShowing() {
 
         Scanner sc = new Scanner(System.in);
@@ -243,6 +286,9 @@ public class StaffApp {
                 MovieControl.getMovie(movie), date, type));
     }
 
+    /**
+    * handles Movie Listing changes
+    */
     private void handleMovieListings() {
 
         int sc_in;
