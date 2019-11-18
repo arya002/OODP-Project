@@ -49,7 +49,7 @@ Add a new ticket. Will deduce the price and assign the selected seat to the clie
    public void addTicket(String age, int row, int column)
    {
         Seat seat = showing.getSeatingPlan().getSeat(row, column);
-        seat.setSeatID(String.valueOf((char)(row + 65)) + String.valueOf(column));
+        seat.setSeatID(String.valueOf((char)(row + 65)) + String.valueOf(column + 1));
         int price = calculatePrice(age);
 
         if (client == null)

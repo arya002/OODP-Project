@@ -34,10 +34,8 @@ public class MainApp {
 			sc_in = sc.nextInt();
 			switch (sc_in) {
 				case 1:
-                    User lis = null;
-                    while(lis == null) {
-                        lis = new LoginScreen().run();
-                    }
+					User lis = null;
+					lis = new LoginScreen().run();
 
 
 					if(lis.getType().equals("client")){
@@ -60,6 +58,7 @@ public class MainApp {
 					break;
 
 				case 3:
+
 					System.exit(1);
 					break;
 
@@ -185,15 +184,21 @@ public class MainApp {
 			dotw++;
 		}
 
+		//ArrayList<Review> reviews = new ArrayList<Review>;
+		//reviews.add(new Review("Really capturing!", "Better Days", 5, client));
+		//reviews.add(new Review("Horrible acting, wouldn't recommend.", "Ford vs Ferrari", 1, client));
+		//reviews.add(new Review("Really scary and horryfying. Zombies looked real.", "Zombieland: Double Tap", 5, client));
+		//reviews.add(new Review("Todd acted great. Storyline could have been better though.", "Joker", 4, client));
+		//reviews.add(new Review("Movie was overall okay. Some parts were worth watching.", "Abominable (PG)", 3, client));
 
+		
 		Data.saveObjectToPath(SaveLoadPath.CINEPLEX_PATH,cpes);
 		ShowingControl.addShowing(newShowings);
 		Data.saveObjectToPath(SaveLoadPath.USER_PATH,user);
 		Data.saveObjectToPath(SaveLoadPath.PRICE_PATH, prices);
 		Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH,movieListings);
-		ShowingControl.Reinitialize();
-		MovieControl.Reinitialize();
-
+		//Data.saveObjectToPath(SaveLoadPath.REVIEW_PATH,reviews);
+		
 		BookingControl bookingControl = new BookingControl(new Client("testuser", "testpassword", "w", "w", "w"),ShowingControl.getAllShowings().get(0));
 
 		bookingControl.addTicket("adult",1,8);
@@ -237,7 +242,9 @@ public class MainApp {
 		bookingControl5.addTicket("adult",8,1);
 		bookingControl5.addTicket("adult",7,1);
 		bookingControl5.addTicket("adult",6,1);
-		bookingControl5.completeBooking();
+		bookingControl.completeBooking();
+
+
 		System.out.println("There are " + ShowingControl.getAllShowings().size() + " Showings");
         System.out.println("There are " + MovieControl.getAllMovies().size() + " Movies");
 
