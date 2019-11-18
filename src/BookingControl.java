@@ -49,7 +49,6 @@ public class BookingControl {
         if (showing == null)
             System.out.println("showing is null");
         
-        System.out.println(price);
         tickets.add(new Ticket(client, seat, showing, price, age));
         seat.assignSeat(client.getUsername());
 
@@ -72,13 +71,14 @@ public class BookingControl {
         if (showing.getDayOfWeek() == 5 || showing.getDayOfWeek() == 6)
             price += prices.getHOLIDAY_MARKUP();
 
-        System.out.println("Your ticket costs " + price);
+        System.out.println("Your ticket costs S$" + price);
         return price;
    }
 
    public void completeBooking()
    {
        Booking booking = new Booking(tickets, client, showing);
+       System.out.println();
        System.out.println("Thank you for booking with us! To view your bookings please look at your booking history.");
        System.out.println("Your booking ID is " + booking.getBookingID());
        System.out.println("Your total amount owed is S$" + booking.getTotalPrice());
