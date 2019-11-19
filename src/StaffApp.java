@@ -251,14 +251,14 @@ public class StaffApp {
         switch (sc_in2) {
 
             case 1:
-                int count = 0;
+                int count = 1;
                 System.out.println("Enter new movie: ");
                 ArrayList<Movie> allmovies = MovieControl.getAllMovies();
                 for (Movie all : allmovies) {
                     System.out.println(count + ". " + all.getName());
                     count++;
                 }
-                int mov = sc.nextInt();
+                int mov = sc.nextInt() - 1;
                 showingToEdit.setMovie(allmovies.get(mov));
 
                 break;
@@ -525,7 +525,7 @@ public class StaffApp {
     }
 
     public void viewListings() {
-        int i = 0;
+        int i = 1;
         for (Movie movie : MovieControl.getAllMovies()) {
             System.out.println(i + " - " + movie.getName() + "(" + movie.getRating() + ")" + " is currently " + movie.getStatus() + " \n" + movie.getSynopsis() + "\n");
             i++;
