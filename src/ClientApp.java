@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.lang.model.util.ElementScanner6;
+import javax.management.Query;
 
 /**
  * Client application to display the interface
@@ -156,13 +157,17 @@ public class ClientApp {
         if (!mov.equals("exit")) {
             sc.nextLine();
             mov = sc.nextLine();
+            String QueryMov;
             Movie searchedMovie = null;
             while (counter < MovieControl.getAllMovies().size() && !mov.equals("exit")) {
                 for (Movie movie : MovieControl.getAllMovies()) {
-                    if (mov.equals("exit"))
+                    if (mov.equals("exit")) {
                         break;
-
-                    if (movie.getName().contains(mov)) {
+                    }else {
+                        QueryMov = mov.substring(0,1).toUpperCase();
+                        QueryMov += mov.substring(1).toLowerCase();
+                    }
+                    if (movie.getName().contains(QueryMov)) {
 
                         System.out.println("Movie Found");
                         searchedMovie = movie;
