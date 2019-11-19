@@ -153,10 +153,11 @@ public class ClientApp {
         int sc_in = 0;
         String mov = "";
         int counter = 0;
-        System.out.println("Enter movie name to search for or type exit to go back:");
+        System.out.println("Enter movie name to search for or type 'exit' to go back:");
         if (!mov.equals("exit")) {
             sc.nextLine();
             mov = sc.nextLine();
+            mov.trim();
             String QueryMov;
             Movie searchedMovie = null;
             while (counter < MovieControl.getAllMovies().size() && !mov.equals("exit")) {

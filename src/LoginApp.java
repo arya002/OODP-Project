@@ -88,7 +88,8 @@ public class LoginApp {
         String email = sc.next();
 
         System.out.println("Enter your name:");
-        String name = sc.next();
+        sc.nextLine();
+        String name = sc.nextLine();
 
         allUsers.add(new Client(userName, password, phone, email, name));
         Data.getInstance().saveObjectToPath(SaveLoadPath.USER_PATH, allUsers);
