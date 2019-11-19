@@ -63,14 +63,14 @@ public class CineplexControl {
      */
     private static boolean allocateTimeSlot(Cinema whichCinema, int whichDay, int whichTimeSlot) {
 
-//        Reinitialize();
-//        int[][] tempTS;
-//        tempTS = whichCinema.getTimeSlotsArray();
-//        if (tempTS[whichDay][whichTimeSlot] == 1) {
-//            tempTS[whichDay][whichTimeSlot] = 0;
-//            System.out.println(" to " + Cinema.DaysOfWeek.values()[whichDay] + " at " + Cinema.TimeSlots.values()[whichTimeSlot]);
-//            return true;
-//        }
+        Reinitialize();
+        int[][] tempTS;
+        tempTS = whichCinema.getTimeSlotsArray();
+        if (tempTS[whichDay][whichTimeSlot] == 1) {
+            tempTS[whichDay][whichTimeSlot] = 0;
+            System.out.println(" to " + Cinema.DaysOfWeek.values()[whichDay] + " at " + Cinema.TimeSlots.values()[whichTimeSlot]);
+            return true;
+        }
         return true;
 
     }
