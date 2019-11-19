@@ -40,15 +40,16 @@ public class ReviewControl {
      * Get all reviews for a movie
      */
     public static ArrayList<Review> getMovieReviews(String movieName) { //get all reviews for a movie
-        ArrayList<Review> listReviews = new ArrayList();
-        for (int i = 0; i < allReviews.size(); i++) {
-            if (allReviews.get(i).getMovieName().equals(movieName)) {
-                listReviews.add(allReviews.get(i));
+        ArrayList<Review> listReviews = getAllReviews();
+        ArrayList<Review> retArray= new ArrayList<>();
+        for (int i = 0; i < listReviews.size(); i++) {
+            if (listReviews.get(i).getMovieName().equals(movieName)) {
+                retArray.add(listReviews.get(i));
             }//else {
                 //System.out.println(allReviews.get(i).getMovieName() + "\n" + movieName);
             //}
         }
-        return listReviews;
+        return retArray;
     }
 
     public static ArrayList<String> getAllReviewsNames(ArrayList<Review> customReviews) {

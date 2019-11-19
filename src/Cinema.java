@@ -87,10 +87,6 @@ public class Cinema implements Serializable {
         this.roomLayout = new RoomLayout(layout);
     }
 
-    /**
-     * time slots are not really needed therefore no testing of this was done. left
-     * them in as they would be easily implementable.
-     */
     private void buildTimeSlots() {
 
         for(int i =0; i < DaysOfWeek.size;i++){

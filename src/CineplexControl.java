@@ -56,10 +56,9 @@ public class CineplexControl {
     }
 
     /**
-     * Time slots are not really needed as input is staff, left in here to show this is easily
-     * implemented at any time, just need to do it from a certain point and every week.
      *
-     * @return true as its a stub
+     *
+     * @return true if the timeslot of date is available
      */
     private static boolean allocateTimeSlot(Cinema whichCinema, int whichDay, int whichTimeSlot) {
 

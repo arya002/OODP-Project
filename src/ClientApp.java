@@ -173,7 +173,7 @@ public class ClientApp {
                         sc_in = sc.nextInt();
                         switch (sc_in) {
                             case 1:
-                                seeReviews(mov);
+                                seeReviews(searchedMovie.getName());
                                 break;
                             case 2:
                                 seeAllListings(searchedMovie);
@@ -218,18 +218,20 @@ public class ClientApp {
         String blurb = "";
         while (current == null) {
             User lis = new LoginApp().run();
-            current = (Client) lis;
-            System.out.println(current.getFirstName());
+            if (lis != null) {
+                current = (Client) lis;
+                System.out.println(current.getFirstName());
+            }
+
         }
         System.out.println("What would you like to rate this film (1-5)");
 
         rating = sc.nextInt();
         System.out.println("Please write a short blurb about why you have chosen your score");
 
-        // sc.next();
-        blurb = sc.next();
-        ReviewControl
-                .addReview(new Review(blurb, searchedMovie.getName(), new Double(rating), current));
+        sc.nextLine();
+        blurb = sc.nextLine();
+        ReviewControl.addReview(new Review(blurb, searchedMovie.getName(), new Double(rating), current));
     }
 
     private void seeListingsOnDate(Movie searchedMovie) {
