@@ -406,7 +406,6 @@ public class StaffApp {
                             movies.get(indexToEdit).setStatus(Movie.Status.notShowing);
                             ShowingControl.notShowing(movies.get(indexToEdit).getName());
                             System.out.println("Removing all showings of " + movies.get(indexToEdit).getName());
-                            sc_in = 4;
                             break;
                         case 4:
                             break;
@@ -418,7 +417,7 @@ public class StaffApp {
 
                     Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH, movies);
 
-                } while (sc_in < 1 || sc_in > 3);
+                } while (sc_in < 1 || sc_in > 4);
                 break;
             }
             case 2: {
