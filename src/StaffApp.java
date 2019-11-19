@@ -224,10 +224,6 @@ public class StaffApp {
                 default:
                     System.out.println("Invalid input. Enter again!");
             }
-            while (sc_in != 4) ;
-
-
-            //TODO delete showing
         } while (sc_in != 4);
     }
 
@@ -323,13 +319,13 @@ public class StaffApp {
 
         String date = StaffControl.getDateInput(sc);
 
-        if (cinema.getTimeSlotsArray()[Integer.parseInt(date.substring(8, 9))][Integer.parseInt(date.substring(9))] == 1) {
+//        if (cinema.getTimeSlotsArray()[Integer.parseInt(date.substring(8, 9))][Integer.parseInt(date.substring(9))] == 1) {
             Showing showing = new Showing(cinema, cineplex, movie, date, type);
             showing.setIs3D(threedee);
             ShowingControl.addShowing(showing);
-        } else {
+//        } else {
             System.out.println("error -");
-        }
+//        }
         return;
     }
 

@@ -53,8 +53,7 @@ Create a new ticket
     }
 
     public String getDate() {
-        SimpleDateFormat ft = new SimpleDateFormat("hh:mm dd/MM/yyyy");
-        return ft.format(this.showing.getDate());
+        return "";
     }
 
     public Client getClient() {

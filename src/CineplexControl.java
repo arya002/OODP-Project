@@ -76,58 +76,6 @@ public class CineplexControl {
     }
 
     /**
-     * Add an arraylist showing to cinema. Main purpose is to save the showings in bulk to file
-     *
-     * @param showing an arraylist of showing objects, which contains the movie, date, and type. As well as the cinema and cineplex
-     */
-    public static Cinema addShowingToCinema(ArrayList<Showing> showing) {
-
-        Reinitialize();
-        ArrayList<Cineplex> testdata = getCineplexes();
-        for (Showing this_showing : showing) {
-            int whichDay = this_showing.getDayOfWeek();
-            int whichTimeSlot = this_showing.getTimeSlot();
-            String whichCinema = this_showing.getCinema().getCinemaID();
-            for (Cineplex thisCineplex : testdata)
-                for (Cinema cinema : thisCineplex.getCinemas())
-                    if (cinema.getCinemaID().equals(whichCinema))
-                        if (allocateTimeSlot(this_showing.getCinema(), whichDay, whichTimeSlot)) {
-                            cinema.addShowing(this_showing);
-                        } else {
-                            System.out.println("error already allocated");
-                        }
-
-
-        }
-        Data.saveObjectToPath(SaveLoadPath.CINEPLEX_PATH, testdata);
-        return null;
-
-    }
-
-    /**
-     * Add a showing to cinema. Main purpose is to save the showing to file
-     *
-     * @param showing a showing object, which contains the movie, date, and type. As well as the cinema and cineplex
-     */
-    public static void addShowingToCinema(Showing showing) {
-
-        Reinitialize();
-        int whichDay = showing.getDayOfWeek();
-        int whichTimeSlot = showing.getTimeSlot();
-        String whichCinema = showing.getCinema().getCinemaID();
-        for (Cineplex thisCineplex : cineplexs)
-            for (Cinema cinema : thisCineplex.getCinemas())
-                if (cinema.getCinemaID().equals(whichCinema))
-                    if (allocateTimeSlot(showing.getCinema(), whichDay, whichTimeSlot)) {
-                        cinema.addShowing(showing);
-                        Data.saveObjectToPath(SaveLoadPath.CINEPLEX_PATH, cineplexs);
-                        return;
-                    }
-
-
-    }
-
-    /**
      * Get all cinemas in a cineplex
      *
      * @param whichCineplex in a Cineplex Name (String)

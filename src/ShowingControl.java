@@ -38,7 +38,6 @@ public class ShowingControl {
         al.add(showing);
         Data.saveObjectToPath(SaveLoadPath.SHOWING_PATH, al);
 
-        CineplexControl.addShowingToCinema(showing);
 
     }
 
@@ -50,7 +49,6 @@ public class ShowingControl {
     public static void addShowing(ArrayList<Showing> showing) {
 
         Data.saveObjectToPath(SaveLoadPath.SHOWING_PATH, showing);
-        CineplexControl.addShowingToCinema(showing);
 
     }
 
@@ -147,34 +145,7 @@ public class ShowingControl {
         return (ArrayList<Showing>) Data.getObjectFromPath(SaveLoadPath.SHOWING_PATH, Showing.class);
     }
 
-    /**
-     * Gets all the showings for a particular cineplex
-     *
-     * @param cineplex Cineplex object
-     */
-    public static ArrayList<Showing> getAllShowingsAtCineplex(String cineplex) {
 
-        int i = 0;
-        System.out.println("All movies we have at your location\n");
-        ArrayList<Cineplex> ar = new ArrayList<>();
-        ArrayList<Showing> allAtLocation = new ArrayList<>();
-        CineplexControl cp = new CineplexControl();
-
-        for (Cineplex cpa : cp.getCineplexes()) {
-
-            if (cpa.getName().equals(cineplex)) {
-
-                for (Cinema cinema : cpa.getCinemas()) {
-
-                    return cinema.getShowings();
-
-                }
-
-            }
-
-        }
-        return null;
-    }
 
     /**
      * Gets all the showings for a particular movie

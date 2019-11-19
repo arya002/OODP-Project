@@ -84,16 +84,14 @@ public class ClientApp {
     }
 
     /**
-     *
      * helper for viewing the bookings history
-     *
      */
     private void viewBookingHistory() {
 
         while (current == null) {
             User lis = new LoginApp().run();
             if (lis != null && lis.getType().equals("client"))
-                current = (Client) new LoginApp().run();
+                current = (Client) lis;
         }
 
         for (Booking booking : BookingControl.getBookings()) {
@@ -104,9 +102,7 @@ public class ClientApp {
     }
 
     /**
-     *
      * helper method for displaying cinemas
-     *
      */
     private void displayCineplexes() {
         int sc_in = 0;
@@ -118,30 +114,23 @@ public class ClientApp {
         }
         sc_in = sc.nextInt();
         sc_in--;
-        System.out.println("you chose " + CineplexControl.getCineplexes().get(sc_in).getName());
+        String chosenCineplex = CineplexControl.getCineplexes().get(sc_in).getName();
+        System.out.println("you chose " + chosenCineplex);
         temp = 0;
         Showing selectedShowing = null;
-        if (sc_in >= 0 && sc_in < 3) {
+        ArrayList<Showing> showingsAtChosenCineplex = new ArrayList<>();
 
-            for (Cinema cinema : CineplexControl.getCineplexes().get(sc_in).getCinemas()) {
-
-                for (Showing showing : cinema.getShowings()) {
-                    System.out.println(temp + ". " + showing.printShowing());
-                    temp++;
-                }
+        for (Showing showing : ShowingControl.getAllShowings()) {
+            if (showing.getCineplex().getName().equals(chosenCineplex)) {
+                System.out.println(temp + ". " + showing.printShowing());
+                showingsAtChosenCineplex.add(showing);
+                temp++;
             }
         }
 
-        for (Cinema cinema : CineplexControl.getCineplexes().get(sc_in).getCinemas()) {
-            for (Showing showing : cinema.getShowings()) {
-                count++;
-                if (count == temp)
-                    selectedShowing = showing;
-
-            }
-        }
-
+        System.out.println("Please select which listing");
         sc_in = sc.nextInt();
+        selectedShowing = showingsAtChosenCineplex.get(sc_in);
         if (sc_in > 0 && sc_in < temp && selectedShowing != null) {
             if (current != null) {
                 new BookingApp(current, selectedShowing);
@@ -220,6 +209,7 @@ public class ClientApp {
 
     /**
      * helper method for leaving a review
+     *
      * @param searchedMovie
      */
 
@@ -314,7 +304,6 @@ public class ClientApp {
 
     /**
      * helper method for displaying movies
-     *
      */
     private void displayMovies() {
         int sc_in = 0;
@@ -337,6 +326,7 @@ public class ClientApp {
 
     /**
      * control class print for a specific move
+     *
      * @param movie movie to print
      */
     private void printMovie(Movie movie) {
