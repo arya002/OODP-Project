@@ -387,7 +387,7 @@ public class StaffApp {
             case 1: {
                 do {
                     System.out.println("1. Showing " +
-                            "\n2. Preview" +
+                            "\n2. Coming Soon" +
                             "\n3. Not Showing" +
                             "\n4. Exit.");
                     sc_in = sc.nextInt();
