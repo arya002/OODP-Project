@@ -116,11 +116,11 @@ public class Showing implements Serializable {
         case 1:
             return "1 pm";
         case 2:
-            return "3 pm";
+            return "4 pm";
         case 3:
             return "6 pm";
         case 4:
-            return "9 pm";
+            return "10 pm";
         default:
             return "";
         }

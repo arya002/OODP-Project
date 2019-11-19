@@ -80,7 +80,7 @@ public class StaffControl{
         if((prices= (ArrayList<Prices>) Data.getInstance().getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class))!=null);
         Prices price = prices.get(0);
         System.out.println("Adult base price: S$" + price.getBASE_ADULT());
-        System.out.println("Child base price: S$" + price.getBASE_CONCESSION());
+        System.out.println("Concession base price: S$" + price.getBASE_CONCESSION());
         System.out.println("Holiday/weekend markup: S$" + price.getHOLIDAY_MARKUP());
         System.out.println("Premium cinema markum: S$" + price.getPREMIUM_CINEMA_MARKUP());
         System.out.println("Premium movie markup: S$" + price.getPREMIUM_MOVIE_MARKUP());
@@ -172,19 +172,19 @@ public class StaffControl{
 
         Cinema.DaysOfWeek[] dotwvals = Cinema.DaysOfWeek.values();
         System.out.println("Enter which Day of the week: ");
-        for (int choice = 0; choice < dotwvals.length; choice++) {
-            System.out.println(choice + ". " + dotwvals[choice].toString());
+        for (int choice = 1; choice <= dotwvals.length; choice++) {
+            System.out.println(choice + ". " + dotwvals[choice - 1].toString());
         }
-        int dotwIndex = sc.nextInt();
+        int dotwIndex = sc.nextInt() - 1;
         date += (dotwIndex);
 
         System.out.println("Enter Time Slot: ");
         Cinema.TimeSlots[] timeSlots = Cinema.TimeSlots.values();
 
-        for (int choice = 0; choice < timeSlots.length; choice++) {
-            System.out.println(choice + ". " + timeSlots[choice].toString());
+        for (int choice = 1; choice <= timeSlots.length; choice++) {
+            System.out.println(choice + ". " + timeSlots[choice - 1].toString());
         }
-        int timeSlotIndex = sc.nextInt();
+        int timeSlotIndex = sc.nextInt() - 1;
         date += (timeSlotIndex);
         return date;
     }

@@ -116,32 +116,34 @@ public class StaffApp {
         System.out.println("Please Enter the staff FirstName");
         first = sc.next();
         StaffControl.addNewStaff(user, pass, first);
+        System.out.println("New staff profile added\n");
     }
 
     private void editCinemaLayouts() {
         Scanner sc = MainApp.sc;
         int row;
         int column;
-        System.out.println("How many rows would you like this new cinema to be");
+        System.out.println("How many rows would you like this new cinema layout to have?");
         row = sc.nextInt();
-        System.out.println("how many columns would you like this new cinema to be");
+        System.out.println("how many seats in a row would you like this cinema layout to have?");
         column = sc.nextInt();
         ArrayList<Cineplex> cineplex = (ArrayList<Cineplex>) Data.getObjectFromPath(SaveLoadPath.CINEPLEX_PATH, Cineplex.class);
-        int selectedCineplex = 0;
-        int selectedCinema = 0;
+        int selectedCineplex = 1;
+        int selectedCinema = 1;
         System.out.println("Choose the cineplex: ");
         for (Cineplex cp : cineplex) {
             System.out.println(selectedCineplex + ". " + cp.getName());
             selectedCineplex++;
         }
-        selectedCineplex = sc.nextInt();
+        selectedCineplex = sc.nextInt() - 1;
         for (Cinema cinema : cineplex.get(selectedCineplex).getCinemas()) {
             System.out.println(selectedCinema + ". " + cinema.getCinemaID());
             selectedCinema++;
         }
-        selectedCinema = sc.nextInt();
+        selectedCinema = sc.nextInt() - 1;
         cineplex.get(selectedCineplex).getCinemas().get(selectedCinema).buildRoomLayout(StaffControl.newLayout(row, column));
         Data.saveObjectToPath(SaveLoadPath.CINEPLEX_PATH, cineplex);
+        System.out.println("Cinema layout changed");
     }
 
     private void editHolidays() {
@@ -173,6 +175,7 @@ public class StaffApp {
         System.out.println("Would you like to edit the prices?");
         if (sc.next().equalsIgnoreCase("yes")) {
             StaffControl.changePrices();
+            System.out.println("Prices have been edited\n");
         }
     }
 
@@ -224,6 +227,7 @@ public class StaffApp {
         int sc_in = sc.nextInt();
         allShowings.remove(sc_in - 1);
         Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH, allShowings);
+        System.out.println("Showing deleted\n");
     }
 
     private void updateShowing() {
@@ -247,14 +251,14 @@ public class StaffApp {
         switch (sc_in2) {
 
             case 1:
-                int count = 0;
+                int count = 1;
                 System.out.println("Enter new movie: ");
                 ArrayList<Movie> allmovies = MovieControl.getAllMovies();
                 for (Movie all : allmovies) {
                     System.out.println(count + ". " + all.getName());
                     count++;
                 }
-                int mov = sc.nextInt();
+                int mov = sc.nextInt() - 1;
                 showingToEdit.setMovie(allmovies.get(mov));
 
                 break;
@@ -266,7 +270,7 @@ public class StaffApp {
                 break;
         }
         Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH, allShowings);
-
+        System.out.println("Showing has been updated\n");
     }
 
     /**
@@ -276,32 +280,32 @@ public class StaffApp {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Choose a cineplex: ");
-        int count = 0;
-        int cineplexIndex = 0;
-        int cinemaIndex = 0;
+        int count = 1;
+        int cineplexIndex = 1;
+        int cinemaIndex = 1;
         for (Cineplex cineplex : CineplexControl.getCineplexes()) {
             System.out.println(count + "." + cineplex.getName());
             count++;
         }
-        cineplexIndex = sc.nextInt();
+        cineplexIndex = sc.nextInt() - 1;
         Cineplex cineplex = CineplexControl.getCineplexes().get(cineplexIndex);
-        count = 0;
+        count = 1;
         System.out.println("Choose a cinema: ");
         for (Cinema cinema : cineplex.getCinemas()) {
             System.out.println(count + "." + cinema.getCinemaID());
             count++;
         }
 
-        cinemaIndex = sc.nextInt();
+        cinemaIndex = sc.nextInt() - 1;
         Cinema cinema = cineplex.getCinemas().get(cinemaIndex);
 
         System.out.println("Choose a movie: ");
-        count = 0;
+        count = 1;
         for (Movie movie : MovieControl.getAllMovies()) {
             System.out.println(count + ". " + movie.getName());
             count++;
         }
-        int movieIndex = sc.nextInt();
+        int movieIndex = sc.nextInt() - 1;
         Movie movie = MovieControl.getAllMovies().get(movieIndex);
 
         System.out.println("is it 3d? :");
@@ -370,7 +374,7 @@ public class StaffApp {
         int indexToEdit = StaffControl.printWhichMovieToEdit(movies);
         movies.remove(indexToEdit);
         Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH, movies);
-
+        System.out.println("Movie listing deleted");
     }
 
     private void editListings() {
@@ -402,7 +406,6 @@ public class StaffApp {
                             movies.get(indexToEdit).setStatus(Movie.Status.notShowing);
                             ShowingControl.notShowing(movies.get(indexToEdit).getName());
                             System.out.println("Removing all showings of " + movies.get(indexToEdit).getName());
-                            sc_in = 4;
                             break;
                         case 4:
                             break;
@@ -414,8 +417,7 @@ public class StaffApp {
 
                     Data.saveObjectToPath(SaveLoadPath.MOVIE_PATH, movies);
 
-                } while (sc_in != 4);
-
+                } while (sc_in < 1 || sc_in > 4);
                 break;
             }
             case 2: {
@@ -429,6 +431,7 @@ public class StaffApp {
             case 3:
                 break;
         }
+        System.out.println("Movie listing updated\n");
     }
 
     private String getRatingInput() {
@@ -521,7 +524,7 @@ public class StaffApp {
     }
 
     public void viewListings() {
-        int i = 0;
+        int i = 1;
         for (Movie movie : MovieControl.getAllMovies()) {
             System.out.println(i + " - " + movie.getName() + "(" + movie.getRating() + ")" + " is currently " + movie.getStatus() + " \n" + movie.getSynopsis() + "\n");
             i++;
