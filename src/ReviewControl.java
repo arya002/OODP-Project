@@ -44,9 +44,9 @@ public class ReviewControl {
         for (int i = 0; i < allReviews.size(); i++) {
             if (allReviews.get(i).getMovieName().equals(movieName)) {
                 listReviews.add(allReviews.get(i));
-            }else {
-                System.out.println(allReviews.get(i).getMovieName() + "\n" + movieName);
-            }
+            }//else {
+                //System.out.println(allReviews.get(i).getMovieName() + "\n" + movieName);
+            //}
         }
         return listReviews;
     }

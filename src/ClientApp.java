@@ -300,6 +300,7 @@ public class ClientApp {
         } else {
             System.out.println("Average rating unavailable, not enough reviews");
         }
+        System.out.println();
     }
 
     /**
