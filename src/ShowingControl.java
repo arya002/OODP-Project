@@ -37,7 +37,7 @@ public class ShowingControl {
         ArrayList al = getAllShowings();
         al.add(showing);
         Data.saveObjectToPath(SaveLoadPath.SHOWING_PATH, al);
-
+        System.out.println("New showing added\n");
 
     }
 
