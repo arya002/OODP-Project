@@ -8,7 +8,6 @@ import java.util.Scanner;
  * @since 11/11/2019
  */
 public class StaffApp {
-    Scanner sc = null;
 
     /**
      * The current staff member logged in
@@ -20,7 +19,6 @@ public class StaffApp {
      */
     public StaffApp(Staff _currentStaff) {
         currentStaff = _currentStaff;
-        sc = MainApp.sc;
         run();
     }
 
@@ -30,7 +28,7 @@ public class StaffApp {
 
     private void run() {
         int sc_in;
-
+        Scanner sc = MainApp.sc;
         do {
             System.out.println("Welcome " + currentStaff.getFirstName());
             System.out.println
@@ -41,7 +39,7 @@ public class StaffApp {
                             "\n5. Get All Movies by Ratings" +
                             "\n6. Exit\n");
 
-            //sc.nextLine();
+            sc.nextLine();
             sc_in = sc.nextInt();
             switch (sc_in) {
                 case 1:
@@ -109,6 +107,7 @@ public class StaffApp {
     }
 
     private void addNewStaff() {
+        Scanner sc = MainApp.sc;
         String user, pass, first;
         System.out.println("Please Enter the staff Username");
         user = sc.next();
@@ -120,6 +119,7 @@ public class StaffApp {
     }
 
     private void editCinemaLayouts() {
+        Scanner sc = MainApp.sc;
         int row;
         int column;
         System.out.println("How many rows would you like this new cinema to be");
@@ -145,6 +145,7 @@ public class StaffApp {
     }
 
     private void editHolidays() {
+        Scanner sc = MainApp.sc;
         StaffControl.printHolidays();
         System.out.println("What would you like to do?\n1. Add holiday \n2. Remove holiday");
         int sc_in = sc.nextInt();
@@ -167,28 +168,12 @@ public class StaffApp {
     }
 
     private void editMoviePrices() {
+        Scanner sc = MainApp.sc;
         StaffControl.printPrices();
         System.out.println("Would you like to edit the prices?");
         if (sc.next().equalsIgnoreCase("yes")) {
             StaffControl.changePrices();
         }
-        Scanner sc = new Scanner(System.in);
-        ArrayList<Prices> prices = (ArrayList<Prices>) Data.getObjectFromPath(SaveLoadPath.PRICE_PATH, Prices.class);
-        Prices price = prices.get(0);
-        System.out.println("Enter the new adult base price");
-        price.setBASE_ADULT(sc.nextInt());
-        System.out.println("Enter the new concession base price");
-        price.setBASE_CONCESSION(sc.nextInt());
-        System.out.println("Enter the new holiday/weekend markup");
-        price.setHOLIDAY_MARKUP(sc.nextInt());
-        System.out.println("Enter the new premium cinema markup");
-        price.setPREMIUM_CINEMA_MARKUP(sc.nextInt());
-        System.out.println("Enter the new premium movie markup");
-        price.setPREMIUM_MOVIE_MARKUP(sc.nextInt());
-        System.out.println("Enter the new premium seat markup");
-        price.setPREMIUM_SEAT_MARKUP(sc.nextInt());
-
-        Data.saveObjectToPath(SaveLoadPath.PRICE_PATH, prices);
     }
 
 
@@ -235,14 +220,14 @@ public class StaffApp {
         for (int i = 0; i < allShowings.size(); ++i) {
             System.out.println((i + 1) + ". " + allShowings.get(i).printShowing());
         }
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = MainApp.sc;
         int sc_in = sc.nextInt();
         allShowings.remove(sc_in - 1);
         Data.getInstance().saveObjectToPath(SaveLoadPath.SHOWING_PATH, allShowings);
     }
 
     private void updateShowing() {
-
+        Scanner sc = MainApp.sc;
         System.out.println("Select a showing number to edit: ");
         ArrayList<Showing> allShowings = ShowingControl.getAllShowings();
 
@@ -324,7 +309,7 @@ public class StaffApp {
             showing.setIs3D(threedee);
             ShowingControl.addShowing(showing);
 //        } else {
-            System.out.println("error -");
+            //System.out.println("error -");
 //        }
         return;
     }
@@ -334,7 +319,7 @@ public class StaffApp {
      * handles Movie Listing changes
      */
     private void handleMovieListings() {
-
+        Scanner sc = MainApp.sc;
         int sc_in;
         do {
             System.out.println("Welcome " + currentStaff.getFirstName());
@@ -380,6 +365,7 @@ public class StaffApp {
     }
 
     private void editListings() {
+        Scanner sc = MainApp.sc;
         ArrayList<Movie> movies = MovieControl.getAllMovies();
         System.out.println("Which movie would you like to edit?");
         int indexToEdit = StaffControl.printWhichMovieToEdit(movies);
@@ -474,6 +460,7 @@ public class StaffApp {
     }
 
         private void addMovieListing () {
+            Scanner sc = MainApp.sc;
             String name;
             Movie.Status status;
             String synopsis;

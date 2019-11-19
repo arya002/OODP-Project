@@ -7,7 +7,7 @@ public class BookingControl {
 
     private Client client;
     private Showing showing;
-    private static ArrayList<Ticket> tickets;
+    private ArrayList<Ticket> tickets;
     public static ArrayList<String> holidays;
     private static Prices prices = null;
 
