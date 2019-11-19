@@ -500,6 +500,7 @@ public class StaffApp {
             blockbuster = true;
         }
         System.out.println("Enter the directors name");
+        sc.nextLine();
         director = sc.nextLine();
 
         while (!actor.equalsIgnoreCase("exit")) {
