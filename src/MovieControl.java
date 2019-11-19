@@ -51,7 +51,8 @@ public class MovieControl {
             }
         }
 
-        ticketSalesMap.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).forEach(System.out::println);
+        System.out.println("Top 5 movies by ticket sales:");
+        ticketSalesMap.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).limit(5).forEach(System.out::println);
         return null;
     }
 
@@ -102,8 +103,8 @@ public class MovieControl {
             avgReviewMap.remove(movie);
         }
         
-
-        avgReviewMap.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).forEach(System.out::println);
+        System.out.println("Top 5 rated movies (Movies with lass than 2 reviews not included):");
+        avgReviewMap.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).limit(5).forEach(System.out::println);
     }
 
 
@@ -111,8 +112,6 @@ public class MovieControl {
     public static ArrayList<String> getAllMoviesNames() {
 
         Reinitialize();
-
-        System.out.println("All movies are\n");
 
         ArrayList<String> names = new ArrayList<>();
 
