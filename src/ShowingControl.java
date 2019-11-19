@@ -128,7 +128,7 @@ public class ShowingControl {
                 }
             }
         }
-        for (int i = 1; i <= 4 * seatingPlan.length + 4; ++i) {
+        for (int i = 1; i <= 4 * seatingPlan[1].length + 4; ++i) {
             System.out.print("_");
         }
         System.out.println();

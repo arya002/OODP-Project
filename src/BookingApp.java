@@ -31,8 +31,12 @@ Note: NOT the main method of this project
 
         while (anotherTicket.equalsIgnoreCase("yes"))
         { 
-            System.out.println("Is this an adult or a child ticket?");
+            System.out.println("Is this an adult, senior, student or a child ticket?");
             String age = sc.nextLine();
+            if (age.equalsIgnoreCase("senior") || age.equalsIgnoreCase("child"))
+                System.out.println("You may get asked to prove your age upon arrival");
+            else if (age.equalsIgnoreCase("student"))
+                System.out.println("You may get asked to show your student card upon arrival");
 
             System.out.println("Legend : U for unavailable, P for premuim, N for normal");
             ShowingControl.printSeats(showing);

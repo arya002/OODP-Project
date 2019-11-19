@@ -37,7 +37,7 @@ public class StaffApp {
                             "\n3. Configure System Settings" +
                             "\n4. Get All Movies by Ticket Sales" +
                             "\n5. Get All Movies by Ratings" +
-                            "\n6. Exit\n");
+                            "\n6. Log out\n");
 
             sc.nextLine();
             sc_in = sc.nextInt();
@@ -102,7 +102,7 @@ public class StaffApp {
                     break;
             }
 
-        } while (sc_in != 3);
+        } while (sc_in != 5);
 
     }
 
@@ -136,7 +136,7 @@ public class StaffApp {
         }
         selectedCineplex = sc.nextInt();
         for (Cinema cinema : cineplex.get(selectedCineplex).getCinemas()) {
-            System.out.println(selectedCineplex + ". " + cinema.getCinemaID());
+            System.out.println(selectedCinema + ". " + cinema.getCinemaID());
             selectedCinema++;
         }
         selectedCinema = sc.nextInt();
