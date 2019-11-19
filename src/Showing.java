@@ -97,7 +97,7 @@ public class Showing implements Serializable {
      */
     public String printShowing(){
         if(getMovie().getStatus() == Movie.Status.Showing || getMovie().getStatus() == Movie.Status.comingSoon) {
-            return ((movie.isBlockbuster()? "": "The BlockBuster ")+ movie.getName() + (is3D ? "":" in 3D" ) + " is playing at " + cineplex.getName() + " on "
+            return ((movie.isBlockbuster()? "The BlockBuster ": "")+ movie.getName() + (is3D ? " in 3D":"" ) + " is playing at " + cineplex.getName() + " on "
                     + (getDotwString(getDayOfWeek())) + " at " + getTimeSlotString(getTimeSlot())
                     + " on the " + getDDMMYYYYformatted() + " on screen " + cinema.getCinemaID());
         }

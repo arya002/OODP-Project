@@ -107,7 +107,7 @@ public class StaffControl{
         {
             for (int j = 0; j < columns; j++)
             {
-                if(premium && i > rows - 2)
+                if(premium && i > rows - 3)
                     layout[i][j] = "P";
                 else
                     layout[i][j] = "N";
